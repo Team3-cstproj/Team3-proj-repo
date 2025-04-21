@@ -5,12 +5,308 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- font-awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrab/css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
     <title>Home-E-comerce</title>
+    <style>
+
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+  overflow-x: hidden;
+}
+        .first_wrapeer{
+            background-image: url("img_index/222.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;       
+    background-position: center; 
+    margin: 0;                   
+    min-height: 100vh; 
+     }
+     .nav-item a{
+        color: white;
+        font-weight: bold;
+     }
+     .offcanvas button span .navbar-toggler-icon{
+      color: azure;
+
+     }
+
+    </style>
 </head>
+
 <body>
-    
+  <div class="first_wrapeer">
+        <!-- navbar in labtop and tablet and tv screen -->
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary p-4 bg-primary p-2 text-dark bg-opacity-25 d-none d-md-block">
+        <div class="container-fluid ">
+           <img src="img_index/logo1@2x-free-img.png" width="150px" height="50px" >
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">EVERYTHING</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">WOMEN</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">MEN</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">ACCESSORIES</a>
+              </li>
+            </ul>
+            <span class="navbar-text">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a class="nav-link " href="#">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">CONTACT US</a>
+                    </li>
+                  </ul>
+            </span>
+            <span class="navbar-text">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a class="nav-link cart-trigger" href="#">$0.00</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link cart-trigger" href="#"><i class="fa-sharp fa-solid fa-bag-shopping"></i><sup class="bg-light rounded-circle" ><span class="text-dark">0</span></sup></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-user"></i></a>
+                      </li>
+                  </ul>
+            </span>
+          </div>
+        </div>
+      </nav>
+
+
+            <!-- navbar in phone screen -->
+      <nav class="navbar bg-body-tertiary bg-primary p-2 text-dark bg-opacity-25 d-md-none">
+        <div class="container-fluid">
+            <img src="img_index/logo1@2x-free-img.png" width="150px" height="50px">
+            <div class="d-flex">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-row">
+                    <li class="nav-item  p-2">
+                        <a class="nav-link cart-trigger" href="#">$0.00</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link cart-trigger" href="#"><i class="fa-sharp fa-solid fa-bag-shopping"></i><sup class="bg-light rounded-circle" ><span class="text-dark">0</span></sup></a>
+                    </li>
+                </ul>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="user-title pt-5" id="user"><a class="nav-link" href="#"><i class="fa-solid fa-user"></i></a></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">EVERYTHING</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  active" href="#">WOMEN</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">MAN</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">ACCESSORIES</a>
+                        </li>
+                        <span class="navbar-text">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                  <a class="nav-link active" href="#">ABOUT</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link active" href="#">CONTACT US</a>
+                                </li>
+                              </ul>
+                        </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Sidebar -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="close-cart" id="closeCart">&times;</button>
+  </div>
+  <div class="cart-content">
+    <p>Your cart is empty.</p>
+  </div>
+  <div class="cart-footer">
+    <a href="#" class="continue-shopping" id="continueShopping">Continue Shopping</a>
+  </div>
+</div>
+
+<!--discount section-->
+  <div class="mx-0 container py-5  fw-bold">
+   <div class="offer-banner d-flex flex-column align-items-start text-start p-5">
+      <h1 class="fw-bold display-4 mb-3">Raining Offers For</h1>
+      <h1 class="highlight-text fw-bold display-4 mb-4">Hot Summer!</h1>
+      <h3 class="mb-5">25% Off On All Products</h3>
+    </div>
+    <div class="button_offer">
+      <div class="d-flex flex-wrap justify-content-start gap-3">
+          <button class="btn col-12 col-sm-12  col-md-3 col-lg-2 shop-now fw-bold">SHOP NOW</button>
+          <button class="btn col-12 col-sm-12  col-md-3 col-lg-2 find-more fw-bold">FIND MORE</button>
+      </div>  
+    </div>
+  </div>  <!--first wrapeer end-->
+
+<!-- 5 logo gallary-->
+  <div id="innf" class="container-fluid bg-light">
+    <div class="container-fluid p-0 mx-0 my-5 ">
+      <div class="container-fluid logo-carousel-container">
+          <button class="carousel-arrow left">
+              <i class="fas fa-chevron-left"></i>
+          </button>
+          
+          <div class="logo-carousel">
+              <div class="logo-track" id="logoTrack">
+                  <!-- Static logo array in HTML -->
+                  <div class="logo-item">
+                      <img src="img_index/client-logo-1.png" alt="Logo 1">
+                  </div>
+                  <div class="logo-item">
+                      <img src="img_index/client-logo-2.png" alt="Logo 2">
+                  </div>
+                  <div class="logo-item">
+                      <img src="img_index/client-logo-3.png" alt="Logo 3">
+                  </div>
+                  <div class="logo-item">
+                      <img src="img_index/client-logo-4.png" alt="Logo 4">
+                  </div>
+                  <div class="logo-item">
+                      <img src="img_index/client-logo-1.png" alt="Logo 5">
+                  </div>
+                  <div class="logo-item">
+                      <img src="img_index/client-logo-2.png" alt="Logo 6">
+                  </div>
+              </div>
+          </div>
+          
+          <button class="carousel-arrow right">
+              <i class="fas fa-chevron-right"></i>
+          </button>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <script src="bootstrab/js/bootstrap.bundle.js"></script>
