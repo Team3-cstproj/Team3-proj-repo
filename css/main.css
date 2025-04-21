@@ -1,3 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+overflow-x: hidden;
+}
+    .first_wrapeer{
+     
+background-image: url("../img_index/222.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+background-attachment: fixed; /* This makes the background fixed */
+margin: 0;
+min-height: 100vh;
+position: relative; /* Added for better positioning */
+}
+/*===================================================================================*/
+/*====navbar baby*/
+ 
+ .nav-item a{
+    color: white;
+    font-weight: bold;
+ }
+ .offcanvas button span .navbar-toggler-icon{
+  color: azure;
+
+ }
+/*===================================================================================*/
+/*====cart overlay and side bar baby*/
 .cart-count {
     color: white;
     padding: 2px 6px;
@@ -96,7 +128,7 @@
         right: -100%;
     }
 }
-
+/*===================================================================================*/
 /* discount bannar */
 
 .offer-banner {
@@ -140,6 +172,7 @@ background-color: transparent;
 background-color: white;
 color: black;
 }
+/*===================================================================================*/
 
 /* logo container  */
 #innf {
@@ -172,9 +205,10 @@ color: black;
           }
           
           .logo-item img {
-              max-width: 100%;
-              height: 120px; /* Fixed height for consistency */
+              max-width: 180px;
+              height: 90px; /* Fixed height for consistency */
               object-fit: contain;
+              padding:5px auto;
               filter: grayscale(100%);
               transition: filter 0.3s ease;
           }
@@ -232,4 +266,293 @@ color: black;
                   height: 30px;
               }
           }
-  
+/*===================================================================================*/
+  /*promo card stylingggggg*/
+.promo-card {
+    padding: 30px;
+    margin-bottom: 20px;
+    height: 400px;;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.promo-card:hover {
+    transform: translateY(-5px);
+}
+
+.promo-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.promo-text {
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+.promo-card h3{
+  color: white;
+}
+.promo-card p{
+  color: #ffffff;
+}
+
+.promo-1 {
+    background-image: url(../img_index/promo1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+}
+
+.promo-2 {
+    background-image: url(../img_index/promo2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+
+}
+
+.promo-3 {
+    background-image: url(../img_index/promo3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+
+}
+
+.promo-card .promo-btn {
+    padding: 8px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    width: 150px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+}
+
+.promo-card .promo-btn:hover {
+    background-color: #000000; 
+    color: rgb(255, 255, 255);
+}
+/*===================================================================================*/
+.second_wrapeer{
+     
+    background-image: url("../img_index/6.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* This makes the background fixed */
+    margin: 0;
+    min-height: 100vh;
+    position: relative; /* Added for better positioning */
+    }
+    /* .second_wrapeer h1{
+        align-self: center;
+        text-align: center;
+        font-weight: bold;
+        padding-bottom: 10px;
+        border-block-end-color :  blue;
+        border-block-end-style : ridge;
+        border-block-end-width : 3px;
+    
+    } */
+    .section-title {
+        align-self: center;
+        text-align: center;
+        font-weight: bold;
+        padding-bottom: 10px;
+        position: relative;
+        text-align: center;
+        margin: 0 auto 30px;
+        padding-bottom: 10px;
+    }
+    
+    .section-title::after {
+        content: '';
+        position: absolute;
+        width: 90px; /* Adjust length of the underline */
+        height: 2px; /* Adjust thickness */
+        background-color:blue ; /* Adjust color */
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* products cards*/
+/* Product Card Styles */
+.product-card {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    max-width: 350px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.product-card img:hover{
+    cursor: pointer;
+}
+
+
+.card-body h5:hover{
+    cursor: pointer;
+}
+/* Hover Icons */
+.hover-icons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    gap: 8px;
+}
+
+.product-card:hover .hover-icons {
+    opacity: 1;
+}
+
+.icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.icon-btn:hover {
+    background-color: #000;
+    color: white;
+}
+
+/* Cart Button Styles */
+.cart-button {
+    position: relative;
+}
+
+.tooltip-text {
+    position: absolute;
+    visibility: hidden;
+    background-color: #000;
+    color: white;
+    text-align: center;
+    padding: 8px 15px;
+    border-radius: 6px;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+    right: 120%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -8px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent transparent transparent #000;
+}
+
+.cart-button:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.cart-circle {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 50%;
+    right: -70px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.cart-button:hover .cart-circle {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Product Info Styles */
+.price {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Rating Styles */
+.rating {
+    color: #ffc107;
+    margin-top: 5px;
+}
+
+.star-rating {
+    color: #ffc107;
+}
+
+.star-rating .far {
+    color: #e0e0e0;
+}
+/*======================================================================*/
+ /*logo styling baby*/
+
+ .logo-card {
+    display: flex;
+    flex-direction: column;
+    gap:10px ;
+    align-items: center;
+    margin-bottom: 20px;
+    height: 100%;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.logo-card:hover {
+    transform: translateY(-5px);
+}
+
+.logo-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.logo-text {
+  align-self: center;
+    margin-bottom: 20px;
+    color: #666;
+} 
+.logo-card img{
+  align-self: center;
+  width:60px ;
+  height:70px ;
+  padding-bottom: 10px;
+}       
+
