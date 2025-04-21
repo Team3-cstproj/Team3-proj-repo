@@ -42,7 +42,8 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-
+////////===========================================================================================////
+////logo baby
 document.addEventListener('DOMContentLoaded', () => {
     const logoTrack = document.getElementById('logoTrack');
     const leftArrow = document.querySelector('.carousel-arrow.left');
