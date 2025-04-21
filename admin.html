@@ -7,11 +7,214 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="bootstrab/css/bootstrap.css">
     <link rel="stylesheet" href="css/admin.css">
+
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <title>Admin-E-comerce</title>
 </head>
-<body>
+<body class="bg-light">
     
-
+    <div class="container-fluid">
+        <div class="row">
+          <!-- Sidebar -->
+          <section class="bg-dark text-white vh-100 p-4 position-fixed sidebar">
+            <a href="#" class="d-flex align-items-center mb-4 text-white text-decoration-none fs-4 fw-bold">
+              <i class='bx bxs-smile me-2 fs-3'></i>
+              <span>Admin</span>
+            </a>
+            <ul class="nav nav-pills flex-column mb-auto">
+              <li class="nav-item">
+                <a href="#" class="nav-link text-white active">
+                  <i class='bx bxs-dashboard me-2'></i>
+                  Dashboard
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <i class='bx bxs-shopping-bag-alt me-2'></i>
+                  MyStore
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <i class='bx bxs-doughnut-chart me-2'></i>
+                  Analytics
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <i class='bx bxs-message-dots me-2'></i>
+                  Massages
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <i class='bx bxs-group me-2'></i>
+                Customer
+                </a>
+              </li>
+            </ul>
+  
+            <hr class="text-secondary">
+            <ul class="nav flex-column">
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <i class='bx bxs-cog me-2'></i>
+                  Setting
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-danger">
+                  <i class='bx bxs-log-out-circle me-2'></i>
+                  Log Out
+                </a>
+              </li>
+            </ul>
+          </section>
+  
+          <!-- Main Content -->
+          <main class="container mt-4 main-content">
+                <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-3 ">
+   
+         <button class="btn  mx-2 ms-2 col-auto" >
+      <i class='bx bx-menu bx-sm'></i>
+         </button>
+  
+             <h1 class="h2 col-2">Dashboard</h1>
+   
+            <input class="form-control me-5 form-control-sm" type="search" placeholder="Search..." aria-label="Search" />
+  </div>
+  
+  
+  
+            <!-- Box Cards -->
+            <div class="row mb-4 mx-2">
+  
+              <div class="col-md-4 mb-3">
+                <div class="card text-white bg-success h-100">
+                  <div class="card-body d-flex align-items-center">
+                    <i class='bx bxs-calendar-check bx-lg me-3'></i>
+                    <div>
+                      <h5 class="card-title mb-1">1020</h5>
+                      <p class="card-text">Orders</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-md-4 mb-3">
+                <div class="card text-white bg-info h-100">
+                  <div class="card-body d-flex align-items-center">
+                    <i class='bx bxs-group bx-lg me-3'></i>
+                    <div>
+                      <h5 class="card-title mb-1">2834</h5>
+                      <p class="card-text">Customers</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-md-4 mb-3">
+                <div class="card text-white bg-warning h-100">
+                  <div class="card-body d-flex align-items-center">
+                    <i class='bx bxs-dollar-circle bx-lg me-3'></i>
+                    <div>
+                      <h5 class="card-title mb-1">$254</h5>
+                      <p class="card-text">Total Sales</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+  
+            
+            <div class="col">
+  
+              <div class="col mb-4 mx-4">
+                <div class="card">
+                  
+                  <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Recent Orders</h5>
+                    <div>
+                      <i class='bx bx-search me-2'></i>
+                      <i class='bx bx-filter'></i>
+                    </div>
+                  </div>
+                  
+                  <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+  
+                      <thead class="table-light">
+                        <tr>
+                          <th>Order ID</th>
+                          <th>Customer</th>
+                          <th>Products</th>
+                          <th>Date Order</th>
+                          <th>Status</th>
+                          <th>Total</th>
+                        </tr>
+                      </thead>
+  
+                      <tbody>
+                        <tr>
+                          <td>#1001</td>
+                          <td >John Doe</td>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <img src="3.png" width="50px"  alt="Product">
+                              <p class="mb-0">MacBook Pro 13”</p>
+                            </div>
+                          </td>
+                          <td>01-10-2021</td>
+                          <td><span class="badge bg-success">Completed</span></td>
+                          <td>$120</td>
+                        </tr>
+                        
+                        <tr>
+                          <td>#1001</td>
+                          <td >John Doe</td>
+                         <td>
+                            <div class="d-flex align-items-center">
+                              <img src="3.png" width="50px"  alt="Product">
+                              <p class="mb-0">MacBook Pro 13”</p>
+                            </div>
+                          </td>
+                          <td>01-10-2021</td>
+                          <td><span class="badge bg-warning text-dark">Pending</span></td>
+                          <td>$120</td>
+                        </tr>
+                        
+                        <tr>
+                          <td>#1001</td>
+                          <td >John Doe</td>
+                          
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <img src="3.png" width="50px"  alt="Product">
+                              <p class="mb-0">MacBook Pro 13”</p>
+                            </div>
+                          </td>
+                          <td>01-10-2021</td>
+                          <td><span class="badge bg-primary">Process</span></td>
+                          <td>$120</td>
+                        </tr>
+                      </tbody>
+                      
+                    </table>
+                  </div>
+  
+                </div>
+              </div>
+  
+          
+            </div>
+  
+            
+          </main>
+        </div>
+      </div>
 
 <script src="bootstrab/js/bootstrap.bundle.js"></script>
 <script src="js/admin.js"></script>
