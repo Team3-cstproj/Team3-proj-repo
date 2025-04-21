@@ -91,7 +91,7 @@
 .continue-shopping {
   display: inline-block;
   padding: 12px 24px;
-  background-color: #000;
+  /* background-color: #1126e2; */
   color: white;
   text-decoration: none;
   border-radius: 4px;
@@ -100,7 +100,9 @@
 }
 
 .continue-shopping:hover {
-  background-color: #333;
+  /* background-color: #333;
+  */
+  color: white;
 }
 
 @media (max-width: 500px) {
