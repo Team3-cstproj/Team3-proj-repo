@@ -91,7 +91,7 @@
 .continue-shopping {
   display: inline-block;
   padding: 12px 24px;
-  background-color: #000;
+  /* background-color: #1126e2; */
   color: white;
   text-decoration: none;
   border-radius: 4px;
@@ -100,7 +100,9 @@
 }
 
 .continue-shopping:hover {
-  background-color: #333;
+  /* background-color: #333;
+  */
+  color: white;
 }
 
 @media (max-width: 500px) {
@@ -115,7 +117,7 @@
   background-color: #f8f9fa;
 }
 .product-image {
-  height: 600px;
+  height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -158,8 +160,12 @@
 }
 
 /* description part */
+.descriptionsection{
+  height: 90vh;
+}
 #description-product-img {
   width: 100%;
+  height: 100%;
   padding: 0px;
   margin: 0px;
 }
@@ -317,3 +323,50 @@
   font-weight: bold;
   color: #333;
 }
+
+
+
+
+/* foter //////////////*/
+ /*==========  foter list =======*/
+
+ #just-txt{
+  border-top:1px solid gray ;
+  border-bottom:1px solid gray  ;
+  font-size:x-large;
+  font-weight: 700;
+  text-align: left;
+}
+ .footer{
+  border-bottom: 1px solid gray;
+ } 
+ .category-list {
+   list-style-type: none; /* Removes bullet points */
+   padding-left: 0;
+   margin: 15px 0;
+  }
+
+  .category-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee; /* Optional divider */
+  }
+
+  .category-list li:last-child {
+    border-bottom: none; /* Remove border from last item */
+  }
+
+  .category-list a {
+     text-decoration: none;
+     color: #333;
+     font-size: 16px;
+     display: block;
+  }
+
+  .category-list a:hover {
+    color:blue;
+    font-weight: bold;
+  }
+  .copyright-text a:hover{
+    color: rgb(0, 0, 74);
+  }
+
