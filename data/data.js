@@ -418,4 +418,3 @@ function getAllProducts() {
   return products ? JSON.parse(products) : [];
 }
 const allProducts = getAllProducts();
-console.log(allProducts);
