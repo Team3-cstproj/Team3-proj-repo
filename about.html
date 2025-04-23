@@ -33,6 +33,19 @@ position: relative;
 
 }
 
+.subwraper{
+  background-image: url("../img_index/pexels-thirdman-7652180.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+background-attachment: fixed; 
+margin: 0;
+min-height: 85vh;
+position: relative; 
+
+
+}
+
 /*==========  foter list =======*/
 
  #just-txt{
@@ -85,14 +98,78 @@ position: relative;
   font-weight: bolder;
   font-family: sans-serif;
 }
-
-
-
-
-
-
 /*===================================================================================*/
 
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+    
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px 0;
+    }
+    
+    .team-card {
+      background-color: #f0f2f5;
+      border-radius: 10px;
+      padding: 30px 20px;
+      width: 280px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      /* box-shadow: 0 10px 20px rgba(0,0,0,0.1); */
+
+    }
+    
+    
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 20px;
+      border: 5px solid #fff;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .member-name {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #222;
+    }
+    
+    .member-title {
+      font-size: 16px;
+      color: #666;
+      font-weight: normal;
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .team-card {
+        width: calc(50% - 20px);
+        min-width: 220px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .team-card {
+        width: 100%;
+      }
+    }
+    /*===============================================================================*/
     </style>
 </head>
 
@@ -224,10 +301,116 @@ position: relative;
      </div>
      </div>
 
+</div>
 
+<div class="container-fluid d-flex flex-row justify-content-center flex-wrap bg-light pt-5 ">
+  <div id="whoweare" class="card m-4 col-12 col-lg-5";">
+    <div class="card-body m-4 border-top border-primary">
+      <h3 class="card-title ">Who We Are</h3>
+      <p class="card-text">There are many kinds of profitable ecommerce businesses. You can sell directly to consumers (DTC), to other businesses (B2B), or lean into a consumer-to-consumer (C2C) model. The success of an ecommerce business depends on various factors like finding a niche product or service, honing in on a target audience, and attaining operational efficiency
+        Referenc.</p>
+      <a href="contacts.html" class="card-link">contact us</a>
+    </div>
+  </div>
+<!-----tow cards------>
+  <div class="card m-4 col-12 col-lg-5">
+    <img src="img_index/stem_students6.webp" class="card-img" alt="...">
+    <div class="card-img-overlay">
+      <h5 class="card-title">this is who we are</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <p class="card-text"><small>Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+<!------our team--------->
+  <div class="subwraper" >
+    <div class="col-md-12 col-lg-12 p-5 bg-white ">
+      <div class="container d-flex flex-column align-items-center">
+          <nav aria-label="breadcrumb" class="mb-4">
+            <h5 class="logo-title">a few words about our team</h5>
+            <h1 class="section-title">OUR TEAM</h1>
+                  </nav>
+            <p class="fw-bold">We are a deticated team of five developers, ready to work and eager to learn</p>
+
+
+            <div class="container">
+              <div class="team-grid">
+                <!-- Card 1 -->
+                <div class="team-card">
+                  <img class="profile-img" src="img_index/ahmad.jpeg" alt="Team Member">
+                  <h3 class="member-name">Ahmed</h3>
+                  <p class="member-title">Team Lead</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="team-card">
+                  <img class="profile-img" src="img_index/kareem.jpeg" alt="Team Member">
+                  <h3 class="member-name">Kareem</h3>
+                  <p class="member-title">Founder - CEO</p>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="team-card">
+                  <img class="profile-img" src="img_index/abdelkader.jpeg" alt="Team Member">
+                  <h3 class="member-name">Abdelkader</h3>
+                  <p class="member-title">Marketing Head</p>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="team-card">
+                  <img class="profile-img" src="img_index/ismael.jpeg" alt="Team Member">
+                  <h3 class="member-name">Ismael</h3>
+                  <p class="member-title">Lead Developer</p>
+                </div>
+                
+                <!-- Card 5 -->
+                <div class="team-card">
+                  <img class="profile-img" src="img_index/ziead.jpeg" alt="Team Member">
+                  <h3 class="member-name">Ziead</h3>
+                  <p class="member-title">Intern Designer</p>
+                </div>
+              </div>
+            </div>
+   </div>
 </div>
 
 
+
+
+<div class="container bg-white d-flex flex-column gap-5 p-0" style="width: 20%; height:25vw ;">
+  <section class="follow-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="title-divider"></div>
+          <h2 class="section-title">Follow Us</h2>
+          
+          <div class="social-icons d-flex fs-5 flex-row px-3 gap-4 justify-content-center pt-5">
+            <a href="#" class="facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="google">
+              <i class="fab fa-google-plus-g"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+
+
+
+
+</div>
 
 
 
