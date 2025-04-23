@@ -1,5 +1,6 @@
 /* import main css file */
 @import url("main.css");
+@import url("../bootstrab/css/bootstrap.css");
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
@@ -81,7 +82,7 @@ small{
     font-size: 0.75rem;
 }   
 
-.profile-photo{
+.profile-photo img{
     width: 2.8rem;
     height: 2.8rem;
     border-radius: 50%;
@@ -126,7 +127,7 @@ aside .logo{
     display: flex;
     gap: 1rem;
 }
-aside .top div.close{
+aside .top div.close span{
     display: none;
 }
 
@@ -245,14 +246,19 @@ main .insights>div{
 main .insights>.sales:hover{
     box-shadow: none;
     transform: scale(1.1);
+    transition: all 0.3s;
+
 }
 main .insights>.expenses:hover{
     box-shadow: none;
     transform: scale(1.1);
+    transition: all 0.3s;
+
 }
 main .insights>.income:hover{
     box-shadow: none;
     transform: scale(1.1);
+    transition: all 0.3s;
 }
 main .insights >div span{
     background-color: coral;
@@ -301,7 +307,8 @@ main .insights .pro{
 
 
 main .insights svg{
-    height: 150px;
+    height: 75px;
+    width: 75px;
     position: absolute;
     top: 0;
 }
@@ -374,3 +381,255 @@ main .recent_order a{
     display: block;
     margin: 1rem;
 }
+
+/* right side style */
+
+.right{
+    margin-top: 1.4rem;
+}
+.right h2{
+    color: var(--clr-dark);
+}
+.right .top{
+    display: flex;
+    justify-content: start;
+    gap:2rem;
+}
+.right .top button{
+    display: none;
+}
+.right .theme-toggler{
+    background-color: var(--clr-white);
+    height: 1.6rem;
+    width: 4.2rem;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    border-radius: var(--bord-radius-1);
+}
+.right .theme-toggler span{
+    font-size: 1.2rem;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right .theme-toggler span.active{
+    background-color: var(--clr-primary);
+    color: #ffffff;
+    border-radius: var(--bord-radius-1);
+}
+
+.right .top .profile{
+    display: flex;
+    gap: 2rem;
+    text-align: center;
+}
+
+.right .info h3{
+    counter-reset: var(--clr-dark);
+}
+
+.right .item h3{
+    counter-reset: var(--clr-dark);
+}
+
+
+/* recent style */
+
+.right .recent_updates{
+    margin-top: 1rem;
+    margin-left: -20px;
+}
+
+.right .recent_updates .updates{
+    background-color: var(--clr-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+}
+.right .recent_updates .updates:hover{
+    box-sizing: none;
+    transform: scale(1.05);
+    transition: all 0.3s;
+}
+
+.right .recent_updates .update{
+    display: grid;
+    grid-template-columns: 2.6rem auto;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* sales analytics */
+
+.right .sales-analytics{
+    margin-top: 2rem;
+}
+.right .sales-analytics .item{
+    background-color: var(--clr-white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1;
+    margin: 10px 0;
+    width: 100%;
+    margin-bottom: 0.8rem;
+    padding: 1.4rem var(--card-padding);
+    border-radius: var(--bord-radius-3);
+    box-shadow: var(--box-shadow);
+}
+.right .sales-analytics .item:hover{
+    box-shadow: none;
+    transform: scale(1.05);
+    transition: all 0.3s;
+
+}
+
+.right .sales-analytics .item .icon{
+    background-color: coral;
+    padding: 0.6rem;
+    color: var(--clr-white);
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    align-items: center;
+}
+.right .sales-analytics .item:nth-child(3) .icon{
+    background-color: var(--clr-success);
+}
+.right .sales-analytics .item:nth-child(4) .icon{
+    background-color: var(--clr-danger);
+}
+
+.right .sales-analytics .item .right{
+    margin-left: 15px;
+    display: flex;
+}
+.add_product div{
+    display: flex;
+    height: 60px;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed;
+    color: var(--clr-dark-variant);
+    margin-bottom: 40px;
+}
+
+@media (max-width: 1290px) {
+
+    .container{
+        width: 94%;
+        grid-template-columns: 7rem auto 14rem;
+    }
+    aside .sidebar h3{
+        display: none;
+    }
+    aside .sidebar a:last-child{
+        position: relative;
+        margin-top: 1.8rem;
+    }
+  }
+  @media (max-width: 1180px) {
+    main .insights{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+    }
+  }
+  @media (max-width: 795px) {
+
+    .container{
+        width: 100%;
+        grid-template-columns: repeat(1,1fr);
+    }
+    aside{
+        position: fixed;
+        width: 18rem;
+        z-index: 3;
+        background: var(--clr-white);
+        display: none;
+    }
+    aside .logo h2{
+        display: inline;
+    }
+    aside .sidebar a{
+        width: 100%;
+        height:  4rem;
+    }
+    aside .top div.close span{
+        display: inline;
+        position: absolute;
+        right: 0;
+        margin-left: 30px;
+        font-size: 35px;
+    }
+
+    .right .top{
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 0.8rem;
+        background: var(--clr-white);
+        width: 100%;
+        height: 4.6rem;
+        z-index: 2;
+        box-shadow: 0 1rem 1rem var(--box-shadow);
+        margin: 0;
+    }
+
+    main .insights{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        gap: 1.6rem;
+        padding: 40px;
+    }
+    main .recent_order{
+        padding: 30px;
+        margin: 0 auto;
+    }
+    main h1{
+        display: none;
+    }
+    .right .profile{
+        position: absolute;
+        left: 70%;
+    }
+    .right .recent_updates{
+        padding: 30px;
+    }
+    .right .sales-analytics{
+        padding: 30px;
+    }
+
+    .add_product{
+        padding: 30px;
+    }
+
+
+    .right .top button{
+        display: inline-block;
+        background: transparent;
+        cursor: pointer;
+        color: var(--clr-dark);
+        position: absolute;
+        left: 1rem;
+
+    }
+    .right .info p{
+        margin-top:0 ;
+    } 
+    .right .info b{
+        padding-top:20px ;
+    } 
+  }
+
+
