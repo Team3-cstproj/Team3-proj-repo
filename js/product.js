@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
   if (productId) {
     product = products.find(p => p.id === productId);
   } else {
-    product = products[0]; // Fallback to first product
+    product = products[0]; // Acess first product
   }
   
   // If product found, display its details
