@@ -1,4 +1,4 @@
-//nav bar -----strart
+//nav bar -----start
 //  cart list baby
 const cartBtnList = document.querySelectorAll(".cart-trigger");
 const cartSidebar = document.getElementById("cartSidebar");
@@ -10,6 +10,7 @@ cartBtnList.forEach((btn) => {
     e.preventDefault();
     cartSidebar.classList.add("active");
     cartOverlay.classList.add("active");
+    updateCartDisplay(); // Update cart display when opening
   });
 });
 
@@ -22,6 +23,7 @@ cartOverlay.addEventListener("click", () => {
   cartSidebar.classList.remove("active");
   cartOverlay.classList.remove("active");
 });
+
 ////btns color baby
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".offer-banner .btn").forEach((button) => {
@@ -51,10 +53,16 @@ document.addEventListener("DOMContentLoaded", function() {
   // Get all products from localStorage
   const products = JSON.parse(localStorage.getItem('products')) || [];
   
-  // For demo purposes, let's get the first product
-  // In a real scenario, you might want to implement a different way to identify the current product
-  // For example, you could store the current product ID in localStorage when navigating from catalog
-  const product = products[0]; // Get the first product as default
+  // Get product ID from URL or use first product as default
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = parseInt(urlParams.get('id'));
+  
+  let product;
+  if (productId) {
+    product = products.find(p => p.id === productId);
+  } else {
+    product = products[0]; // Fallback to first product
+  }
   
   // If product found, display its details
   if (product) {
@@ -123,7 +131,7 @@ function displayProductDetails(product) {
 }
 
 function updateAdditionalInfo(product) {
-  // This is a simple example - you can customize based on your product data
+  // Update the additional information part
   const additionalInfoTab = document.querySelector("#additional-info-tab-pane tbody");
   if (additionalInfoTab) {
     additionalInfoTab.innerHTML = `
@@ -151,6 +159,9 @@ function setupAddToCart(product) {
       const quantity = parseInt(quantityInput.value) || 1;
       
       addToCart(product, quantity);
+      
+      // update the cart display which will show the changes
+      updateCartDisplay();
     });
   }
 }
@@ -179,66 +190,78 @@ function addToCart(product, quantity) {
   
   // Save to localStorage
   localStorage.setItem('cart', JSON.stringify(cart));
-  
-  // Update cart display
-  updateCartDisplay();
-  
-  // Show success message (optional)
-  alert(`${quantity} ${product.name} added to cart!`);
 }
 
 function updateCartDisplay() {
   const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
   
-  // Update cart total in navbar
-  const cartTotalElements = document.querySelectorAll(".cart-trigger:first-child");
-  cartTotalElements.forEach(el => {
-    el.textContent = `$${cart.total.toFixed(2)}`;
-  });
+  // Update cart count in navbar 
+  const cartTrigger = document.querySelector(".cart-trigger");
+  if (cartTrigger) {
+    cartTrigger.innerHTML = `
+      <i class="fa-sharp fa-solid fa-bag-shopping"></i>
+      <sup class="bg-light rounded-circle">
+        <span class="text-dark">${cart.count}</span>
+      </sup>
+      <span class="cart-total ms-1">$${cart.total.toFixed(2)}</span>
+    `;
+  }
   
-  // Update cart count in navbar
-  const cartCountElements = document.querySelectorAll(".cart-trigger sup span");
-  cartCountElements.forEach(el => {
-    el.textContent = cart.count;
-  });
-  
-  // Update cart sidebar content (if open)
+  // Update cart sidebar content
   updateCartSidebar(cart);
 }
 
 function updateCartSidebar(cart) {
   const cartContent = document.querySelector(".cart-content");
+  const cartFooter = document.querySelector(".cart-footer");
   
   if (cart.items.length === 0) {
     cartContent.innerHTML = "<p>Your cart is empty.</p>";
-    return;
-  }
-  
-  let html = `
-    <div class="cart-items">
-      ${cart.items.map(item => `
-        <div class="cart-item d-flex justify-content-between align-items-center mb-3">
-          <div class="d-flex align-items-center">
-            <img src="${item.img}" alt="${item.name}" width="60" height="60" class="me-3">
+    cartFooter.innerHTML = `
+      <a href="#" class="continue-shopping bg-primary" id="continueShopping">Continue Shopping</a>
+    `;
+    
+    // Add event listener to continue shopping button
+    document.getElementById("continueShopping").addEventListener("click", function(e) {
+      e.preventDefault();
+      cartSidebar.classList.remove("active");
+      cartOverlay.classList.remove("active");
+    });
+  } else {
+    let html = `
+      <div class="cart-items">
+        ${cart.items.map(item => `
+          <div class="cart-item d-flex justify-content-between align-items-center mb-3">
+            <div class="d-flex align-items-center">
+              <img src="${item.img}" alt="${item.name}" width="60" height="60" class="me-3">
+              <div>
+                <h6 class="mb-0">${item.name}</h6>
+                <small class="text-muted">$${item.price.toFixed(2)} × ${item.quantity}</small>
+              </div>
+            </div>
             <div>
-              <h6 class="mb-0">${item.name}</h6>
-              <small class="text-muted">$${item.price.toFixed(2)} × ${item.quantity}</small>
+              <span class="fw-bold">$${(item.price * item.quantity).toFixed(2)}</span>
             </div>
           </div>
-          <div>
-            <span class="fw-bold">$${(item.price * item.quantity).toFixed(2)}</span>
-          </div>
-        </div>
-      `).join('')}
-    </div>
-    <hr>
-    <div class="d-flex justify-content-between fw-bold">
-      <span>Total:</span>
-      <span>$${cart.total.toFixed(2)}</span>
-    </div>
-  `;
-  
-  cartContent.innerHTML = html;
+        `).join('')}
+      </div>
+      <hr>
+      <div class="d-flex justify-content-between fw-bold">
+        <span>Total:</span>
+        <span>$${cart.total.toFixed(2)}</span>
+      </div>
+    `;
+    
+    cartContent.innerHTML = html;
+    
+    // Update footer with View Cart and Checkout buttons
+    cartFooter.innerHTML = `
+      <div class="d-flex flex-column gap-2">
+        <a href="cart.html" class="btn btn-primary">View Cart</a>
+        <a href="checkout.html" class="btn btn-primary">Checkout</a>
+      </div>
+    `;
+  }
 }
 
 function displayRelatedProducts(currentProduct) {
@@ -255,7 +278,9 @@ function displayRelatedProducts(currentProduct) {
     relatedContainer.innerHTML = relatedProducts.map(product => `
       <div class="col">
         <div class="card product-card">
-          <img src="${product.img}" class="card-img-top" alt="${product.name}">
+          <a href="product.html?id=${product.id}" class="product-image-link">
+            <img src="${product.img}" class="card-img-top" alt="${product.name}">
+          </a>
           <div class="hover-icons">
             <a href="#" class="icon-btn cart-button" data-id="${product.id}">
               <i class="fas fa-shopping-cart"></i>
@@ -289,6 +314,7 @@ function displayRelatedProducts(currentProduct) {
         const product = products.find(p => p.id === productId);
         if (product) {
           addToCart(product, 1);
+          updateCartDisplay();
         }
       });
     });
@@ -298,7 +324,6 @@ function displayRelatedProducts(currentProduct) {
 ///////////////////////////////
 // handel reviw part
 /////////////////////////////
-// (Keep the existing review code here, it's working fine)
 document.addEventListener("DOMContentLoaded", function () {
   // Initialize reviews from localStorage
   const STORAGE_KEY = "product_reviews";
