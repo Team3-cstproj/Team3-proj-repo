@@ -10,109 +10,61 @@
     <title>Product-E-comerce</title>
 </head>
 <body>
+
+
+
     <!-- nav -->
-      <!-- navbar in labtop and tablet and tv screen -->
+    <!-- ////////////////////////////////// -->
 
-      <nav class="navbar navbar-expand-lg bg-body-tertiary p-3 bg-primary p-2 text-dark bg-opacity-75 d-none d-lg-block">
-        <div class="container-fluid ">
-           <img src="img_index/logo1@2x-free-img.png" width="150px" height="50px" >
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <!--  navbar that works on all screen  -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary p-3 bg-primary p-2 text-dark bg-opacity-75">
+  <div class="container-fluid">
+      <img src="img_index/logo1@2x-free-img.png" width="150px" height="50px">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="d-flex order-lg-3 ms-auto ms-lg-0">
+          <ul class="navbar-nav flex-row">
+              <li class="nav-item px-2">
+                  <a class="nav-link cart-trigger" href="#">$0.00</a>
+              </li>
+              <li class="nav-item px-2">
+                  <!-- <a class="nav-link cart-trigger" href="#"><i class="fa-sharp fa-solid fa-bag-shopping"></i><sup class="bg-light rounded-circle"><span class="text-dark">0</span></sup></a> -->
+              </li>
+              <li class="nav-item px-2">
+                  <a class="nav-link" href="login.html"><i class="fa-solid fa-user"></i></a>
+              </li>
+          </ul>
+      </div>
+      <!-- Collapsible menu content -->
+      <div class="collapse navbar-collapse order-lg-2" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="catalog-Everything.html">EVERYTHING</a>
+                  <a class="nav-link" aria-current="page" href="catalog-Everything.html">EVERYTHING</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="catalog-women.html">WOMEN</a>
+                  <a class="nav-link" href="catalog-women.html">WOMEN</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="catalog-men.html">MEN</a>
+                  <a class="nav-link" href="catalog-men.html">MEN</a>
               </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="#">ACCESSORIES</a>
-              </li> -->
-            </ul>
-            <span class="navbar-text">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                      <a class="nav-link " href="about.html">ABOUT</a>
-                    </li>
-                    <li class="nav-item">
+          </ul>
+          <span class="navbar-text">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                      <a class="nav-link" href="about.html">ABOUT</a>
+                  </li>
+                  <li class="nav-item">
                       <a class="nav-link" href="#">CONTACT US</a>
-                    </li>
-                  </ul>
-            </span>
-            <span class="navbar-text">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                      <a class="nav-link cart-trigger" href="#">$0.00</a>
-                    </li>
-                    <li class="nav-item">
-                      <!-- <a class="nav-link cart-trigger" href="#"><i class="fa-sharp fa-solid fa-bag-shopping"></i><sup class="bg-light rounded-circle" ><span class="text-dark">0</span></sup></a> -->
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.html"><i class="fa-solid fa-user"></i></a>
-                      </li>
-                  </ul>
-            </span>
-          </div>
-        </div>
-      </nav>
+                  </li>
+              </ul>
+          </span>
+      </div>
+  </div>
+</nav>
 
 
-            <!-- navbar in phone screen -->
-      <nav class="navbar bg-body-tertiary bg-primary p-2 text-dark bg-opacity-75 d-lg-none">
-        <div class="container-fluid">
-            <img src="img_index/logo1@2x-free-img.png" width="150px" height="50px">
-            <div class="d-flex">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-row">
-                    <li class="nav-item  p-2">
-                        <a class="nav-link cart-trigger" href="#">$0.00</a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="nav-link cart-trigger" href="#"><i class="fa-sharp fa-solid fa-bag-shopping"></i><sup class="bg-light rounded-circle" ><span class="text-dark">0</span></sup></a>
-                    </li>
-                </ul>
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                <div class="offcanvas-header">
-                    <h5 class="user-title pt-5" id="user"><a class="nav-link" href="login.html"><i class="fa-solid fa-user"></i></a></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="catalog-Everything.html">EVERYTHING</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link  active" href="catalog-women.html">WOMEN</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="catalog-men.html">MAN</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">ACCESSORIES</a>
-                        </li>
-                        <span class="navbar-text">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li class="nav-item">
-                                  <a class="nav-link active" href="#">ABOUT</a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link active" href="#">CONTACT US</a>
-                                </li>
-                              </ul>
-                        </span>
-                </div>
-            </div>
-        </div>
-    </nav>
 
     <!-- Cart Sidebar -->
 <div class="cart-overlay" id="cartOverlay"></div>
@@ -130,6 +82,12 @@
   </div>
 </div>
   
+
+<!-- end of nav  -->
+ <!-- /////////////////////////////////////// -->
+
+
+ 
       <!-- main container -->
       <div class="main-container">
         <div class="container py-5">
@@ -616,7 +574,6 @@
             <li><a href="#">Women Jackets</a></li>
             <li><a href="#">Heels and Flats</a></li>
             <li><a href="#">Women Accessories</a></li>
-          </ul>
         </ul>
       </div>
     </div>

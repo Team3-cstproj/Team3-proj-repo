@@ -258,7 +258,6 @@ function updateCartSidebar(cart) {
     cartFooter.innerHTML = `
       <div class="d-flex flex-column gap-2">
         <a href="cart.html" class="btn btn-primary">View Cart</a>
-        <a href="checkout.html" class="btn btn-primary">Checkout</a>
       </div>
     `;
   }
