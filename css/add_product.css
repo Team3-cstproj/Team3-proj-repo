@@ -1,0 +1,128 @@
+@import url("main.css");
+@import url("../bootstrab/css/bootstrap.css");
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('seller.css');
+
+
+.Acontainer{
+    display: grid;
+    width:90%;
+    gap: 1.8rem;
+    grid-template-columns: 14rem auto;
+    margin: 2rem ;
+}
+
+.form-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--clr-dark)
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--clr-dark);
+  }
+
+  input, textarea, select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    transition: border 0.3s;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    border-color: #0077ff;
+    outline: none;
+    background-color: white;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .btn {
+    background-color: var(--clr-primary);
+    color: white;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .btn:hover {
+    background-color: #005dc1;
+  }
+
+  .upload-area {
+    border: 2px dashed #0077ff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    background-color: #f0f8ff;
+    color: #0077ff;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .upload-area:hover {
+    background-color: #e0f0ff;
+  }
+
+  .upload-area input {
+    display: none;
+  }
+
+  .upload-area.active {
+    background-color: #d0eaff;
+  }
+
+  .upload-area span {
+    font-weight: 500;
+  }
+
+  .image-preview {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .image-preview img {
+    max-width: 100%;
+    max-height: 250px;
+    border-radius: 12px;
+    object-fit: contain;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  }
+  main{
+    margin: 2rem auto;
+  }
+
+  .flex-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .flex-item {
+    flex: 1;
+  }

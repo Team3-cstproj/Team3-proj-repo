@@ -262,11 +262,13 @@ cartItems.forEach((item, index) => {
   listItem.style.borderBottom = '1px solid #eee';
   
   listItem.innerHTML = `
-    <span>${item.name}</span>
-    <div class="cart-item-actions">
-      <span>$${item.price.toFixed(2)}</span>
-      <button class="remove-btn" onclick="removeFromCart(${index})">x</button>
-    </div>
+    <div class="d-flex align-items-center">
+              <img src="${item.img}" alt="${item.name}" width="60" height="60" class="me-3">
+              <div>
+                <h6 class="mb-0">${item.name}</h6>
+                <small class="text-muted">$${item.price.toFixed(2)} × ${item.quantity}</small>
+              </div>
+            </div>
   `;
   
   itemsList.appendChild(listItem);
@@ -283,7 +285,10 @@ totalSection.innerHTML = `
     <span><strong>Total:</strong></span>
     <span><strong>$${cartTotal.toFixed(2)}</strong></span>
   </div>
-<button class="btn btn-primary w-100" onclick="checkout()">Checkout</button>`;
+      <div class="d-flex flex-column gap-2">
+        <a href="cart.html" class="btn btn-primary">View Cart</a>
+        <a href="checkout.html" class="btn btn-primary">Checkout</a>
+      </div>`;
 
 // Add to cart content
 cartContent.appendChild(itemsList);
