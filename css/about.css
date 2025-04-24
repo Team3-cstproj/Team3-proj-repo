@@ -1,0 +1,159 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+  overflow-x: hidden;
+  }
+  
+    .Mainwrapeer{
+     
+  background-image: url("../img_index/pexels-fauxels-3184323.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; 
+  margin: 0;
+  min-height: 85vh;
+  position: relative; 
+  
+  }
+  
+  .subwraper{
+    background-image: url("../img_index/pexels-thirdman-7652180.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; 
+  margin: 0;
+  min-height: 85vh;
+  position: relative; 
+  
+  
+  }
+  
+  /*==========  foter list =======*/
+  
+   #just-txt{
+      border-top:1px solid gray ;
+      border-bottom:1px solid gray  ;
+      font-size:x-large;
+      font-weight: 700;
+      text-align: left;
+    }
+     .footer{
+      border-bottom: 1px solid gray;
+     } 
+     .category-list {
+       list-style-type: none; /* Removes bullet points */
+       padding-left: 0;
+       margin: 15px 0;
+      }
+    
+      .category-list li {
+        padding: 8px 0;
+        border-bottom: 1px solid #eee; /* Optional divider */
+      }
+    
+      .category-list li:last-child {
+        border-bottom: none; /* Remove border from last item */
+      }
+    
+      .category-list a {
+         text-decoration: none;
+         color: #333;
+         font-size: 16px;
+         display: block;
+      }
+    
+      .category-list a:hover {
+        color:blue;
+        font-weight: bold;
+      }
+      .copyright-text a:hover{
+        color: rgb(0, 0, 74);
+      }
+    /*=====================================================================================================*/
+    /* aboutus bannar */
+  
+  .aboutus-banner {
+    color: rgb(0, 0, 0);
+  }
+  .aboutus-banner h1{
+  
+    font-weight: bolder;
+    font-family: sans-serif;
+  }
+  /*===================================================================================*/
+  
+  * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+      }
+      
+  
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      
+      .team-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px 0;
+      }
+      
+      .team-card {
+        background-color: #f0f2f5;
+        border-radius: 10px;
+        padding: 30px 20px;
+        width: 280px;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+        /* box-shadow: 0 10px 20px rgba(0,0,0,0.1); */
+  
+      }
+      
+      
+      .profile-img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto 20px;
+        border: 5px solid #fff;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      }
+      
+      .member-name {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #222;
+      }
+      
+      .member-title {
+        font-size: 16px;
+        color: #666;
+        font-weight: normal;
+      }
+      
+      /* Responsive styles */
+      @media (max-width: 768px) {
+        .team-card {
+          width: calc(50% - 20px);
+          min-width: 220px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .team-card {
+          width: 100%;
+        }
+      }
+      /*===============================================================================*/

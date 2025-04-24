@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrab/css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css">
+    <title>ABOUT US</title>
+    <style>
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+overflow-x: hidden;
+}
+
+  .Mainwrapeer{
+   
+background-image: url("../img_index/pexels-fauxels-3184323.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+background-attachment: fixed; 
+margin: 0;
+min-height: 85vh;
+position: relative; 
+
+}
+
+.subwraper{
+  background-image: url("../img_index/pexels-thirdman-7652180.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+background-attachment: fixed; 
+margin: 0;
+min-height: 85vh;
+position: relative; 
+
+
+}
+
+/*==========  foter list =======*/
+
+ #just-txt{
+    border-top:1px solid gray ;
+    border-bottom:1px solid gray  ;
+    font-size:x-large;
+    font-weight: 700;
+    text-align: left;
+  }
+   .footer{
+    border-bottom: 1px solid gray;
+   } 
+   .category-list {
+     list-style-type: none; /* Removes bullet points */
+     padding-left: 0;
+     margin: 15px 0;
+    }
+  
+    .category-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee; /* Optional divider */
+    }
+  
+    .category-list li:last-child {
+      border-bottom: none; /* Remove border from last item */
+    }
+  
+    .category-list a {
+       text-decoration: none;
+       color: #333;
+       font-size: 16px;
+       display: block;
+    }
+  
+    .category-list a:hover {
+      color:blue;
+      font-weight: bold;
+    }
+    .copyright-text a:hover{
+      color: rgb(0, 0, 74);
+    }
+  /*=====================================================================================================*/
+  /* aboutus bannar */
+
+.aboutus-banner {
+  color: rgb(0, 0, 0);
+}
+.aboutus-banner h1{
+
+  font-weight: bolder;
+  font-family: sans-serif;
+}
+/*===================================================================================*/
+
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+    
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px 0;
+    }
+    
+    .team-card {
+      background-color: #f0f2f5;
+      border-radius: 10px;
+      padding: 30px 20px;
+      width: 280px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      /* box-shadow: 0 10px 20px rgba(0,0,0,0.1); */
+
+    }
+    
+    
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 20px;
+      border: 5px solid #fff;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .member-name {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #222;
+    }
+    
+    .member-title {
+      font-size: 16px;
+      color: #666;
+      font-weight: normal;
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .team-card {
+        width: calc(50% - 20px);
+        min-width: 220px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .team-card {
+        width: 100%;
+      }
+    }
+    /*===============================================================================*/
+    </style>
+</head>
+
+<body>
+  <div class="Mainwrapeer">
+        <!-- navbar in labtop and tablet and tv screen -->
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary p-3 bg-primary p-2 text-dark bg-opacity-50 d-none d-lg-block">
+        <div class="container-fluid ">
+           <img src="img_index/logo1@2x-free-img.png" width="150px" height="50px" >
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="catalog-Everything.html">EVERYTHING</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="catalog-women.html">WOMEN</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="catalog-men.html">MEN</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">ACCESSORIES</a>
+              </li>
+            </ul>
+            <span class="navbar-text">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a class="nav-link " href="#">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">CONTACT US</a>
+                    </li>
+                  </ul>
+            </span>
+            <span class="navbar-text">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a class="nav-link cart-trigger" href="#">$0.00</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link cart-trigger" href="#"><i class="fa-sharp fa-solid fa-bag-shopping"></i><sup class="bg-light rounded-circle" ><span class="text-dark">0</span></sup></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html"><i class="fa-solid fa-user"></i></a>
+                      </li>
+                  </ul>
+            </span>
+          </div>
+        </div>
+      </nav>
+
+
+            <!-- navbar in phone screen -->
+      <nav class="navbar bg-body-tertiary bg-primary p-2 text-dark bg-opacity-50 d-lg-none">
+        <div class="container-fluid">
+            <img src="img_index/logo1@2x-free-img.png" width="150px" height="50px">
+            <div class="d-flex">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-row">
+                    <li class="nav-item  p-2">
+                        <a class="nav-link cart-trigger" href="#">$0.00</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link cart-trigger" href="#"><i class="fa-sharp fa-solid fa-bag-shopping"></i><sup class="bg-light rounded-circle" ><span class="text-dark">0</span></sup></a>
+                    </li>
+                </ul>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="user-title pt-5" id="user"><a class="nav-link" href="login.html"><i class="fa-solid fa-user"></i></a></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="catalog-Everything.html">EVERYTHING</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  active" href="catalog-women.html">WOMEN</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="catalog-men.html">MAN</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">ACCESSORIES</a>
+                        </li>
+                        <span class="navbar-text">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                  <a class="nav-link active" href="#">ABOUT</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link active" href="#">CONTACT US</a>
+                                </li>
+                              </ul>
+                        </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Sidebar -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="close-cart" id="closeCart">&times;</button>
+  </div>
+  <div class="cart-content">
+    <p>Your cart is empty.</p>
+  </div>
+  <div class="cart-footer">
+    <a href="#" class="continue-shopping" id="continueShopping">Continue Shopping</a>
+  </div>
+</div>
+
+
+  <div class="mx-0 container-fluid py-5 px-0  fw-bold bg-opacity-10 bg-primary">
+    <div class="aboutus-banner d-flex flex-column align-items-center text-start p-5">
+       <h1 class="highlight-text fw-bold display-4 mb-4">ABOUT US</h1>
+     </div>
+     </div>
+
+</div>
+
+<div class="container-fluid d-flex flex-row justify-content-center flex-wrap bg-light pt-5 ">
+  <div id="whoweare" class="card m-4 col-12 col-lg-5";">
+    <div class="card-body m-4 border-top border-primary">
+      <h3 class="card-title ">Who We Are</h3>
+      <p class="card-text">There are many kinds of profitable ecommerce businesses. You can sell directly to consumers (DTC), to other businesses (B2B), or lean into a consumer-to-consumer (C2C) model. The success of an ecommerce business depends on various factors like finding a niche product or service, honing in on a target audience, and attaining operational efficiency
+        Referenc.</p>
+      <a href="contacts.html" class="card-link">contact us</a>
+    </div>
+  </div>
+<!-----tow cards------>
+  <div class="card m-4 col-12 col-lg-5">
+    <img src="img_index/stem_students6.webp" class="card-img" alt="...">
+    <div class="card-img-overlay">
+      <h5 class="card-title">this is who we are</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <p class="card-text"><small>Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+<!------our team--------->
+  <div class="subwraper" >
+    <div class="col-md-12 col-lg-12 p-5 bg-white ">
+      <div class="container d-flex flex-column align-items-center">
+          <nav aria-label="breadcrumb" class="mb-4">
+            <h5 class="logo-title">a few words about our team</h5>
+            <h1 class="section-title">OUR TEAM</h1>
+                  </nav>
+            <p class="fw-bold">We are a deticated team of five developers, ready to work and eager to learn</p>
+
+
+            <div class="container">
+              <div class="team-grid">
+                <!-- Card 1 -->
+                <div class="team-card">
+                  <img class="profile-img" src="img_index/ahmad.jpeg" alt="Team Member">
+                  <h3 class="member-name">Ahmed</h3>
+                  <p class="member-title">Team Lead</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="team-card">
+                  <img class="profile-img" src="img_index/kareem.jpeg" alt="Team Member">
+                  <h3 class="member-name">Kareem</h3>
+                  <p class="member-title">Founder - CEO</p>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="team-card">
+                  <img class="profile-img" src="img_index/abdelkader.jpeg" alt="Team Member">
+                  <h3 class="member-name">Abdelkader</h3>
+                  <p class="member-title">Marketing Head</p>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="team-card">
+                  <img class="profile-img" src="img_index/ismael.jpeg" alt="Team Member">
+                  <h3 class="member-name">Ismael</h3>
+                  <p class="member-title">Lead Developer</p>
+                </div>
+                
+                <!-- Card 5 -->
+                <div class="team-card">
+                  <img class="profile-img" src="img_index/ziead.jpeg" alt="Team Member">
+                  <h3 class="member-name">Ziead</h3>
+                  <p class="member-title">Intern Designer</p>
+                </div>
+              </div>
+            </div>
+   </div>
+</div>
+
+
+
+
+<div class="container bg-white d-flex flex-column gap-5 p-0" style="width: 20%; height:25vw ;">
+  <section class="follow-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="title-divider"></div>
+          <h2 class="section-title">Follow Us</h2>
+          
+          <div class="social-icons d-flex fs-5 flex-row px-3 gap-4 justify-content-center pt-5">
+            <a href="#" class="facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="google">
+              <i class="fab fa-google-plus-g"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<!--end-->
+<div>
+    <!--- some cards with logos---->
+    <div class="container py-5">
+        <div class="row">
+            <!-- First logo Card -->
+            <div class="col-md-3 col-12 mb-4">
+                <div class="logo-card logo-1">
+                  <img src="./img_index/tag-free-img.png">
+                    <h5 class="logo-title">Best Offers</h5>
+                    <p class="logo-text">It elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo</p>
+                               
+                  </div>
+            </div>
+            
+            <!-- Second logo Card -->
+            <div class="col-md-3 col-12 mb-4">
+                <div class="logo-card logo-2">
+                  <img src="./img_index/quality-free-img.png">
+                    <h5 class="logo-title">Best Quality</h5>
+                    <p class="logo-text">It elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo</p>
+                               
+                  </div>
+            </div>
+            
+            <!-- Third logo Card -->
+            <div class="col-md-3 col-12 mb-4">
+                <div class="logo-card logo-3">
+                  <img src="./img_index/globe-free-img.png">
+                    <h5 class="logo-title">Worldwide Shipping</h5>
+                    <p class="logo-text">It elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo</p>
+                    
+                </div>
+            </div>
+            <!-- forth logo Card -->
+            <div class="col-md-3 col-12 mb-4">
+              <div class="logo-card logo-3">
+                <img src="./img_index/lock-free-img.png" >
+                  <h5 class="logo-title">Secure Payments</h5>
+                  <p class="logo-text">It elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo</p>
+                  
+              </div>
+          </div>
+          
+  
+        </div>
+      </div>  
+         <!------foter -------->
+  
+         <div class="bg-white">
+          <div div id="just-txt" class="row m-4 p-5 bg-white text-center" >
+              <p>SALE UP TO 70% OFF FOR ALL CLOTHES & FASHION ITEMS, ON ALL BRANDS.</p>
+          </div>
+      
+      
+        <div class="footer row bg-white ">
+          <div class="col-12 col-md-6 col-lg-3 d-flex flex-column justify-content-center gap-3">
+            <div class="d-flex justify-content-center">
+              <img src="img_index/logo@2x-free-img.png " alt="#" width="140" height="50">
+            </div>
+            <div class="d-flex  justify-content-center">
+              <h6>The best look anytime, anywhere.</h6>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center align-items-center">
+            <div class="category-section p-5">
+              <h2>For Her</h2>
+              <ul class="category-list list-unstyled ">
+                  <li><a href="catalog-women.html">Women Jeans</a></li>
+                  <li><a href="catalog-women.html">Tops and Shirts</a></li>
+                  <li><a href="catalog-women.html">Women Jackets</a></li>
+                  <li><a href="catalog-women.html">Heels and Flats</a></li>
+                  <li><a href="catalog-women.html">Women Accessories</a></li>
+                </ul>
+              </ul>
+            </div>
+          </div>
+      
+          <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center align-items-center">
+            <div class="category-section p-5">
+              <h2>For Him</h2>
+              <ul class="category-list list-unstyled ">
+                <li><a href="catalog-men.html">Man Jeans</a></li>
+                <li><a href="catalog-men.html">Man Shirts</a></li>
+                <li><a href="catalog-men.html">Man Jackets</a></li>
+                <li><a href="catalog-men.html">Man shose</a></li>
+                <li><a href="catalog-men.html">Man Accessories</a></li>
+              </ul>
+            </div>
+          </div>
+      
+          <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center align-items-center gap-3 pb-4">
+            <div class="subscribe-form">
+              <h3 class="subscribe-title">Subscribe</h3>
+              <form class="mt-3 g-3">
+                <div class="form-group">
+                  <input type="email" class="form-control" placeholder="Your email address..." required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block mt-2">SUBSCRIBE</button>
+              </form>
+            </div>
+          </div>
+      
+        </div>
+      
+        <div class="d-flex p-0 justify-content-around mb-5">
+          <div class="col-8 col-md-4 ">
+            <p class="copyright-text">Copyright © 2025 Brandstore.</p>
+          </div>
+          <div>
+            <div class="d-flex justify-content-center gap-2 col-8 col-md-4">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-google"></i></a>
+              <a href="#"><i class="fab fa-telegram"></i></a>
+            </div>
+          </div>
+      
+        </div>
+      </div>     
+            <!-- footer ///// end -->
+
+
+
+<script src="bootstrab/js/bootstrap.bundle.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
