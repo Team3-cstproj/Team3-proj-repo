@@ -150,6 +150,8 @@ function updateAdditionalInfo(product) {
     `;
   }
 }
+
+
 ////////////
 /////Add to cart///////////////
 /////////////////////////////
