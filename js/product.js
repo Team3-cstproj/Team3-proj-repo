@@ -150,6 +150,10 @@ function updateAdditionalInfo(product) {
     `;
   }
 }
+////////////
+/////Add to cart///////////////
+/////////////////////////////
+
 
 function setupAddToCart(product) {
   const addToCartBtn = document.querySelector(".add-to-cart-btn");
@@ -262,6 +266,11 @@ function updateCartSidebar(cart) {
     `;
   }
 }
+////////////End of add to cart////////////////
+///////////////////////////////////////
+
+
+
 
 function displayRelatedProducts(currentProduct) {
   const products = JSON.parse(localStorage.getItem('products')) || [];
