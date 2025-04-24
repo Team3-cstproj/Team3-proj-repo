@@ -13,13 +13,19 @@
     <title>Admin-E-comerce</title>
 </head>
 <body class="bg-light">
+
   <div class="container-fluid">
     <div class="row">
       <!-- Sidebar -->
       <section class=" vh-100 p-4 position-fixed sidebar">
         <a href="#" class="d-flex   mb-4 text-dark text-decoration-none fs-4 fw-bold h1">
           <i class='bx bxs-smile me-2 fs-3'></i>
-          <span>Admin</span>
+          <span>
+            Admin  
+              <button class="btn  ms-4 col-auto" >
+                <i class='bx bx-menu bx-sm'></i>
+             </button>
+    </span>
         </a>
         <ul class="nav nav-pills flex-column mb-auto ulist">
           <li class="nav-item">
@@ -47,14 +53,14 @@
             </a>
           </li>
           <li>
-            <a href="#" class="nav-link text-dark">
+            <a href="Customer.html" class="nav-link text-dark">
               <i class='bx bxs-group me-2'></i>
             Customer
             </a>
           </li>
 
           <li>
-            <a href="#" class="nav-link text-dark">
+            <a href="Seller.html" class="nav-link text-dark">
               <i class='bx bxs-group me-2'></i>
            Sellers
             </a>
@@ -82,14 +88,8 @@
       <main class="container mt-4 main-content">
             <!-- Header -->
 <div class="d-flex justify-content-between align-items-center mb-3 ">
+         <h1 class="h2 col-xs-1 mx-2">Dashboard</h1>
 
-     <button class="btn  mx-2 ms-2 col-auto" >
-         <i class='bx bx-menu bx-sm'></i>
-     </button>
-
-         <h1 class="h2 col-2">Dashboard</h1>
-
-   
          <div class="input-group">
           <input  class="form-control " type="text"    placeholder=" Search..."  />
           <button class="btn btn-primary me-5">
@@ -147,18 +147,18 @@
           <div class="col mb-4 mx-4">
             <div class="card">
               
-              <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Recent Orders</h5>
+              <div class="card-header d-flex justify-content-between align-items-center col-xs-2">
+                <h5 class="mb-0" >Recent Orders</h5>
                 <div>
                   <i class='bx bx-search me-2'></i>
                   <i class='bx bx-filter'></i>
                 </div>
               </div>
               
-              <div class="table-responsive">
+              <div class="table-responsive ">
                 <table class="table table-hover mb-0">
 
-                  <thead class="table-light">
+                  <thead class="table-light ">
                     <tr>
                       <th>Order ID</th>
                       <th>Customer</th>
@@ -201,7 +201,6 @@
                     <tr>
                       <td>#1001</td>
                       <td >John Doe</td>
-                      
                       <td>
                         <div class="d-flex align-items-center">
                           <img src="3.png" width="50px"  alt="Product">
@@ -213,66 +212,17 @@
                       <td>$120</td>
                     </tr>
                   </tbody>
-                  
                 </table>
               </div>
-
             </div>
           </div>
-
-      
-
-          <div class="container my-3">
-            <h3>Sellers Details</h3>
-            <table class="table table-responsive text-center table-bordered table-hover">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Remove</th>
-              </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Ahmed</td>
-                  <td>ahmed@gmail.com</td>
-                  <td>
-                    <div class=" text-center remove-icon ">
-                      <i class="fa-solid fa-xmark  text-center"></i>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Ahmed</td>
-                  <td>ahmed@gmail.com</td>
-                  <td>
-                    <div class=" text-center remove-icon ">
-                      <i class="fa-solid fa-xmark  text-center"></i>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Ahmed</td>
-                  <td>ahmed@gmail.com</td>
-                  <td>
-                    <div class=" text-center remove-icon ">
-                      <i class="fa-solid fa-xmark  text-center"></i>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
         </div>
-
-        
       </main>
     </div>
   </div>
+
+
+    <script src="bootstrab/js/bootstrap.bundle.js"></script>
+    <script src="js/checkout.js"></script>
 </body>
 </html>
