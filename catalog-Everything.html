@@ -151,8 +151,8 @@
             <div class="col-md-3 p-4 bg-light">
                 <div class="mb-4">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search products...">
-                        <button class="btn btn-primary" type="button">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Search products...">
+                        <button class="btn btn-primary" id="searchBtn" type="button">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
@@ -160,15 +160,13 @@
 
                 <div class="mb-4">
                     <h4 class="mb-3">Filter by Price</h4>
-                    <div class="price-range">
-                        <div class="price-range-slider">
-                            <span class="ui-slider-handle"></span>
-                            <span class="ui-slider-handle" style="left: 100%;"></span>
-                        </div>
+                    <div class="d-flex gap-2 mb-2">
+                        <input type="number" id="minPrice" class="form-control" placeholder="Min price">
+                        <input type="number" id="maxPrice" class="form-control" placeholder="Max price">
                     </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <button class="btn btn-primary btn-sm">FILTER</button>
-                        <span>Price: $60 — $190</span>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-primary w-50" id="filterPriceBtn">Filter</button>
+                        <button class="btn btn-secondary w-50" id="clearFilterBtn">Clear Filter</button>
                     </div>
                 </div>
 
@@ -192,7 +190,7 @@
 
                 <div class="mb-4">
                     <h4 class="mb-3">Our Best Sellers</h4>
-                    <ul class="list-group list-group-flush bg-light">
+                    <ul class="list-group list-group-flush bg-light" id="best-sellers-list">
 
                         <li class="list-group-item bg-light">
                             <div class="container-fluid">
@@ -263,11 +261,11 @@
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <p class="mb-0">Showing 1–12 of 31 results</p>
                         <div>
-                            <select class="form-select">
-                                <option selected>Default sorting</option>
-                                <option>Sort by popularity</option>
-                                <option>Sort by price: low to high</option>
-                                <option>Sort by price: high to low</option>
+                            <select class="form-select" id="sortSelect">
+                                <option value="default" selected>Default sorting</option>
+                                <option value="popularity">Sort by popularity</option>
+                                <option value="priceLowToHigh">Sort by price: low to high</option>
+                                <option value="priceHighToLow">Sort by price: high to low</option>
                             </select>
                         </div>
                     </div>
