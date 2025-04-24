@@ -141,6 +141,19 @@ document.addEventListener('DOMContentLoaded', () => {
 /////======================================================================================================//
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+  // Load cart from localStorage
+const savedItems = localStorage.getItem('cartItems');
+const savedTotal = localStorage.getItem('cartTotal');
+
+if (savedItems) {
+  cartItems = JSON.parse(savedItems);
+}
+
+if (savedTotal) {
+  cartTotal = parseFloat(savedTotal);
+}
+updateCartUI();
+
 // Get the container for product cards
 const productsContainer = document.querySelector('.row-cols-2.row-cols-md-3.row-cols-lg-5.g-3');
 
@@ -158,6 +171,7 @@ featuredProducts.forEach(product => {
   // Create and append product card
   productsContainer.innerHTML += `
     <div class="col">
+              <a href="product.html?id=${product.id}" class="text-decoration-none text-dark">
       <div class="card product-card" data-product-id="${product.id}">
         <img src="${product.img}" class="card-img-top" alt="${product.name}">
         <div class="hover-icons">
@@ -182,6 +196,7 @@ featuredProducts.forEach(product => {
           </div>
         </div>
       </div>
+      </a>
     </div>
   `;
 });
@@ -221,11 +236,17 @@ return products.find(product => product.id === parseInt(id));
 
 // Function to update cart UI
 function updateCartUI() {
-const cartContent = document.querySelector('.cart-content');
+
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  localStorage.setItem('cartTotal', cartTotal.toFixed(2));
+
+  const cartContent = document.querySelector('.cart-content');
 
 // Update cart items count in navbar
+const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
 document.querySelectorAll('.cart-trigger sup span').forEach(span => {
-  span.textContent = cartItems.length;
+  span.textContent = totalQuantity;
 });
 
 // Update cart total in navbar
@@ -287,12 +308,12 @@ totalSection.innerHTML = `
   </div>
       <div class="d-flex flex-column gap-2">
         <a href="cart.html" class="btn btn-primary">View Cart</a>
-        <a href="checkout.html" class="btn btn-primary">Checkout</a>
       </div>`;
 
 // Add to cart content
 cartContent.appendChild(itemsList);
 cartContent.appendChild(totalSection);
+
 }
 
 // Function to remove item from cart
@@ -307,18 +328,7 @@ updateCartUI();
 }
 
 // Function for checkout
-function checkout() {
-  // Redirect to another page
-  window.location.href = 'checkout.html'; 
-// Clear cart after checkout
-cartItems = [];
-cartTotal = 0;
-updateCartUI();
 
-// Close cart sidebar
-document.getElementById('cartSidebar').classList.remove('active');
-document.getElementById('cartOverlay').classList.remove('active');
-}
 
 // Initialize continue shopping button
 document.addEventListener('DOMContentLoaded', function() {
@@ -328,3 +338,23 @@ document.getElementById('continueShopping').addEventListener('click', function(e
   document.getElementById('cartOverlay').classList.remove('active');
 });
 });
+
+function addToCart(productId) {
+  const product = findProductById(productId);
+
+  if (product) {
+    const existingItem = cartItems.find(item => item.id === productId);
+    
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cartItems.push({ ...product, quantity: 1 });
+    }
+
+    cartTotal += product.price;
+    updateCartUI();
+
+  }
+}
+
+// ////////============================================================================
