@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="bootstrab/css/bootstrap.css">
+    <link rel="stylesheet" href="css/product_table.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <title>Seller-E-comerce</title>
+</head>
+<body>
+
+    <div id="small-window-warning" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:white; color:black; z-index:9999; text-align:center; padding-top:20%;">
+        Your screen is too small. Please enlarge the window.
+      </div>
+    <div class = "Pcontainer">
+        <aside class="Paside">
+            <div class = "top">
+                <div class = logo>
+                    <h2>Hasep<span class="danger">keda</span></h2>
+                </div>
+                <div class = "close">
+                    <span class="material-symbols-outlined">close</span>
+                </div>
+            </div>
+
+            <div class = "sidebar">
+                <a href="#">
+                    <span class="material-symbols-outlined">grid_view</span>
+                    <h3>Dashbord</h3>
+                </a>
+                <a href="seller.html">
+                    <span class="material-symbols-outlined">person_outline</span>
+                    <h3>customers</h3>
+                </a>
+                <a href="#">
+                    <span class="material-symbols-outlined">insights</span>
+                    <h3>Analytics</h3>
+                </a>    
+                <a href="#">
+                    <span class="material-symbols-outlined">mail_outline</span>
+                    <h3>Messages</h3>
+                    <span class = "msg_count">14</span>
+                </a>
+                <a href="product_table.html" class="active">
+                    <span class="material-symbols-outlined">receipt_long</span>
+                    <h3>Products</h3>
+                </a>
+                <a href="#">
+                    <span class="material-symbols-outlined">report_gmailerrorred</span>
+                    <h3>Reports</h3>
+                </a>
+                <a href="#">
+                    <span class="material-symbols-outlined">settings</span>
+                    <h3>Settings</h3>
+                </a>
+                <a href="add_product.html">
+                    <span class="material-symbols-outlined">add</span>
+                    <h3>Add Product</h3>
+                </a>
+                <a href="#">
+                    <span class="material-symbols-outlined">logout</span>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+
+
+        <main class = "col-xxl-12">      
+            <div class="recent_order">
+                <h1>products info</h1>
+
+                <table>
+                    <thead>
+                        <tr class = "product-table">
+                            <th>Product Name</th>
+                            <th>Product ID</th>
+                            <th>Category</th>
+                            <th>Sold</th>
+                            <th>Availible</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>101</td>
+                            <td>Classic Denim Hoodie</td>
+                            <td>men</td>
+                            <td>42</td>
+                            <td>
+                                <div style="width: 100px; margin: auto;">
+                                  <input type="number" id="price" name="price" min="0" step="1" class="input-group-text" style="background-color: white; width: 100%;"  required>
+                                </div>
+                            </td>
+                            <td><div style="width: 100px; margin: auto;">
+                                <input type="number" id="price" name="price" min="0" step="1" class="input-group-text" style="background-color: white; width: 100%;"  required>
+                            </div></td>
+                            <td class = "primary">InStock</td>
+                            <td class="action-buttons">
+                                <a href="#"><span class="fas fa-pen success"></span></a>
+                                <a href="#"><span class="fas fa-trash" style="color: red;"></span></a>
+                              </td>
+                        </tr>
+                        <tr>
+                            <td>101</td>
+                            <td>Classic Denim Hoodie</td>
+                            <td>men</td>
+                            <td>42</td>
+                            <td>58</td>
+                            <td>200$</td>
+                            <td class = "primary">InStock</td>
+                            <td class="action-buttons">
+                                <a href="#"><span class="fas fa-pen success"></span></a>
+                                <a href="#"><span class="fas fa-trash" style="color: red;"></span></a>
+                              </td>
+                        </tr>
+                        <tr>
+                            <td>101</td>
+                            <td>Classic Denim Hoodie</td>
+                            <td>men</td>
+                            <td>42</td>
+                            <td>58</td>
+                            <td>200$</td>
+                            <td class = "primary">InStock</td>
+                            <td class="action-buttons">
+                                <a href="#"><span class="fas fa-pen success"></span></a>
+                                <a href="#"><span class="fas fa-trash" style="color: red;"></span></a>
+                              </td>
+                        </tr>
+                        <tr>
+                            <td>101</td>
+                            <td>Classic Denim Hoodie</td>
+                            <td>men</td>
+                            <td>42</td>
+                            <td>58</td>
+                            <td>200$</td>
+                            <td class = "primary">InStock</td>
+                            <td class="action-buttons">
+                                <a href="#"><span class="fas fa-pen success"></span></a>
+                                <a href="#"><span class="fas fa-trash" style="color: red;"></span></a>
+                              </td>
+                        </tr>
+                        <tr>
+                            <td>101</td>
+                            <td>Classic Denim Hoodie</td>
+                            <td>men</td>
+                            <td>42</td>
+                            <td>0</td>
+                            <td>200$</td>
+                            <td class = "warning">Out Of Stock</td>
+                            <td class="action-buttons">
+                                <a href="#"><span class="fas fa-pen success"></span></a>
+                                <a href="#"><span class="fas fa-trash w-100" style="color: red;"></span></a>
+                              </td>
+                        </tr>
+                        <tr>
+                            <td>101</td>
+                            <td>Classic Denim Hoodie</td>
+                            <td>men</td>
+                            <td>42</td>
+                            <td>58</td>
+                            <td>200$</td>
+                            <td class = "primary">InStock</td>
+                            <td class="action-buttons">
+                                <a href="#"><span class="fas fa-pen success"></span></a>
+                                <a href="#"><span class="fas fa-trash" style="color: red;"></span></a>
+                              </td>
+                        </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination justify-content-center my-4">
+                                    <li class="page-item">
+                                    <a class="page-link modern-btn" href="#">‹ Prev</a>
+                                    </li>
+                                    <li class="page-item">
+                                    <a class="page-link modern-btn" href="#">1</a>
+                                    </li>
+                                    <li class="page-item active">
+                                    <a class="page-link modern-btn active" href="#">2</a>
+                                    </li>
+                                    <li class="page-item">
+                                    <a class="page-link modern-btn" href="#">3</a>
+                                    </li>
+                                    <li class="page-item">
+                                    <a class="page-link modern-btn" href="#">Next ›</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+         </main>
+    </div>
+    <script>
+        function toggleWarning() {
+          const warning = document.getElementById("small-window-warning");
+          if (window.innerWidth < 800 || window.innerHeight < 600) {
+            warning.style.display = "block";
+          } else {
+            warning.style.display = "none";
+          }
+        }
+      
+        window.addEventListener("resize", toggleWarning);
+        window.addEventListener("load", toggleWarning);
+      </script>
+</body>

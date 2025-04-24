@@ -1,4 +1,5 @@
 /* import main css file */
+/* import main css file */
 @import url("main.css");
 @import url("../bootstrab/css/bootstrap.css");
 
@@ -528,10 +529,10 @@ main .recent_order a{
         width: 94%;
         grid-template-columns: 7rem auto 14rem;
     }
-    aside .sidebar h3{
+    .Saside .sidebar h3{
         display: none;
     }
-    aside .sidebar a:last-child{
+    .Saside .sidebar a:last-child{
         position: relative;
         margin-top: 1.8rem;
     }
@@ -631,5 +632,3 @@ main .recent_order a{
         padding-top:20px ;
     } 
   }
-
-
