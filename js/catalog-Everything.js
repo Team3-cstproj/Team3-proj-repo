@@ -107,7 +107,9 @@ function displayProducts() {
 
   productsToDisplay.forEach(product => {
     const productCard = `
+    
         <div class="col">
+          <a href="product.html?id=${product.id}" class="text-decoration-none text-dark">
             <div class="card product-card">
                 <img src="${product.img}" class="card-img-top" alt="${product.name}">
                 <div class="hover-icons">
@@ -125,7 +127,9 @@ function displayProducts() {
                     </div>
                 </div>
             </div>
+            </a>
         </div>
+    
         `;
     productContainer.innerHTML += productCard;
   });
