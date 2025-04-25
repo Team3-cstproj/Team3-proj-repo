@@ -119,7 +119,7 @@ function displayProductDetails(product) {
     productPrice.textContent = `$${product.price.toFixed(2)}`;
   }
 
-  // Update description images (if you want to use product images)
+  // Update description images 
   const descImages = document.querySelectorAll("#description-product-img");
   descImages.forEach(img => {
     img.src = product.img;
