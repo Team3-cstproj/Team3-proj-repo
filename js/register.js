@@ -13,6 +13,8 @@ let authData = JSON.parse(localStorage.getItem("authData")) || {
     users: []
 };
 
+let users = JSON.parse(localStorage.getItem("users")) 
+
 // Function to get the next available ID (largest ID + 1)
 function getNextId() {
     // Get all current IDs
@@ -81,6 +83,7 @@ document.querySelector("form").addEventListener("submit", function (e) {
             productsSold: 0
         };
         authData.sellers.push(newSeller);
+        users.push(newSeller); // Add to users as well
     } else {
         const newUser = {
             id: newId,
@@ -93,10 +96,12 @@ document.querySelector("form").addEventListener("submit", function (e) {
             orders: 0
         };
         authData.users.push(newUser);
+        users.push(newUser); // Add to users as well
     }
 
     // Save updated data to localStorage
     localStorage.setItem("authData", JSON.stringify(authData));
+    localStorage.setItem("users", JSON.stringify(users)); // Save updated users
 
     showMessage("✅ Account created! Redirecting to login...", "success");
 
