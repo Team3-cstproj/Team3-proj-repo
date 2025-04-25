@@ -139,222 +139,154 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 /////======================================================================================================//
+
+// // ////////============================================================================
+
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-  // Load cart from localStorage
-const savedItems = localStorage.getItem('cartItems');
-const savedTotal = localStorage.getItem('cartTotal');
+  // Render products
+  const productsContainer = document.querySelector('.row-cols-2.row-cols-md-3.row-cols-lg-5.g-3');
+  productsContainer.innerHTML = '';
 
-if (savedItems) {
-  cartItems = JSON.parse(savedItems);
-}
+  const products = getAllProducts();
+  const featuredProducts = products.slice(0, 10);
 
-if (savedTotal) {
-  cartTotal = parseFloat(savedTotal);
-}
-updateCartUI();
-
-// Get the container for product cards
-const productsContainer = document.querySelector('.row-cols-2.row-cols-md-3.row-cols-lg-5.g-3');
-
-// Clear existing static product cards
-productsContainer.innerHTML = '';
-
-// Get all products from data.js
-const products = getAllProducts();
-
-// Select featured products (we'll show the first 10)
-const featuredProducts = products.slice(0, 10);
-
-// Render each featured product
-featuredProducts.forEach(product => {
-  // Create and append product card
-  productsContainer.innerHTML += `
-    <div class="col">
-              <a href="product.html?id=${product.id}" class="text-decoration-none text-dark">
-      <div class="card product-card" data-product-id="${product.id}">
-        <img src="${product.img}" class="card-img-top" alt="${product.name}">
-        <div class="hover-icons">
-          <a href="#" class="icon-btn cart-button" onclick="addToCart(${product.id}); return false;">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="tooltip-text">Add to cart</span>
-            <span class="cart-circle">
-              <i class="fas fa-shopping-bag"></i>
-            </span>
-          </a>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">${product.name}</h5>
-          <p class="text-muted small">${product.category === 'men' ? 'Men' : 'Women'}</p>
-          <p class="card-text">$${product.price.toFixed(2)}</p>
-          <div class="star-rating">
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
+  featuredProducts.forEach(product => {
+    productsContainer.innerHTML += `
+      <div class="col">
+        <a href="product.html?id=${product.id}" class="text-decoration-none text-dark">
+          <div class="card product-card" data-product-id="${product.id}">
+            <img src="${product.img}" class="card-img-top" alt="${product.name}">
+            <div class="hover-icons">
+              <a href="#" class="icon-btn cart-button" onclick="addToCart(${product.id}); return false;">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="tooltip-text">Add to cart</span>
+                <span class="cart-circle">
+                  <i class="fas fa-shopping-bag"></i>
+                </span>
+              </a>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">${product.name}</h5>
+              <p class="text-muted small">${product.category === 'men' ? 'Men' : 'Women'}</p>
+              <p class="card-text">$${product.price.toFixed(2)}</p>
+              <div class="star-rating">
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
-      </a>
-    </div>
-  `;
-});
-});
+    `;
+  });
 
-// Simple cart implementation
-let cartItems = [];
-let cartTotal = 0;
+  // Update cart display on page load
+  updateCartDisplay();
+});
 
 // Function to add product to cart
 function addToCart(productId) {
-// Find product by ID
-const product = findProductById(productId);
-
-// Check if product exists
-if (product) {
-  // Add to cart items
-  cartItems.push(product);
-  
-  // Update cart total
-  cartTotal += product.price;
-  
-  // Update cart UI
-  updateCartUI();
-  
-  // Show cart sidebar
-  // document.getElementById('cartSidebar').classList.add('active');
-  // document.getElementById('cartOverlay').classList.add('active');
-}
-}
-
-// Function to find product by ID
-function findProductById(id) {
-const products = getAllProducts();
-return products.find(product => product.id === parseInt(id));
-}
-
-// Function to update cart UI
-function updateCartUI() {
-
-  localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  localStorage.setItem('cartTotal', cartTotal.toFixed(2));
-
-  const cartContent = document.querySelector('.cart-content');
-
-// Update cart items count in navbar
-const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-
-document.querySelectorAll('.cart-trigger sup span').forEach(span => {
-  span.textContent = totalQuantity;
-});
-
-// Update cart total in navbar
-document.querySelectorAll('.cart-trigger').forEach(trigger => {
-  if (!trigger.querySelector('i')) {
-    trigger.textContent = `$${cartTotal.toFixed(2)}`;
-  }
-});
-
-// Clear cart content
-cartContent.innerHTML = '';
-
-// If cart is empty
-if (cartItems.length === 0) {
-  cartContent.innerHTML = '<p>Your cart is empty.</p>';
-  return;
-}
-
-// Create a simple list of cart items
-const itemsList = document.createElement('ul');
-itemsList.className = 'cart-items-list';
-itemsList.style.listStyle = 'none';
-itemsList.style.padding = '0';
-
-// Add items to list
-cartItems.forEach((item, index) => {
-  const listItem = document.createElement('li');
-  listItem.className = 'cart-item';
-  listItem.style.display = 'flex';
-  listItem.style.justifyContent = 'space-between';
-  listItem.style.alignItems = 'center';
-  listItem.style.marginBottom = '10px';
-  listItem.style.padding = '5px 0';
-  listItem.style.borderBottom = '1px solid #eee';
-  
-  listItem.innerHTML = `
-    <div class="d-flex align-items-center">
-              <img src="${item.img}" alt="${item.name}" width="60" height="60" class="me-3">
-              <div>
-                <h6 class="mb-0">${item.name}</h6>
-                <small class="text-muted">$${item.price.toFixed(2)} × ${item.quantity}</small>
-              </div>
-            </div>
-  `;
-  
-  itemsList.appendChild(listItem);
-});
-
-// Create cart total section
-const totalSection = document.createElement('div');
-totalSection.className = 'cart-total';
-totalSection.style.marginTop = '15px';
-totalSection.style.paddingTop = '10px';
-totalSection.style.borderTop = '1px solid #ddd';
-totalSection.innerHTML = `
-  <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
-    <span><strong>Total:</strong></span>
-    <span><strong>$${cartTotal.toFixed(2)}</strong></span>
-  </div>
-      <div class="d-flex flex-column gap-2">
-        <a href="cart.html" class="btn btn-primary">View Cart</a>
-      </div>`;
-
-// Add to cart content
-cartContent.appendChild(itemsList);
-cartContent.appendChild(totalSection);
-
-}
-
-// Function to remove item from cart
-function removeFromCart(index) {
-// Subtract price from total
-cartTotal -= cartItems[index].price;
-
-// Remove item from array
-cartItems.splice(index, 1);
-
-updateCartUI();
-}
-
-// Function for checkout
-
-
-// Initialize continue shopping button
-document.addEventListener('DOMContentLoaded', function() {
-document.getElementById('continueShopping').addEventListener('click', function(e) {
-  e.preventDefault();
-  document.getElementById('cartSidebar').classList.remove('active');
-  document.getElementById('cartOverlay').classList.remove('active');
-});
-});
-
-function addToCart(productId) {
   const product = findProductById(productId);
+  if (!product) return;
 
-  if (product) {
-    const existingItem = cartItems.find(item => item.id === productId);
-    
-    if (existingItem) {
-      existingItem.quantity += 1;
-    } else {
-      cartItems.push({ ...product, quantity: 1 });
-    }
+  const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
 
-    cartTotal += product.price;
-    updateCartUI();
+  const existingItem = cart.items.find(item => item.id === productId);
 
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.items.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      img: product.img,
+      quantity: 1
+    });
   }
+
+  cart.total += product.price;
+  cart.count += 1;
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCartDisplay();
 }
 
-// ////////============================================================================
+// Function to update cart display (navbar and sidebar)
+function updateCartDisplay() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
+
+  document.querySelectorAll('.cart-trigger').forEach(trigger => {
+    trigger.innerHTML = `
+      <i class="fa-sharp fa-solid fa-bag-shopping"></i>
+      <sup class="bg-light rounded-circle">
+        <span class="text-dark">${cart.count}</span>
+      </sup>
+      <span class="cart-total ms-1">$${cart.total.toFixed(2)}</span>
+    `;
+  });
+
+  updateCartSidebar(cart);
+}
+
+// Function to update cart sidebar content
+function updateCartSidebar(cart) {
+  const cartContent = document.querySelector(".cart-content");
+  const cartFooter = document.querySelector(".cart-footer");
+
+  if (cart.items.length === 0) {
+    cartContent.innerHTML = "<p>Your cart is empty.</p>";
+    cartFooter.innerHTML = `
+      <a href="#" class="continue-shopping bg-primary" id="continueShopping">Continue Shopping</a>
+    `;
+
+    document.getElementById("continueShopping").addEventListener("click", function(e) {
+      e.preventDefault();
+      document.getElementById("cartSidebar").classList.remove("active");
+      document.getElementById("cartOverlay").classList.remove("active");
+    });
+
+    return;
+  }
+
+  const itemsHtml = cart.items.map(item => `
+    <div class="cart-item d-flex justify-content-between align-items-center mb-3">
+      <div class="d-flex align-items-center">
+        <img src="${item.img}" alt="${item.name}" width="60" height="60" class="me-3">
+        <div>
+          <h6 class="mb-0">${item.name}</h6>
+          <small class="text-muted">$${item.price.toFixed(2)} × ${item.quantity}</small>
+        </div>
+      </div>
+      <div>
+        <span class="fw-bold">$${(item.price * item.quantity).toFixed(2)}</span>
+      </div>
+    </div>
+  `).join('');
+
+  cartContent.innerHTML = `
+    <div class="cart-items">${itemsHtml}</div>
+    <hr>
+    <div class="d-flex justify-content-between fw-bold">
+      <span>Total:</span>
+      <span>$${cart.total.toFixed(2)}</span>
+    </div>
+  `;
+
+  cartFooter.innerHTML = `
+    <div class="d-flex flex-column gap-2">
+      <a href="cart.html" class="btn btn-primary">View Cart</a>
+    </div>
+  `;
+}
+
+// Utility to find product by ID
+function findProductById(id) {
+  const products = getAllProducts();
+  return products.find(product => product.id === parseInt(id));
+}
+
