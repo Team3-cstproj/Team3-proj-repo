@@ -272,8 +272,8 @@ function updateCartSidebar(cart) {
 ///////////////////////////////////////
 
 
-
-
+///////related prouduct part
+//////////////////////////
 function displayRelatedProducts(currentProduct) {
   const products = JSON.parse(localStorage.getItem('products')) || [];
   
@@ -335,68 +335,78 @@ function displayRelatedProducts(currentProduct) {
 // handel reviw part
 /////////////////////////////
 document.addEventListener("DOMContentLoaded", function () {
-  // Initialize reviews from localStorage
-  const STORAGE_KEY = "product_reviews";
-  let reviews = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  // Get product ID from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = parseInt(urlParams.get('id'));
+  
+  // Get product from localStorage
+  const products = JSON.parse(localStorage.getItem('products')) || [];
+  const product = products.find(p => p.id === productId);
+  
+  if (product) {
+    // Display existing reviews on page load
+    displayProductReviews(product);
+  
+    // Review form submission
+    const reviewForm = document.querySelector("#reviews-tab-pane form");
+    if (reviewForm) {
+      reviewForm.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-  // Display existing reviews on page load
-  displayReviews();
+        // Get form values
+        const name = document.getElementById("reviewerName").value;
+        const email = document.getElementById("reviewerEmail").value;
+        const reviewText = document.getElementById("reviewText").value;
+        const rating = document.querySelector('input[name="rating"]:checked')?.value || 0;
 
-  // Review form submission
-  const reviewForm = document.querySelector("#reviews-tab-pane form");
-  if (reviewForm) {
-    reviewForm.addEventListener("submit", function (e) {
-      e.preventDefault();
+        // Create new review object
+        const newReview = {
+          userId: Date.now(), //  unique ID I will change it according the use log in later
+          username: name,
+          rating: parseInt(rating),
+          comment: reviewText,
+          date: new Date().toISOString().split('T')[0] 
+        };
 
-      // Get form values
-      const name = document.getElementById("reviewerName").value;
-      const email = document.getElementById("reviewerEmail").value;
-      const reviewText = document.getElementById("reviewText").value;
-      const rating =
-        document.querySelector('input[name="rating"]:checked')?.value || 0;
+        // Add review to product
+        if (!product.reviews) {
+          product.reviews = [];
+        }
+        product.reviews.unshift(newReview); // Add to beginning the first reviw
 
-      // Create new review object
-      const newReview = {
-        name: name,
-        email: email,
-        text: reviewText,
-        rating: rating,
-        date: new Date().toISOString(),
-      };
+        // Update product in localStorage
+        const productIndex = products.findIndex(p => p.id === product.id);
+        if (productIndex !== -1) {
+          products[productIndex] = product;
+          localStorage.setItem('products', JSON.stringify(products));
+        }
 
-      // Add to reviews array (keeping only last 3)
-      reviews.unshift(newReview); // Add to beginning (newest first)
-      if (reviews.length > 3) {
-        reviews = reviews.slice(0, 3); // Keep only 3 most recent
-      }
+        // Update display
+        displayProductReviews(product);
 
-      // Save to localStorage
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
+        // Reset the form
+        reviewForm.reset();
 
-      // Update display
-      displayReviews();
-
-      // Reset the form
-      reviewForm.reset();
-
-      // Uncheck all stars
-      document.querySelectorAll('input[name="rating"]').forEach((star) => {
-        star.checked = false;
+        // Uncheck all stars
+        document.querySelectorAll('input[name="rating"]').forEach((star) => {
+          star.checked = false;
+        });
       });
-    });
+    }
   }
 
-  // Function to display reviews
-  function displayReviews() {
-    const reviewsContainer = document.querySelector(
-      "#reviews-tab-pane .divider"
-    ).previousElementSibling;
+  // Function to display product reviews
+  function displayProductReviews(product) {
+    const reviewsContainer = document.querySelector("#reviews-tab-pane .divider").previousElementSibling;
+    const noReviewsMsg = "There are no reviews yet.";
+
+    if (!reviewsContainer) return;
 
     // Clear existing content
     reviewsContainer.innerHTML = "";
 
-    if (reviews.length === 0) {
-      reviewsContainer.textContent = "There are no reviews yet.";
+    if (!product.reviews || product.reviews.length === 0) {
+      reviewsContainer.textContent = noReviewsMsg;
       return;
     }
 
@@ -405,7 +415,7 @@ document.addEventListener("DOMContentLoaded", function () {
     allReviewsContainer.className = "all-reviews";
 
     // Add each review
-    reviews.forEach((review) => {
+    product.reviews.forEach((review) => {
       allReviewsContainer.appendChild(createReviewElement(review));
     });
 
@@ -423,32 +433,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     for (let i = 1; i <= 5; i++) {
       const star = document.createElement("i");
-      star.className =
-        i <= review.rating ? "fas fa-star text-warning" : "far fa-star";
+      star.className = i <= review.rating ? "fas fa-star text-warning" : "far fa-star";
       starsDiv.appendChild(star);
     }
 
     // Create reviewer info
     const reviewerInfo = document.createElement("div");
-    reviewerInfo.className =
-      "reviewer-info mb-2 d-flex justify-content-between";
-
-    const date = new Date(review.date);
-    const formattedDate = date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
+    reviewerInfo.className = "reviewer-info mb-2 d-flex justify-content-between";
 
     reviewerInfo.innerHTML = `
-          <strong>${review.name}</strong>
-          <small class="text-muted">${formattedDate}</small>
-      `;
+      <strong>${review.username}</strong>
+      <small class="text-muted">${review.date}</small>
+    `;
 
     // Create review text
     const reviewText = document.createElement("div");
     reviewText.className = "review-text";
-    reviewText.textContent = review.text;
+    reviewText.textContent = review.comment;
 
     // Append all elements
     reviewDiv.appendChild(starsDiv);
