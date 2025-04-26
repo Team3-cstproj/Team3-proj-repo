@@ -1,15 +1,124 @@
 /* import main css file */
 @import url("main.css");
 
+/* Sidebar */
 .sidebar {
   width: 250px;
   background: rgba(199, 193, 193, 0.336);
+  transition: 0.3s;
+  height: 100vh;
+  position: fixed;
 }
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.sidebar .nav-link span {
+  display: inline;
+  transition: 0.3s;
+}
+
+.sidebar.collapsed .nav-link span,
+.sidebar.collapsed .admin-text {
+  display: none;
+}
+
+.sidebar .toggle-btn {
+  background: none;
+  border: none;
+  color: black;
+  font-size: 1.5rem;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Main Content */
 .main-content {
-  padding-left: 250px;
+  margin-left: 250px; /* adjust to sidebar width */
+  width: calc(100% - 250px); /* take remaining space */
+  transition: 0.3s;
+  overflow-y: auto;
+  height: 100vh;
 }
-.ulist :hover{
+
+.main-content.collapsed {
+  margin-left: 80px;
+  width: calc(100% - 80px);
+}
+
+/* Sidebar Links Hover */
+.ulist li a:hover {
   transform: scale(1.1);
-background-color: rgb(83, 223, 223);
-transition: 0.4s ease;
+  background-color: rgb(83, 223, 223);
+  transition: 0.4s ease;
+}
+
+/* Table Adjustments */
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+table td, table th {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+table img {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+/* Prevent Body Overflow */
+body, html {
+  overflow-x: hidden;
+}
+
+/* Responsive Search Bar */
+.search-bar {
+  max-width: 300px;
+  width: 100%;
+}
+
+/* Responsive Search Bar */
+.search-bar {
+max-width: 800px; /* وضع حد أقصى لشريط البحث */
+width: 100%; /* التأكد من أن شريط البحث يستخدم المساحة المتاحة */
+margin-left: auto;
+margin-right: auto;
+}
+
+/* تعديل لمظهر شريط البحث في الشاشات الكبيرة */
+@media (min-width: 1200px) {
+.search-bar {
+max-width: 800px; /* زيادة العرض في الشاشات الكبيرة */
+}
+}
+
+
+/* Responsive Behavior */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 90px;
+  }
+
+  .sidebar.collapsed {
+    width: 0;
+  }
+
+  .main-content {
+    margin-left: 10px;
+    width: calc(100% - 10px);
+  }
+
+  .main-content.collapsed {
+    margin-left: 0;
+    width: 100%;
+  }
 }

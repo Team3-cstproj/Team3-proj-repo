@@ -13,96 +13,79 @@
     <title>Admin-E-comerce</title>
 </head>
 <body class="bg-light">
-
   <div class="container-fluid">
     <div class="row">
+
       <!-- Sidebar -->
-      <section class=" vh-100 p-4 position-fixed sidebar">
-        <a href="#" class="d-flex   mb-4 text-dark text-decoration-none fs-4 fw-bold h1">
-          <i class='bx bxs-smile me-2 fs-3'></i>
-          <span>
-            Admin  
-              <button class="btn  ms-4 col-auto" >
-                <i class='bx bx-menu bx-sm'></i>
-             </button>
-    </span>
-        </a>
+      <section id="sidebar" class="sidebar d-none d-md-block p-3">
+        <div class="admin-header mb-4">
+          <a href="#" class="d-flex align-items-center text-dark text-decoration-none">
+            <i class='bx bxs-smile fs-3'></i>
+            <span class="admin-text fs-4 fw-bold ms-2">Admin</span>
+          </a>
+          <button id="toggle-btn" class="toggle-btn">
+            <i class='bx bx-menu'></i>
+          </button>
+        </div>
+
         <ul class="nav nav-pills flex-column mb-auto ulist">
           <li class="nav-item">
             <a href="#" class="nav-link text-dark">
-              <i class='bx bxs-dashboard me-2'></i>
-              Dashboard
+              <i class='bx bxs-dashboard me-2'></i> <span>Dashboard</span>
             </a>
           </li>
           <li>
             <a href="#" class="nav-link text-dark">
-              <i class='bx bxs-shopping-bag-alt me-2'></i>
-              MyStore
+              <i class='bx bxs-shopping-bag-alt me-2'></i> <span>MyStore</span>
             </a>
           </li>
           <li>
             <a href="#" class="nav-link text-dark">
-              <i class='bx bxs-doughnut-chart me-2'></i>
-              Analytics
+              <i class='bx bxs-doughnut-chart me-2'></i> <span>Analytics</span>
             </a>
           </li>
           <li>
             <a href="#" class="nav-link text-dark">
-              <i class='bx bxs-message-dots me-2'></i>
-              Massages
+              <i class='bx bxs-message-dots me-2'></i> <span>Messages</span>
             </a>
           </li>
           <li>
-            <a href="admin(customer).html" class="nav-link text-dark">
-              <i class='bx bxs-group me-2'></i>
-            Customer
+            <a href="Customer.html" class="nav-link text-dark">
+              <i class='bx bxs-group me-2'></i> <span>Customer</span>
             </a>
           </li>
-
           <li>
-            <a href="admin(sellers).html" class="nav-link text-dark">
-              <i class='bx bxs-group me-2'></i>
-           Sellers
+            <a href="Seller.html" class="nav-link text-dark">
+              <i class='bx bxs-group me-2'></i> <span>Sellers</span>
             </a>
           </li>
         </ul>
 
         <hr class="text-secondary">
+
         <ul class="nav flex-column ulist">
           <li>
-            <a href="#" class="nav-link text-dark">
-              <i class='bx bxs-cog me-2'></i>
-              Setting
-            </a>
-          </li>
-          <li>
             <a href="#" class="nav-link text-danger">
-              <i class='bx bxs-log-out-circle me-2'></i>
-              Log Out
+              <i class='bx bxs-log-out-circle me-2'></i> <span>Log Out</span>
             </a>
           </li>
         </ul>
       </section>
 
       <!-- Main Content -->
-      <main class="container mt-4 main-content">
-            <!-- Header -->
-<div class="d-flex justify-content-between align-items-center mb-3 ">
-         <h1 class="h2 col-xs-1 mx-2">Dashboard</h1>
+      <main id="main" class="main-content p-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h1 class="h2">Dashboard</h1>
+          <div class="input-group search-bar">
+            <input class="form-control" type="text" placeholder="Search...">
+            <button class="btn btn-primary">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
 
-         <div class="input-group">
-          <input  class="form-control " type="text"    placeholder=" Search..."  />
-          <button class="btn btn-primary me-5">
-            <i class="fas fa-search"></i>
-          </button>
-         </div>
-</div>
-
-
-
-        <!-- Box Cards -->
-        <div class="row mb-4 mx-2">
-
+        <!-- Cards -->
+        <div class="row mb-4">
           <div class="col-md-4 mb-3">
             <div class="card text-white bg-success h-100">
               <div class="card-body d-flex align-items-center">
@@ -138,91 +121,106 @@
               </div>
             </div>
           </div>
-
         </div>
 
-        
-        <div class="col">
-
-          <div class="col mb-4 mx-4">
-            <div class="card">
-              
-              <div class="card-header d-flex justify-content-between align-items-center col-xs-2">
-                <h5 class="mb-0" >Recent Orders</h5>
-                <div>
-                  <i class='bx bx-search me-2'></i>
-                  <i class='bx bx-filter'></i>
-                </div>
-              </div>
-              
-              <div class="table-responsive ">
-                <table class="table table-hover mb-0">
-
-                  <thead class="table-light ">
-                    <tr>
-                      <th>Order ID</th>
-                      <th>Customer</th>
-                      <th>Products</th>
-                      <th>Date Order</th>
-                      <th>Status</th>
-                      <th>Total</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr>
-                      <td>#1001</td>
-                      <td >John Doe</td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <img src="3.png" width="50px"  alt="Product">
-                          <p class="mb-0">MacBook Pro 13”</p>
-                        </div>
-                      </td>
-                      <td>01-10-2021</td>
-                      <td><span class="badge bg-success">Completed</span></td>
-                      <td>$120</td>
-                    </tr>
-                    
-                    <tr>
-                      <td>#1001</td>
-                      <td >John Doe</td>
-                     <td>
-                        <div class="d-flex align-items-center">
-                          <img src="3.png" width="50px"  alt="Product">
-                          <p class="mb-0">MacBook Pro 13”</p>
-                        </div>
-                      </td>
-                      <td>01-10-2021</td>
-                      <td><span class="badge bg-warning text-dark">Pending</span></td>
-                      <td>$120</td>
-                    </tr>
-                    
-                    <tr>
-                      <td>#1001</td>
-                      <td >John Doe</td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <img src="3.png" width="50px"  alt="Product">
-                          <p class="mb-0">MacBook Pro 13”</p>
-                        </div>
-                      </td>
-                      <td>01-10-2021</td>
-                      <td><span class="badge bg-primary">Process</span></td>
-                      <td>$120</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+        <!-- Orders Table -->
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Recent Orders</h5>
+            <div>
+              <i class='bx bx-search me-2'></i>
+              <i class='bx bx-filter'></i>
             </div>
           </div>
+          <div class="table-wrapper">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Products</th>
+                  <th>Date Order</th>
+                  <th>Status</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#1001</td>
+                  <td>John Doe</td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <img src="3.png" alt="Product">
+                      <p class="mb-0 ms-2">MacBook Pro 13”</p>
+                    </div>
+                  </td>
+                  <td>01-10-2021</td>
+                  <td><span class="badge bg-success">Completed</span></td>
+                  <td>$120</td>
+                </tr>
+
+                <tr>
+                  <td>#1002</td>
+                  <td>Jane Smith</td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <img src="3.png" alt="Product">
+                      <p class="mb-0 ms-2">iPhone 12</p>
+                    </div>
+                  </td>
+                  <td>05-10-2021</td>
+                  <td><span class="badge bg-warning text-dark">Pending</span></td>
+                  <td>$999</td>
+                </tr>
+
+                <tr>
+                  <td>#1003</td>
+                  <td>Michael Scott</td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <img src="3.png" alt="Product">
+                      <p class="mb-0 ms-2">Dell XPS 13</p>
+                    </div>
+                  </td>
+                  <td>10-10-2021</td>
+                  <td><span class="badge bg-primary">Processing</span></td>
+                  <td>$850</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+          <!-- Pagination Controls -->
+          <nav >
+            <ul class="pagination justify-content-center my-5">
+            <li class="page-item disabled">
+                <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span> 
+                </a>
+            </li>
+            <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">2</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">3</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span> 
+                </a>
+            </li>
+            </ul>
+        </nav>
       </main>
+
     </div>
   </div>
 
 
     <script src="bootstrab/js/bootstrap.bundle.js"></script>
-    <script src="js/checkout.js"></script>
+    <script src="js/admin.js"></script>
 </body>
 </html>
