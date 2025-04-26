@@ -28,10 +28,11 @@ cartOverlay.addEventListener('click', () => {
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+  // initializeCart();
+  // resetCart();
 
-  if (!localStorage.getItem('cart')) {
-    localStorage.setItem('cart', JSON.stringify({ items: [], total: 0, count: 0 }));
-  }
+
+
   // Render products
   const productsContainer = document.querySelector('.row-cols-2.row-cols-md-3.row-cols-lg-5.g-3');
   productsContainer.innerHTML = '';
@@ -178,7 +179,24 @@ function findProductById(id) {
   const products = getAllProducts();
   return products.find(product => product.id === parseInt(id));
 }
-
+// Function to initialize cart to default empty state
+// function initializeCart() {
+//   // Check if this is the first visit by looking for a flag in localStorage
+//   const hasVisited = localStorage.getItem('hasVisited');
+  
+//   if (!hasVisited) {
+//     // First visit, reset cart to default empty state
+//     const emptyCart = { items: [], total: 0, count: 0 };
+//     localStorage.setItem('cart', JSON.stringify(emptyCart));
+    
+//     // Set flag to indicate the user has visited
+//     localStorage.setItem('hasVisited', 'true');
+//   }
+// }
+// function resetCart() {
+//   const emptyCart = { items: [], total: 0, count: 0 };
+//   localStorage.setItem('cart', JSON.stringify(emptyCart));
+// }
 ////////===========================================================================================///
 ////btns color baby
 document.addEventListener('DOMContentLoaded', function() {
