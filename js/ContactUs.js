@@ -1,4 +1,5 @@
-// --- NAV BAR + CART SIDEBAR --- //
+//nav bar -----start
+//  cart list baby
 const cartBtnList = document.querySelectorAll(".cart-trigger");
 const cartSidebar = document.getElementById("cartSidebar");
 const cartOverlay = document.getElementById("cartOverlay");
@@ -9,7 +10,7 @@ cartBtnList.forEach((btn) => {
     e.preventDefault();
     cartSidebar.classList.add("active");
     cartOverlay.classList.add("active");
-    updateCartDisplay();
+    updateCartDisplay(); // Update cart display when opening
   });
 });
 
@@ -23,6 +24,7 @@ cartOverlay.addEventListener("click", () => {
   cartOverlay.classList.remove("active");
 });
 
+////btns color baby
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".offer-banner .btn").forEach((button) => {
     function activate() {
@@ -41,16 +43,102 @@ document.addEventListener("DOMContentLoaded", function () {
     button.addEventListener("touchstart", activate);
     button.addEventListener("touchend", deactivate);
   });
+
+  // Initialize user profile dropdown
+  setupUserProfile();
 });
 
-// --- PRODUCT DETAILS & CART --- //
+// Enhanced login/logout functionality
+function setupUserProfile() {
+  const userIcon = document.querySelector(".nav-link[href='login.html']");
+  const userData = JSON.parse(sessionStorage.getItem('currentUser')); 
+  
+  if (!userIcon) return;
+
+  // Create user profile dropdown container
+  const profileDropdown = document.createElement('div');
+  profileDropdown.className = 'profile-dropdown';
+  profileDropdown.style.display = 'none';
+  profileDropdown.style.position = 'absolute';
+  profileDropdown.style.right = '0';
+  profileDropdown.style.top = '100%';
+  profileDropdown.style.backgroundColor = 'white';
+  profileDropdown.style.border = '1px solid #ddd';
+  profileDropdown.style.borderRadius = '4px';
+  profileDropdown.style.padding = '10px';
+  profileDropdown.style.zIndex = '1000';
+  profileDropdown.style.minWidth = '200px';
+  profileDropdown.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+  
+  if (userData) {
+    // if  User login show profile info and logout option
+    profileDropdown.innerHTML = `
+      <div class="user-info mb-2">
+        <p class="mb-1"><strong>${userData.name || 'User'}</strong></p>
+        <p class="small text-muted mb-2">${userData.email || ''}</p>
+        <p class="small">Role: ${userData.role || 'user'}</p>
+      </div>
+      <button id="logoutBtn" class="btn btn-sm btn-danger w-100">Logout</button>
+    `;
+    
+    // Change icon to  logged in state
+    userIcon.innerHTML = '<i class="fa-solid fa-user-check"></i>';
+    userIcon.href = '#'; // Prevent navigation to login page
+    
+    // Add click  for logout
+    profileDropdown.querySelector('#logoutBtn').addEventListener('click', () => {
+      sessionStorage.removeItem('user');
+      window.location.href = 'login.html';
+    });
+  } else {
+    // User is not login show login 
+    profileDropdown.innerHTML = `
+      <p class="mb-2">You are not logged in</p>
+      <a href="login.html" class="btn btn-sm btn-primary w-100">Login</a>
+    `;
+  }
+  
+  // Add dropdown to DOM
+  userIcon.parentNode.appendChild(profileDropdown);
+  
+  // Toggle dropdown on click
+  userIcon.addEventListener('click', (e) => {
+    e.preventDefault();
+    const isVisible = profileDropdown.style.display === 'block';
+    profileDropdown.style.display = isVisible ? 'none' : 'block';
+  });
+  
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!userIcon.contains(e.target) && !profileDropdown.contains(e.target)) {
+      profileDropdown.style.display = 'none';
+    }
+  });
+}
+
+// Call setup function when DOM is loaded
+document.addEventListener('DOMContentLoaded', setupUserProfile);
+// nav bar -------end
+
+///////////////////////////////
+// Product Details and Cart Functionality
+/////////////////////////////
 document.addEventListener("DOMContentLoaded", function() {
+  // Get all products from localStorage
   const products = JSON.parse(localStorage.getItem('products')) || [];
+  
+  // Get product ID from URL or use first product as default
   const urlParams = new URLSearchParams(window.location.search);
   const productId = parseInt(urlParams.get('id'));
-
-  let product = productId ? products.find(p => p.id === productId) : products[0];
-
+  
+  let product;
+  if (productId) {
+    product = products.find(p => p.id === productId);
+  } else {
+    product = products[0]; // Access first product
+  }
+  
+  // If product found, display its details
   if (product) {
     displayProductDetails(product);
     setupAddToCart(product);
@@ -59,6 +147,7 @@ document.addEventListener("DOMContentLoaded", function() {
     console.error("No products found");
   }
 
+  // Initialize cart if not exists
   if (!localStorage.getItem('cart')) {
     localStorage.setItem('cart', JSON.stringify({
       items: [],
@@ -67,47 +156,56 @@ document.addEventListener("DOMContentLoaded", function() {
     }));
   }
 
+  // Update cart display
   updateCartDisplay();
 });
 
 function displayProductDetails(product) {
+  // Update main product image
   const mainImage = document.querySelector(".product-image img");
   if (mainImage) {
     mainImage.src = product.img;
     mainImage.alt = product.name;
   }
 
+  // Update breadcrumb
   const breadcrumb = document.querySelector(".breadcrumb .active");
   if (breadcrumb) {
     breadcrumb.textContent = product.name;
   }
 
+  // Update category link
   const categoryLinks = document.querySelectorAll("#h2-link");
   categoryLinks.forEach(link => {
     link.textContent = product.category.charAt(0).toUpperCase() + product.category.slice(1);
-    link.href = `catalog-${product.category}.html`;
+    link.href = `catalog-${product.category}.html`; // Update href based on category
   });
 
+  // Update product title
   const productTitle = document.querySelector(".product-title");
   if (productTitle) {
     productTitle.textContent = product.name;
   }
 
+  // Update product price
   const productPrice = document.querySelector(".product-price");
   if (productPrice) {
     productPrice.textContent = `$${product.price.toFixed(2)}`;
   }
 
+  // Update description images 
   const descImages = document.querySelectorAll("#description-product-img");
   descImages.forEach(img => {
     img.src = product.img;
     img.alt = product.name;
   });
 
+  // Update additional info tab
   updateAdditionalInfo(product);
 }
 
 function updateAdditionalInfo(product) {
+  // Update the additional information part
   const additionalInfoTab = document.querySelector("#additional-info-tab-pane tbody");
   if (additionalInfoTab) {
     additionalInfoTab.innerHTML = `
@@ -127,14 +225,21 @@ function updateAdditionalInfo(product) {
   }
 }
 
+
+////////////
+/////Add to cart///////////////
+/////////////////////////////
+
 function setupAddToCart(product) {
   const addToCartBtn = document.querySelector(".add-to-cart-btn");
   if (addToCartBtn) {
     addToCartBtn.addEventListener("click", function() {
       const quantityInput = document.getElementById("quantity");
-      const quantity = parseInt(quantityInput?.value) || 1;
-
+      const quantity = parseInt(quantityInput.value) || 1;
+      
       addToCart(product, quantity);
+      
+      // update the cart display which will show the changes
       updateCartDisplay();
     });
   }
@@ -142,9 +247,10 @@ function setupAddToCart(product) {
 
 function addToCart(product, quantity) {
   const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
-
+  
+  // Check if product already in cart
   const existingItem = cart.items.find(item => item.id === product.id);
-
+  
   if (existingItem) {
     existingItem.quantity += quantity;
   } else {
@@ -156,17 +262,21 @@ function addToCart(product, quantity) {
       quantity: quantity
     });
   }
-
+  
+  // Update cart totals
   cart.total += product.price * quantity;
   cart.count += quantity;
-
+  
+  // Save to localStorage
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 
 function updateCartDisplay() {
   const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
-
-  document.querySelectorAll(".cart-trigger").forEach(cartTrigger => {
+  
+  // Update cart count in navbar 
+  const cartTrigger = document.querySelector(".cart-trigger");
+  if (cartTrigger) {
     cartTrigger.innerHTML = `
       <i class="fa-sharp fa-solid fa-bag-shopping"></i>
       <sup class="bg-light rounded-circle">
@@ -174,23 +284,25 @@ function updateCartDisplay() {
       </sup>
       <span class="cart-total ms-1">$${cart.total.toFixed(2)}</span>
     `;
-  });
-
+  }
+  
+  // Update cart sidebar content
   updateCartSidebar(cart);
 }
 
 function updateCartSidebar(cart) {
   const cartContent = document.querySelector(".cart-content");
   const cartFooter = document.querySelector(".cart-footer");
-
+  
   if (!cartContent || !cartFooter) return;
-
+  
   if (cart.items.length === 0) {
     cartContent.innerHTML = "<p>Your cart is empty.</p>";
     cartFooter.innerHTML = `
       <a href="#" class="continue-shopping bg-primary" id="continueShopping">Continue Shopping</a>
     `;
-
+    
+    // Add event listener to continue shopping button
     document.getElementById("continueShopping").addEventListener("click", function(e) {
       e.preventDefault();
       cartSidebar.classList.remove("active");
@@ -220,8 +332,10 @@ function updateCartSidebar(cart) {
         <span>$${cart.total.toFixed(2)}</span>
       </div>
     `;
-
+    
     cartContent.innerHTML = html;
+    
+    // Update footer with View Cart and Checkout buttons
     cartFooter.innerHTML = `
       <div class="d-flex flex-column gap-2">
         <a href="cart.html" class="btn btn-primary">View Cart</a>
@@ -229,16 +343,22 @@ function updateCartSidebar(cart) {
     `;
   }
 }
+////////////End of add to cart////////////////
+///////////////////////////////////////
 
+
+///////related product part
+//////////////////////////
 function displayRelatedProducts(currentProduct) {
   const products = JSON.parse(localStorage.getItem('products')) || [];
-
-  const relatedProducts = products.filter(p =>
+  
+  // Filter related products (same category, excluding current product)
+  const relatedProducts = products.filter(p => 
     p.category === currentProduct.category && p.id !== currentProduct.id
-  ).slice(0, 3);
-
+  ).slice(0, 3); // Get first 3 related products
+  
   const relatedContainer = document.querySelector(".row-cols-lg-3");
-
+  
   if (relatedContainer && relatedProducts.length > 0) {
     relatedContainer.innerHTML = relatedProducts.map(product => `
       <div class="col">
@@ -270,7 +390,8 @@ function displayRelatedProducts(currentProduct) {
         </div>
       </div>
     `).join('');
-
+    
+    // Add event listeners to related product "Add to cart" buttons
     document.querySelectorAll(".cart-button").forEach(button => {
       button.addEventListener("click", function(e) {
         e.preventDefault();
