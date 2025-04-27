@@ -1,6 +1,6 @@
 
-// Get cart data from localStorage
-let cartData = JSON.parse(localStorage.getItem('cart')) || { count: 0, items: [], total: 0 };
+// Get cart data from sessionStorage
+let cartData = JSON.parse(sessionStorage.getItem('cart')) || { count: 0, items: [], total: 0 };
 
 // Elements
 const cartTableBody = document.querySelector('.cart_table tbody');
@@ -57,11 +57,11 @@ function updateCartTotal() {
     saveCart();
 }
 
-// Save updated cart data into localStorage
+// Save updated cart data into sessionStorage
 function saveCart() {
     // Update the count based on total quantities
     cartData.count = cartData.items.reduce((acc, item) => acc + item.quantity, 0);
-    localStorage.setItem('cart', JSON.stringify(cartData));
+    sessionStorage.setItem('cart', JSON.stringify(cartData));
 }
 
 // Remove item from cart
