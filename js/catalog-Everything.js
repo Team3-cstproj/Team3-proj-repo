@@ -112,7 +112,7 @@ function displayProducts() {
   productContainer.innerHTML = '';
 
   productsToDisplay.forEach(product => {
-    if (reviews.length == 0) {
+    if (product.reviews.length == 0) {
       product.reviews = [{ rating: 0 }]; // Default to 0 if no reviews
     }
     const ratings = product.reviews.map(r => r.rating);
