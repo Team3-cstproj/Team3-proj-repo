@@ -8,170 +8,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrab/css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/ContactUs.css">
+
     
-    <title>ABOUT US</title>
-    <style>
-
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-overflow-x: hidden;
-}
-
-  .Mainwrapeer{
-   
-background-image: url("../img_index/pexels-fauxels-3184323.jpg");
-background-repeat: no-repeat;
-background-size: cover;
-background-position: center;
-background-attachment: fixed; 
-margin: 0;
-min-height: 85vh;
-position: relative; 
-
-}
-
-.subwraper{
-  background-image: url("../img_index/pexels-thirdman-7652180.jpg");
-background-repeat: no-repeat;
-background-size: cover;
-background-position: center;
-background-attachment: fixed; 
-margin: 0;
-min-height: 85vh;
-position: relative; 
-
-
-}
-
-/*==========  foter list =======*/
-
- #just-txt{
-    border-top:1px solid gray ;
-    border-bottom:1px solid gray  ;
-    font-size:x-large;
-    font-weight: 700;
-    text-align: left;
-  }
-   .footer{
-    border-bottom: 1px solid gray;
-   } 
-   .category-list {
-     list-style-type: none; /* Removes bullet points */
-     padding-left: 0;
-     margin: 15px 0;
-    }
-  
-    .category-list li {
-      padding: 8px 0;
-      border-bottom: 1px solid #eee; /* Optional divider */
-    }
-  
-    .category-list li:last-child {
-      border-bottom: none; /* Remove border from last item */
-    }
-  
-    .category-list a {
-       text-decoration: none;
-       color: #333;
-       font-size: 16px;
-       display: block;
-    }
-  
-    .category-list a:hover {
-      color:blue;
-      font-weight: bold;
-    }
-    .copyright-text a:hover{
-      color: rgb(0, 0, 74);
-    }
-  /*=====================================================================================================*/
-  /* aboutus bannar */
-
-.aboutus-banner {
-  color: rgb(0, 0, 0);
-}
-.aboutus-banner h1{
-
-  font-weight: bolder;
-  font-family: sans-serif;
-}
-/*===================================================================================*/
-
-* {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Arial', sans-serif;
-    }
-    
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .team-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 20px 0;
-    }
-    
-    .team-card {
-      background-color: #f0f2f5;
-      border-radius: 10px;
-      padding: 30px 20px;
-      width: 280px;
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
-      /* box-shadow: 0 10px 20px rgba(0,0,0,0.1); */
-
-    }
-    
-    
-    .profile-img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 20px;
-      border: 5px solid #fff;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    
-    .member-name {
-      font-size: 22px;
-      font-weight: bold;
-      margin-bottom: 5px;
-      color: #222;
-    }
-    
-    .member-title {
-      font-size: 16px;
-      color: #666;
-      font-weight: normal;
-    }
-    
-    /* Responsive styles */
-    @media (max-width: 768px) {
-      .team-card {
-        width: calc(50% - 20px);
-        min-width: 220px;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .team-card {
-        width: 100%;
-      }
-    }
-    /*===============================================================================*/
-    </style>
+    <title>CONTACT US</title>
+ 
 </head>
 
 <body>
@@ -181,7 +22,7 @@ position: relative;
     <!-- ////////////////////////////////// -->
 
       <!--  navbar that works on all screen  -->
-      <nav class="navbar navbar-expand-lg bg-body-tertiary p-3 bg-primary p-2 text-dark bg-opacity-75">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary p-3 bg-secondary p-2 text-dark bg-opacity-50">
         <div class="container-fluid">
           <a href="index.html"> <img src="img_index/logo1@2x-free-img.png" width="150px" height="50px"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -220,7 +61,7 @@ position: relative;
                             <a class="nav-link" href="about.html">ABOUT</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contacts.html">CONTACT US</a>
+                            <a class="nav-link" href="ContactUs.html">CONTACT US</a>
                         </li>
                     </ul>
                 </span>
@@ -254,7 +95,7 @@ position: relative;
 
 
 
-  <div class="mx-0 container-fluid py-5 px-0  fw-bold bg-opacity-10 bg-primary">
+  <div class="mx-0 container-fluid py-5 px-0  fw-bold bg-opacity-10 bg-secondary">
     <div class="aboutus-banner d-flex flex-column align-items-center text-start p-5">
        <h1 class="highlight-text fw-bold display-4 mb-4">CONTACT US</h1>
      </div>
@@ -262,77 +103,68 @@ position: relative;
 
 </div>
 
-<div class="container-fluid d-flex flex-row justify-content-center flex-wrap bg-light pt-5 ">
-  <div id="whoweare" class="card m-4 col-12 col-lg-5";">
-    <div class="card-body m-4 border-top border-primary">
-      <h3 class="card-title ">Who We Are</h3>
-      <p class="card-text">There are many kinds of profitable ecommerce businesses. You can sell directly to consumers (DTC), to other businesses (B2B), or lean into a consumer-to-consumer (C2C) model. The success of an ecommerce business depends on various factors like finding a niche product or service, honing in on a target audience, and attaining operational efficiency
-        Referenc.</p>
-      <a href="contacts.html" class="card-link">contact us</a>
-    </div>
-  </div>
-<!-----tow cards------>
-  <div class="card m-4 col-12 col-lg-5">
-    <img src="img_index/stem_students6.webp" class="card-img" alt="...">
-    <div class="card-img-overlay">
-      <h5 class="card-title">this is who we are</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text"><small>Last updated 3 mins ago</small></p>
-    </div>
-  </div>
 <!------our team--------->
   <div class="subwraper" >
-    <div class="col-md-12 col-lg-12 p-5 bg-white ">
+    <div class="col-md-12 col-lg-12 p-5 bg-light ">
       <div class="container d-flex flex-column align-items-center">
           <nav aria-label="breadcrumb" class="mb-4">
-            <h5 class="logo-title">a few words about our team</h5>
-            <h1 class="section-title">OUR TEAM</h1>
+            <h5 class="logo-title">Have any queries?</h5>
+            <h1 class="section-title">We're here to help.</h1>
                   </nav>
-            <p class="fw-bold">We are a deticated team of five developers, ready to work and eager to learn</p>
 
-
-            <div class="container">
-              <div class="team-grid">
-                <!-- Card 1 -->
-                <div class="team-card">
-                  <img class="profile-img" src="img_index/ahmad.jpeg" alt="Team Member">
-                  <h3 class="member-name">Ahmed</h3>
-                  <p class="member-title">Team Lead</p>
+            <div class="container-fluid d-inline-flex flex-row g-3">
+              <div class="container py-5">
+                <div class="row g-4">
+                    <!-- Sales Card -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 text-center shadow-sm">
+                            <div class="card-body">
+                                <h2 class="card-title mb-3">Sales</h2>
+                                <p class="card-text text-muted mb-4">Vestibulum ante ipsum primis in faucibus orci luctus.</p>
+                                <a href="tel:1800123456" class="text-primary fw-bold fs-5 text-decoration-none">1800 123 4567</a>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Complaints Card -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 text-center shadow-sm">
+                            <div class="card-body">
+                                <h2 class="card-title mb-3">Complaints</h2>
+                                <p class="card-text text-muted mb-4">Vestibulum ante ipsum primis in faucibus orci luctus.</p>
+                                <a href="tel:1900223899" class="text-primary fw-bold fs-5 text-decoration-none">1900 223 8899</a>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Returns Card -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 text-center shadow-sm">
+                            <div class="card-body">
+                                <h2 class="card-title mb-3">Returns</h2>
+                                <p class="card-text text-muted mb-4">Vestibulum ante ipsum primis in faucibus orci luctus.</p>
+                                <a href="mailto:returns@mail.com" class="text-primary fw-bold fs-5 text-decoration-none">returns@mail.com</a>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Marketing Card -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 text-center shadow-sm">
+                            <div class="card-body">
+                                <h2 class="card-title mb-3">Marketing</h2>
+                                <p class="card-text text-muted mb-4">Vestibulum ante ipsum primis in faucibus orci luctus.</p>
+                                <a href="tel:1700444578" class="text-primary fw-bold fs-5 text-decoration-none">1700 444 5578</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-                <!-- Card 2 -->
-                <div class="team-card">
-                  <img class="profile-img" src="img_index/kareem.jpeg" alt="Team Member">
-                  <h3 class="member-name">Kareem</h3>
-                  <p class="member-title">Founder - CEO</p>
-                </div>
-                
-                <!-- Card 3 -->
-                <div class="team-card">
-                  <img class="profile-img" src="img_index/abdelkader.jpeg" alt="Team Member">
-                  <h3 class="member-name">Abdelkader</h3>
-                  <p class="member-title">Marketing Head</p>
-                </div>
-                
-                <!-- Card 4 -->
-                <div class="team-card">
-                  <img class="profile-img" src="img_index/ismael.jpeg" alt="Team Member">
-                  <h3 class="member-name">Ismael</h3>
-                  <p class="member-title">Lead Developer</p>
-                </div>
-                
-                <!-- Card 5 -->
-                <div class="team-card">
-                  <img class="profile-img" src="img_index/ziead.jpeg" alt="Team Member">
-                  <h3 class="member-name">Ziead</h3>
-                  <p class="member-title">Intern Designer</p>
-                </div>
-              </div>
             </div>
-   </div>
-</div>
 
-
+              
+            </div>
+  </div>
+  </div></div>
 
 
 <div class="container bg-white d-flex flex-column gap-5 p-0" style="width: 20%; height:25vw ;">

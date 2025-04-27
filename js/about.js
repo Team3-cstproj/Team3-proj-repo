@@ -63,8 +63,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Cart initialization function - called early
 function initializeCart() {
-  if (!localStorage.getItem('cart')) {
-    localStorage.setItem('cart', JSON.stringify({
+  if (!sessionStorage.getItem('cart')) {
+    sessionStorage.setItem('cart', JSON.stringify({
       items: [],
       total: 0,
       count: 0
@@ -338,7 +338,7 @@ function showAddToCartConfirmation(productName, quantity) {
 
 function addToCart(product, quantity) {
   try {
-    const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
+    const cart = JSON.parse(sessionStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
     
     // Check if product already in cart
     const existingItem = cart.items.find(item => item.id === product.id);
@@ -379,7 +379,7 @@ function calculateCartCount(items) {
 
 function updateCartDisplay() {
   try {
-    const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
+    const cart = JSON.parse(sessionStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
     
     // Update cart count in navbar 
     const cartTrigger = document.querySelector(".cart-trigger");
@@ -402,7 +402,7 @@ function updateCartDisplay() {
   } catch (error) {
     console.error("Error updating cart display:", error);
     // Reset cart if corrupted
-    localStorage.setItem('cart', JSON.stringify({ items: [], total: 0, count: 0 }));
+    sessionStorage.setItem('cart', JSON.stringify({ items: [], total: 0, count: 0 }));
   }
 }
 
@@ -475,7 +475,7 @@ function updateCartSidebar(cart, cartContent, cartFooter) {
 // Add function to remove items from cart
 function removeCartItem(itemId) {
   try {
-    const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
+    const cart = JSON.parse(sessionStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
     
     // Find item index
     const itemIndex = cart.items.findIndex(item => item.id === itemId);
@@ -489,7 +489,7 @@ function removeCartItem(itemId) {
       cart.count = calculateCartCount(cart.items);
       
       // Save updated cart
-      localStorage.setItem('cart', JSON.stringify(cart));
+      sessionStorage.setItem('cart', JSON.stringify(cart));
       
       // Update display
       updateCartDisplay();
