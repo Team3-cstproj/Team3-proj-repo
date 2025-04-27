@@ -10,11 +10,11 @@ toggleBtn.addEventListener('click', function () {
 
 // load localstorage in table
 function loadProducts() {
-  const sellers = JSON.parse(localStorage.getItem('authData.sellers')) || [];
+  const allData = JSON.parse(localStorage.getItem('authData')) || [];
   const tableBody = document.querySelector("tbody");
   tableBody.innerHTML = ''; 
 
-  sellers.forEach((seller) => {
+  allData.sellers.forEach((seller) => {
     const row = `
       <tr>
                   <td>${seller.id}</td>
