@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const description = document.getElementById("description").value.trim();
         const productImage = productImageInput.files[0];
         const sellerId = 302;
-
+        const review = [];
         if (!productImage) {
             alert("Please upload an image.");
             return;
@@ -49,10 +49,10 @@ document.addEventListener("DOMContentLoaded", function () {
             sold: 0, 
             availible: pieces,
             price: price,
-            status: pieces > 0 ? "InStock" : "OutOfStock",
             image: imagePath,
             description: description,
-            sellerId: sellerId 
+            sellerId: sellerId,
+            review: review
         };
 
         products.push(newProduct);
