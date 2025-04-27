@@ -150,8 +150,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Initialize cart if not exists
-  if (!localStorage.getItem("cart")) {
-    localStorage.setItem(
+  if (!sessionStorage.getItem("cart")) {
+    sessionStorage.setItem(
       "cart",
       JSON.stringify({
         items: [],
@@ -255,7 +255,7 @@ function setupAddToCart(product) {
 }
 
 function addToCart(product, quantity) {
-  const cart = JSON.parse(localStorage.getItem("cart")) || {
+  const cart = JSON.parse(sessionStorage.getItem("cart")) || {
     items: [],
     total: 0,
     count: 0,
@@ -281,11 +281,11 @@ function addToCart(product, quantity) {
   cart.count += quantity;
 
   // Save to localStorage
-  localStorage.setItem("cart", JSON.stringify(cart));
+  sessionStorage.setItem("cart", JSON.stringify(cart));
 }
 
 function updateCartDisplay() {
-  const cart = JSON.parse(localStorage.getItem("cart")) || {
+  const cart = JSON.parse(sessionStorage.getItem("cart")) || {
     items: [],
     total: 0,
     count: 0,
