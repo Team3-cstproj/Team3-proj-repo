@@ -135,7 +135,7 @@ function displayProducts() {
     updatePagination();
 }
 function addToCart(product, quantity) {
-    const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
+    const cart = JSON.parse(sessionStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
 
     // Check if product already in cart
     const existingItem = cart.items.find(item => item.id === product.id);
@@ -156,8 +156,8 @@ function addToCart(product, quantity) {
     cart.total += product.price * quantity;
     cart.count += quantity;
 
-    // Save to localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
+    // Save to sessionStorage
+    sessionStorage.setItem('cart', JSON.stringify(cart));
 }
 
 
@@ -328,7 +328,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 function updateCartDisplay() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
+    const cart = JSON.parse(sessionStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
 
     // Update cart count in navbar 
     const cartTrigger = document.querySelector(".cart-trigger");
