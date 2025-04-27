@@ -84,6 +84,9 @@ function displayProducts() {
     productContainer.innerHTML = '';  // Clear the current products
 
     productsToDisplay.forEach(product => {
+      if (!product.reviews || product.reviews.length == 0) { // 👈 Fixed here
+        product.reviews = [{ rating: 0 }];
+      }
         const ratings = product.reviews.map(r => r.rating);
         const avgRating = ratings.length ? ratings.reduce((a, b) => a + b) / ratings.length : 0;
 
