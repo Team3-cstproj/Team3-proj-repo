@@ -10,7 +10,7 @@ toggleBtn.addEventListener('click', function () {
 
 // load localstorage in table
 function loadProducts() {
-  const sellers = JSON.parse(localStorage.getItem('sellers')) || [];
+  const sellers = JSON.parse(localStorage.getItem('authData.sellers')) || [];
   const tableBody = document.querySelector("tbody");
   tableBody.innerHTML = ''; 
 
