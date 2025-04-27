@@ -21,7 +21,7 @@ function loadProducts() {
       <tr>
         <td>${product.id}</td> 
         <td>${product.name}</td>
-        <td>${product.date}</td>
+       
         <td>${product.price}$</td>
         <td>
           <div class="remove-icon" onclick="removeProduct('${product.id}')">
