@@ -9,3 +9,4 @@
     sidebar.classList.toggle('collapsed');
     mainContent.classList.toggle('collapsed');
   });
+// ------------------------------------------------------------------------------------------------------------

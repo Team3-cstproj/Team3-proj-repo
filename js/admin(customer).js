@@ -7,3 +7,5 @@ toggleBtn.addEventListener('click', function () {
   sidebar.classList.toggle('collapsed');
   mainContent.classList.toggle('collapsed');
 });
+
+
