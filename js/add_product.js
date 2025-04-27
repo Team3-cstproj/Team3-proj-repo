@@ -53,7 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Save only the file name (not the image itself)
-        const imagePath = productImage.name; 
+        
+        const imagePath = `images/product/${productImage.name}`; 
 
         const newProduct = {
             id: generateUniqueId(),
