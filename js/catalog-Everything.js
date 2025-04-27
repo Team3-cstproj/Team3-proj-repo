@@ -112,8 +112,10 @@ function displayProducts() {
   productContainer.innerHTML = '';
 
   productsToDisplay.forEach(product => {
-    if (product.reviews.length == 0) {
-      product.reviews = [{ rating: 0 }]; // Default to 0 if no reviews
+    console.log(product);
+    
+    if (!product.reviews || product.reviews.length == 0) { // 👈 Fixed here
+      product.reviews = [{ rating: 0 }];
     }
     const ratings = product.reviews.map(r => r.rating);
         const avgRating = ratings.length ? ratings.reduce((a, b) => a + b) / ratings.length : 0;
