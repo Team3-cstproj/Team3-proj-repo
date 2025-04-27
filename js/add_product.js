@@ -33,7 +33,20 @@ document.addEventListener("DOMContentLoaded", function () {
         const description = document.getElementById("description").value.trim();
         const productImage = productImageInput.files[0];
         const sellerId = 302;
-        const review = [];
+        const review = [{
+            userId: 501,
+            username: "user1",
+            rating: 5,
+            comment: "Perfect fit and very comfortable material. Highly recommend!",
+            date: "2023-06-10"
+          },
+          {
+            userId: 503,
+            username: "user3",
+            rating: 4,
+            comment: "Great quality but runs slightly large",
+            date: "2023-07-15"
+          } ];
         if (!productImage) {
             alert("Please upload an image.");
             return;
