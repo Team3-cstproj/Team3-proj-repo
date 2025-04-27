@@ -10,11 +10,11 @@ toggleBtn.addEventListener('click', function () {
 
 // load localstorage in table
 function loadProducts() {
-  const allData = JSON.parse(localStorage.getItem('authData')) || [];
+  const allData = JSON.parse(localStorage.getItem('authData.sellers')) || [];
   const tableBody = document.querySelector("tbody");
   tableBody.innerHTML = ''; 
 
-  allData.sellers.forEach((seller) => {
+  allData.forEach((seller) => {
     const row = `
       <tr>
                   <td>${seller.id}</td>
@@ -31,9 +31,9 @@ function loadProducts() {
   });
 }
 function removeProduct(productId) {
-  const sellers = JSON.parse(localStorage.getItem('sellers')) || [];
-  const updatedProducts = sellers.filter(seller => String(seller.id) !== productId);
-  localStorage.setItem('sellers', JSON.stringify(updatedProducts)); 
+  const allData = JSON.parse(localStorage.getItem('authData.sellers')) || [];
+  const updatedProducts = allData.sellers.filter(seller => String(seller.id) !== productId);
+  localStorage.setItem('auth.sellers', JSON.stringify(updatedProducts)); 
   loadProducts(); 
 }
 loadProducts();
