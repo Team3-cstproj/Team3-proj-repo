@@ -113,7 +113,7 @@ function setupUserProfile() {
     
     // Add click for logout - fixed sessionStorage key
     profileDropdown.querySelector('#logoutBtn').addEventListener('click', () => {
-      sessionStorage.removeItem('currentUser'); // Fixed from 'user' to 'currentUser'
+      sessionStorage.clear('currentUser'); // Fixed from 'user' to 'currentUser'
       window.location.href = 'login.html';
     });
   } else {
