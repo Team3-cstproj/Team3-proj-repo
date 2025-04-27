@@ -33,14 +33,10 @@ function loadProducts() {
     tableBody.innerHTML += row;
   });
 }
-
- 
 function removeProduct(productId) {
   const products = JSON.parse(localStorage.getItem('products')) || [];
   const updatedProducts = products.filter(product => product.id !== productId); 
   localStorage.setItem('products', JSON.stringify(updatedProducts)); 
   loadProducts(); 
 }
-
-
 loadProducts();
