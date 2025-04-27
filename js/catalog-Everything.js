@@ -112,7 +112,6 @@ function displayProducts() {
   productContainer.innerHTML = '';
 
   productsToDisplay.forEach(product => {
-    console.log(product);
     
     if (!product.reviews || product.reviews.length == 0) { // 👈 Fixed here
       product.reviews = [{ rating: 0 }];
@@ -151,7 +150,9 @@ function displayProducts() {
         </div>
         `;
         productContainer.innerHTML += productCard;
-  });
+  }
+  );
+  
   document.querySelectorAll('.cart-button').forEach(button => {
     button.addEventListener('click', function(e) {
       e.preventDefault(); // prevent link jump
