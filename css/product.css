@@ -159,6 +159,32 @@
   font-weight: bold;
 }
 
+.add-to-cart-btn:disabled {
+  opacity: 0.65;
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  cursor: not-allowed;
+}
+
+/* Style for quantity input */
+.form-control[type="number"] {
+  text-align: center;
+}
+
+/* Style for available quantity display */
+.available-quantity {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-top: 0.25rem;
+}
+
+/* Style for out of stock message */
+.out-of-stock {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
 /* description part */
 .descriptionsection{
   height: 90vh;
