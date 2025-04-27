@@ -13,6 +13,9 @@ let top5Products = filterProductsByCategory("men").sort((a, b) => b.sold - a.sol
 let top5ProductsContainer = document.getElementById("best-sellers-list");
 top5ProductsContainer.innerHTML = ''; // Clear existing content
 top5Products.forEach(product => {
+    if (!product.reviews || product.reviews.length == 0) { // 👈 Fixed here
+        product.reviews = [{ rating: 0 }];
+      }
     const ratings = product.reviews.map(r => r.rating);
     const avgRating = ratings.length ? ratings.reduce((a, b) => a + b) / ratings.length : 0;
 

@@ -112,6 +112,10 @@ function displayProducts() {
   productContainer.innerHTML = '';
 
   productsToDisplay.forEach(product => {
+    
+    if (!product.reviews || product.reviews.length == 0) { // 👈 Fixed here
+      product.reviews = [{ rating: 0 }];
+    }
     const ratings = product.reviews.map(r => r.rating);
         const avgRating = ratings.length ? ratings.reduce((a, b) => a + b) / ratings.length : 0;
 
@@ -146,7 +150,9 @@ function displayProducts() {
         </div>
         `;
         productContainer.innerHTML += productCard;
-  });
+  }
+  );
+  
   document.querySelectorAll('.cart-button').forEach(button => {
     button.addEventListener('click', function(e) {
       e.preventDefault(); // prevent link jump

@@ -1,0 +1,32 @@
+@media (max-width: 665px) {
+
+
+    aside{
+        position: fixed;
+        width: 18rem;
+        z-index: 3;
+        background: var(--clr-white);
+        display: none;
+    }
+    aside .top div.close span{
+        display: inline;
+        position: absolute;
+        right: 0;
+        margin-left: 30px;
+        font-size: 35px;
+    }
+    main{
+        width: 80%;
+    }
+
+
+
+    .rtop button{
+        display: flex;
+        position: fixed;        
+        left: 20px;
+        background-color: var(--clr-white);
+    }
+
+    
+  }

@@ -1,24 +1,25 @@
-@import url("main.css");
-@import url("../bootstrab/css/bootstrap.css");
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('seller.css');
-
-
-.Acontainer{
-    display: grid;
-    width:90%;
-    gap: 1.8rem;
-    grid-template-columns: 14rem auto;
-    margin: 2rem ;
+main{
+  margin-top: 100px;
+  width:50%;
+  margin: auto;
 }
-
+.ptable{
+  margin-top: 100px;
+  width:70%;
+  margin-left: 3%;
+}
+aside{
+  width: 250px;
+  margin-top: 70px;
+}
 .form-container {
     background: #fff;
     padding: 2rem;
     border-radius: 16px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
     width: 100%;
   }
 
@@ -113,16 +114,31 @@
     object-fit: contain;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   }
-  main{
-    margin: 2rem auto;
-  }
 
-  .flex-row {
+  .rtop{
+    width: 15%;
+    position: fixed;
+    top: 0;
     display: flex;
-    gap: 1rem;
-    margin-bottom: 1.2rem;
+    justify-content:right;
+    align-items: center;
+    padding: 0 0.8rem;
+    background: var(--clr-white);
+    width: 100%;
+    height: 4.6rem;
+    z-index: 2;
+    box-shadow: 0 1rem 1rem var(--box-shadow);
+    margin-right: 0;
+  }
+  .profile{
+    display: flex;
+    margin: 30px;
+
+  }
+  .info{
+    margin-right: 20%;
   }
   
-  .flex-item {
-    flex: 1;
-  }
+  .rtop button{
+    display: none;
+}
