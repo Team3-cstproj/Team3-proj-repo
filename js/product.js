@@ -206,6 +206,48 @@ function displayProductDetails(product) {
     img.alt = product.name;
   });
 
+
+   // Update quantity input max value and available display
+   const quantityInput = document.getElementById("quantity");
+   if (quantityInput) {
+     quantityInput.max = product.availible;
+     
+     // Create available quantity display
+     const quantityContainer = quantityInput.closest(".me-3");
+     if (quantityContainer) {
+       const availableDisplay = document.createElement("div");
+       availableDisplay.className = "text-muted small mt-1";
+       availableDisplay.textContent = `${product.availible} available`;
+       quantityContainer.appendChild(availableDisplay);
+     }
+   }
+ 
+   // Update add to cart button based on availability
+   const addToCartBtn = document.querySelector(".add-to-cart-btn");
+   if (addToCartBtn) {
+     if (product.availible <= 0) {
+       addToCartBtn.disabled = true;
+       addToCartBtn.textContent = "OUT OF STOCK";
+       
+       // Create out of stock message
+       const outOfStockMsg = document.createElement("div");
+       outOfStockMsg.className = "text-danger small mt-2";
+       outOfStockMsg.textContent = "This product is currently out of stock";
+       addToCartBtn.parentNode.appendChild(outOfStockMsg);
+     }
+   }
+ 
+   // Add event listener for quantity input validation
+   if (quantityInput) {
+     quantityInput.addEventListener("change", function() {
+       if (parseInt(this.value) > parseInt(this.max)) {
+         this.value = this.max;
+       }
+       if (parseInt(this.value) < parseInt(this.min)) {
+         this.value = this.min;
+       }
+     });
+   }
   // Update additional info tab
   updateAdditionalInfo(product);
 }
@@ -241,18 +283,47 @@ function updateAdditionalInfo(product) {
 
 function setupAddToCart(product) {
   const addToCartBtn = document.querySelector(".add-to-cart-btn");
-  if (addToCartBtn) {
-    addToCartBtn.addEventListener("click", function () {
+  if (addToCartBtn && product.availible > 0) {
+    addToCartBtn.addEventListener("click", function() {
       const quantityInput = document.getElementById("quantity");
-      const quantity = parseInt(quantityInput.value) || 1;
+      let quantity = parseInt(quantityInput.value) || 1;
+      
+      // Ensure  dont add more than available
+      if (quantity > product.availible) {
+        quantity = product.availible;
+        quantityInput.value = quantity;
+      }
 
       addToCart(product, quantity);
 
-      // update the cart display which will show the changes
       updateCartDisplay();
+      
+      // Update available quantity after adding to cart
+      //////////////////////////////////////////////
+      product.availible -= quantity;
+      const availableDisplay = document.querySelector(".me-3 .small");
+      if (availableDisplay) {
+        availableDisplay.textContent = `${product.availible} available`;
+      }
+      
+      // Disable button if out of stock
+      if (product.availible <= 0) {
+        addToCartBtn.disabled = true;
+        addToCartBtn.textContent = "OUT OF STOCK";
+        
+        // Show out of stock message
+        if (!document.querySelector(".text-danger.small")) {
+          const outOfStockMsg = document.createElement("div");
+          outOfStockMsg.className = "text-danger small mt-2";
+          outOfStockMsg.textContent = "This product is currently out of stock";
+          addToCartBtn.parentNode.appendChild(outOfStockMsg);
+        }
+      }
     });
   }
-}
+    };
+  
+
 
 function addToCart(product, quantity) {
   const cart = JSON.parse(sessionStorage.getItem("cart")) || {
