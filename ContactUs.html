@@ -104,7 +104,7 @@
 </div>
 
 <!------our team--------->
-  <div class="subwraper" >
+  <div class="subwraper bg-light" >
     <div class="col-md-12 col-lg-12 p-5 bg-light ">
       <div class="container d-flex flex-column align-items-center">
           <nav aria-label="breadcrumb" class="mb-4">
@@ -164,50 +164,57 @@
               
             </div>
   </div>
-  </div></div>
+  </div>
 
-
-<div class="container bg-white d-flex flex-column gap-5 p-0" style="width: 20%; height:25vw ;">
-  <section class="follow-section">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6">
-          <div class="title-divider"></div>
-          <h2 class="section-title">Follow Us</h2>
-          
-          <div class="social-icons d-flex fs-5 flex-row px-3 gap-4 justify-content-center pt-5">
-            <a href="#" class="facebook">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="twitter">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="#" class="google">
-              <i class="fab fa-google-plus-g"></i>
-            </a>
-          </div>
+  <!--form-->
+  <div class="container">
+    <div class="row">
+        <!-- Info Section -->
+        <div class="col-md-6 col-12 bg-light">
+            <div class="info-section">
+                <h2>Don't be a stranger!</h2>
+                <h1>You tell us. We listen.</h1>
+                <p>
+                  Get the help you need from our automated assistant, or contact an agent. Other options for you to Start a return or Report an item that hasn’t arrived.
+                </p>
+            </div>
         </div>
-      </div>
+        
+        <!-- Contact Form -->
+        <div class="col-md-6 col-12 bg-white">
+            <div class="contact-form bg-white">
+              <form id="contactForm" novalidate>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="name" placeholder="NAME" required>
+                    <div class="invalid-feedback">Please enter your name</div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" class="form-control" id="subject" placeholder="SUBJECT" required>
+                    <div class="invalid-feedback">Please enter a subject</div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" class="form-control" id="email" placeholder="EMAIL" required>
+                    <div class="invalid-feedback">Please enter a valid email address</div>
+                </div>
+                
+                <div class="form-group">
+                    <textarea class="form-control" id="message" rows="6" placeholder="MESSAGE" required></textarea>
+                    <div class="invalid-feedback">Please enter your message</div>
+                </div>
+                
+                <div id="formResponse" class="alert" style="display: none; margin-top: 15px;"></div>
+                
+                <button type="submit" class="btn btn-primary">SEND MESSAGE</button>
+            </form>
+            </div>
+        </div>
     </div>
-  </section>
 </div>
 
-
-
-
-
-
-
 </div>
-
-
-
-
-
-
+<!-----end of wrapper------>
 
 <!--end-->
 <div>
@@ -307,7 +314,7 @@
                 <div class="form-group">
                   <input type="email" class="form-control" placeholder="Your email address..." required>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block mt-2">SUBSCRIBE</button>
+                <button type="submit" class="btn btn-primary btn-block mt-2" onclick="myfun()">SUBSCRIBE</button>
               </form>
             </div>
           </div>

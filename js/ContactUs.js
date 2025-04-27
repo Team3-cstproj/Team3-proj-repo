@@ -556,3 +556,153 @@ function displayRelatedProducts(product) {
   }
 }
 ////////////End of cart functionality////////////////
+
+////foter function
+function myfun() {
+  window.location.href = "contactus.html";
+}
+////////////////////////////////form validation/////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+  ////
+  const form = document.getElementById('contactForm');
+  const formResponse = document.getElementById('formResponse');
+  
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    // Check form validity
+    if (form.checkValidity() === false) {
+      form.classList.add('was-validated');
+      return false;
+    }
+    
+    // Form is valid - save the data
+    const formData = {
+      name: document.getElementById('name').value,
+      subject: document.getElementById('subject').value,
+      email: document.getElementById('email').value,
+      message: document.getElementById('message').value,
+      date: new Date().toISOString().split('T')[0] // YYYY-MM-DD format
+    };
+    
+    // Save to localStorage
+    saveContactRequest(formData);
+    
+    // Show success message
+    formResponse.style.display = 'block';
+    formResponse.classList.add('alert-success');
+    formResponse.innerHTML = 'Message sent successfully!';
+    
+    // Reset form
+    form.reset();
+    form.classList.remove('was-validated');
+    
+    // Hide message after 3 seconds
+    setTimeout(() => {
+      formResponse.style.display = 'none';
+    }, 3000);
+  });
+  /////
+  // const form = document.getElementById('contactForm');
+  // const formResponse = document.getElementById('formResponse');
+  
+  form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      // Remove any previous validation
+      form.classList.add('was-validated');
+      
+      // Check if the form is valid
+      if (form.checkValidity() === false) {
+          return false;
+      }
+      
+      // Form is valid - collect the data
+      const formData = {
+          name: document.getElementById('name').value,
+          subject: document.getElementById('subject').value,
+          email: document.getElementById('email').value,
+          message: document.getElementById('message').value
+      };
+      
+      // Here you would typically send the data to a server
+      // For this example, we'll just show a success message
+      formResponse.style.display = 'block';
+      formResponse.classList.add('alert-success');
+      formResponse.classList.remove('alert-danger');
+      formResponse.innerHTML = 'Message sent successfully!';
+      
+      // Reset the form
+      form.classList.remove('was-validated');
+      form.reset();
+      
+      // Hide the success message after 3 seconds
+      setTimeout(function() {
+          formResponse.style.display = 'none';
+      }, 3000);
+  });
+  
+  // Additional validation for email format
+  const emailInput = document.getElementById('email');
+  emailInput.addEventListener('input', function() {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailInput.value && !emailRegex.test(emailInput.value)) {
+          emailInput.setCustomValidity('Please enter a valid email address');
+      } else {
+          emailInput.setCustomValidity('');
+      }
+  });
+});
+/////////////////form saving in local storage==============================
+document.addEventListener('DOMContentLoaded', function() {
+  // const form = document.getElementById('contactForm');
+  // const formResponse = document.getElementById('formResponse');
+  
+  // form.addEventListener('submit', function(event) {
+  //   event.preventDefault();
+    
+  //   // Check form validity
+  //   if (form.checkValidity() === false) {
+  //     form.classList.add('was-validated');
+  //     return false;
+  //   }
+    
+  //   // Form is valid - save the data
+  //   const formData = {
+  //     name: document.getElementById('name').value,
+  //     subject: document.getElementById('subject').value,
+  //     email: document.getElementById('email').value,
+  //     message: document.getElementById('message').value,
+  //     date: new Date().toISOString().split('T')[0] // YYYY-MM-DD format
+  //   };
+    
+  //   // Save to localStorage
+  //   saveContactRequest(formData);
+    
+  //   // Show success message
+  //   formResponse.style.display = 'block';
+  //   formResponse.classList.add('alert-success');
+  //   formResponse.innerHTML = 'Message sent successfully!';
+    
+  //   // Reset form
+  //   form.reset();
+  //   form.classList.remove('was-validated');
+    
+  //   // Hide message after 3 seconds
+  //   setTimeout(() => {
+  //     formResponse.style.display = 'none';
+  //   }, 3000);
+  // });
+});
+
+// Save contact request to localStorage
+function saveContactRequest(formData) {
+  // Get existing data
+  const contactData = JSON.parse(localStorage.getItem('contactData')) || { requests: [] };
+  
+  // Add new request
+  contactData.requests.push(formData);
+  
+  // Save back to localStorage
+  localStorage.setItem('contactData', JSON.stringify(contactData));
+}
