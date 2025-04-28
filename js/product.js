@@ -214,6 +214,13 @@ function displayProductDetails(product) {
      
      // Create available quantity display
      const quantityContainer = quantityInput.closest(".me-3");
+     const cart = JSON.parse(sessionStorage.getItem("cart")) || {
+      items: [],
+      total: 0,
+      count: 0,
+    };
+    const existingItem = cart.items.find((item) => item.id === product.id);
+    if (existingItem) product.availible -= existingItem.quantity;
      if (quantityContainer) {
        const availableDisplay = document.createElement("div");
        availableDisplay.className = "text-muted small mt-1";
@@ -288,6 +295,14 @@ function setupAddToCart(product) {
       const quantityInput = document.getElementById("quantity");
       let quantity = parseInt(quantityInput.value) || 1;
       
+
+      const cart = JSON.parse(sessionStorage.getItem("cart")) || {
+        items: [],
+        total: 0,
+        count: 0,
+      };
+      const existingItem = cart.items.find((item) => item.id === product.id);
+      if (existingItem) product.availible -= existingItem.quantity;
       // Ensure  dont add more than available
       if (quantity > product.availible) {
         quantity = product.availible;
@@ -301,6 +316,9 @@ function setupAddToCart(product) {
       // Update available quantity after adding to cart
       //////////////////////////////////////////////
       product.availible -= quantity;
+      console.log(product.availible);
+      console.log(quantity);
+
       const availableDisplay = document.querySelector(".me-3 .small");
       if (availableDisplay) {
         availableDisplay.textContent = `${product.availible} available`;
