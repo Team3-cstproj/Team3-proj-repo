@@ -35,6 +35,11 @@ function removeProduct(productId) {
   const  updatesellers = allData.sellers.filter(seller => String(seller.id) !== productId);
   allData.sellers=updatesellers;
   localStorage.setItem('authData', JSON.stringify(allData)); 
+
+  const sellerr = JSON.parse(localStorage.getItem('users')) || [];
+  const updatedselleruserdata = sellerr.filter(seller => String(seller.id) !== productId);
+  localStorage.setItem('users', JSON.stringify(updatedselleruserdata)); 
   loadProducts(); 
 }
+
 loadProducts();
