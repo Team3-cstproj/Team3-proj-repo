@@ -351,7 +351,7 @@ function addToCart(product, quantity) {
   cart.total += product.price * quantity;
   cart.count += quantity;
 
-  // Save to localStorage
+  // Save to sessionStorage
   sessionStorage.setItem("cart", JSON.stringify(cart));
 }
 
