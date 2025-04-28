@@ -70,8 +70,8 @@ setupProductCardClick();
 
 // Cart initialization function - called early
 function initializeCart() {
-  if (!localStorage.getItem('cart')) {
-    localStorage.setItem('cart', JSON.stringify({
+  if (!sessionStorage.getItem('cart')) {
+    sessionStorage.setItem('cart', JSON.stringify({
       items: [],
       total: 0,
       count: 0
@@ -374,7 +374,7 @@ function showAddToCartConfirmation(productName, quantity) {
 
 function addToCart(product, quantity) {
   try {
-    const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
+    const cart = JSON.parse(sessionStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
     
     // Check if product already in cart
     const existingItem = cart.items.find(item => item.id === product.id);
@@ -395,8 +395,8 @@ function addToCart(product, quantity) {
     cart.total = calculateCartTotal(cart.items);
     cart.count = calculateCartCount(cart.items);
     
-    // Save to localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
+    // Save to sessionstorage
+    sessionStorage.setItem('cart', JSON.stringify(cart));
     
     console.log("Cart updated:", cart);
   } catch (error) {
@@ -415,7 +415,7 @@ function calculateCartCount(items) {
 
 function updateCartDisplay() {
   try {
-    const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
+    const cart = JSON.parse(sessionStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
     
     // Update cart count in navbar 
     const cartTrigger = document.querySelector(".cart-trigger");
@@ -438,7 +438,7 @@ function updateCartDisplay() {
   } catch (error) {
     console.error("Error updating cart display:", error);
     // Reset cart if corrupted
-    localStorage.setItem('cart', JSON.stringify({ items: [], total: 0, count: 0 }));
+    sessionStorage.setItem('cart', JSON.stringify({ items: [], total: 0, count: 0 }));
   }
 }
 
@@ -511,7 +511,7 @@ function updateCartSidebar(cart, cartContent, cartFooter) {
 // Add function to remove items from cart
 function removeCartItem(itemId) {
   try {
-    const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
+    const cart = JSON.parse(sessionStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
     
     // Find item index
     const itemIndex = cart.items.findIndex(item => item.id === itemId);
@@ -525,7 +525,7 @@ function removeCartItem(itemId) {
       cart.count = calculateCartCount(cart.items);
       
       // Save updated cart
-      localStorage.setItem('cart', JSON.stringify(cart));
+      sessionStorage.setItem('cart', JSON.stringify(cart));
       
       // Update display
       updateCartDisplay();
@@ -619,7 +619,12 @@ function setupProductCardClick() {
 
 
 ////////////End of cart functionality////////////////
-// ============ LOGO CAROUSEL ============
+
+
+
+
+
+/////// ============ LOGO CAROUSEL ============
 function setupLogoCarousel() {
   const logoTrack = document.getElementById('logoTrack');
   const leftArrow = document.querySelector('.carousel-arrow.left');
@@ -695,8 +700,13 @@ function setupLogoCarousel() {
   }
 }
 ///////========================================================================================================///
-///// 3 buttons in home page
-
+function myfun4() {
+  window.location.href = "contacts.html";
+}
+ 
+function myfun3() {
+  window.location.href = "catalog-Everything.html";
+}
 
 
 
