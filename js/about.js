@@ -558,5 +558,5 @@ function displayRelatedProducts(product) {
 ////////////End of cart functionality////////////////
 ////foter function
 function myfun() {
-  window.location.href = "contactus.html";
+  window.location.href = "contacts.html";
 }
