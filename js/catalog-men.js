@@ -301,46 +301,120 @@ const cartOverlay = document.getElementById("cartOverlay");
 const closeCartBtn = document.getElementById("closeCart");
 
 cartBtnList.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        cartSidebar.classList.add("active");
-        cartOverlay.classList.add("active");
-        updateCartDisplay(); // Update cart display when opening
-    });
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    cartSidebar.classList.add("active");
+    cartOverlay.classList.add("active");
+    updateCartDisplay(); // Update cart display when opening
+  });
 });
 
 closeCartBtn.addEventListener("click", () => {
-    cartSidebar.classList.remove("active");
-    cartOverlay.classList.remove("active");
+  cartSidebar.classList.remove("active");
+  cartOverlay.classList.remove("active");
 });
 
 cartOverlay.addEventListener("click", () => {
-    cartSidebar.classList.remove("active");
-    cartOverlay.classList.remove("active");
+  cartSidebar.classList.remove("active");
+  cartOverlay.classList.remove("active");
 });
 
 ////btns color baby
 document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".offer-banner .btn").forEach((button) => {
+    function activate() {
+      button.style.backgroundColor = "white";
+      button.style.color = "black";
+    }
 
-    updateCartDisplay(); // Initial call to update cart display
-    document.querySelectorAll(".offer-banner .btn").forEach((button) => {
-        function activate() {
-            button.style.backgroundColor = "white";
-            button.style.color = "black";
-        }
+    function deactivate() {
+      button.style.backgroundColor = "transparent";
+      button.style.color = "white";
+    }
 
-        function deactivate() {
-            button.style.backgroundColor = "transparent";
-            button.style.color = "white";
-        }
+    button.addEventListener("mousedown", activate);
+    button.addEventListener("mouseup", deactivate);
+    button.addEventListener("mouseleave", deactivate);
+    button.addEventListener("touchstart", activate);
+    button.addEventListener("touchend", deactivate);
+  });
 
-        button.addEventListener("mousedown", activate);
-        button.addEventListener("mouseup", deactivate);
-        button.addEventListener("mouseleave", deactivate);
-        button.addEventListener("touchstart", activate);
-        button.addEventListener("touchend", deactivate);
-    });
+  // Initialize user profile dropdown
+  setupUserProfile();
 });
+
+// Enhanced login/logout functionality
+function setupUserProfile() {
+  const userIcon = document.querySelector(".nav-link[href='login.html']");
+  const userData = JSON.parse(sessionStorage.getItem("currentUser"));
+
+  if (!userIcon) return;
+
+  // Create user profile dropdown container
+  const profileDropdown = document.createElement("div");
+  profileDropdown.className = "profile-dropdown";
+  profileDropdown.style.display = "none";
+  profileDropdown.style.position = "absolute";
+  profileDropdown.style.right = "0";
+  profileDropdown.style.top = "100%";
+  profileDropdown.style.backgroundColor = "white";
+  profileDropdown.style.border = "1px solid #ddd";
+  profileDropdown.style.borderRadius = "4px";
+  profileDropdown.style.padding = "10px";
+  profileDropdown.style.zIndex = "1000";
+  profileDropdown.style.minWidth = "200px";
+  profileDropdown.style.boxShadow = "0 2px 5px rgba(0,0,0,0.1)";
+
+  if (userData) {
+    // if  User login show profile info and logout option
+    profileDropdown.innerHTML = `
+      <div class="user-info mb-2">
+        <p class="mb-1"><strong>${userData.name || "User"}</strong></p>
+        <p class="small text-muted mb-2">${userData.email || ""}</p>
+        <p class="small">Role: ${userData.role || "user"}</p>
+      </div>
+      <button id="logoutBtn" class="btn btn-sm btn-danger w-100">Logout</button>
+    `;
+
+    // Change icon to  logged in state
+    userIcon.innerHTML = '<i class="fa-solid fa-user-check"></i>';
+    userIcon.href = "#"; // Prevent navigation to login page
+
+    // Add click  for logout
+    profileDropdown
+      .querySelector("#logoutBtn")
+      .addEventListener("click", () => {
+        sessionStorage.clear("user");
+        window.location.href = "login.html";
+      });
+  } else {
+    // User is not login show login
+    profileDropdown.innerHTML = `
+      <p class="mb-2">You are not logged in</p>
+      <a href="login.html" class="btn btn-sm btn-primary w-100">Login</a>
+    `;
+  }
+
+  // Add dropdown to DOM
+  userIcon.parentNode.appendChild(profileDropdown);
+
+  // Toggle dropdown on click
+  userIcon.addEventListener("click", (e) => {
+    e.preventDefault();
+    const isVisible = profileDropdown.style.display === "block";
+    profileDropdown.style.display = isVisible ? "none" : "block";
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!userIcon.contains(e.target) && !profileDropdown.contains(e.target)) {
+      profileDropdown.style.display = "none";
+    }
+  });
+}
+
+// Call setup function when DOM is loaded
+document.addEventListener("DOMContentLoaded", setupUserProfile);
 // nav bar -------end
 
 

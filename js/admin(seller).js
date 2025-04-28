@@ -10,11 +10,11 @@ toggleBtn.addEventListener('click', function () {
 
 // load localstorage in table
 function loadProducts() {
-  const allData = JSON.parse(localStorage.getItem('authData.sellers')) || [];
+  const allData = JSON.parse(localStorage.getItem('authData')) || [];
   const tableBody = document.querySelector("tbody");
   tableBody.innerHTML = ''; 
 
-  allData.forEach((seller) => {
+  allData.sellers.forEach((seller) => {
     const row = `
       <tr>
                   <td>${seller.id}</td>
@@ -31,9 +31,15 @@ function loadProducts() {
   });
 }
 function removeProduct(productId) {
-  const allData = JSON.parse(localStorage.getItem('authData.sellers')) || [];
-  const updatedProducts = allData.sellers.filter(seller => String(seller.id) !== productId);
-  localStorage.setItem('auth.sellers', JSON.stringify(updatedProducts)); 
+ let allData  = JSON.parse(localStorage.getItem('authData')) || [];
+  const  updatesellers = allData.sellers.filter(seller => String(seller.id) !== productId);
+  allData.sellers=updatesellers;
+  localStorage.setItem('authData', JSON.stringify(allData)); 
+
+  const sellerr = JSON.parse(localStorage.getItem('users')) || [];
+  const updatedselleruserdata = sellerr.filter(seller => String(seller.id) !== productId);
+  localStorage.setItem('users', JSON.stringify(updatedselleruserdata)); 
   loadProducts(); 
 }
+
 loadProducts();
