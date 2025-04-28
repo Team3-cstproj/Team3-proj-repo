@@ -559,7 +559,7 @@ function displayRelatedProducts(product) {
 
 ////foter function
 function myfun() {
-  window.location.href = "contactus.html";
+  window.location.href = "contacts.html";
 }
 ////////////////////////////////form validation/////////////////////
 document.addEventListener('DOMContentLoaded', function() {

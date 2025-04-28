@@ -216,7 +216,21 @@ function searchByWord() {
         return; // Don't change anything if search is empty
     }
 
+    
+  products = getAllProducts(); // Fetch all products again to reset the filter
+  let minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
+  let maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
 
+  if (minPrice > maxPrice) {
+    alert("Minimum price cannot be greater than maximum price.");
+    return; // Don't apply filter if invalid range
+  }
+
+  if (searchTerm !== "") {
+    products = getAllProducts().filter(product => product.name.toLowerCase().includes(searchTerm) && product.price >= minPrice && product.price <= maxPrice);
+  } else {
+    products = getAllProducts().filter(p => p.price >= minPrice && p.price <= maxPrice);
+  }
     // 1. Filter products by name
     products = products.filter(product =>
         product.name.toLowerCase().includes(searchTerm)
