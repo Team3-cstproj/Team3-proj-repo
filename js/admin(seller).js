@@ -31,7 +31,7 @@ function loadProducts() {
   });
 }
 function removeProduct(productId) {
-  const allData = JSON.parse(localStorage.getItem('authData')) || [];
+ let allData  = JSON.parse(localStorage.getItem('authData')) || [];
   const  updatesellers = allData.sellers.filter(seller => String(seller.id) !== productId);
   allData.sellers=updatesellers;
   localStorage.setItem('authData', JSON.stringify(allData)); 
