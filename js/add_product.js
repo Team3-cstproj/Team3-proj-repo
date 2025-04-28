@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Save only the file name (not the image itself)
         
-        const imagePath = `images/product/${productImage.name}`; 
+        const imagePath = `img_index/${productImage.name}`; 
 
         const newProduct = {
             id: generateUniqueId(),
@@ -63,10 +63,9 @@ document.addEventListener("DOMContentLoaded", function () {
             sold: 0, 
             availible: pieces,
             price: price,
-            image: imagePath,
-            description: description,
+            img: imagePath,
             sellerId: sellerId,
-            review: review
+            reviews: review
         };
 
         products.push(newProduct);
