@@ -21,7 +21,7 @@ function loadProducts() {
       <tr>
         <td>${product.id}</td> 
         <td>${product.name}</td>
-        <td>${product.date}</td>
+       
         <td>${product.price}$</td>
         <td>
           <div class="remove-icon" onclick="removeProduct('${product.id}')">
@@ -33,14 +33,10 @@ function loadProducts() {
     tableBody.innerHTML += row;
   });
 }
-
- 
 function removeProduct(productId) {
   const products = JSON.parse(localStorage.getItem('products')) || [];
-  const updatedProducts = products.filter(product => product.id !== productId); 
+  const updatedProducts = products.filter(product => String(product.id) !== productId);
   localStorage.setItem('products', JSON.stringify(updatedProducts)); 
   loadProducts(); 
 }
-
-
 loadProducts();

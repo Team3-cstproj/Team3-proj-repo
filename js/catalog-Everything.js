@@ -249,7 +249,21 @@ function searchByWord() {
     return; // Don't change anything if search is empty
   }
 
+  
+  products = getAllProducts(); // Fetch all products again to reset the filter
+  let minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
+  let maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
 
+  if (minPrice > maxPrice) {
+    alert("Minimum price cannot be greater than maximum price.");
+    return; // Don't apply filter if invalid range
+  }
+
+  if (searchTerm !== "") {
+    products = getAllProducts().filter(product => product.name.toLowerCase().includes(searchTerm) && product.price >= minPrice && product.price <= maxPrice);
+  } else {
+    products = getAllProducts().filter(p => p.price >= minPrice && p.price <= maxPrice);
+  }
 
   // 1. Filter products by name
   products = products.filter(product =>
@@ -272,7 +286,8 @@ function searchByWord() {
 }
 
 // Filter by price range
-document.getElementById("filterPriceBtn").addEventListener("click", function () {
+document.getElementById("filterPriceBtn").addEventListener("click", filterByPrice);
+function filterByPrice() {
   let minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
   let maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
 
@@ -292,16 +307,14 @@ document.getElementById("filterPriceBtn").addEventListener("click", function () 
 
   currentPage = 1;
   displayProducts();
-});
+}
 
 document.getElementById("clearFilterBtn").addEventListener("click", function () {
   document.getElementById("minPrice").value = '';
   document.getElementById("maxPrice").value = '';
   products = getAllProducts(); // Reset to all products
-  searchByWord(); // Reapply search if any
-
+searchByWord(); // Reapply search if any
 });
-
 //nav bar -----start
 //  cart list baby
 const cartBtnList = document.querySelectorAll(".cart-trigger");
