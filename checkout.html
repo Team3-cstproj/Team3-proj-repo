@@ -12,6 +12,16 @@
     <link rel="stylesheet" href="css/checkout.css">
     <script src="data/orders.js"></script>
     <title>CheckOut-E-comerce</title>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(sessionStorage.getItem('currentUser'));
+            if (user) {
+                document.getElementById('name').value = user.name;
+                document.getElementById('email').value = user.email;
+            }
+        });
+    </script>
+        
 </head>
 
 <body>
@@ -159,21 +169,16 @@
                             <hr>
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label for="firstName" class="form-label required-field">First name</label>
-                                    <input type="text" class="form-control" id="firstName" required />
+                                    <label for="name" class="form-label required-field">First name</label>
+                                    
+                                    <input type="text" id="name" name="name" class="form-control" readonly>
+
                                     <div class="invalid-feedback">First name is required.</div>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="lastName" class="form-label required-field">Last name</label>
-                                    <input type="text" class="form-control" id="lastName" required />
-                                    <div class="invalid-feedback">Last name is required.</div>
-                                </div>
+                                
                             </div>
 
-                            <div class="mb-3">
-                                <label for="companyName" class="form-label">Company name (optional)</label>
-                                <input type="text" class="form-control" id="companyName" />
-                            </div>
+                            
 
                             <div class="mb-3">
                                 <label for="country" class="form-label required-field">Country / Region</label>
@@ -191,8 +196,7 @@
                                 <label for="streetAddress" class="form-label required-field">Street address</label>
                                 <input type="text" class="form-control mb-2" id="streetAddress"
                                     placeholder="House number and street name" required />
-                                <input type="text" class="form-control"
-                                    placeholder="Apartment, suite, unit, etc. (optional)" />
+                                
                                 <div class="invalid-feedback">Street address is required.</div>
                             </div>
 
@@ -227,7 +231,9 @@
 
                             <div class="mb-3">
                                 <label for="email" class="form-label required-field">Email address</label>
-                                <input type="email" class="form-control" id="email" required />
+                                
+                                <input type="email" id="email" name="email" class="form-control" readonly>
+
                                 <div class="invalid-feedback">Valid email is required.</div>
                             </div>
                         </div>
