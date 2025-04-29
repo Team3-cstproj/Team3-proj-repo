@@ -467,58 +467,95 @@ function updateCartSidebar(cart) {
 function displayRelatedProducts(currentProduct) {
   const products = JSON.parse(localStorage.getItem("products")) || [];
 
-  // Filter related products (same category, excluding current product)
   const relatedProducts = products
     .filter(
-      (p) =>
-        p.category === currentProduct.category && p.id !== currentProduct.id
+      (p) => p.category === currentProduct.category && p.id !== currentProduct.id
     )
-    .slice(0, 3); // Get first 3 related products
+    .slice(0, 3); // Limit to 3 related products
 
   const relatedContainer = document.querySelector(".row-cols-lg-3");
 
   if (relatedContainer && relatedProducts.length > 0) {
+    const cart = JSON.parse(sessionStorage.getItem("cart")) || {
+      items: [],
+      total: 0,
+      count: 0,
+    };
+
     relatedContainer.innerHTML = relatedProducts
-      .map(
-        (product) => `
-      <div class="col">
-        <div class="card product-card">
-          <a href="product.html?id=${product.id}" class="product-image-link">
-            <img src="${product.img}" class="card-img-top" alt="${
-          product.name
-        }">
-          </a>
-          <div class="hover-icons">
-            <a href="#" class="icon-btn cart-button" data-id="${product.id}">
-              <i class="fas fa-shopping-cart"></i>
-              <span class="tooltip-text">Add to cart</span>
-              <span class="cart-circle">
-                <i class="fas fa-shopping-bag"></i>
-              </span>
-            </a>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">${product.name}</h5>
-            <p class="text-muted small">${
-              product.category.charAt(0).toUpperCase() +
-              product.category.slice(1)
-            }</p>
-            <p class="card-text">$${product.price.toFixed(2)}</p>
-            <div class="star-rating">
-              <i class="far fa-star"></i>
-              <i class="far fa-star"></i>
-              <i class="far fa-star"></i>
-              <i class="far fa-star"></i>
-              <i class="far fa-star"></i>
+      .map((product) => {
+        // Ensure reviews exist
+        if (!product.reviews || product.reviews.length === 0) {
+          product.reviews = [{ rating: 0 }];
+        }
+
+        const ratings = product.reviews.map(r => r.rating);
+        const avgRating = ratings.length
+          ? ratings.reduce((a, b) => a + b) / ratings.length
+          : 0;
+
+        // Generate star HTML
+        let starHtml = '';
+        for (let i = 1; i <= 5; i++) {
+          starHtml += `<i class="${i <= Math.round(avgRating) ? 'fas' : 'far'} fa-star"></i>`;
+        }
+
+        // Check availability considering cart
+        let available = product.availible;
+        const existingItem = cart.items.find(item => item.id === product.id);
+        if (existingItem) {
+          available -= existingItem.quantity;
+        }
+
+        // Stock info
+        let stockInfoHtml = '';
+        if (available > 0) {
+          stockInfoHtml = `<p class="text-success small">Available: ${available}</p>`;
+        } else {
+          stockInfoHtml = `<p class="text-danger small fw-bold">Out of Stock</p>`;
+        }
+
+        // Hover cart icon
+        let hoverCartHtml = '';
+        if (available > 0) {
+          hoverCartHtml = `
+            <div class="hover-icons">
+              <a href="#" class="icon-btn cart-button" data-id="${product.id}">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="tooltip-text">Add to cart</span>
+                <span class="cart-circle">
+                  <i class="fas fa-shopping-bag"></i>
+                </span>
+              </a>
+            </div>
+          `;
+        }
+
+        return `
+          <div class="col">
+            <div class="card product-card">
+              <a href="product.html?id=${product.id}" class="product-image-link">
+                <img src="${product.img}" class="card-img-top" alt="${product.name}">
+              </a>
+              ${hoverCartHtml}
+              <div class="card-body">
+                <h5 class="card-title">${product.name}</h5>
+                <p class="text-muted small">${
+                  product.category.charAt(0).toUpperCase() + product.category.slice(1)
+                }</p>
+                <p class="card-text">$${product.price.toFixed(2)}</p>
+                ${stockInfoHtml}
+                <div class="star-rating">
+                  ${starHtml}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    `
-      )
+        `;
+      })
       .join("");
 
-    // Add event listeners to related product "Add to cart" buttons
+    // Reattach event listeners to updated buttons
     document.querySelectorAll(".cart-button").forEach((button) => {
       button.addEventListener("click", function (e) {
         e.preventDefault();
@@ -527,11 +564,13 @@ function displayRelatedProducts(currentProduct) {
         if (product) {
           addToCart(product, 1);
           updateCartDisplay();
+          displayRelatedProducts(currentProduct); // 🔁 Update availability and UI
         }
       });
     });
   }
 }
+
 
 ///////////////////////////////
 // handel reviw part

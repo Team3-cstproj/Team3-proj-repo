@@ -39,6 +39,9 @@ let top5Products = getAllProducts().sort((a, b) => b.sold - a.sold).slice(0, 5);
 let top5ProductsContainer = document.getElementById("best-sellers-list");
 top5ProductsContainer.innerHTML = ''; // Clear existing content
 top5Products.forEach(product => {
+  if (!product.reviews || product.reviews.length == 0) { // 👈 Fixed here
+      product.reviews = [{ rating: 0 }];
+    }
   const ratings = product.reviews.map(r => r.rating);
   const avgRating = ratings.length ? ratings.reduce((a, b) => a + b) / ratings.length : 0;
 
@@ -107,52 +110,85 @@ function displayProducts() {
   const endIndex = currentPage * productsPerPage;
   const productsToDisplay = products.slice(startIndex, endIndex);
 
-  const productContainer = document.getElementById("product-list")
-
+  const productContainer = document.getElementById("product-list");
   productContainer.innerHTML = '';
 
   productsToDisplay.forEach(product => {
-    
-    if (!product.reviews || product.reviews.length == 0) { // 👈 Fixed here
+    if (!product.reviews || product.reviews.length === 0) {
       product.reviews = [{ rating: 0 }];
     }
+
     const ratings = product.reviews.map(r => r.rating);
-        const avgRating = ratings.length ? ratings.reduce((a, b) => a + b) / ratings.length : 0;
+    const avgRating = ratings.length ? ratings.reduce((a, b) => a + b) / ratings.length : 0;
 
-        // Generate star HTML
-        let starHtml = '';
-        for (let i = 1; i <= 5; i++) {
-            starHtml += `<i class="${i <= Math.round(avgRating) ? 'fas' : 'far'} fa-star"></i>`;
-        }
+    // Generate star HTML
+    let starHtml = '';
+    for (let i = 1; i <= 5; i++) {
+      starHtml += `<i class="${i <= Math.round(avgRating) ? 'fas' : 'far'} fa-star"></i>`;
+    }
 
-        const productCard = `
-        <div class="col">
-        <a href="product.html?id=${product.id}" class="text-decoration-none text-dark">
-            <div class="card product-card">
-                <img src="${product.img}" class="card-img-top" alt="${product.name}">
-                <div class="hover-icons">
-                    <a href="#" class="icon-btn cart-button" data-id="${product.id}">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="tooltip-text">Add to cart</span>
-                    </a>
-                </div>
-                <div class="card-body">
-                    <a href="product.html?id=${product.id}" class="text-decoration-none text-dark"><h5 class="card-title">${product.name}</h5></a>
-                    <p class="text-muted small">${product.category}</p>
-                    <div class="star-rating">
-                        ${starHtml}
-                    </div>
-                    <p class="card-text">$${product.price}</p>
-                    
-                </div>
-            </div>
+    const cart = JSON.parse(sessionStorage.getItem("cart")) || {
+      items: [],
+      total: 0,
+      count: 0,
+    };
+    const existingItem = cart.items.find(item => item.id === product.id);
+    let available = product.availible;
+    if (existingItem) {
+      available -= existingItem.quantity;
+    }
+
+    // === Check available and build buttons/stock info ===
+    let stockInfoHtml = '';
+    let cartButtonHtml = '';
+    let hoverCartButtonHtml = '';
+
+    if (available > 0) {
+      stockInfoHtml = `<p class="text-success small">Available: ${available}</p>`;
+      cartButtonHtml = `
+        <a href="#" class="icon-btn cart-button" data-id="${product.id}">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="tooltip-text">Add to cart</span>
         </a>
+      `;
+      hoverCartButtonHtml = `
+        <div class="hover-icons">
+          <a href="#" class="icon-btn cart-button" data-id="${product.id}">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="tooltip-text">Add to cart</span>
+          </a>
         </div>
-        `;
-        productContainer.innerHTML += productCard;
-  }
-  );
-  
+      `;
+    } else {
+      stockInfoHtml = `<p class="text-danger small fw-bold">Out of Stock</p>`;
+      // No cart buttons if out of stock
+    }
+
+    const productCard = `
+      <div class="col">
+        <a href="product.html?id=${product.id}" class="text-decoration-none text-dark">
+          <div class="card product-card">
+            <img src="${product.img}" class="card-img-top" alt="${product.name}">
+            ${hoverCartButtonHtml}
+            <div class="card-body">
+              <a href="product.html?id=${product.id}" class="text-decoration-none text-dark">
+                <h5 class="card-title">${product.name}</h5>
+              </a>
+              <p class="text-muted small">${product.category}</p>
+              <div class="star-rating">
+                ${starHtml}
+              </div>
+              <p class="card-text">$${product.price}</p>
+              ${stockInfoHtml}
+            </div>
+          </div>
+        </a>
+      </div>
+    `;
+
+    productContainer.innerHTML += productCard;
+  });
+
   document.querySelectorAll('.cart-button').forEach(button => {
     button.addEventListener('click', function(e) {
       e.preventDefault(); // prevent link jump
@@ -161,9 +197,12 @@ function displayProducts() {
       if (product) {
         addToCart(product, 1);
         updateCartDisplay();
+        displayProducts();
       }
     });
   });
+
+
 
   updatePagination();
 }
