@@ -1,11 +1,12 @@
+
 document.addEventListener("DOMContentLoaded", function () {
+    const info = JSON.parse(sessionStorage.getItem("currentUser")) || [];
     const products = JSON.parse(localStorage.getItem("products")) || [];
     const tbody = document.querySelector("table tbody");
     const pagination = document.querySelector(".pagination");
-
     let currentPage = 1;
     const rowsPerPage = 5;
-    let seller_product = products.filter(product => product.sellerId == 302);
+    let seller_product = products.filter(product => product.sellerId == info.id);
     function displayProducts(products, wrapper, rowsPerPage, page) {
         wrapper.innerHTML = "";
         page--;
@@ -18,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log(products);
             console.log(paginatedItems);
             console.log(product.sellerId);
-            if(product.sellerId==302){
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td>${product.id}</td>
@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 </td>
             `;
             wrapper.appendChild(row);
-        }
         });
 
 
@@ -110,15 +109,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 e.preventDefault();
                 const index = this.getAttribute("data-index");
                 const row = this.closest("tr");
-
+                console.log(row);
+                console.log(index);
                 const availableCell = row.querySelector(".available-cell");
-                const priceCell = row.querySelector(".price-cell");
+                const priceCell = row.querySelector(    ".price-cell    ");
                 const icon = this.querySelector("i");
 
                 if (icon.classList.contains("fa-pen")) {
                     // Switch to edit mode
-                    availableCell.innerHTML = `<input type="number" value="${products[index].availible}" class="form-control form-control-sm" style="width: 70px; padding: 2px 5px; border:1px solid black; margin:0px 5px;">`;
-                    priceCell.innerHTML = `<input type="number" value="${products[index].price}" class="form-control form-control-sm" style="width: 70px; padding: 2px 5px; border:1px solid black; margin:0px 5px;">`;
+                    availableCell.innerHTML = `<input type="number" value="${seller_product[index].availible}" class="form-control form-control-sm" style="width: 70px; padding: 2px 5px; border:1px solid black; margin:0px 5px;">`;
+                    priceCell.innerHTML = `<input type="number" value="${seller_product[index].price}" class="form-control form-control-sm" style="width: 70px; padding: 2px 5px; border:1px solid black; margin:0px 5px;">`;
                     icon.classList.remove("fa-pen");
                     icon.classList.add("fa-save");
                 } else {
@@ -126,11 +126,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     const newAvailable = availableCell.querySelector("input").value;
                     const newPrice = priceCell.querySelector("input").value;
 
-                    products[index].availible = parseInt(newAvailable);
-                    products[index].price = parseFloat(newPrice);
-
+                    seller_product[index].availible = parseInt(newAvailable);
+                    seller_product[index].price = parseFloat(newPrice);
+                    console.log(seller_product[index]);
                     // Update localStorage
-                    localStorage.setItem("products", JSON.stringify(products));
+                    localStorage.setItem("products", JSON.stringify(seller_product));
 
                     // Switch back to normal view
                     availableCell.textContent = newAvailable;
