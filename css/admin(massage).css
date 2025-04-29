@@ -1,17 +1,33 @@
-  /* Sidebar */
-  .sidebar {
-    width: 200px;
-    background: rgba(199, 193, 193, 0.336);
-    height: 100vh;
-    position: fixed;
-    transition: all 0.3s ease;
-    overflow-x: hidden;
-  }
+/* import main css file */
+@import url("main.css");
 
-  .sidebar.collapsed {
-    width: 80px;
-  }
+body {
+  overflow-x: hidden;
+}
 
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: rgba(199, 193, 193, 0.336);
+  height: 100vh;
+  position: fixed;
+  transition: all 0.3s ease;
+  overflow-x: hidden;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+/* Main Content */
+.main-content {
+  margin-left: 250px;
+  transition: all 0.3s ease;
+}
+
+.main-content.collapsed {
+  margin-left: 80px;
+}
 
 /* Sidebar Header */
 .sidebar-header {
@@ -38,30 +54,91 @@
   transition: 0.4s ease;
 }
 
-/* ////// */
-  .unread {
-    background-color: #b7fdee1e;  
+.remove-icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #adacac8e;
+  cursor: pointer;
+  margin: auto;
 }
-.message-text {
-    max-width: 300px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
+.remove-icon i {
+  color: rgba(228, 20, 20, 0.747);
 }
-  /* Responsive */
-  @media (max-width: 768px) {
-    .sidebar {
-      width: 80px;
-    }
-    .main-content {
-      margin-left: 80px;
-    }
+
+
+tr:nth-child(even) {
+background-color: #ffffffe5;
+}
+
+tr:nth-child(odd) {
+background-color: #ddd6d680;
+}
+
+tr:hover {
+background-color: #6b67669c;
+}
+
+
+
+/* Responsive Behavior */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 90px;
   }
-  @media (max-width: 768px) {
-#sidebar {
-  display: none;
+
+  .sidebar.collapsed {
+    width: 0;
+  }
+
+  .main-content {
+    margin-left: 10px;
+    width: calc(100% - 10px);
+  }
+
+  .main-content.collapsed {
+    margin-left: 0;
+    width: 100%;
+  }
 }
-#main {
-  margin-left: 0;
+
+/* Mobile Sidebar Styles */
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: inline-flex;
+    align-items: center;
+    /* z-index: 1100; */
+    background: rgb(209, 196, 196);
+    border-radius: 8px;
+    margin: 25px 25px;
+    border: none;
+    font-size: 1.5rem;
+  color: #333;
+  }
+
+  .sidebar {
+    width: 250px;
+    left: -250px;
+    transition: 0.3s;
+    z-index: 1000;
+    background: rgba(199, 193, 193, 0.95);
+    
+  }
+
+  .sidebar.show {
+    left: 0;
+    width: 150px;
+  
+  
+  }
+ 
+  .main-content {
+    margin: 0;
+    width: 100%;
+  }
 }
-}
+

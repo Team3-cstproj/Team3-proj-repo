@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (productId) {
     product = products.find((p) => p.id === productId);
   } else {
-    product = products[0]; // Acess first product
+    product = products[0]; // Access first product
   }
 
   // If product found, display its details
@@ -206,55 +206,63 @@ function displayProductDetails(product) {
     img.alt = product.name;
   });
 
+  // Update quantity input max value and available display
+  const quantityInput = document.getElementById("quantity");
+  if (quantityInput) {
+    // Calculate real available quantity
+    const cart = JSON.parse(sessionStorage.getItem("cart")) || { items: [] };
+    const cartItem = cart.items.find(item => item.id === product.id);
+    const available = product.availible - (cartItem ? cartItem.quantity : 0);
+    quantityInput.max = available;
+    
+    // Find or create available quantity display
+    const quantityContainer = quantityInput.closest(".me-3");
+    let availableDisplay = quantityContainer.querySelector(".available-display");
+    if (!availableDisplay) {
+      availableDisplay = document.createElement("div");
+      availableDisplay.className = "text-muted small mt-1 available-display";
+      quantityContainer.appendChild(availableDisplay);
+    }
+    availableDisplay.textContent = `${available} available`;
+  }
 
-   // Update quantity input max value and available display
-   const quantityInput = document.getElementById("quantity");
-   if (quantityInput) {
-     quantityInput.max = product.availible;
-     
-     // Create available quantity display
-     const quantityContainer = quantityInput.closest(".me-3");
-     const cart = JSON.parse(sessionStorage.getItem("cart")) || {
-      items: [],
-      total: 0,
-      count: 0,
-    };
-    const existingItem = cart.items.find((item) => item.id === product.id);
-    if (existingItem) product.availible -= existingItem.quantity;
-     if (quantityContainer) {
-       const availableDisplay = document.createElement("div");
-       availableDisplay.className = "text-muted small mt-1";
-       availableDisplay.textContent = `${product.availible} available`;
-       quantityContainer.appendChild(availableDisplay);
-     }
-   }
- 
-   // Update add to cart button based on availability
-   const addToCartBtn = document.querySelector(".add-to-cart-btn");
-   if (addToCartBtn) {
-     if (product.availible <= 0) {
-       addToCartBtn.disabled = true;
-       addToCartBtn.textContent = "OUT OF STOCK";
-       
-       // Create out of stock message
-       const outOfStockMsg = document.createElement("div");
-       outOfStockMsg.className = "text-danger small mt-2";
-       outOfStockMsg.textContent = "This product is currently out of stock";
-       addToCartBtn.parentNode.appendChild(outOfStockMsg);
-     }
-   }
- 
-   // Add event listener for quantity input validation
-   if (quantityInput) {
-     quantityInput.addEventListener("change", function() {
-       if (parseInt(this.value) > parseInt(this.max)) {
-         this.value = this.max;
-       }
-       if (parseInt(this.value) < parseInt(this.min)) {
-         this.value = this.min;
-       }
-     });
-   }
+  // Update add to cart button based on availability
+  const addToCartBtn = document.querySelector(".add-to-cart-btn");
+  if (addToCartBtn) {
+    const available = quantityInput ? parseInt(quantityInput.max) : 0;
+    if (available <= 0) {
+      addToCartBtn.disabled = true;
+      addToCartBtn.textContent = "OUT OF STOCK";
+      
+      // Create out of stock message
+      const outOfStockMsg = document.createElement("div");
+      outOfStockMsg.className = "text-danger small mt-2";
+      outOfStockMsg.textContent = "This product is currently out of stock";
+      addToCartBtn.parentNode.appendChild(outOfStockMsg);
+    } else {
+      addToCartBtn.disabled = false;
+      addToCartBtn.textContent = "ADD TO CART";
+      
+      // Remove out of stock message if exists
+      const outOfStockMsg = addToCartBtn.parentNode.querySelector(".text-danger.small");
+      if (outOfStockMsg) {
+        outOfStockMsg.remove();
+      }
+    }
+  }
+
+  // Add event listener for quantity input validation
+  if (quantityInput) {
+    quantityInput.addEventListener("change", function() {
+      if (parseInt(this.value) > parseInt(this.max)) {
+        this.value = this.max;
+      }
+      if (parseInt(this.value) < parseInt(this.min)) {
+        this.value = this.min;
+      }
+    });
+  }
+
   // Update additional info tab
   updateAdditionalInfo(product);
 }
@@ -290,58 +298,57 @@ function updateAdditionalInfo(product) {
 
 function setupAddToCart(product) {
   const addToCartBtn = document.querySelector(".add-to-cart-btn");
-  if (addToCartBtn && product.availible > 0) {
+  if (addToCartBtn) {
     addToCartBtn.addEventListener("click", function() {
       const quantityInput = document.getElementById("quantity");
       let quantity = parseInt(quantityInput.value) || 1;
       
-
+      // Get current cart
       const cart = JSON.parse(sessionStorage.getItem("cart")) || {
         items: [],
         total: 0,
         count: 0,
       };
-      const existingItem = cart.items.find((item) => item.id === product.id);
-      if (existingItem) product.availible -= existingItem.quantity;
-      // Ensure  dont add more than available
-      if (quantity > product.availible) {
-        quantity = product.availible;
+      
+      // Calculate real available quantity
+      const products = JSON.parse(localStorage.getItem("products")) || [];
+      const originalProduct = products.find(p => p.id === product.id);
+      const cartItem = cart.items.find(item => item.id === product.id);
+      const available = originalProduct.availible - (cartItem ? cartItem.quantity : 0);
+      
+      // Ensure we don't add more than available
+      if (quantity > available) {
+        quantity = available;
         quantityInput.value = quantity;
       }
 
-      addToCart(product, quantity);
-
-      updateCartDisplay();
-      
-      // Update available quantity after adding to cart
-      //////////////////////////////////////////////
-      product.availible -= quantity;
-      console.log(product.availible);
-      console.log(quantity);
-
-      const availableDisplay = document.querySelector(".me-3 .small");
-      if (availableDisplay) {
-        availableDisplay.textContent = `${product.availible} available`;
-      }
-      
-      // Disable button if out of stock
-      if (product.availible <= 0) {
-        addToCartBtn.disabled = true;
-        addToCartBtn.textContent = "OUT OF STOCK";
+      if (quantity > 0) {
+        addToCart(product, quantity);
+        updateCartDisplay();
         
-        // Show out of stock message
-        if (!document.querySelector(".text-danger.small")) {
-          const outOfStockMsg = document.createElement("div");
-          outOfStockMsg.className = "text-danger small mt-2";
-          outOfStockMsg.textContent = "This product is currently out of stock";
-          addToCartBtn.parentNode.appendChild(outOfStockMsg);
+        // Update UI
+        const availableDisplay = document.querySelector(".available-display");
+        if (availableDisplay) {
+          const newAvailable = available - quantity;
+          availableDisplay.textContent = `${newAvailable} available`;
+          
+          // Update button if out of stock
+          if (newAvailable <= 0) {
+            addToCartBtn.disabled = true;
+            addToCartBtn.textContent = "OUT OF STOCK";
+            
+            if (!document.querySelector(".text-danger.small")) {
+              const outOfStockMsg = document.createElement("div");
+              outOfStockMsg.className = "text-danger small mt-2";
+              outOfStockMsg.textContent = "This product is currently out of stock";
+              addToCartBtn.parentNode.appendChild(outOfStockMsg);
+            }
+          }
         }
       }
     });
   }
-    };
-  
-
+}
 
 function addToCart(product, quantity) {
   const cart = JSON.parse(sessionStorage.getItem("cart")) || {
@@ -420,7 +427,7 @@ function updateCartSidebar(cart) {
         ${cart.items
           .map(
             (item) => `
-          <div class="cart-item d-flex justify-content-between align-items-center mb-3">
+          <div class="cart-item d-flex justify-content-between align-items-center mb-3" data-id="${item.id}">
             <div class="d-flex align-items-center">
               <img src="${item.img}" alt="${
               item.name
@@ -432,10 +439,13 @@ function updateCartSidebar(cart) {
             }</small>
               </div>
             </div>
-            <div>
-              <span class="fw-bold">$${(item.price * item.quantity).toFixed(
+            <div class="d-flex align-items-center">
+              <span class="fw-bold me-3">$${(item.price * item.quantity).toFixed(
                 2
               )}</span>
+              <button class="btn btn-sm btn-outline-danger remove-item">
+                <i class="fas fa-times"></i>
+              </button>
             </div>
           </div>
         `
@@ -451,6 +461,15 @@ function updateCartSidebar(cart) {
 
     cartContent.innerHTML = html;
 
+    // Add event listeners to remove buttons
+    document.querySelectorAll(".remove-item").forEach((button) => {
+      button.addEventListener("click", function() {
+        const cartItem = this.closest(".cart-item");
+        const productId = parseInt(cartItem.getAttribute("data-id"));
+        removeFromCart(productId);
+      });
+    });
+
     // Update footer with View Cart and Checkout buttons
     cartFooter.innerHTML = `
       <div class="d-flex flex-column gap-2">
@@ -459,6 +478,85 @@ function updateCartSidebar(cart) {
     `;
   }
 }
+
+function removeFromCart(productId) {
+  const cart = JSON.parse(sessionStorage.getItem("cart")) || {
+    items: [],
+    total: 0,
+    count: 0,
+  };
+
+  // Find the item to remove
+  const itemIndex = cart.items.findIndex((item) => item.id === productId);
+  
+  if (itemIndex !== -1) {
+    const item = cart.items[itemIndex];
+    
+    // Update totals
+    cart.total -= item.price * item.quantity;
+    cart.count -= item.quantity;
+    
+    // Remove item from array
+    cart.items.splice(itemIndex, 1);
+    
+    // Save updated cart
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+    
+    // Update display
+    updateCartDisplay();
+    
+    // Update product availability display
+    updateProductAvailability(productId, item.quantity);
+  }
+}
+
+function updateProductAvailability(productId, returnedQuantity = 0) {
+  // Get current product ID from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const currentProductId = parseInt(urlParams.get("id"));
+  
+  if (currentProductId === productId) {
+    // Update the displayed available quantity
+    const quantityInput = document.getElementById("quantity");
+    if (quantityInput) {
+      const products = JSON.parse(localStorage.getItem("products")) || [];
+      const product = products.find(p => p.id === productId);
+      const cart = JSON.parse(sessionStorage.getItem("cart")) || { items: [] };
+      const cartItem = cart.items.find(item => item.id === productId);
+      
+      const available = product.availible - (cartItem ? cartItem.quantity : 0);
+      quantityInput.max = available;
+      
+      const availableDisplay = document.querySelector(".available-display");
+      if (availableDisplay) {
+        availableDisplay.textContent = `${available} available`;
+      }
+      
+      // Enable add to cart button if it was disabled
+      const addToCartBtn = document.querySelector(".add-to-cart-btn");
+      if (addToCartBtn && available > 0) {
+        addToCartBtn.disabled = false;
+        addToCartBtn.textContent = "ADD TO CART";
+        
+        // Remove out of stock message if exists
+        const outOfStockMsg = addToCartBtn.parentNode.querySelector(".text-danger.small");
+        if (outOfStockMsg) {
+          outOfStockMsg.remove();
+        }
+      }
+    }
+  }
+  
+  // Update related products display
+  if (currentProductId) {
+    const products = JSON.parse(localStorage.getItem("products")) || [];
+    const currentProduct = products.find(p => p.id === currentProductId);
+    if (currentProduct) {
+      displayRelatedProducts(currentProduct);
+    }
+  }
+}
+
 ////////////End of add to cart////////////////
 ///////////////////////////////////////
 
