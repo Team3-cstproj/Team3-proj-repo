@@ -141,4 +141,49 @@ background-color: #6b67669c;
     width: 100%;
   }
 }
+* Table enhancements */
+.table {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
 
+.table th {
+  font-weight: 600;
+  background-color: #1e75cc;
+  color: white;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.message-preview {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+  display: inline-block;
+}
+
+.unread {
+  font-weight: 600;
+  background-color: rgba(13, 110, 253, 0.05) !important;
+}
+
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+/* Action buttons */
+.btn-action {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 2px;
+}
