@@ -9,7 +9,12 @@ const intialOrders = [
         productName: "Classic Denim Hoodie",
         quantity: 2,
         orderDate: "2023-06-10",
-        totalPrice: 49.98
+        totalPrice: 49.98,
+        country: "USA",
+        city: "New York",
+        address: "123 Main St",
+        postalCode: "10001",
+        phone: "123-456-7890"
     },
     {
         id: 2,
@@ -21,7 +26,12 @@ const intialOrders = [
         productName: "Leather Jacket",
         quantity: 1,
         orderDate: "2023-06-12",
-        totalPrice: 89.99
+        totalPrice: 89.99,
+        country: "USA",
+        city: "New York",
+        address: "123 Main St",
+        postalCode: "10001",
+        phone: "123-456-7890"
     },
     {
         id: 3,
@@ -33,7 +43,12 @@ const intialOrders = [
         productName: "Running Shoes",
         quantity: 1,
         orderDate: "2023-06-15",
-        totalPrice: 59.99
+        totalPrice: 59.99,
+        country: "USA",
+        city: "New York",
+        address: "123 Main St",
+        postalCode: "10001",
+        phone: "123-456-7890"
     },
     {
         id: 4,
@@ -45,7 +60,18 @@ const intialOrders = [
         productName: "Casual Sneakers",
         quantity: 2,
         orderDate: "2023-06-18",
-        totalPrice: 79.98
+        totalPrice: 79.98, 
+        country: "USA",
+        city: "New York",
+        address: "123 Main St",
+        postalCode: "10001",
+        phone: "123-456-7890",
+        country: "USA",
+        city: "New York",
+        address: "123 Main St",
+        postalCode: "10001",
+        phone: "123-456-7890"
+        
     },
     {
         id: 5,
@@ -57,7 +83,12 @@ const intialOrders = [
         productName: "Stylish Sunglasses",
         quantity: 1,
         orderDate: "2023-06-20",
-        totalPrice: 29.99
+        totalPrice: 29.99,
+        country: "USA",
+        city: "New York",
+        address: "123 Main St",
+        postalCode: "10001",
+        phone: "123-456-7890"
     }
     ,
     {
@@ -70,7 +101,12 @@ const intialOrders = [
         productName: "Winter Jacket",
         quantity: 1,
         orderDate: "2023-06-22",
-        totalPrice: 99.99
+        totalPrice: 99.99,
+        country: "USA",
+        city: "New York",
+        address: "123 Main St",
+        postalCode: "10001",
+        phone: "123-456-7890"
     },
     {
         id: 7,
@@ -82,7 +118,12 @@ const intialOrders = [
         productName: "Leather Boots",
         quantity: 1,
         orderDate: "2023-06-25",
-        totalPrice: 129.99
+        totalPrice: 129.99,
+        country: "USA",
+        city: "New York",
+        address: "123 Main St",
+        postalCode: "10001",
+        phone: "123-456-7890"
     },
     {
         id: 8,
@@ -94,7 +135,12 @@ const intialOrders = [
         productName: "Sports Watch",
         quantity: 1,
         orderDate: "2023-06-28",
-        totalPrice: 199.99
+        totalPrice: 199.99,
+        country: "USA",
+        city: "New York",
+        address: "123 Main St",
+        postalCode: "10001",
+        phone: "123-456-7890"
     }
 ];
 
