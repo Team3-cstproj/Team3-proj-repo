@@ -262,8 +262,7 @@ function calculateCartTotal(items) {
 function calculateCartCount(items) {
   return items.reduce((count, item) => count + item.quantity, 0);
 }
-///////==================================
-////////////End of cart functionality////////////////
+///////======================================end of cart =======================================================
 ////foter function
 function myfun() {
   window.location.href = "contacts.html";
