@@ -194,11 +194,15 @@ function displayProducts() {
       e.preventDefault(); // prevent link jump
       const productId = this.getAttribute('data-id');
       const product = products.find(p => p.id == productId);
+      
       if (product) {
         addToCart(product, 1);
         updateCartDisplay();
 
-        // Apply success animation feedback
+        // Disable the button while animation is running
+        this.classList.add('disabled');
+
+        // Apply success animation
         const tooltip = this.querySelector('.tooltip-text');
         const buttonEl = this;
 
@@ -217,6 +221,8 @@ function displayProducts() {
             // Remove success class and fade-out class, and update the page
             setTimeout(() => {
               buttonEl.classList.remove('success-feedback', 'fade-out');
+              // Re-enable the button after animation ends
+              buttonEl.classList.remove('disabled');
               displayProducts(); // Re-render products after animation
             }, 500); // Duration of fade-out
           }, 1500);

@@ -235,7 +235,13 @@ body {
 .offcanvas button span .navbar-toggler-icon {
   color: azure;
 }
-/* Add smooth background and text color change */
+/* Disable button while animation is running */
+.cart-button.disabled {
+  pointer-events: none; /* Prevent clicks */
+  opacity: 0.5; /* Dim the button */
+}
+
+/* Animate background and text color change */
 @keyframes successFadeIn {
   0% {
     background-color: transparent;

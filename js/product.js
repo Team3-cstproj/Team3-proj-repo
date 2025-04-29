@@ -558,33 +558,41 @@ function displayRelatedProducts(currentProduct) {
     // Reattach event listeners to updated buttons
     document.querySelectorAll(".cart-button").forEach((button) => {
       button.addEventListener("click", function (e) {
-        e.preventDefault();
-    
+        e.preventDefault(); // prevent link jump
+
         const productId = parseInt(this.getAttribute("data-id"));
         const product = products.find((p) => p.id === productId);
         if (product) {
           addToCart(product, 1);
           updateCartDisplay();
-    
+
+          // Disable the button while animation is running
+          this.classList.add('disabled'); // Add disabled class
+          this.querySelector('.tooltip-text').textContent = 'Adding to cart...'; // Change tooltip text
+
+          // Apply success animation
           const tooltip = this.querySelector('.tooltip-text');
           const buttonEl = this;
-    
+
           if (tooltip) {
             const originalText = tooltip.textContent;
-    
-            // Add success class
+
+            // Add success class for animation
             buttonEl.classList.add('success-feedback');
             tooltip.textContent = 'Successfully added to cart';
-    
-            // After 1.5s, trigger fade out and revert text
+
+            // After 1.5s, trigger fade-out and revert the tooltip text
             setTimeout(() => {
               buttonEl.classList.add('fade-out');
               tooltip.textContent = originalText;
-    
-              // Remove all classes and re-render after animation ends
+
+              // Remove success class and fade-out class, and update the page
               setTimeout(() => {
                 buttonEl.classList.remove('success-feedback', 'fade-out');
-                displayRelatedProducts(currentProduct);
+                // Re-enable the button after animation ends
+                buttonEl.classList.remove('disabled');
+                buttonEl.querySelector('.tooltip-text').textContent = 'Add to cart'; // Reset tooltip text
+                displayRelatedProducts(currentProduct); // Re-render related products
               }, 500); // Duration of fade-out
             }, 1500);
           } else {
@@ -593,7 +601,6 @@ function displayRelatedProducts(currentProduct) {
         }
       });
     });
-    
   }
 }
 
