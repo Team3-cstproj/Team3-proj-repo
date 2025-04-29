@@ -23,35 +23,53 @@ mobileMenuBtn?.addEventListener('click', function () {
     sidebar.classList.toggle('show');
   }
 });
-//load localstorage
+
+//----------------------
+
+let Total_sales = 0;
+let Total_orders=0;
 function loadOrders() {
   const orders = JSON.parse(localStorage.getItem('orders')) || [];
   const tableBody = document.getElementById('orders-table-body');
-  tableBody.innerHTML = '';
   
+  tableBody.innerHTML = '';
+  Total_sales = 0;
+Total_orders=0;
+
   orders.forEach(order => {
+
+    Total_sales += Number(order.totalPrice) || 0;
+    Total_orders += Number(order.quantity) || 0;
+
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${order.id || 'N/A'}</td>
-      <td>${order.username}</td>
-      <td>${order.productName}</td>
+      <td>${order.userName || 'N/A'}</td>
+      <td>${order.productName || 'N/A'}</td>
       <td>${order.quantity || '0'}</td>
       <td>${order.orderDate || 'N/A'}</td>
       <td>${order.sellerName || 'N/A'}</td>
-      <td>$${order.totalPrice?.toFixed(2) || '0.00'}</td>
+      <td>$${(Number(order.totalPrice) || 0).toFixed(2)}</td>
     `;
     tableBody.appendChild(row);
   });
+
+  document.getElementById('Totalsaless').textContent = `$${Total_sales.toFixed(2)}`;
+  document.getElementById('numorders').textContent = `$${Total_orders}`;
 }
 
-
-// Update localStorage
 function updateCustomersCount() {
-  const users = JSON.parse(localStorage.getItem('users')) || [];
-  const customersCount = users.filter(user => user.role === 'customer').length;
-  document.getElementById('customers-number').textContent = customersCount;
-}
+  const orders = JSON.parse(localStorage.getItem('orders')) || [];
+  //  calculate numberCustomer an unique
+  const uniqueCustomerIds = new Set();
 
+  orders.forEach(order => {
+    if (order.userId) {
+      uniqueCustomerIds.add(order.userId);
+    }
+  });
+   document.getElementById('customers-number').textContent = uniqueCustomerIds.size;
+}
 
 document.addEventListener('DOMContentLoaded', function() {
   loadOrders();
