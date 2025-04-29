@@ -4,9 +4,24 @@ document.addEventListener("DOMContentLoaded", function () {
     const products = JSON.parse(localStorage.getItem("products")) || [];
     const tbody = document.querySelector("table tbody");
     const pagination = document.querySelector(".pagination");
+    const menuBtn = document.querySelector("#menu_bar");
+    const closeBtn = document.querySelector("#close_btn");
+    const sideMenue = document.querySelector("aside");
+
     let currentPage = 1;
     const rowsPerPage = 5;
     let seller_product = products.filter(product => product.sellerId == info.id);
+
+    menuBtn.addEventListener("click", () => {
+        sideMenue.style.display = "block";
+        menuBtn.style.display = "none"
+    })
+    closeBtn.addEventListener("click", () => {
+        sideMenue.style.display = "none";
+        menuBtn.style.display = "block";
+
+    })
+
     function displayProducts(products, wrapper, rowsPerPage, page) {
         wrapper.innerHTML = "";
         page--;
