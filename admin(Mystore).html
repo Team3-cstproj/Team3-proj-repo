@@ -85,6 +85,9 @@
 
       <!-- Main content -->
       <div id="main" class="main-content col my-3">
+        <button class="mobile-menu-btn me-3 d-md-none" id="mobile-menu-btn">
+          <i class='bx bx-menu'></i>
+        </button>
         <h3 class="h2 ms-2 mt-4 mb-3">MyStore(Products)</h3>
         <div class="table-responsive">
           <table class="table text-center table-bordered table-hover">
@@ -92,7 +95,7 @@
                 <tr>
                     <th>Order ID</th>
                     <th>Products</th>
-                    <th>Date Order</th>
+                    <!-- <th>Date Order</th> -->
                     <th>Price</th>
                     <th>Remove</th>
                   </tr>
@@ -101,7 +104,7 @@
               <tr>
                 <td>1</td>
                 <td>Tshirt</td>
-                <td>10/10/2023</td>
+                <!-- <td>10/10/2023</td> -->
                 <td>20$</td>
                 <td>
                   <div class="remove-icon">
@@ -112,7 +115,7 @@
               <tr>
                 <td>1</td>
                 <td>Tshirt</td>
-                <td>10/10/2023</td>
+                <!-- <td>10/10/2023</td> -->
                 <td>20$</td>
                 <td>
                   <div class="remove-icon">
@@ -123,7 +126,7 @@
               <tr>
                 <td>1</td>
                 <td>Tshirt</td>
-                <td>10/10/2023</td>
+                <!-- <td>10/10/2023</td> -->
                 <td>20$</td>
                 <td>
                   <div class="remove-icon">
@@ -134,10 +137,10 @@
               <tr>
                 <td>1</td>
                 <td>Tshirt</td>
-                <td>10/10/2023</td>
+                <!-- <td>10/10/2023</td> -->
                 <td>20$</td>
                 <td>
-                  <div class="remove-icon">
+                  <div class="remove-icon" onclick="removeProduct('${product.id}')">
                     <i class="fa-solid fa-xmark"></i>
                   </div>
                 </td>

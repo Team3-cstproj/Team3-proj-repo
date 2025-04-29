@@ -19,13 +19,7 @@
   position: relative; 
   
   }
-  
-  .subwraper{
-       background-color: rgb(118, 118, 118);
 
-
-  
-  }
   
   /*==========  foter list =======*/
   
@@ -106,3 +100,36 @@
 }
 
       /*===============================================================================*/
+      .contact-form {
+        padding: 20px;
+        background-color: #f8f9fa;
+    }
+    
+    .info-section {
+        padding: 20px;
+    }
+    
+    .form-control {
+        margin-bottom: 15px;
+    }
+    
+    .btn-primary {
+        background-color: #0d6efd;
+        border: none;
+        padding: 10px 25px;
+    }
+    .invalid-feedback {
+        display: none;
+        color: #dc3545;
+        font-size: 14px;
+        margin-top: -10px;
+        margin-bottom: 10px;
+    }
+    
+    .was-validated .form-control:invalid {
+        border-color: #dc3545;
+    }
+    
+    .was-validated .form-control:invalid + .invalid-feedback {
+        display: block;
+    }

@@ -9,10 +9,14 @@ const cartTotals = document.querySelector('.cart-totals');
 // Render cart items
 function renderCart() {
     cartTableBody.innerHTML = '';
+    products = JSON.parse(localStorage.getItem('products')) || [];
 
     cartData.items.forEach((item, index) => {
         const row = document.createElement('tr');
         row.setAttribute('data-index', index);
+        
+        const product = products.find(product => product.id === item.id);
+         
 
         row.innerHTML = `
       <td>
@@ -26,7 +30,7 @@ function renderCart() {
       <td>${item.name}</td>
       <td class="price" data-price="${item.price}">$${item.price}</td>
       <td>
-        <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-price="${item.price}">
+        <input type="number" class="quantity-input" value="${item.quantity}" min="1"  max="${product.availible}" data-price="${item.price}">
       </td>
       <td class="subtotal">$${item.price * item.quantity}</td>
     `;
