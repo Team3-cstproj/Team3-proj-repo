@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const productImageInput = document.getElementById("productImage");
     const uploadArea = document.getElementById("uploadArea");
     const imagePreview = document.getElementById("imagePreview");
+    const info = JSON.parse(sessionStorage.getItem("currentUser")) || [];
+
 
     let products = JSON.parse(localStorage.getItem("products")) || [];
 
@@ -20,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
             imagePreview.innerHTML = `<img src="${e.target.result}" alt="Product Image" style="max-width: 100%; height: auto; margin-top: 10px; border-radius: 8px;">`;
             };
             reader.readAsDataURL(file);
+            document.getElementById("uploadArea").style.display = "none"; // Hide the upload area after selecting an image
         }
     });
 
@@ -32,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const category = document.getElementById("category").value;
         const description = document.getElementById("description").value.trim();
         const productImage = productImageInput.files[0];
-        const sellerId = 302;
+        const sellerId = info.id;
         const review = [{
             userId: 501,
             username: "user1",
@@ -54,8 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Save only the file name (not the image itself)
         
-        const imagePath = `images/product/${productImage.name}`; 
-
+        const imagePath = `img_index/${productImage.name}`; 
         const newProduct = {
             id: generateUniqueId(),
             name: productName,
@@ -63,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
             sold: 0, 
             availible: pieces,
             price: price,
-            image: imagePath,
+            img: imagePath,
             description: description,
             sellerId: sellerId,
             review: review
@@ -75,7 +77,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
         productForm.reset();
         imagePreview.innerHTML = ""; // Clear preview
+
+
+
+    
+
+        // Here you can add your logic to handle product upload if needed
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Product Added!',
+            text: 'Your product has been successfully added.',
+            confirmButtonColor: '#3085d6',
+            timer: 3000,
+            showConfirmButton: false
+        });
+
+        // Optionally reset the form
+        this.reset();
+        document.getElementById("uploadArea").style.display = "block"; // Hide the upload area after selecting an image
+
+
+
     });
+
+
+
+
 
     function generateUniqueId() {
         if (products.length === 0) return 1; // If no products, start from 1
