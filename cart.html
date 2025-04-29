@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="bootstrab/css/bootstrap.css">
     <link rel="stylesheet" href="css/cart.css">
     <title>Cart-E-comerce</title>
+    <script>
+        // Define the roles that are allowed to access this page
+        const allowedRoles = ['user']; // Customize this for each page
+      
+        const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      
+        if ( !allowedRoles.includes(currentUser.role)) {
+          window.location.href = 'error.html';
+        }
+      </script>
+      
 </head>
 <body>
     
@@ -121,7 +132,8 @@
  <!-- CART PAGE -->
 <div class="container my-3 table-bordered">
     <h1 class="text-center mb-4">CART</h1>
-  
+    </br>
+    <br>
     <table class="table text-center cart_table">
       <thead>
         <tr>

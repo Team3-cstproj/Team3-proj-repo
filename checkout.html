@@ -13,6 +13,17 @@
     <script src="data/orders.js"></script>
     <title>CheckOut-E-comerce</title>
     <script>
+        // Define the roles that are allowed to access this page
+        const allowedRoles = [ 'user']; // Customize this for each page
+      
+        const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      
+        if (!currentUser || !allowedRoles.includes(currentUser.role)) {
+          window.location.href = 'error.html';
+        }
+    </script>
+      
+    <script>
         window.addEventListener('DOMContentLoaded', () => {
             const user = JSON.parse(sessionStorage.getItem('currentUser'));
             if (user) {
@@ -299,6 +310,9 @@
                                 </div>
 
                                 <button type="submit" id="checkoutBtn" class="btn btn-primary w-100 fw-bold">PLACE ORDER</button>
+                                <div id="form-message" class="alert d-none" role="alert"></div>
+ 
+                
                             </div>
                         </div>
                     </div>

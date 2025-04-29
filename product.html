@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="bootstrab/css/bootstrap.css">
     <link rel="stylesheet" href="css/product.css">
     <title>Product-E-comerce</title>
+    <script>
+      // Define the roles that are allowed to access this page
+      const allowedRoles = ['user']; // Customize this for each page
+    
+      const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    
+      if ( !allowedRoles.includes(currentUser.role)) {
+        window.location.href = 'error.html';
+       }
+    </script>
 </head>
 <body>
 
