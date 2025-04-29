@@ -25,6 +25,8 @@
 //         });
 //     });
 // });
+//finctoion to always update the cart count and total in the navbar
+window.addEventListener('load', updateCartDisplay);
 
 
 
@@ -39,6 +41,9 @@ let top5Products = getAllProducts().sort((a, b) => b.sold - a.sold).slice(0, 5);
 let top5ProductsContainer = document.getElementById("best-sellers-list");
 top5ProductsContainer.innerHTML = ''; // Clear existing content
 top5Products.forEach(product => {
+  if (!product.reviews || product.reviews.length == 0) { // 👈 Fixed here
+      product.reviews = [{ rating: 0 }];
+    }
   const ratings = product.reviews.map(r => r.rating);
   const avgRating = ratings.length ? ratings.reduce((a, b) => a + b) / ratings.length : 0;
 
@@ -107,66 +112,134 @@ function displayProducts() {
   const endIndex = currentPage * productsPerPage;
   const productsToDisplay = products.slice(startIndex, endIndex);
 
-  const productContainer = document.getElementById("product-list")
-
+  const productContainer = document.getElementById("product-list");
   productContainer.innerHTML = '';
 
   productsToDisplay.forEach(product => {
-    
-    if (!product.reviews || product.reviews.length == 0) { // 👈 Fixed here
+    if (!product.reviews || product.reviews.length === 0) {
       product.reviews = [{ rating: 0 }];
     }
+
     const ratings = product.reviews.map(r => r.rating);
-        const avgRating = ratings.length ? ratings.reduce((a, b) => a + b) / ratings.length : 0;
+    const avgRating = ratings.length ? ratings.reduce((a, b) => a + b) / ratings.length : 0;
 
-        // Generate star HTML
-        let starHtml = '';
-        for (let i = 1; i <= 5; i++) {
-            starHtml += `<i class="${i <= Math.round(avgRating) ? 'fas' : 'far'} fa-star"></i>`;
-        }
+    // Generate star HTML
+    let starHtml = '';
+    for (let i = 1; i <= 5; i++) {
+      starHtml += `<i class="${i <= Math.round(avgRating) ? 'fas' : 'far'} fa-star"></i>`;
+    }
 
-        const productCard = `
-        <div class="col">
-        <a href="product.html?id=${product.id}" class="text-decoration-none text-dark">
-            <div class="card product-card">
-                <img src="${product.img}" class="card-img-top" alt="${product.name}">
-                <div class="hover-icons">
-                    <a href="#" class="icon-btn cart-button" data-id="${product.id}">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="tooltip-text">Add to cart</span>
-                    </a>
-                </div>
-                <div class="card-body">
-                    <a href="product.html?id=${product.id}" class="text-decoration-none text-dark"><h5 class="card-title">${product.name}</h5></a>
-                    <p class="text-muted small">${product.category}</p>
-                    <div class="star-rating">
-                        ${starHtml}
-                    </div>
-                    <p class="card-text">$${product.price}</p>
-                    
-                </div>
-            </div>
+    const cart = JSON.parse(sessionStorage.getItem("cart")) || {
+      items: [],
+      total: 0,
+      count: 0,
+    };
+    const existingItem = cart.items.find(item => item.id === product.id);
+    let available = product.availible;
+    if (existingItem) {
+      available -= existingItem.quantity;
+    }
+
+    // === Check available and build buttons/stock info ===
+    let stockInfoHtml = '';
+    let cartButtonHtml = '';
+    let hoverCartButtonHtml = '';
+
+    if (available > 0) {
+      stockInfoHtml = `<p class="text-success small">Available: ${available}</p>`;
+      cartButtonHtml = `
+        <a href="#" class="icon-btn cart-button" data-id="${product.id}">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="tooltip-text">Add to cart</span>
         </a>
+      `;
+      hoverCartButtonHtml = `
+        <div class="hover-icons">
+          <a href="#" class="icon-btn cart-button" data-id="${product.id}">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="tooltip-text">Add to cart</span>
+          </a>
         </div>
-        `;
-        productContainer.innerHTML += productCard;
-  }
-  );
-  
+      `;
+    } else {
+      stockInfoHtml = `<p class="text-danger small fw-bold">Out of Stock</p>`;
+      // No cart buttons if out of stock
+    }
+
+    const productCard = `
+      <div class="col">
+        <a href="product.html?id=${product.id}" class="text-decoration-none text-dark">
+          <div class="card product-card">
+            <img src="${product.img}" class="card-img-top" alt="${product.name}">
+            ${hoverCartButtonHtml}
+            <div class="card-body">
+              <a href="product.html?id=${product.id}" class="text-decoration-none text-dark">
+                <h5 class="card-title">${product.name}</h5>
+              </a>
+              <p class="text-muted small">${product.category}</p>
+              <div class="star-rating">
+                ${starHtml}
+              </div>
+              <p class="card-text">$${product.price}</p>
+              ${stockInfoHtml}
+            </div>
+          </div>
+        </a>
+      </div>
+    `;
+
+    productContainer.innerHTML += productCard;
+  });
+
   document.querySelectorAll('.cart-button').forEach(button => {
     button.addEventListener('click', function(e) {
       e.preventDefault(); // prevent link jump
       const productId = this.getAttribute('data-id');
       const product = products.find(p => p.id == productId);
+      
       if (product) {
         addToCart(product, 1);
         updateCartDisplay();
+
+        // Disable the button while animation is running
+        this.classList.add('disabled');
+
+        // Apply success animation
+        const tooltip = this.querySelector('.tooltip-text');
+        const buttonEl = this;
+
+        if (tooltip) {
+          const originalText = tooltip.textContent;
+
+          // Add success class for animation
+          buttonEl.classList.add('success-feedback');
+          tooltip.textContent = 'Successfully added to cart';
+
+          // After 1.5 seconds, trigger fade-out and revert the tooltip text
+          setTimeout(() => {
+            buttonEl.classList.add('fade-out');
+            tooltip.textContent = originalText;
+
+            // Remove success class and fade-out class, and update the page
+            setTimeout(() => {
+              buttonEl.classList.remove('success-feedback', 'fade-out');
+              // Re-enable the button after animation ends
+              buttonEl.classList.remove('disabled');
+              displayProducts(); // Re-render products after animation
+            }, 500); // Duration of fade-out
+          }, 1500);
+        } else {
+          displayProducts(); // fallback if tooltip not found
+        }
       }
     });
   });
+  
+
 
   updatePagination();
 }
+
 
 function addToCart(product, quantity) {
   const cart = JSON.parse(sessionStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
@@ -343,7 +416,6 @@ cartOverlay.addEventListener("click", () => {
 
 ////btns color baby
 document.addEventListener("DOMContentLoaded", function () {
-  updateCartDisplay(); // Update cart display on page load
   document.querySelectorAll(".offer-banner .btn").forEach((button) => {
     function activate() {
       button.style.backgroundColor = "white";
@@ -361,7 +433,83 @@ document.addEventListener("DOMContentLoaded", function () {
     button.addEventListener("touchstart", activate);
     button.addEventListener("touchend", deactivate);
   });
+
+  // Initialize user profile dropdown
+  setupUserProfile();
 });
+
+// Enhanced login/logout functionality
+function setupUserProfile() {
+  const userIcon = document.querySelector(".nav-link[href='login.html']");
+  const userData = JSON.parse(sessionStorage.getItem("currentUser"));
+
+  if (!userIcon) return;
+
+  // Create user profile dropdown container
+  const profileDropdown = document.createElement("div");
+  profileDropdown.className = "profile-dropdown";
+  profileDropdown.style.display = "none";
+  profileDropdown.style.position = "absolute";
+  profileDropdown.style.right = "0";
+  profileDropdown.style.top = "100%";
+  profileDropdown.style.backgroundColor = "white";
+  profileDropdown.style.border = "1px solid #ddd";
+  profileDropdown.style.borderRadius = "4px";
+  profileDropdown.style.padding = "10px";
+  profileDropdown.style.zIndex = "1000";
+  profileDropdown.style.minWidth = "200px";
+  profileDropdown.style.boxShadow = "0 2px 5px rgba(0,0,0,0.1)";
+
+  if (userData) {
+    // if  User login show profile info and logout option
+    profileDropdown.innerHTML = `
+      <div class="user-info mb-2">
+        <p class="mb-1"><strong>${userData.name || "User"}</strong></p>
+        <p class="small text-muted mb-2">${userData.email || ""}</p>
+        <p class="small">Role: ${userData.role || "user"}</p>
+      </div>
+      <button id="logoutBtn" class="btn btn-sm btn-danger w-100">Logout</button>
+    `;
+
+    // Change icon to  logged in state
+    userIcon.innerHTML = '<i class="fa-solid fa-user-check"></i>';
+    userIcon.href = "#"; // Prevent navigation to login page
+
+    // Add click  for logout
+    profileDropdown
+      .querySelector("#logoutBtn")
+      .addEventListener("click", () => {
+        sessionStorage.clear("user");
+        window.location.href = "login.html";
+      });
+  } else {
+    // User is not login show login
+    profileDropdown.innerHTML = `
+      <p class="mb-2">You are not logged in</p>
+      <a href="login.html" class="btn btn-sm btn-primary w-100">Login</a>
+    `;
+  }
+
+  // Add dropdown to DOM
+  userIcon.parentNode.appendChild(profileDropdown);
+
+  // Toggle dropdown on click
+  userIcon.addEventListener("click", (e) => {
+    e.preventDefault();
+    const isVisible = profileDropdown.style.display === "block";
+    profileDropdown.style.display = isVisible ? "none" : "block";
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!userIcon.contains(e.target) && !profileDropdown.contains(e.target)) {
+      profileDropdown.style.display = "none";
+    }
+  });
+}
+
+// Call setup function when DOM is loaded
+document.addEventListener("DOMContentLoaded", setupUserProfile);
 // nav bar -------end
 
 

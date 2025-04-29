@@ -10,6 +10,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="bootstrab/css/bootstrap.css">
     <link rel="stylesheet" href="css/checkout.css">
+    <script src="data/orders.js"></script>
     <title>CheckOut-E-comerce</title>
 </head>
 
@@ -139,7 +140,7 @@
                 <div class="d-flex  mb-4" role="alert">
                     <i class="fa-solid fa-desktop me-2"></i>
                     <div>
-                        Returning customer? <a href="#">Click here to login</a>
+                        want another thing? <a href="catalog-Everything.html">Click here to go to catalog</a>
                     </div>
                 </div>
                 <div class="w-100 bg-dark ">
@@ -241,7 +242,7 @@
                                             <th class="text-end">Subtotal</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="orderItems">
                                         <tr>
                                             <td>Black Hoodie × 1</td>
                                             <td class="text-end">$150.00</td>
@@ -291,7 +292,7 @@
                                     </label>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary w-100 fw-bold">PLACE ORDER</button>
+                                <button type="submit" id="checkoutBtn" class="btn btn-primary w-100 fw-bold">PLACE ORDER</button>
                             </div>
                         </div>
                     </div>

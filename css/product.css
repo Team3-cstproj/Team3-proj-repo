@@ -456,3 +456,26 @@
     color: rgb(0, 0, 74);
   }
 
+/* Disable the button */
+.cart-button.disabled {
+  pointer-events: none; /* Prevent clicking */
+  opacity: 0.5; /* Dim the button to show it's disabled */
+}
+
+/* Success animation */
+.cart-button.success-feedback {
+  background-color: green; /* Green background on success */
+  color: white; /* White text on success */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for background color and text */
+}
+
+/* Tooltip text color change */
+.cart-button.success-feedback .tooltip-text {
+  color: white; /* White text for the tooltip */
+}
+
+/* Fade-out effect after success animation */
+.cart-button.fade-out {
+  opacity: 0.3; /* Make the button slightly transparent for fade-out effect */
+  transition: opacity 0.5s ease-out; /* Smooth fade-out */
+}

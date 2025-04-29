@@ -235,3 +235,57 @@ body {
 .offcanvas button span .navbar-toggler-icon {
   color: azure;
 }
+/* Disable button while animation is running */
+.cart-button.disabled {
+  pointer-events: none; /* Prevent clicks */
+  opacity: 0.5; /* Dim the button */
+}
+
+/* Animate background and text color change */
+@keyframes successFadeIn {
+  0% {
+    background-color: transparent;
+    color: inherit;
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  100% {
+    background-color: green;
+    color: white;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes successFadeOut {
+  0% {
+    background-color: green;
+    color: white;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    background-color: transparent;
+    color: inherit;
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+}
+
+.cart-button.success-feedback {
+  animation: successFadeIn 0.3s forwards;
+  border-radius: 5px;
+  padding: 5px 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.cart-button.success-feedback.fade-out {
+  animation: successFadeOut 0.5s forwards;
+}
+
+.cart-button.success-feedback .tooltip-text {
+  background-color: green !important;
+  color: white !important;
+  transition: background-color 0.3s, color 0.3s;
+}
