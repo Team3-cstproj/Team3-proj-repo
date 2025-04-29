@@ -306,6 +306,20 @@
         localStorage.setItem('products', JSON.stringify(products));
         sessionStorage.removeItem('cart');
 
-        alert('Order placed successfully!');
-        window.location.href = `receipt.html?ids=${createdOrderIds.join(',')}`;
+        
+        showMessage("✅ Order created! Redirecting to Receipt...", "success");
+        
+
+        setTimeout(() => {
+            
+            window.location.href = `receipt.html?ids=${createdOrderIds.join(',')}`;
+        }, 1500);
+        
+    }
+    const messageBox = document.getElementById("form-message");
+
+    function showMessage(text, type = "danger") {
+        messageBox.className = `alert alert-${type}`;
+        messageBox.textContent = text;
+        messageBox.classList.remove("d-none");
     }
