@@ -141,6 +141,9 @@ let currentPage = 1;
 //     updatePagination();
 // }
 
+window.addEventListener('load', updateCartDisplay);
+
+
 function displayProducts() {
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = currentPage * productsPerPage;
