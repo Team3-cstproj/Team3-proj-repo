@@ -197,7 +197,32 @@ function displayProducts() {
       if (product) {
         addToCart(product, 1);
         updateCartDisplay();
-        displayProducts();
+
+        // Apply success animation feedback
+        const tooltip = this.querySelector('.tooltip-text');
+        const buttonEl = this;
+
+        if (tooltip) {
+          const originalText = tooltip.textContent;
+
+          // Add success class for animation
+          buttonEl.classList.add('success-feedback');
+          tooltip.textContent = 'Successfully added to cart';
+
+          // After 1.5 seconds, trigger fade-out and revert the tooltip text
+          setTimeout(() => {
+            buttonEl.classList.add('fade-out');
+            tooltip.textContent = originalText;
+
+            // Remove success class and fade-out class, and update the page
+            setTimeout(() => {
+              buttonEl.classList.remove('success-feedback', 'fade-out');
+              displayProducts(); // Re-render products after animation
+            }, 500); // Duration of fade-out
+          }, 1500);
+        } else {
+          displayProducts(); // fallback if tooltip not found
+        }
       }
     });
   });

@@ -559,15 +559,41 @@ function displayRelatedProducts(currentProduct) {
     document.querySelectorAll(".cart-button").forEach((button) => {
       button.addEventListener("click", function (e) {
         e.preventDefault();
+    
         const productId = parseInt(this.getAttribute("data-id"));
         const product = products.find((p) => p.id === productId);
         if (product) {
           addToCart(product, 1);
           updateCartDisplay();
-          displayRelatedProducts(currentProduct); // 🔁 Update availability and UI
+    
+          const tooltip = this.querySelector('.tooltip-text');
+          const buttonEl = this;
+    
+          if (tooltip) {
+            const originalText = tooltip.textContent;
+    
+            // Add success class
+            buttonEl.classList.add('success-feedback');
+            tooltip.textContent = 'Successfully added to cart';
+    
+            // After 1.5s, trigger fade out and revert text
+            setTimeout(() => {
+              buttonEl.classList.add('fade-out');
+              tooltip.textContent = originalText;
+    
+              // Remove all classes and re-render after animation ends
+              setTimeout(() => {
+                buttonEl.classList.remove('success-feedback', 'fade-out');
+                displayRelatedProducts(currentProduct);
+              }, 500); // Duration of fade-out
+            }, 1500);
+          } else {
+            displayRelatedProducts(currentProduct); // fallback if tooltip missing
+          }
         }
       });
     });
+    
   }
 }
 
