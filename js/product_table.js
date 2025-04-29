@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
         let start = page * rowsPerPage;
         let end = start + rowsPerPage;
         let paginatedItems = products.slice(start, end);
-        console.log(products);
         paginatedItems.forEach((product, index) => {
             console.log(products);
             console.log(paginatedItems);
@@ -112,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log(row);
                 console.log(index);
                 const availableCell = row.querySelector(".available-cell");
-                const priceCell = row.querySelector(    ".price-cell    ");
+                const priceCell = row.querySelector(".price-cell");
                 const icon = this.querySelector("i");
 
                 if (icon.classList.contains("fa-pen")) {
@@ -125,12 +124,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     // Save changes
                     const newAvailable = availableCell.querySelector("input").value;
                     const newPrice = priceCell.querySelector("input").value;
-
-                    seller_product[index].availible = parseInt(newAvailable);
-                    seller_product[index].price = parseFloat(newPrice);
+                    products.forEach((product) => {
+                        if (seller_product[index].id == product.id) {
+                            product.availible = parseInt(newAvailable);
+                            product.price = parseFloat(newPrice);
+                        }
+                    });
                     console.log(seller_product[index]);
                     // Update localStorage
-                    localStorage.setItem("products", JSON.stringify(seller_product));
+                    localStorage.setItem("products", JSON.stringify(products));
 
                     // Switch back to normal view
                     availableCell.textContent = newAvailable;
