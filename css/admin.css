@@ -14,15 +14,6 @@
   width: 80px;
 }
 
-
-
-
-
-.sidebar .nav-link span {
-  display: inline;
-  transition: 0.3s;
-}
-
 .sidebar.collapsed .nav-link span,
 .sidebar.collapsed .admin-text {
   display: none;
@@ -39,15 +30,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  
 }
 
 /* Main Content */
 .main-content {
-  margin-left: 250px; /* adjust to sidebar width */
-  width: calc(100% - 250px); /* take remaining space */
+  margin-left: 250px;
+  width: calc(100% - 250px);
   transition: 0.3s;
   overflow-y: auto;
   height: 100vh;
+  
 }
 
 .main-content.collapsed {
@@ -66,6 +59,7 @@
 table {
   table-layout: fixed;
   width: 100%;
+  
 }
 
 table td, table th {
@@ -73,37 +67,16 @@ table td, table th {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-table img {
-  max-width: 50px;
-  max-height: 50px;
+tbody tr:nth-child(odd)
+{
+  background-color: rgba(221, 231, 235, 0.466);
+}
+tbody tr:nth-child(even)
+{
+  background-color: rgba(1, 0, 14, 0.329);
 }
 
-/* Prevent Body Overflow */
-body, html {
-  overflow-x: hidden;
-}
 
-/* Responsive Search Bar */
-.search-bar {
-  max-width: 300px;
-  width: 100%;
-}
-
-/* Responsive Search Bar */
-.search-bar {
-max-width: 800px; /* وضع حد أقصى لشريط البحث */
-width: 100%; /* التأكد من أن شريط البحث يستخدم المساحة المتاحة */
-margin-left: auto;
-margin-right: auto;
-}
-
-/* تعديل لمظهر شريط البحث في الشاشات الكبيرة */
-@media (min-width: 1200px) {
-.search-bar {
-max-width: 800px; /* زيادة العرض في الشاشات الكبيرة */
-}
-}
 
 
 /* Responsive Behavior */
@@ -159,5 +132,8 @@ max-width: 800px; /* زيادة العرض في الشاشات الكبيرة */
   .main-content {
     margin: 0;
     width: 100%;
+    text-align: center;
   }
+
 }
+

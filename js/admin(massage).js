@@ -1,6 +1,4 @@
-
-
-    // Sidebar Toggle Script 
+// Sidebar Toggle Script
 const toggleBtn = document.getElementById('toggle-btn');
 const sidebar = document.getElementById('sidebar');
 const mainContent = document.getElementById('main');
@@ -24,9 +22,63 @@ mobileMenuBtn?.addEventListener('click', function () {
   }
 });
 
+// Notification function
+function showNotification(title, message, type = 'success') {
+  const toastEl = document.getElementById('notification-toast');
+  const toastTitle = document.getElementById('toast-title');
+  const toastMessage = document.getElementById('toast-message');
+  
+  toastTitle.textContent = title;
+  toastMessage.textContent = message;
+  
+  const toast = new bootstrap.Toast(toastEl);
+  toastEl.classList.remove('bg-success', 'bg-danger', 'bg-warning');
+  
+  switch(type) {
+    case 'success':
+      toastEl.classList.add('bg-success', 'text-white');
+      break;
+    case 'error':
+      toastEl.classList.add('bg-danger', 'text-white');
+      break;
+    case 'warning':
+      toastEl.classList.add('bg-warning', 'text-dark');
+      break;
+    default:
+      toastEl.classList.add('bg-success', 'text-white');
+  }
+  
+  toast.show();
+}
 
-///////////////////////////////
-///////////////////////////////////
+// Confirmation dialog function
+async function showConfirmation(message) {
+  return new Promise((resolve) => {
+    const modalEl = document.getElementById('confirmationModal');
+    const modalBody = document.getElementById('confirmationModalBody');
+    const confirmBtn = document.getElementById('confirmAction');
+    
+    modalBody.textContent = message;
+    const modal = new bootstrap.Modal(modalEl);
+    
+    // Remove previous event listeners
+    const newConfirmBtn = confirmBtn.cloneNode(true);
+    confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
+    
+    modal.show();
+    
+    newConfirmBtn.addEventListener('click', () => {
+      modal.hide();
+      resolve(true);
+    });
+    
+    modalEl.addEventListener('hidden.bs.modal', () => {
+      resolve(false);
+    });
+  });
+}
+
+// Message Management Script
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize modal
   const replyModal = new bootstrap.Modal(document.getElementById('replyModal'));
@@ -163,6 +215,11 @@ function sendReply() {
   const subject = document.getElementById('reply-subject').value;
   const message = document.getElementById('reply-message').value;
   
+  if (!subject || !message) {
+    showNotification('Error', 'Please fill in all fields', 'error');
+    return;
+  }
+  
   // Get current data
   const contactData = JSON.parse(localStorage.getItem('contactData'));
   const originalMessage = contactData.requests[messageId];
@@ -178,7 +235,7 @@ function sendReply() {
     read: false
   };
   
-  // Add reply to storage (you might want a separate storage for replies)
+  // Add reply to storage
   if (!contactData.replies) {
     contactData.replies = [];
   }
@@ -193,6 +250,8 @@ function sendReply() {
   // Reload messages
   loadMessages();
   
+  // Show success notification
+  showNotification('Success', 'Reply sent successfully!');
 }
 
 function markAsRead(messageId) {
@@ -200,35 +259,49 @@ function markAsRead(messageId) {
   contactData.requests[messageId].read = true;
   localStorage.setItem('contactData', JSON.stringify(contactData));
   loadMessages();
+  showNotification('Success', 'Message marked as read');
 }
 
 function markAllAsRead() {
   const contactData = JSON.parse(localStorage.getItem('contactData'));
+  let count = 0;
+  
   contactData.requests.forEach(message => {
-    message.read = true;
+    if (!message.read) {
+      message.read = true;
+      count++;
+    }
   });
-  localStorage.setItem('contactData', JSON.stringify(contactData));
-  loadMessages();
+  
+  if (count > 0) {
+    localStorage.setItem('contactData', JSON.stringify(contactData));
+    loadMessages();
+    showNotification('Success', `${count} messages marked as read`);
+  } else {
+    showNotification('Info', 'No unread messages to mark', 'warning');
+  }
 }
 
-function deleteMessage(messageId) {
-  if (true) {
+async function deleteMessage(messageId) {
+  const confirmed = await showConfirmation('Are you sure you want to delete this message?');
+  if (confirmed) {
     const contactData = JSON.parse(localStorage.getItem('contactData'));
     contactData.requests.splice(messageId, 1);
     localStorage.setItem('contactData', JSON.stringify(contactData));
     loadMessages();
+    showNotification('Success', 'Message deleted successfully!');
   }
 }
 
-function deleteSelectedMessages() {
+async function deleteSelectedMessages() {
   const checkboxes = document.querySelectorAll('#messages-table-body input[type="checkbox"]:checked');
   if (checkboxes.length === 0) {
     return;
   }
   
-  if (true) {
+  const confirmed = await showConfirmation(`Are you sure you want to delete ${checkboxes.length} selected message(s)?`);
+  if (confirmed) {
     const contactData = JSON.parse(localStorage.getItem('contactData'));
-    
     const idsToDelete = Array.from(checkboxes).map(cb => parseInt(cb.getAttribute('data-id'))).sort((a, b) => b - a);
     
     idsToDelete.forEach(id => {
@@ -238,6 +311,7 @@ function deleteSelectedMessages() {
     localStorage.setItem('contactData', JSON.stringify(contactData));
     loadMessages();
     document.getElementById('select-all').checked = false;
+    showNotification('Success', `${checkboxes.length} message(s) deleted successfully!`);
   }
 }
 

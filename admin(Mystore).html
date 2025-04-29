@@ -15,6 +15,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <link rel="stylesheet" href="css/admin(Mystore).css">
+  <!-- <script>
+    // Define the roles that are allowed to access this page
+    const allowedRoles = ['admin(Mystore)']; // Customize this for each page
+  
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+  
+    if (!currentUser || !allowedRoles.includes(currentUser.role)) {
+      window.location.href = 'error.html';
+    }
+</script> -->
 </head>
 
 <body class="bg-light">
@@ -75,7 +85,7 @@
 
         <ul class="nav flex-column ulist p-2">
           <li>
-            <a href="#" class="nav-link text-danger d-flex align-items-center">
+            <a href="login.html" class="nav-link text-danger d-flex align-items-center">
               <i class='bx bxs-log-out-circle me-2'></i>
               <span class="sidebar-text">Log Out</span>
             </a>
@@ -91,7 +101,7 @@
         <h3 class="h2 ms-2 mt-4 mb-3">MyStore(Products)</h3>
         <div class="table-responsive">
           <table class="table text-center table-bordered table-hover">
-            <thead class="bg-success">
+            <thead class="bg-primary text-white">
                 <tr>
                     <th>Order ID</th>
                     <th>Products</th>

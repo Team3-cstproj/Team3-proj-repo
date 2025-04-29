@@ -141,7 +141,7 @@ background-color: #6b67669c;
     width: 100%;
   }
 }
-* Table enhancements */
+/* Table enhancements */
 .table {
   background-color: white;
   border-radius: 8px;
@@ -151,8 +151,7 @@ background-color: #6b67669c;
 
 .table th {
   font-weight: 600;
-  background-color: #1e75cc;
-  color: white;
+  background-color: #f8f9fa;
 }
 
 .table td {
@@ -186,4 +185,26 @@ background-color: #6b67669c;
   align-items: center;
   justify-content: center;
   margin: 0 2px;
+}
+
+/* Modal styles */
+.modal-header {
+  border-bottom: none;
+}
+
+/* Toast notifications */
+.toast {
+  border: none;
+}
+
+.toast.bg-success {
+  background-color: #198754 !important;
+}
+
+.toast.bg-danger {
+  background-color: #dc3545 !important;
+}
+
+.toast.bg-warning {
+  background-color: #ffc107 !important;
 }
