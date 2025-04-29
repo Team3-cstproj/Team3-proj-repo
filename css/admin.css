@@ -35,8 +35,8 @@
 
 /* Main Content */
 .main-content {
-  margin-left: 250px; /* adjust to sidebar width */
-  width: calc(100% - 250px); /* take remaining space */
+  margin-left: 250px;
+  width: calc(100% - 250px);
   transition: 0.3s;
   overflow-y: auto;
   height: 100vh;

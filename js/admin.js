@@ -70,8 +70,13 @@ function updateCustomersCount() {
   });
    document.getElementById('customers-number').textContent = uniqueCustomerIds.size;
 }
-
+function logout() {
+  // sessionStorage.removeItem('currentUser');
+  // window.location.href = 'login.html';
+  sessionStorage.clear();
+}
 document.addEventListener('DOMContentLoaded', function() {
   loadOrders();
   updateCustomersCount();
+  logout();
 });
