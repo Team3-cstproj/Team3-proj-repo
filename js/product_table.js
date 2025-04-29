@@ -1,12 +1,11 @@
-
 document.addEventListener("DOMContentLoaded", function () {
-    const info = JSON.parse(sessionStorage.getItem("currentUser")) || [];
     const products = JSON.parse(localStorage.getItem("products")) || [];
     const tbody = document.querySelector("table tbody");
     const pagination = document.querySelector(".pagination");
+
     let currentPage = 1;
     const rowsPerPage = 5;
-    let seller_product = products.filter(product => product.sellerId == info.id);
+    let seller_product = products.filter(product => product.sellerId == 302);
     function displayProducts(products, wrapper, rowsPerPage, page) {
         wrapper.innerHTML = "";
         page--;
@@ -14,10 +13,12 @@ document.addEventListener("DOMContentLoaded", function () {
         let start = page * rowsPerPage;
         let end = start + rowsPerPage;
         let paginatedItems = products.slice(start, end);
+        console.log(products);
         paginatedItems.forEach((product, index) => {
             console.log(products);
             console.log(paginatedItems);
             console.log(product.sellerId);
+            if(product.sellerId==302){
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td>${product.id}</td>
@@ -34,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </td>
             `;
             wrapper.appendChild(row);
+        }
         });
 
 
@@ -108,29 +110,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 e.preventDefault();
                 const index = this.getAttribute("data-index");
                 const row = this.closest("tr");
-                console.log(row);
-                console.log(index);
+
                 const availableCell = row.querySelector(".available-cell");
                 const priceCell = row.querySelector(".price-cell");
                 const icon = this.querySelector("i");
 
                 if (icon.classList.contains("fa-pen")) {
                     // Switch to edit mode
-                    availableCell.innerHTML = `<input type="number" value="${seller_product[index].availible}" class="form-control form-control-sm" style="width: 70px; padding: 2px 5px; border:1px solid black; margin:0px 5px;">`;
-                    priceCell.innerHTML = `<input type="number" value="${seller_product[index].price}" class="form-control form-control-sm" style="width: 70px; padding: 2px 5px; border:1px solid black; margin:0px 5px;">`;
+                    availableCell.innerHTML = `<input type="number" value="${products[index].availible}" class="form-control form-control-sm" style="width: 70px; padding: 2px 5px; border:1px solid black; margin:0px 5px;">`;
+                    priceCell.innerHTML = `<input type="number" value="${products[index].price}" class="form-control form-control-sm" style="width: 70px; padding: 2px 5px; border:1px solid black; margin:0px 5px;">`;
                     icon.classList.remove("fa-pen");
                     icon.classList.add("fa-save");
                 } else {
                     // Save changes
                     const newAvailable = availableCell.querySelector("input").value;
                     const newPrice = priceCell.querySelector("input").value;
-                    products.forEach((product) => {
-                        if (seller_product[index].id == product.id) {
-                            product.availible = parseInt(newAvailable);
-                            product.price = parseFloat(newPrice);
-                        }
-                    });
-                    console.log(seller_product[index]);
+
+                    products[index].availible = parseInt(newAvailable);
+                    products[index].price = parseFloat(newPrice);
+
                     // Update localStorage
                     localStorage.setItem("products", JSON.stringify(products));
 
