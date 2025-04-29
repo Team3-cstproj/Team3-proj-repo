@@ -25,6 +25,8 @@
 //         });
 //     });
 // });
+//finctoion to always update the cart count and total in the navbar
+window.addEventListener('load', updateCartDisplay);
 
 
 
@@ -232,11 +234,12 @@ function displayProducts() {
       }
     });
   });
-
+  
 
 
   updatePagination();
 }
+
 
 function addToCart(product, quantity) {
   const cart = JSON.parse(sessionStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
