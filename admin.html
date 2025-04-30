@@ -19,7 +19,7 @@
     const allowedRoles = ['admin']; // Customize this for each page
   
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-  
+    
     if (!currentUser || !allowedRoles.includes(currentUser.role)) {
       window.location.href = 'error.html';
     }
@@ -41,7 +41,7 @@
           </button>
         </div>
 
-        <ul class="nav nav-pills flex-column mb-auto ulist">
+        <ul class="nav nav-pills flex-column mb-auto ulist ">
           <li class="nav-item">
             <a href="#" class="nav-link text-dark">
               <i class='bx bxs-dashboard me-2'></i> <span>Dashboard</span>
@@ -52,11 +52,11 @@
               <i class='bx bxs-shopping-bag-alt me-2'></i> <span>MyStore</span>
             </a>
           </li>
-          <li>
+          <!-- <li>
             <a href="#" class="nav-link text-dark">
               <i class='bx bxs-doughnut-chart me-2'></i> <span>Analytics</span>
             </a>
-          </li>
+          </li> -->
           <li>
             <a href="admin(Massage).html" class="nav-link text-dark">
               <i class='bx bxs-message-dots me-2'></i> <span>Messages</span>
