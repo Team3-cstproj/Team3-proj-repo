@@ -12,9 +12,16 @@
     <script src="data/data.js"></script>
     <script src="data/requests.js"></script>
     <title>Home-E-comerce</title>
-    <style>
-
-    </style>
+    <script>
+        // Define the roles that are allowed to access this page
+        const allowedRoles = ['user']; // Customize this for each page
+      
+        const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      
+        if (currentUser && !allowedRoles.includes(currentUser.role)) {
+          window.location.href = 'error.html';
+        }
+    </script>
 </head>
 
 <body>
