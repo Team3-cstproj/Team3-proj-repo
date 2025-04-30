@@ -461,7 +461,7 @@ function formatDate(date) {
 // // Function to display replies
 document.addEventListener('DOMContentLoaded', () => {
   const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-  const userId = currentUser?.id;
+  const userId = currentUser.id;
   if (userId) {
     displayReplyById(userId);
   }
