@@ -426,6 +426,7 @@ function browseAllProducts() {
   clearFilters();
 }
 
+document.getElementById("clearFilterBtn").addEventListener("click", clearFilters);
 //nav bar -----start
 //  cart list baby
 const cartBtnList = document.querySelectorAll(".cart-trigger");

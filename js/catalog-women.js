@@ -470,7 +470,7 @@ function searchByWord() {
     return;
   }
 
-  products = getAllProducts();
+  products = filterProductsByCategory("women");
 
   if (searchTerm !== "") {
     products = products.filter(product =>
@@ -504,7 +504,7 @@ function filterByPrice() {
     return;
   }
 
-  products = getAllProducts();
+  products = filterProductsByCategory("women");
 
   if (searchTerm !== "") {
     products = products.filter(product =>
@@ -563,7 +563,7 @@ function clearFilters() {
   document.getElementById("maxPrice").value = '';
   document.getElementById("searchInput").value = '';
   searchTerm = "";
-  products = getAllProducts();
+  products = filterProductsByCategory("women");
   displayProducts();
 }
 
