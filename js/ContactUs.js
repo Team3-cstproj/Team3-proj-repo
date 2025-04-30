@@ -269,9 +269,13 @@ function calculateCartCount(items) {
 function myfun() {
   window.location.href = "contacts.html";
 }
-
-// Form validation
+/////=======================================================================================================///
+// // // // Form validation verssion 4
+// Form validation with login check
 document.addEventListener('DOMContentLoaded', function() {
+  // Display user info section if logged in
+  displayLoggedInUserInfo();
+  
   // Get form elements
   const form = document.getElementById('contactForm');
   const formResponse = document.getElementById('formResponse');
@@ -280,18 +284,52 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(event) {
       event.preventDefault();
       
+      // First, check if user is logged in
+      const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      
+      if (!currentUser) {
+        // User is not logged in - show error message
+        formResponse.style.display = 'block';
+        formResponse.classList.add('alert-danger');
+        formResponse.classList.remove('alert-success');
+        formResponse.innerHTML = 'You must be logged in to send a message. Please <a href="login.html">login</a> first.';
+        
+        // Don't proceed with form submission
+        return false;
+      }
+      
       // Check form validity
       if (form.checkValidity() === false) {
         form.classList.add('was-validated');
         return false;
       }
       
-      // Form is valid - save the data
+      // Get the email from the form
+      const emailValue = document.getElementById('email').value;
+      
+      // Get existing email-to-id mappings or create if doesn't exist
+      const emailToIdMapping = JSON.parse(localStorage.getItem('emailToIdMapping')) || {};
+      
+      // Check if this email already has an ID
+      let contactId;
+      if (emailToIdMapping[emailValue]) {
+        contactId = emailToIdMapping[emailValue];
+      } else {
+        // Generate a new ID for this email
+        contactId = generateUniqueId();
+        // Store the new email-to-id mapping
+        emailToIdMapping[emailValue] = contactId;
+        localStorage.setItem('emailToIdMapping', JSON.stringify(emailToIdMapping));
+      }
+      
+      // Form is valid and user is logged in - save the data
       const formData = {
+        id: contactId,
         name: document.getElementById('name').value,
         subject: document.getElementById('subject').value,
-        email: document.getElementById('email').value,
+        email: emailValue,
         message: document.getElementById('message').value,
+        userId: currentUser.id, // Add user ID from the logged in user
         date: new Date().toISOString().split('T')[0] // YYYY-MM-DD format
       };
       
@@ -328,6 +366,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 });
+
+// Generate a unique ID for new contacts
+function generateUniqueId() {
+  // Get existing contact IDs or start with an empty array
+  const contactData = JSON.parse(localStorage.getItem('contactData')) || { requests: [] };
+  
+  // Find the highest existing ID
+  let maxId = 0;
+  contactData.requests.forEach(request => {
+    if (request.id && parseInt(request.id) > maxId) {
+      maxId = parseInt(request.id);
+    }
+  });
+  
+  // Return next ID in sequence
+  return (maxId + 1).toString();
+}
+
 // Save contact request to localStorage
 function saveContactRequest(formData) {
   // Get existing data
@@ -339,3 +395,377 @@ function saveContactRequest(formData) {
   // Save back to localStorage
   localStorage.setItem('contactData', JSON.stringify(contactData));
 }
+/////////////===============================================================================///////////
+//////apearing section for replay to user 
+document.addEventListener('DOMContentLoaded', function() {
+  // Display user info section if logged in
+  displayLoggedInUserInfo();
+  
+});
+
+function displayLoggedInUserInfo() {
+  const userInfoSection = document.getElementById('loggedInUserInfo');
+  if (!userInfoSection) return;
+  
+  // Check if user is logged in
+  const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+  
+  if (currentUser) {
+    // User is logged in, show the section and populate fields
+    userInfoSection.style.display = 'block';
+    
+    document.getElementById('userDisplayName').value = currentUser.name || currentUser.username || '';
+    document.getElementById('userDisplayEmail').value = currentUser.email || '';
+    document.getElementById('userDisplayRole').value = capitalizeFirstLetter(currentUser.role || 'User');
+    
+    // Format join date if available
+    if (currentUser.joinDate) {
+      const joinDate = new Date(currentUser.joinDate);
+      if (!isNaN(joinDate.getTime())) {
+        document.getElementById('userDisplayJoinDate').value = formatDate(joinDate);
+      } else {
+        document.getElementById('userDisplayJoinDate').value = currentUser.joinDate;
+      }
+    } else {
+      document.getElementById('userDisplayJoinDate').value = 'Not available';
+    }
+    
+    // Auto-fill user info
+    const nameField = document.getElementById('name');
+    const emailField = document.getElementById('email');
+    
+    if (nameField && !nameField.value) {
+      nameField.value = currentUser.name || currentUser.username || '';
+    }
+    
+    if (emailField && !emailField.value) {
+      emailField.value = currentUser.email || '';
+    }
+  }
+
+    displayReplyById();
+
+}
+
+//capitalize first letter
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+//function to format date
+function formatDate(date) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return date.toLocaleDateString(undefined, options);
+}
+/////===================================================================================///
+// // Function to display replies
+document.addEventListener('DOMContentLoaded', () => {
+  const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+  const userId = currentUser?.id;
+  if (userId) {
+    displayReplyById(userId);
+  }
+});
+
+function displayReplyById(userId) {
+  const repliesContainer = document.getElementById('replies');
+  repliesContainer.innerHTML = '';
+
+  const contactData = JSON.parse(localStorage.getItem('contactData')) || {};
+
+  if (contactData.replies && contactData.replies.length > 0) {
+    // Find reply by user ID
+    const reply = contactData.replies.find(r => r.id === userId);
+
+    if (reply) {
+      const replyDiv = document.createElement('div');
+      replyDiv.className = 'reply-item p-3 border rounded';
+
+      const formattedContent = `
+        <h5>Subject: ${reply.subject}</h5>
+        <p>Dear ${reply.name} with email ${reply.email}</p>
+        <p>${reply.message || 'No message content'}</p>
+      `;
+
+      replyDiv.innerHTML = formattedContent;
+      repliesContainer.appendChild(replyDiv);
+    } else {
+      repliesContainer.innerHTML = `<p>No reply found with ID: ${userId}</p>`;
+    }
+  } else {
+    repliesContainer.innerHTML = '<p>No replies found.</p>';
+  }
+}
+////////==================================================================================
+// // Form validation verssion 1
+// document.addEventListener('DOMContentLoaded', function() {
+//   // Get form elements
+//   const form = document.getElementById('contactForm');
+//   const formResponse = document.getElementById('formResponse');
+  
+//   if (form) {
+//     form.addEventListener('submit', function(event) {
+//       event.preventDefault();
+      
+//       // Check form validity
+//       if (form.checkValidity() === false) {
+//         form.classList.add('was-validated');
+//         return false;
+//       }
+      
+//       // Form is valid - save the data
+//       const formData = {
+//         name: document.getElementById('name').value,
+//         subject: document.getElementById('subject').value,
+//         email: document.getElementById('email').value,
+//         message: document.getElementById('message').value,
+//         date: new Date().toISOString().split('T')[0] // YYYY-MM-DD format
+//       };
+      
+//       // Save to localStorage
+//       saveContactRequest(formData);
+      
+//       // Show success message
+//       formResponse.style.display = 'block';
+//       formResponse.classList.add('alert-success');
+//       formResponse.classList.remove('alert-danger');
+//       formResponse.innerHTML = 'Message sent successfully!';
+      
+//       // Reset form
+//       form.reset();
+//       form.classList.remove('was-validated');
+      
+//       // Hide message after 3 seconds
+//       setTimeout(() => {
+//         formResponse.style.display = 'none';
+//       }, 3000);
+//     });
+    
+//     // Additional validation for email format
+//     const emailInput = document.getElementById('email');
+//     if (emailInput) {
+//       emailInput.addEventListener('input', function() {
+//         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//         if (emailInput.value && !emailRegex.test(emailInput.value)) {
+//           emailInput.setCustomValidity('Please enter a valid email address');
+//         } else {
+//           emailInput.setCustomValidity('');
+//         }
+//       });
+//     }
+//   }
+// });
+// // Save contact request to localStorage
+// function saveContactRequest(formData) {
+//   // Get existing data
+//   const contactData = JSON.parse(localStorage.getItem('contactData')) || { requests: [] };
+  
+//   // Add new request
+//   contactData.requests.push(formData);
+  
+//   // Save back to localStorage
+//   localStorage.setItem('contactData', JSON.stringify(contactData));
+// }
+// ////==========check for cuurent user =======================================///
+// // // Form validation verssion 2
+// // Form validation with login check
+// document.addEventListener('DOMContentLoaded', function() {
+//   // Get form elements
+//   const form = document.getElementById('contactForm');
+//   const formResponse = document.getElementById('formResponse');
+  
+//   if (form) {
+//     form.addEventListener('submit', function(event) {
+//       event.preventDefault();
+      
+//       // First, check if user is logged in
+//       const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      
+//       if (!currentUser) {
+//         // User is not logged in - show error message
+//         formResponse.style.display = 'block';
+//         formResponse.classList.add('alert-danger');
+//         formResponse.classList.remove('alert-success');
+//         formResponse.innerHTML = 'You must be logged in to send a message. Please <a href="login.html">login</a> first.';
+        
+//         // Don't proceed with form submission
+//         return false;
+//       }
+      
+//       // Check form validity
+//       if (form.checkValidity() === false) {
+//         form.classList.add('was-validated');
+//         return false;
+//       }
+      
+//       // Form is valid and user is logged in - save the data
+//       const formData = {
+//         name: document.getElementById('name').value,
+//         subject: document.getElementById('subject').value,
+//         email: document.getElementById('email').value,
+//         message: document.getElementById('message').value,
+//         userId: currentUser.id, // Add user ID from the logged in user
+//         date: new Date().toISOString().split('T')[0] // YYYY-MM-DD format
+//       };
+      
+//       // Save to localStorage
+//       saveContactRequest(formData);
+      
+//       // Show success message
+//       formResponse.style.display = 'block';
+//       formResponse.classList.add('alert-success');
+//       formResponse.classList.remove('alert-danger');
+//       formResponse.innerHTML = 'Message sent successfully!';
+      
+//       // Reset form
+//       form.reset();
+//       form.classList.remove('was-validated');
+      
+//       // Hide message after 3 seconds
+//       setTimeout(() => {
+//         formResponse.style.display = 'none';
+//       }, 3000);
+//     });
+    
+//     // Additional validation for email format
+//     const emailInput = document.getElementById('email');
+//     if (emailInput) {
+//       emailInput.addEventListener('input', function() {
+//         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//         if (emailInput.value && !emailRegex.test(emailInput.value)) {
+//           emailInput.setCustomValidity('Please enter a valid email address');
+//         } else {
+//           emailInput.setCustomValidity('');
+//         }
+//       });
+//     }
+//   }
+// });
+
+// // Save contact request to localStorage
+// function saveContactRequest(formData) {
+//   // Get existing data
+//   const contactData = JSON.parse(localStorage.getItem('contactData')) || { requests: [] };
+  
+//   // Add new request
+//   contactData.requests.push(formData);
+  
+//   // Save back to localStorage
+//   localStorage.setItem('contactData', JSON.stringify(contactData));
+// }
+// /////==========================================================================//////////////==========///
+// // // // Form validation verssion 3
+// // Form validation with login check
+// document.addEventListener('DOMContentLoaded', function() {
+//   // Get form elements
+//   const form = document.getElementById('contactForm');
+//   const formResponse = document.getElementById('formResponse');
+  
+//   if (form) {
+//     form.addEventListener('submit', function(event) {
+//       event.preventDefault();
+      
+//       // First, check if user is logged in
+//       const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      
+//       if (!currentUser) {
+//         // User is not logged in - show error message
+//         formResponse.style.display = 'block';
+//         formResponse.classList.add('alert-danger');
+//         formResponse.classList.remove('alert-success');
+//         formResponse.innerHTML = 'You must be logged in to send a message. Please <a href="login.html">login</a> first.';
+        
+//         // Don't proceed with form submission
+//         return false;
+//       }
+      
+//       // Check form validity
+//       if (form.checkValidity() === false) {
+//         form.classList.add('was-validated');
+//         return false;
+//       }
+      
+//       // Get the email from the form
+//       const emailValue = document.getElementById('email').value;
+      
+//       // Get existing email-to-id mappings or create if doesn't exist
+//       const emailToIdMapping = JSON.parse(localStorage.getItem('emailToIdMapping')) || {};
+      
+//       // Check if this email already has an ID
+//       let contactId;
+//       if (emailToIdMapping[emailValue]) {
+//         contactId = emailToIdMapping[emailValue];
+//       } else {
+//         // Generate a new ID for this email
+//         contactId = generateUniqueId();
+//         // Store the new email-to-id mapping
+//         emailToIdMapping[emailValue] = contactId;
+//         localStorage.setItem('emailToIdMapping', JSON.stringify(emailToIdMapping));
+//       }
+      
+//       // Form is valid and user is logged in - save the data
+//       const formData = {
+//         id: contactId,
+//         name: document.getElementById('name').value,
+//         subject: document.getElementById('subject').value,
+//         email: emailValue,
+//         message: document.getElementById('message').value,
+//         userId: currentUser.id, // Add user ID from the logged in user
+//         date: new Date().toISOString().split('T')[0] // YYYY-MM-DD format
+//       };
+      
+//       // Save to localStorage
+//       saveContactRequest(formData);
+      
+//       // Show success message
+//       formResponse.style.display = 'block';
+//       formResponse.classList.add('alert-success');
+//       formResponse.classList.remove('alert-danger');
+//       formResponse.innerHTML = 'Message sent successfully!';
+      
+//       // Reset form
+//       form.reset();
+//       form.classList.remove('was-validated');
+//             setTimeout(() => {                        //hide massege 
+//         formResponse.style.display = 'none';
+//       }, 3000);
+//     });
+    
+//     // Additional validation for email format
+//     const emailInput = document.getElementById('email');
+//     if (emailInput) {
+//       emailInput.addEventListener('input', function() {
+//         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//         if (emailInput.value && !emailRegex.test(emailInput.value)) {
+//           emailInput.setCustomValidity('Please enter a valid email address');
+//         } else {
+//           emailInput.setCustomValidity('');
+//         }
+//       });
+//     }
+//   }
+// });
+
+// // Generate a unique ID for new contacts
+// function generateUniqueId() {
+//   const contactData = JSON.parse(localStorage.getItem('contactData')) || { requests: [] };
+  
+//   let maxId = 0;
+//   contactData.requests.forEach(request => {
+//     if (request.id && parseInt(request.id) > maxId) {
+//       maxId = parseInt(request.id);
+//     }
+//   });
+  
+//   return (maxId + 1);
+// }
+
+// // Save contact request to localStorage
+// function saveContactRequest(formData) {
+//   const contactData = JSON.parse(localStorage.getItem('contactData')) || { requests: [] };
+  
+//   contactData.requests.push(formData);
+  
+//   localStorage.setItem('contactData', JSON.stringify(contactData));
+// }
+////==================================================================================//
