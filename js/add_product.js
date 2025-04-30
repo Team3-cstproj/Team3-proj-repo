@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
             sold: 0, 
             availible: pieces,
             price: price,
-            image: imagePath,
+            img: imagePath,
             description: description,
             sellerId: sellerId,
             reviews: review

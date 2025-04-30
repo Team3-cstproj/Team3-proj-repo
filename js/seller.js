@@ -1,3 +1,5 @@
+var x;
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const sideMenue = document.querySelector("aside");
@@ -8,14 +10,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const info = JSON.parse(sessionStorage.getItem("currentUser")) || [];
     const tbody = document.querySelector("table tbody");
     const pagination = document.querySelector(".pagination");
+    document.getElementById("clearUser").addEventListener("click", function () {
+    sessionStorage.clear();
+    })
     document.getElementById("seller_name").textContent = info.username;
-    console.log(info.username);
     const rowsPerPage = 5;
     let seller_product = products.filter(product => product.sellerId == info.id);
     let seller_order = orders.filter(order => order.sellerId == info.id);
     
     let currentPage=1;
-    console.log(info);
     const themToggler = document.querySelector(".theme-toggler");
     
     menuBtn.addEventListener("click", () => {
@@ -27,8 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
     
     function animateCircleSales(percentage) {
         const circle = document.querySelector(".sales svg circle");
-        console.log(circle);
-        console.log(circle.r.baseVal.value);
         const radius = circle.r.baseVal.value;
         const circumference = 2 * Math.PI * radius;
     
@@ -43,7 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const circle = document.querySelector(".income svg circle");
         const radius = circle.r.baseVal.value;
         const circumference = 2 * Math.PI * radius;
-    
+        const totalIncome =   document.querySelector(".income .left h1");
+
         circle.style.strokeDasharray = `${circumference} ${circumference}`;
         circle.style.strokeDashoffset = circumference;
     
@@ -51,7 +53,10 @@ document.addEventListener("DOMContentLoaded", function () {
         circle.style.strokeDashoffset = offset;
     
         if(percentage<0) circle.style.stroke = '#ff4d4f';
-        else circle.style.stroke = '#41f1b6'
+        else {
+            circle.style.stroke = '#41f1b6';
+            totalIncome.style.color = "#41f1b6";
+        }
         
     }
     
@@ -86,15 +91,15 @@ document.addEventListener("DOMContentLoaded", function () {
         if (totalSalesElement) {
             const currentSales = parseInt(totalSalesElement.textContent.replace(/\$|,/g, "")) || 0;
     
-            animateValue(totalSalesElement, currentSales, totalSales, 1000);
+            animateValue(totalSalesElement, 0, totalSales, 1000);
         }
         if (totalExpenses) {
             const currentSales = parseInt(totalExpenses.textContent.replace(/\$|,/g, "")) || 0;
-            animateValue(totalExpenses, currentSales, totalTarget*7/10, 1000);
+            animateValue(totalExpenses, 0, totalTarget*7/10, 1000);
         }
         if (totalIncome) {
             const currentSales = parseInt(totalIncome.textContent.replace(/\$|,/g, "")) || 0;
-            animateValue(totalIncome, currentSales, totalSales - totalTarget*7/10, 1000);
+            animateValue(totalIncome, 0, totalSales - totalTarget*7/10, 1000);
             if((totalSales / (totalTarget*0.7)-1)<0) totalIncome.style.color = "#ff4d4f";
             else totalIncome.style.color = "#ff4d4f"
         }
@@ -136,8 +141,9 @@ document.addEventListener("DOMContentLoaded", function () {
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td>${order.id}</td>
-                <td>${order.userId}</td>
                 <td>${order.userName}</td>
+                <td>${order.totalPrice}</td>
+                <td ><a class:"primary" href="receipt.html?ids=${[+order.id]}"><span class="primary dtails-link">Details</span></a></td>
             `;
             wrapper.appendChild(row);
         });
@@ -207,12 +213,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
     
-    
     function update() {
         calculateTotalSales();
         displayOrders(seller_order, tbody, rowsPerPage, currentPage);
         setupPagination(seller_product, pagination, rowsPerPage);
     }
     update();
-    });
+    // document.querySelectorAll(".details-btn").forEach(button => {
+    //     button.addEventListener("click", function () {
+    //       // Find the closest row
+    //       const row = this.closest("tr");
+    //       // Get the first cell's text content (assumed to be ID)
+    //       const orderid = row.cells[0].textContent.trim();
+    //       // Redirect to the details page with the product ID
+    //       window.location.href = `receipt.html?ids=${[+orderid]}`;
+    //     });
+    // });
+
+
+});
     

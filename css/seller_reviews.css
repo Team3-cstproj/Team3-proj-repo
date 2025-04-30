@@ -11,10 +11,7 @@ main{
   width:70%;
   margin-left: 3%;
 }
-aside{
-  width: 250px;
-  margin-top: 70px;
-}
+
 .form-container {
     background: #fff;
     padding: 2rem;
@@ -149,73 +146,20 @@ body {
     padding: 20px;
   }
 
-  .container1 {
-    width: 700px;
-    margin: auto;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  }
-
-  h1 {
-    font-size: 28px;
-    margin-bottom: 20px;
-  }
-
-  .product-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 30px;
-  }
-
-  .product {
-    background: #eef3f8;
-    padding: 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    width: 200px;
-    text-align: center;
-    transition: background 0.3s;
-  }
-
-  .product:hover {
-    background: #d9e6f2;
-  }
-
-  .reviews {
-    display: none;
-  }
-
-  .reviews.active {
-    display: block;
-  }
-
   .review {
-    border-bottom: 1px solid #eee;
+    border-top: 1px solid #ccc;
     padding: 10px 0;
   }
-
-  .review:last-child {
-    border-bottom: none;
-  }
-
-  .review .username {
+  .username {
     font-weight: bold;
   }
-
-  .review .date {
-    color: #888;
-    font-size: 14px;
-  }
-
   .stars {
-    color: #FFD700;
-    font-size: 16px;
-    margin: 4px 0;
+    color: goldenrod;
   }
-
   .comment {
-    color: #333;
+    margin: 5px 0;
+  }
+  .date {
+    font-size: 0.9em;
+    color: #666;
   }
