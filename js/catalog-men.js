@@ -142,6 +142,7 @@ let currentPage = 1;
 // }
 
 window.addEventListener('load', updateCartDisplay);
+document.getElementById("clearFilterBtn").addEventListener("click", clearFilters);
 
 
 function displayProducts() {
@@ -227,6 +228,7 @@ function displayProducts() {
 
     productContainer.innerHTML += productCard;
   });
+
 
   document.querySelectorAll('.cart-button').forEach(button => {
     button.addEventListener('click', function(e) {
