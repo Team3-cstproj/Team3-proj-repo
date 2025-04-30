@@ -14,7 +14,7 @@
     
       const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     
-      if ( !allowedRoles.includes(currentUser.role)) {
+      if ( currentUser && !allowedRoles.includes(currentUser.role)) {
         window.location.href = 'error.html';
        }
     </script>
@@ -577,11 +577,11 @@
       <div class="category-section p-5">
         <h2>For Her</h2>
         <ul class="category-list list-unstyled ">
-            <li><a href="#">Women Jeans</a></li>
-            <li><a href="#">Tops and Shirts</a></li>
-            <li><a href="#">Women Jackets</a></li>
-            <li><a href="#">Heels and Flats</a></li>
-            <li><a href="#">Women Accessories</a></li>
+            <li>Women Jeans</li>
+            <li>Tops and Shirts</li>
+            <li>Women Jackets</li>
+            <li>Heels and Flats</li>
+            <li>Women Accessories</li>
         </ul>
       </div>
     </div>
@@ -590,11 +590,11 @@
       <div class="category-section p-5">
         <h2>For Him</h2>
         <ul class="category-list list-unstyled ">
-          <li><a href="#">Man Jeans</a></li>
-          <li><a href="#">Man Shirts</a></li>
-          <li><a href="#">Man Jackets</a></li>
-          <li><a href="#">Man shose</a></li>
-          <li><a href="#">Man Accessories</a></li>
+          <li>Man Jeans</li>
+          <li>Man Shirts</li>
+          <li>Man Jackets</li>
+          <li>Man shose</li>
+          <li>Man Accessories</li>
         </ul>
       </div>
     </div>
