@@ -607,7 +607,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Remove items from cart
 function removeCartItem(itemId) {
-  try {
+
     const cart = JSON.parse(sessionStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
     
     const itemIndex = cart.items.findIndex(item => item.id === itemId);
@@ -622,9 +622,7 @@ function removeCartItem(itemId) {
       
       updateCartDisplay();
     }
-  } catch (error) {
-    console.error("Error removing item from cart:", error);
-  }
+
 }
 
 
