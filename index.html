@@ -19,79 +19,78 @@
 
 <body>
   <div class="first_wrapeer">
-    <!-- navbar in labtop and tablet and tv screen -->
-     <!-- nav -->
+   <!-- Header Section -->
+    <!-- nav -->
     <!-- ////////////////////////////////// -->
 
       <!--  navbar that works on all screen  -->
-      <nav class="navbar navbar-expand-lg bg-body-tertiary p-3 bg-primary p-2 text-dark bg-opacity-75">
-        <div class="container-fluid">
-          <a href="index.html"> <img src="img_index/logo1@2x-free-img.png" width="150px" height="50px"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="d-flex order-lg-3 ms-auto ms-lg-0">
-                <ul class="navbar-nav flex-row">
-                    <li class="nav-item px-2">
-                        <a class="nav-link cart-trigger" href="#">$0.00</a>
-                    </li>
-                    <li class="nav-item px-2">
-                        <!-- <a class="nav-link cart-trigger" href="#"><i class="fa-sharp fa-solid fa-bag-shopping"></i><sup class="bg-light rounded-circle"><span class="text-dark">0</span></sup></a> -->
-                    </li>
-                    <li class="nav-item px-2">
-                        <a class="nav-link" href="login.html"><i class="fa-solid fa-user"></i></a>
-                    </li>
-                </ul>
-            </div>
-            <!-- Collapsible menu content -->
-            <div class="collapse navbar-collapse order-lg-2" id="navbarText">
+<nav class="navbar navbar-expand-lg bg-body-tertiary p-3 bg-primary p-2 text-dark bg-opacity-75">
+    <div class="container-fluid">
+      <a href="index.html"> <img src="img_index/logo1@2x-free-img.png" width="150px" height="50px"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="d-flex order-lg-3 ms-auto ms-lg-0">
+            <ul class="navbar-nav flex-row">
+                <li class="nav-item px-2">
+                    <a class="nav-link cart-trigger" href="#">$0.00</a>
+                </li>
+                <li class="nav-item px-2">
+                    <!-- <a class="nav-link cart-trigger" href="#"><i class="fa-sharp fa-solid fa-bag-shopping"></i><sup class="bg-light rounded-circle"><span class="text-dark">0</span></sup></a> -->
+                </li>
+                <li class="nav-item px-2">
+                    <a class="nav-link" href="login.html"><i class="fa-solid fa-user"></i></a>
+                </li>
+            </ul>
+        </div>
+        <!-- Collapsible menu content -->
+        <div class="collapse navbar-collapse order-lg-2" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="catalog-Everything.html">EVERYTHING</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="catalog-women.html">WOMEN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="catalog-men.html">MEN</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="catalog-Everything.html">EVERYTHING</a>
+                        <a class="nav-link" href="about.html">ABOUT</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="catalog-women.html">WOMEN</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="catalog-men.html">MEN</a>
+                        <a class="nav-link" href="contacts.html">CONTACT US</a>
                     </li>
                 </ul>
-                <span class="navbar-text">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">ABOUT</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contacts.html">CONTACT US</a>
-                        </li>
-                    </ul>
-                </span>
-            </div>
+            </span>
         </div>
-      </nav>
+    </div>
+  </nav>
+  
+  
+  
+      <!-- Cart Sidebar -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="close-cart" id="closeCart">&times;</button>
+    </div>
+    <div class="cart-content">
+      <p>Your cart is empty.</p>
+    </div>
+    <div class="cart-footer">
+      <a href="#" class="continue-shopping bg-primary" id="continueShopping">Continue Shopping</a>
+    </div>
+  </div>
       
-      
-      
-          <!-- Cart Sidebar -->
-      <div class="cart-overlay" id="cartOverlay"></div>
-      
-      <div class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-          <h3>Your Cart</h3>
-          <button class="close-cart" id="closeCart">&times;</button>
-        </div>
-        <div class="cart-content">
-          <p>Your cart is empty.</p>
-        </div>
-        <div class="cart-footer">
-          <a href="#" class="continue-shopping bg-primary" id="continueShopping">Continue Shopping</a>
-        </div>
-      </div>
-        
-      
-      <!-- end of nav  -->
-       <!-- /////////////////////////////////////// -->   
+    
+    <!-- end of nav  -->
           
 <!--discount section-->
   <div class="mx-0 container-fluid py-5  fw-bold">
@@ -110,7 +109,7 @@
   </div>  <!--first wrapeer end-->
 
 <!-- 5 logo gallary-->
-  <div id="innf" class="container-fluid bg-light">
+  <div id="innf" class="container-fluid p-0 bg-light">
 
 
     <div class="container-fluid p-0 mx-0 my-5 ">
@@ -191,232 +190,16 @@
           <h1 class="section-title">Featured Products</h1>
                 </nav>
 
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3 ">
-            <div class="col">
-                
-                <!--card1 start-->
-                <div class="card product-card">
-                    <img src="img_index/product-m-jeans4-600x600.jpg" class="card-img-top"
-                        alt="Slim Fit jeans">
-                        <div class="hover-icons">
-                           
-                            <a href="#" class="icon-btn cart-button">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span class="tooltip-text">Add to cart</span>
-                                <span class="cart-circle">
-                                    <i class="fas fa-shopping-bag"></i>
-                                </span>
-                            </a>
-                            
-                        </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Slim Fit jeans</h5>
-                        <p class="text-muted small">men</p>
-                        <p class="card-text">$200.00</p>
-                        <div class="star-rating">
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-                <!--card end-->
-            </div>
-            <div class="col">
-                <!--card2 start-->
-                <div class="card product-card">
-                    <img src="img_index/product-hoodie1-600x600.jpg" class="card-img-top"
-                        alt="Classic Denim Hoodie">
-                        <div class="hover-icons">
-                           
-                            <a href="#" class="icon-btn cart-button">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span class="tooltip-text">Add to cart</span>
-                                <span class="cart-circle">
-                                    <i class="fas fa-shopping-bag"></i>
-                                </span>
-                            </a>
-                            
-                        </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Classic Denim Hoodie</h5>
-                        <p class="text-muted small">men</p>
-                        <p class="card-text">$200.00</p>
-                        <div class="star-rating">
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-                <!--card3 end-->
-            </div>
-            <div class="col">
-                <!--card3 start-->
-                <div class="card product-card">
-                    <img src="img_index/product-accessory3-600x600.jpg" class="card-img-top"
-                        alt="Women's accessory">
-                        <div class="hover-icons">
-                           
-                            <a href="#" class="icon-btn cart-button">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span class="tooltip-text">Add to cart</span>
-                                <span class="cart-circle">
-                                    <i class="fas fa-shopping-bag"></i>
-                                </span>
-                            </a>
-                            
-                        </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Women's accessory</h5>
-                        <p class="text-muted small">Women</p>
-                        <p class="card-text">$200.00</p>
-                        <div class="star-rating">
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-                <!--card end-->
-            </div>
-            <div class="col">
-                <!--card4 start-->
-                <div class="card product-card">
-                    <img src="img_index/product-m-jeans3-600x600.jpg" class="card-img-top"
-                        alt="Cashmere Slim jeans">
-                        <div class="hover-icons">
-                           
-                            <a href="#" class="icon-btn cart-button">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span class="tooltip-text">Add to cart</span>
-                                <span class="cart-circle">
-                                    <i class="fas fa-shopping-bag"></i>
-                                </span>
-                            </a>
-                            
-                        </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Cashmere Slim jeans</h5>
-                        <p class="text-muted small">men</p>
-                        <p class="card-text">$200.00</p>
-                        <div class="star-rating">
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-                <!--card end-->
-            </div>
-            <div class="col">
-                <!--card5 start-->
-                <div class="card product-card">
-                    <img src="img_index/product-accessory1-600x600.jpg" class="card-img-top"
-                        alt="Women's accessory">
-                        <div class="hover-icons">
-                           
-                            <a href="#" class="icon-btn cart-button">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span class="tooltip-text">Add to cart</span>
-                                <span class="cart-circle">
-                                    <i class="fas fa-shopping-bag"></i>
-                                </span>
-                            </a>
-                            
-                        </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Women's accessory</h5>
-                        <p class="text-muted small">Women</p>
-                        <p class="card-text">$200.00</p>
-                        <div class="star-rating">
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-                <!--card end-->
-            </div>
-            <div class="col">
-                <!--card6 start-->
-                <div class="card product-card">
-                    <img src="img_index/product-m-jeans2-600x600.jpg" class="card-img-top"
-                        alt="Slim Fit jeans">
-                        <div class="hover-icons">
-                           
-                            <a href="#" class="icon-btn cart-button">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span class="tooltip-text">Add to cart</span>
-                                <span class="cart-circle">
-                                    <i class="fas fa-shopping-bag"></i>
-                                </span>
-                            </a>
-                            
-                        </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Slim Fit jeans</h5>
-                        <p class="text-muted small">men</p>
-                        <p class="card-text">$150.00</p>
-                        <div class="star-rating">
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-                <!--card end-->
-              </div>
-              <div class="col">
-                  <!--card7 start-->
-                  <div class="card product-card">
-                      <img src="img_index/product-m-jeans1-600x600.jpg" class="card-img-top"
-                          alt="Slim Fit jeans">
-                          <div class="hover-icons">
-                             
-                              <a href="#" class="icon-btn cart-button">
-                                  <i class="fas fa-shopping-cart"></i>
-                                  <span class="tooltip-text">Add to cart</span>
-                                  <span class="cart-circle">
-                                      <i class="fas fa-shopping-bag"></i>
-                                  </span>
-                              </a>
-                              
-                          </div>
-                      <div class="card-body">
-                          <h5 class="card-title">Slim Fit jeans</h5>
-                          <p class="text-muted small">men</p>
-                          <p class="card-text">$200.00</p>
-                          <div class="star-rating">
-                              <i class="far fa-star"></i>
-                              <i class="far fa-star"></i>
-                              <i class="far fa-star"></i>
-                              <i class="far fa-star"></i>
-                              <i class="far fa-star"></i>
-                          </div>
-                      </div>
-                  </div>
-                  <!--card end-->
-                </div>
-                <div class="col">
-                    <!--card8 start-->
-                    <div class="card product-card">
-                        <img src="img_index/sports-shoe1-600x600.jpg" class="card-img-top"
-                            alt="Sports shoes">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-4 " id="product-list">
+
+
+                    <div class="col">
+                        <!--card start-->
+                        <div class="card product-card">
+                            <img src="https://media.filgoal.com/news/verylarge/353967_0.jpg" class="card-img-top"
+                                alt="Basic Gray Jeans">
                             <div class="hover-icons">
-                               
+
                                 <a href="#" class="icon-btn cart-button">
                                     <i class="fas fa-shopping-cart"></i>
                                     <span class="tooltip-text">Add to cart</span>
@@ -424,73 +207,11 @@
                                         <i class="fas fa-shopping-bag"></i>
                                     </span>
                                 </a>
-                                
+
                             </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Sports shoes</h5>
-                            <p class="text-muted small">men</p>
-                            <p class="card-text">$150.00</p>
-                            <div class="star-rating">
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <!--card end-->
-                  </div>
-                  <div class="col">
-                      <!--card9 start-->
-                      <div class="card product-card">
-                          <img src="img_index/product-w-jeans2-600x600.jpg" class="card-img-top"
-                              alt="Lace jeans">
-                              <div class="hover-icons">
-                                 
-                                  <a href="#" class="icon-btn cart-button">
-                                      <i class="fas fa-shopping-cart"></i>
-                                      <span class="tooltip-text">Add to cart</span>
-                                      <span class="cart-circle">
-                                          <i class="fas fa-shopping-bag"></i>
-                                      </span>
-                                  </a>
-                                  
-                              </div>
-                          <div class="card-body">
-                              <h5 class="card-title">Lace jeans</h5>
-                              <p class="text-muted small">Women</p>
-                              <p class="card-text">$150.00</p>
-                              <div class="star-rating">
-                                  <i class="far fa-star"></i>
-                                  <i class="far fa-star"></i>
-                                  <i class="far fa-star"></i>
-                                  <i class="far fa-star"></i>
-                                  <i class="far fa-star"></i>
-                              </div>
-                          </div>
-                      </div>
-                      <!--card end-->
-                    </div>
-                    <div class="col">
-                        <!--card10 start-->
-                        <div class="card product-card">
-                            <img src="img_index/tshirt4-600x600.jpg" class="card-img-top"
-                                alt="Gym t-shirt">
-                                <div class="hover-icons">
-                                   
-                                    <a href="#" class="icon-btn cart-button">
-                                        <i class="fas fa-shopping-cart"></i>
-                                        <span class="tooltip-text">Add to cart</span>
-                                        <span class="cart-circle">
-                                            <i class="fas fa-shopping-bag"></i>
-                                        </span>
-                                    </a>
-                                    
-                                </div>
                             <div class="card-body">
-                                <h5 class="card-title">Gym t-shirt</h5>
-                                <p class="text-muted small">men</p>
+                                <h5 class="card-title">Basic Gray Jeans</h5>
+                                <p class="text-muted small">Women</p>
                                 <p class="card-text">$150.00</p>
                                 <div class="star-rating">
                                     <i class="far fa-star"></i>
@@ -502,8 +223,167 @@
                             </div>
                         </div>
                         <!--card end-->
-                               
-  </div>    
+                    </div>
+                    <div class="col">
+                        <!--card start-->
+                        <div class="card product-card">
+                            <img src="https://media.filgoal.com/news/verylarge/353967_0.jpg" class="card-img-top"
+                                alt="Basic Gray Jeans">
+                            <div class="hover-icons">
+
+                                <a href="#" class="icon-btn cart-button">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="tooltip-text">Add to cart</span>
+                                    <span class="cart-circle">
+                                        <i class="fas fa-shopping-bag"></i>
+                                    </span>
+                                </a>
+
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Basic Gray Jeans</h5>
+                                <p class="text-muted small">Women</p>
+                                <p class="card-text">$150.00</p>
+                                <div class="star-rating">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!--card end-->
+                    </div>
+                    <div class="col">
+                        <!--card start-->
+                        <div class="card product-card">
+                            <img src="https://media.filgoal.com/news/verylarge/353967_0.jpg" class="card-img-top"
+                                alt="Basic Gray Jeans">
+                            <div class="hover-icons">
+
+                                <a href="#" class="icon-btn cart-button">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="tooltip-text">Add to cart</span>
+                                    <span class="cart-circle">
+                                        <i class="fas fa-shopping-bag"></i>
+                                    </span>
+                                </a>
+
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Basic Gray Jeans</h5>
+                                <p class="text-muted small">Women</p>
+                                <p class="card-text">$150.00</p>
+                                <div class="star-rating">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!--card end-->
+                    </div>
+                    <div class="col">
+                        <!--card start-->
+                        <div class="card product-card">
+                            <img src="https://media.filgoal.com/news/verylarge/353967_0.jpg" class="card-img-top"
+                                alt="Basic Gray Jeans">
+                            <div class="hover-icons">
+
+                                <a href="#" class="icon-btn cart-button">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="tooltip-text">Add to cart</span>
+                                    <span class="cart-circle">
+                                        <i class="fas fa-shopping-bag"></i>
+                                    </span>
+                                </a>
+
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Basic Gray Jeans</h5>
+                                <p class="text-muted small">Women</p>
+                                <p class="card-text">$150.00</p>
+                                <div class="star-rating">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!--card end-->
+                    </div>
+                    <div class="col">
+                        <!--card start-->
+                        <div class="card product-card">
+                            <img src="https://media.filgoal.com/news/verylarge/353967_0.jpg" class="card-img-top"
+                                alt="Basic Gray Jeans">
+                            <div class="hover-icons">
+
+                                <a href="#" class="icon-btn cart-button">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="tooltip-text">Add to cart</span>
+                                    <span class="cart-circle">
+                                        <i class="fas fa-shopping-bag"></i>
+                                    </span>
+                                </a>
+
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Basic Gray Jeans</h5>
+                                <p class="text-muted small">Women</p>
+                                <p class="card-text">$150.00</p>
+                                <div class="star-rating">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!--card end-->
+                    </div>
+                    <div class="col">
+                        <!--card start-->
+                        <div class="card product-card">
+                            <img src="https://media.filgoal.com/news/verylarge/353967_0.jpg" class="card-img-top"
+                                alt="Basic Gray Jeans">
+                            <div class="hover-icons">
+
+                                <a href="#" class="icon-btn cart-button">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="tooltip-text">Add to cart</span>
+                                    <span class="cart-circle">
+                                        <i class="fas fa-shopping-bag"></i>
+                                    </span>
+                                </a>
+
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Basic Gray Jeans</h5>
+                                <p class="text-muted small">Women</p>
+                                <p class="card-text">$150.00</p>
+                                <div class="star-rating">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!--card end-->
+                    </div>
+
+                </div>
+
+
+      
 </div>
 <!--ofeer and some logoes-->
 <div class="second_wrapeer my-5" >
