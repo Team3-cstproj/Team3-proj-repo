@@ -37,7 +37,30 @@ const initialContactData = {
       read: false
     }
   ],
-  replies: []
+  replies: [
+        {
+      id: 501,
+      name: "John Doe",
+      subject: "replay to your request",
+      email: "user1@example.com",
+      message: "We are considring your request we will check it and response with in 48 hours"
+    },
+    {
+      id: 502,
+      name: "Jane Smith",
+      subject:"replay to your request",
+      email: "user2@example.com",
+      message: "We are considring your request we will check it and response with in 48 hours"
+        },
+    {
+      id: 503,
+      name: "Robert Johnson",
+      subject: "replay to your request",
+      email: "user3@example.com",
+      message: "We are considring your request we will check it and response with in 48 hours"
+    }
+    
+  ]
 };
 
 function initializeContactData() {

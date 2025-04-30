@@ -510,7 +510,7 @@ function updateCartSidebar(cart, cartContent, cartFooter) {
 
 // Add function to remove items from cart
 function removeCartItem(itemId) {
-  try {
+
     const cart = JSON.parse(sessionStorage.getItem('cart')) || { items: [], total: 0, count: 0 };
     
     // Find item index
@@ -530,9 +530,7 @@ function removeCartItem(itemId) {
       // Update display
       updateCartDisplay();
     }
-  } catch (error) {
-    console.error("Error removing item from cart:", error);
-  }
+
 }
 
 // Added missing function for displaying related products
