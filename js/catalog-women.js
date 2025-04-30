@@ -627,7 +627,7 @@ function updateCartSidebar(cart) {
         ${cart.items
           .map(
             (item) => `
-          <div class="cart-item d-flex justify-content-between align-items-center mb-3">
+          <div class="cart-item d-flex justify-content-between align-items-center mb-3" data-id="${item.id}">
             <div class="d-flex align-items-center">
               <img src="${item.img}" alt="${
               item.name
@@ -639,10 +639,13 @@ function updateCartSidebar(cart) {
             }</small>
               </div>
             </div>
-            <div>
-              <span class="fw-bold">$${(item.price * item.quantity).toFixed(
+            <div class="d-flex align-items-center">
+              <span class="fw-bold me-3">$${(item.price * item.quantity).toFixed(
                 2
               )}</span>
+              <button class="btn btn-sm btn-outline-danger remove-item">
+                <i class="fas fa-times"></i>
+              </button>
             </div>
           </div>
         `
@@ -658,12 +661,52 @@ function updateCartSidebar(cart) {
 
     cartContent.innerHTML = html;
 
+    // Add event listeners to remove buttons
+    document.querySelectorAll(".remove-item").forEach((button) => {
+      button.addEventListener("click", function() {
+        const cartItem = this.closest(".cart-item");
+        const productId = parseInt(cartItem.getAttribute("data-id"));
+        removeFromCart(productId);
+      });
+    });
+
     // Update footer with View Cart and Checkout buttons
     cartFooter.innerHTML = `
       <div class="d-flex flex-column gap-2">
         <a href="cart.html" class="btn btn-primary">View Cart</a>
       </div>
     `;
+  }
+}
+
+function removeFromCart(productId) {
+  const cart = JSON.parse(sessionStorage.getItem("cart")) || {
+    items: [],
+    total: 0,
+    count: 0,
+  };
+
+  // Find the item to remove
+  const itemIndex = cart.items.findIndex((item) => item.id === productId);
+  
+  if (itemIndex !== -1) {
+    const item = cart.items[itemIndex];
+    
+    // Update totals
+    cart.total -= item.price * item.quantity;
+    cart.count -= item.quantity;
+    
+    // Remove item from array
+    cart.items.splice(itemIndex, 1);
+    
+    // Save updated cart
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+    
+    // Update display
+    updateCartDisplay();
+    displayProducts(); // Refresh product display to reflect changes
+    // Update product availability display
+    
   }
 }
 // nav bar -------end
