@@ -311,83 +311,121 @@ window.addEventListener('load', displayProducts);
 // search bar
 let searchTerm = "";
 document.getElementById("searchBtn").addEventListener("click", searchByWord);
+document.getElementById("filterPriceBtn").addEventListener("click", filterByPrice);
+
+// Handle search by word
 function searchByWord() {
   searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
-
-
-  if (searchTerm === "") {
-    products = getAllProducts(); // Reset to all products if search is empty
-    products = applySorting(products); // Reapply sorting
-    displayProducts(); // Update the display
-    return; // Don't change anything if search is empty
-  }
-
-  
-  products = getAllProducts(); // Fetch all products again to reset the filter
   let minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
   let maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
 
   if (minPrice > maxPrice) {
     alert("Minimum price cannot be greater than maximum price.");
-    return; // Don't apply filter if invalid range
+    return;
   }
+
+  products = getAllProducts();
 
   if (searchTerm !== "") {
-    products = getAllProducts().filter(product => product.name.toLowerCase().includes(searchTerm) && product.price >= minPrice && product.price <= maxPrice);
+    products = products.filter(product =>
+      product.name.toLowerCase().includes(searchTerm) &&
+      product.price >= minPrice &&
+      product.price <= maxPrice
+    );
   } else {
-    products = getAllProducts().filter(p => p.price >= minPrice && p.price <= maxPrice);
+    products = products.filter(product =>
+      product.price >= minPrice &&
+      product.price <= maxPrice
+    );
   }
 
-  // 1. Filter products by name
-  products = products.filter(product =>
-    product.name.toLowerCase().includes(searchTerm)
-  );
   if (products.length === 0) {
-    alert("No products found matching your search term.");
-    products = getAllProducts(); // Reset to all products if no match found
-    products = applySorting(products); // Reapply sorting
-    displayProducts(); // Update the display
-
+    showNoProductsFound();
+    return;
   }
 
-
-  // 2. Apply sorting to the filtered products
   products = applySorting(products);
-
-
   displayProducts();
 }
 
-// Filter by price range
-document.getElementById("filterPriceBtn").addEventListener("click", filterByPrice);
+// Handle price filtering
 function filterByPrice() {
   let minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
   let maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
 
   if (minPrice > maxPrice) {
     alert("Minimum price cannot be greater than maximum price.");
-    return; // Don't apply filter if invalid range
+    return;
   }
+
+  products = getAllProducts();
 
   if (searchTerm !== "") {
-    products = getAllProducts().filter(product => product.name.toLowerCase().includes(searchTerm) && product.price >= minPrice && product.price <= maxPrice);
+    products = products.filter(product =>
+      product.name.toLowerCase().includes(searchTerm) &&
+      product.price >= minPrice &&
+      product.price <= maxPrice
+    );
   } else {
-    products = getAllProducts().filter(p => p.price >= minPrice && p.price <= maxPrice);
+    products = products.filter(product =>
+      product.price >= minPrice &&
+      product.price <= maxPrice
+    );
   }
 
+  if (products.length === 0) {
+    showNoProductsFound();
+    return;
+  }
 
-  products = applySorting(products); // Reapply sorting after filtering
-
+  products = applySorting(products);
   currentPage = 1;
   displayProducts();
 }
 
-document.getElementById("clearFilterBtn").addEventListener("click", function () {
+// Reusable UI if no products found
+function showNoProductsFound() {
+  const productContainer = document.getElementById("product-list");
+  productContainer.innerHTML = `
+    <div class="container my-5 d-block w-75">
+      <div class="border rounded-3 bg-light text-center p-4 p-md-5">
+        <div class="bg-secondary bg-opacity-25 rounded-circle d-inline-flex p-4 mb-4">
+          <i class="fas fa-search-minus fa-3x text-secondary"></i>
+        </div>
+        <h3 class="fw-semibold text-dark">No Products Found</h3>
+        <p class="text-muted mx-auto" style="max-width: 500px;">
+          We couldn't find any products matching your current filters.
+          Try adjusting your search criteria or browse our other categories.
+        </p>
+        <div class="d-flex flex-column flex-sm-row justify-content-center gap-3 pt-3">
+          <button class="btn btn-primary d-flex align-items-center justify-content-center gap-2" onclick="clearFilters()" id="clearFilterBtn">
+            <i class="fas fa-sync-alt"></i>
+            Clear Filters
+          </button>
+          <button class="btn btn-outline-secondary" onclick="browseAllProducts()">Browse All Products</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  
+}
+
+// Clear all filters
+function clearFilters() {
   document.getElementById("minPrice").value = '';
   document.getElementById("maxPrice").value = '';
-  products = getAllProducts(); // Reset to all products
-searchByWord(); // Reapply search if any
-});
+  document.getElementById("searchInput").value = '';
+  searchTerm = "";
+  products = getAllProducts();
+  displayProducts();
+}
+
+// Reset all filters via Browse All Products
+function browseAllProducts() {
+  clearFilters();
+}
+
 //nav bar -----start
 //  cart list baby
 const cartBtnList = document.querySelectorAll(".cart-trigger");
