@@ -141,6 +141,9 @@ let currentPage = 1;
 //     updatePagination();
 // }
 
+window.addEventListener('load', updateCartDisplay);
+
+
 function displayProducts() {
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = currentPage * productsPerPage;
@@ -574,38 +577,53 @@ function updateCartDisplay() {
 }
 
 function updateCartSidebar(cart) {
-    const cartContent = document.querySelector(".cart-content");
-    const cartFooter = document.querySelector(".cart-footer");
+  const cartContent = document.querySelector(".cart-content");
+  const cartFooter = document.querySelector(".cart-footer");
 
-    if (cart.items.length === 0) {
-        cartContent.innerHTML = "<p>Your cart is empty.</p>";
-        cartFooter.innerHTML = `
+  if (cart.items.length === 0) {
+    cartContent.innerHTML = "<p>Your cart is empty.</p>";
+    cartFooter.innerHTML = `
       <a href="#" class="continue-shopping bg-primary" id="continueShopping">Continue Shopping</a>
     `;
 
-        // Add event listener to continue shopping button
-        document.getElementById("continueShopping").addEventListener("click", function (e) {
-            e.preventDefault();
-            cartSidebar.classList.remove("active");
-            cartOverlay.classList.remove("active");
-        });
-    } else {
-        let html = `
+    // Add event listener to continue shopping button
+    document
+      .getElementById("continueShopping")
+      .addEventListener("click", function (e) {
+        e.preventDefault();
+        cartSidebar.classList.remove("active");
+        cartOverlay.classList.remove("active");
+      });
+  } else {
+    let html = `
       <div class="cart-items">
-        ${cart.items.map(item => `
-          <div class="cart-item d-flex justify-content-between align-items-center mb-3">
+        ${cart.items
+          .map(
+            (item) => `
+          <div class="cart-item d-flex justify-content-between align-items-center mb-3" data-id="${item.id}">
             <div class="d-flex align-items-center">
-              <img src="${item.img}" alt="${item.name}" width="60" height="60" class="me-3">
+              <img src="${item.img}" alt="${
+              item.name
+            }" width="60" height="60" class="me-3">
               <div>
                 <h6 class="mb-0">${item.name}</h6>
-                <small class="text-muted">$${item.price.toFixed(2)} × ${item.quantity}</small>
+                <small class="text-muted">$${item.price.toFixed(2)} × ${
+              item.quantity
+            }</small>
               </div>
             </div>
-            <div>
-              <span class="fw-bold">$${(item.price * item.quantity).toFixed(2)}</span>
+            <div class="d-flex align-items-center">
+              <span class="fw-bold me-3">$${(item.price * item.quantity).toFixed(
+                2
+              )}</span>
+              <button class="btn btn-sm btn-outline-danger remove-item">
+                <i class="fas fa-times"></i>
+              </button>
             </div>
           </div>
-        `).join('')}
+        `
+          )
+          .join("")}
       </div>
       <hr>
       <div class="d-flex justify-content-between fw-bold">
@@ -614,14 +632,54 @@ function updateCartSidebar(cart) {
       </div>
     `;
 
-        cartContent.innerHTML = html;
+    cartContent.innerHTML = html;
 
-        // Update footer with View Cart and Checkout buttons
-        cartFooter.innerHTML = `
+    // Add event listeners to remove buttons
+    document.querySelectorAll(".remove-item").forEach((button) => {
+      button.addEventListener("click", function() {
+        const cartItem = this.closest(".cart-item");
+        const productId = parseInt(cartItem.getAttribute("data-id"));
+        removeFromCart(productId);
+      });
+    });
+
+    // Update footer with View Cart and Checkout buttons
+    cartFooter.innerHTML = `
       <div class="d-flex flex-column gap-2">
         <a href="cart.html" class="btn btn-primary">View Cart</a>
       </div>
     `;
-    }
+  }
+}
+
+function removeFromCart(productId) {
+  const cart = JSON.parse(sessionStorage.getItem("cart")) || {
+    items: [],
+    total: 0,
+    count: 0,
+  };
+
+  // Find the item to remove
+  const itemIndex = cart.items.findIndex((item) => item.id === productId);
+  
+  if (itemIndex !== -1) {
+    const item = cart.items[itemIndex];
+    
+    // Update totals
+    cart.total -= item.price * item.quantity;
+    cart.count -= item.quantity;
+    
+    // Remove item from array
+    cart.items.splice(itemIndex, 1);
+    
+    // Save updated cart
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+    
+    // Update display
+    updateCartDisplay();
+    displayProducts(); // Re-render products to reflect changes
+    // Update product availability display
+    
+  }
 }
 // nav bar -------end

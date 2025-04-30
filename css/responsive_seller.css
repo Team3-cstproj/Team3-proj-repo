@@ -1,54 +1,6 @@
-@media (max-width: 1298px) {
 
-    .container{
-        width: 100%;
-        grid-template-columns: 7rem auto 14rem;
-    }
-    main .insights{
-        display: grid;
-        grid-template-columns: repeat(1,1fr);
-    }
-    main{
-        width: 40%;
-        margin: 5%;
-    }
-    aside{
-        display:block;
-        width: 20%;
-
-    }
-    .right{
-        width: 23%;
-
-    }
-    .recent_order{
-        position :absolute;
-        left :50px;
-        top: 800px;
-        width: 65%;
-
-    }
-   
-}
-
-  @media (max-width: 1040px) {
-    main {
-        width: 40%;
-        margin: 2%;
-    }
-    aside {
-        width: 200px;
-        display: block;
-
-    }
-   
-    .Saside .sidebar a:last-child{
-        position: relative;
-        margin-top: 1.8rem;
-    }
-    
-  }
-  @media (max-width: 825px) {
+ 
+  @media (max-width: 908px) {
 
 
     .Saside{
@@ -57,6 +9,7 @@
         z-index: 3;
         background: var(--clr-white);
         display: none;
+        margin: 0;
 
     }
     aside .logo h2{
@@ -89,29 +42,9 @@
         box-shadow: 0 1rem 1rem var(--box-shadow);
         margin: 0;
     }
-
-    main .insights{
-        display: grid;
-        grid-template-columns: repeat(1,1fr);
-        gap: 1.6rem;
-        padding: 40px;
-    }
-    main .recent_order{
-        padding: 30px;
-        margin: 0 auto;
-    }
-    main h1{
-        display: none;
-    }
-    .right .profile{
-        position: absolute;
-        right: 5%;
-    }
-    .right .recent_updates{
-        padding: 30px;
-    }
-    .right .sales-analytics{
-        padding: 30px;
+    main{
+        min-width: 80%;
+        margin-left: 10%;
     }
 
     .add_product{
@@ -132,55 +65,33 @@
     .right .info b{
         padding-top:20px ;
     } 
-    main{
-        width : 50%;
-        margin-right: 0;
-        margin-left: 0;
-    }
-    .right{
-        width: 50%
-    }
-    .primary{
-        display: none;
-    }
-    .popup{
-        display: inline-block;
-    }
-    .recent_order{
-        position :absolute;
-        left :30px;
-        top: 900px;
-        width: 90%;
-
-    }
-  } 
-  @media (max-width: 700px) {
-
-
-    main{
-        width: 90%;
-    }
-    .right{
-        width:90%
-    }
-    .recent_order{
-        position: relative;
-        top: 0;
-        left: 0;
-        margin: 0;
-        padding: 0;
-        width: 100%;
-    }
-    main{
-        width: 90%;
-        margin: 0;
-        padding: 0;
+    .right .profile{
+        position: absolute;
+        right: 5%;
     }
 
-
-    .container{
-            width: 100%;
-            display: block;
+}
+@media (max-width: 719px) {
+    main .insights{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        gap: 1.6rem;
+        padding: 40px;
+        min-width: 120%;
     }
 
+    main {
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        gap: 1.6rem;
+        margin-left: 0;        
+    }
+    main .recent_order{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        gap: 1.6rem;
+        padding: 40px;
+        min-width: 120%;
+    }
+  
 }

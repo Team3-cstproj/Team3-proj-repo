@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Save only the file name (not the image itself)
         
         const imagePath = `images/product/${productImage.name}`; 
+
         const newProduct = {
             id: generateUniqueId(),
             name: productName,
@@ -68,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
             img: imagePath,
             description: description,
             sellerId: sellerId,
-            review: review
+            reviews: review
         };
 
         products.push(newProduct);
@@ -77,7 +78,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         productForm.reset();
         imagePreview.innerHTML = ""; // Clear preview
-
 
 
 
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
             title: 'Product Added!',
             text: 'Your product has been successfully added.',
             confirmButtonColor: '#3085d6',
-            timer: 2000,
+            timer: 3000,
             showConfirmButton: false
         });
 
@@ -101,12 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     });
-
-
-
-
-
-
 
 
 

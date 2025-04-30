@@ -111,10 +111,9 @@ b{
 /* aside Styles */
 
 aside{
-    padding-left: 2%;
-    width: 16%;
-    display: block
-}
+    display:inline;
+    min-width: 200px;
+    margin-left: 30px ; }
 aside .top{
     background-color: var(--clr-white);
     display: flex;
@@ -136,7 +135,7 @@ aside .sidebar{
     background-color: var(--clr-white);
     display: flex;
     flex-direction: column;
-    height: 85vh;
+    height: 35rem;
     position: relative;
     top: 1rem;
 }
@@ -193,6 +192,7 @@ aside .sidebar a:hover span{
     transform: scale(1.3);
     transition: 0.4s ease;
 }
+
 aside .sidebar a:hover h3{
     margin-left: 0.5rem;
     transform: scale(1.1);
@@ -214,7 +214,8 @@ aside .sidebar a span.msg_count{
 
 main{
     margin-top: 1.4rem;
-    width: 60%;
+    width: 80%;
+    margin-left: 10%;
 }
 main input{
     background-color: transparent;
@@ -233,6 +234,7 @@ main .insights{
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap:1.6rem;
+    min-width: 40rem;
 }
 main .insights>div{
     background-color: var(--clr-white);
@@ -241,6 +243,7 @@ main .insights>div{
     margin-top: 1rem;
     box-shadow: var(--box-shadow);
     transition: all 0.3s ease;
+    min-width: none;
 }
 main .insights>.sales:hover{
     box-shadow: none;
@@ -394,8 +397,10 @@ main .recent_order a{
 }
 .right .top{
     display: flex;
+    position: absolute;
     justify-content: start;
     gap:2rem;
+    right: 20px;
 }
 
 .right .top button{
@@ -735,4 +740,9 @@ main .recent_order a{
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s;
+  }
+  .dtails-link:hover {
+    text-decoration: underline;
+
+
   }
