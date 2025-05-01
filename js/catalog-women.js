@@ -657,6 +657,7 @@ function setupUserProfile() {
         <p class="small text-muted mb-2">${userData.email || ""}</p>
         <p class="small">Role: ${userData.role || "user"}</p>
       </div>
+      <button id="editbtn" class="btn btn-sm btn-secondary w-100 mb-1">Edit Info</button>
       <button id="logoutBtn" class="btn btn-sm btn-danger w-100">Logout</button>
     `;
 
@@ -664,11 +665,17 @@ function setupUserProfile() {
     userIcon.innerHTML = '<i class="fa-solid fa-user-check"></i>';
     userIcon.href = "#"; // Prevent navigation to login page
 
+    // Add click  for Edit Info
+    profileDropdown
+      .querySelector("#editbtn")
+      .addEventListener("click", () => {
+        window.location.href = "updateAccount.html";
+      });
     // Add click  for logout
     profileDropdown
       .querySelector("#logoutBtn")
       .addEventListener("click", () => {
-        sessionStorage.clear("user");
+        sessionStorage.clear();
         window.location.href = "login.html";
       });
   } else {

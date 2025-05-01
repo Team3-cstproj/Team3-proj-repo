@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Reset Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <script>
+        // Define the roles that are allowed to access this page
+
+        const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      
+        if (!currentUser) {
+          window.location.href = 'error.html';
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .card {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        .card-header {
+            background-color: #fff;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-top-left-radius: 1rem !important;
+            border-top-right-radius: 1rem !important;
+            padding: 1.25rem 1.5rem;
+        }
+        .form-floating > label {
+            color: #6c757d;
+        }
+        .btn-primary {
+            padding: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="card mb-4">
+                    <div class="card-header text-center">
+                        <h3 class="mb-0">Account Settings</h3>
+                        <p class="text-muted mb-0">Update your account information below</p>
+                    </div>
+                    <div class="card-body p-4">
+                        <!-- Alert placeholders -->
+                        <div class="alert alert-success alert-dismissible fade show d-none" id="successAlert" role="alert">
+                            <i class="bi bi-check-circle-fill me-2"></i>
+                            <span id="successMessage"></span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        
+                        <div class="alert alert-danger alert-dismissible fade show d-none" id="errorAlert" role="alert">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            <span id="errorMessage"></span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        
+                        <!-- Form -->
+                        <form id="resetForm">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="username" placeholder="username" required>
+                                <label for="username"><i class="bi bi-person me-2"></i>Username</label>
+                            </div>
+                            
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                                <label for="email"><i class="bi bi-envelope me-2"></i>Email address</label>
+                            </div>
+                            
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="newPassword" placeholder="New Password">
+                                <label for="newPassword"><i class="bi bi-lock me-2"></i>New Password</label>
+                                <div class="form-text">Leave blank if you don't want to change your password</div>
+                            </div>
+                            
+                            <div class="form-floating mb-4">
+                                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                                <label for="confirmPassword"><i class="bi bi-shield-lock me-2"></i>Confirm Password</label>
+                            </div>
+                            
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary btn-lg" type="submit">
+                                    <i class="bi bi-arrow-repeat me-2"></i>Update Account Information
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="text-center text-muted">
+                    <small>Account details last updated: <span id="lastUpdated">-</span></small>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/updateAccount.js"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+</body>
+</html>

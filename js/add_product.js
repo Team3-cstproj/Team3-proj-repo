@@ -5,9 +5,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const uploadArea = document.getElementById("uploadArea");
     const imagePreview = document.getElementById("imagePreview");
     const info = JSON.parse(sessionStorage.getItem("currentUser")) || [];
-
-
+    let imagePath; // Initialize imagePath variable
+    document.getElementById("clearUser").addEventListener("click", function () {
+        sessionStorage.clear();
+        })
     let products = JSON.parse(localStorage.getItem("products")) || [];
+    document.getElementById("seller_name").textContent = info.username;
 
 
     uploadArea.addEventListener("click", function () {
@@ -16,10 +19,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     productImageInput.addEventListener("change", function () {
         const file = this.files[0];
+
         if (file) {
             const reader = new FileReader();
+            imagePath = e.target.result; // Store the image path in the variable
             reader.onload = function (e) {
-            imagePreview.innerHTML = `<img src="${e.target.result}" alt="Product Image" style="max-width: 100%; height: auto; margin-top: 10px; border-radius: 8px;">`;
+            imagePreview.innerHTML = `<img src="${imagePath}" alt="Product Image" style="max-width: 100%; height: auto; margin-top: 10px; border-radius: 8px;">`;
             };
             reader.readAsDataURL(file);
             document.getElementById("uploadArea").style.display = "none"; // Hide the upload area after selecting an image
@@ -55,9 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Save only the file name (not the image itself)
         
-        const imagePath = `images/product/${productImage.name}`; 
 
         const newProduct = {
             id: generateUniqueId(),
@@ -112,4 +115,11 @@ document.addEventListener("DOMContentLoaded", function () {
         // Find the maximum id
         const maxId = products.reduce((max, product) => Math.max(max, product.id), 0);
         return maxId + 1;    }
+
+
+        themToggler.addEventListener("click", () => {
+            document.body.classList.toggle("dark-theme-variables");
+            themToggler.querySelector("span:nth-child(1)").classList.toggle("active");
+            themToggler.querySelector("span:nth-child(2)").classList.toggle("active");
+        });
 });

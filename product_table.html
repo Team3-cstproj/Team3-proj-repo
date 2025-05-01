@@ -72,9 +72,8 @@
 
                 <table>
                     <thead>
-                        <tr class = "product-table">
-                            <th>Product ID</th>
-                            <th>Product Name</th>
+                        <tr class = "product-table" >
+                            <th style="width: 20%;">Product Name</th>
                             <th>Category</th>
                             <th>Sold</th>
                             <th>Availible</th>
@@ -83,90 +82,7 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>101</td>
-                            <td>Classic Denim Hoodie</td>
-                            <td>men</td>
-                            <td>42</td>
-                            <td style="width: 10%;;"><div style="width: 80%;">
-                                <input type="number" id="price" name="price" min="0" step="1" class="input-group-text" style="background-color: white; width: 100%;margin: 5px;"  required>
-                            </div></td>
-                            <td style="width: 10%;;"><div style="width: 80%;">
-                                <input type="number" id="price" name="price" min="0" step="1" class="input-group-text" style="background-color: white; width: 100%;margin: 5px;"  required>
-                            </div></td>
-                            <td class = "primary">InStock</td>
-                            <td class="action-buttons">
-                                <a href="#"><span class="fas fa-pen success"></span></a>
-                                <a href="#"><span class="fas fa-trash" style="color: red;"></span></a>
-                              </td>
-                        </tr>
-                        <tr>
-                            <td>101</td>
-                            <td>Classic Denim Hoodie</td>
-                            <td>men</td>
-                            <td>42</td>
-                            <td>58</td>
-                            <td>200$</td>
-                            <td class = "primary">InStock</td>
-                            <td class="action-buttons">
-                                <a href="#"><span class="fas fa-pen success"></span></a>
-                                <a href="#"><span class="fas fa-trash" style="color: red;"></span></a>
-                              </td>
-                        </tr>
-                        <tr>
-                            <td>101</td>
-                            <td>Classic Denim Hoodie</td>
-                            <td>men</td>
-                            <td>42</td>
-                            <td>58</td>
-                            <td>200$</td>
-                            <td class = "primary">InStock</td>
-                            <td class="action-buttons">
-                                <a href="#" class="edit-btn"><span class="fas fa-pen success"></span></a>
-                                <a href="#"><span class="fas fa-trash" style="color: red;"></span></a>
-                              </td>
-                        </tr>
-                        <tr>
-                            <td>101</td>
-                            <td>Classic Denim Hoodie</td>
-                            <td>men</td>
-                            <td>42</td>
-                            <td>58</td>
-                            <td>200$</td>
-                            <td class = "primary">InStock</td>
-                            <td class="action-buttons">
-                                <a href="#"><span class="fas fa-pen success"></span></a>
-                                <a href="#"><span class="fas fa-trash" style="color: red;"></span></a>
-                              </td>
-                        </tr>
-                        <tr>
-                            <td>101</td>
-                            <td>Classic Denim Hoodie</td>
-                            <td>men</td>
-                            <td>42</td>
-                            <td>0</td>
-                            <td>200$</td>
-                            <td class = "warning">Out Of Stock</td>
-                            <td class="action-buttons">
-                                <a href="#"><span class="fas fa-pen success"></span></a>
-                                <a href="#"><span class="fas fa-trash w-100" style="color: red;"></span></a>
-                              </td>
-                        </tr>
-                        <tr>
-                            <td>101</td>
-                            <td>Classic Denim Hoodie</td>
-                            <td>men</td>
-                            <td>42</td>
-                            <td>58</td>
-                            <td>200$</td>
-                            <td class = "primary">InStock</td>
-                            <td class="action-buttons">
-                                <a href="#"><span class="fas fa-pen success"></span></a>
-                                <a href="#"><span class="fas fa-trash" style="color: red;"></span></a>
-                              </td>
-                        </tr>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
 
                 <ul class="pagination justify-content-center my-4">
@@ -198,9 +114,14 @@
                 <span class = "material-symbols-outlined">menu</span>
             </button>
 
+            <div class="theme-toggler">
+                <span class="material-symbols-outlined active">light_mode</span>
+                <span class="material-symbols-outlined">dark_mode</span>
+            </div>
+            
             <div class="profile">
                 <div class="info">
-                    <p><b>esmael</b></p>
+                    <p><b id="seller_name">esmael</b></p>
                     <p>Seller</p>
                     <small class="text-muted"></small>
                 </div>

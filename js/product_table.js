@@ -7,7 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const menuBtn = document.querySelector("#menu_bar");
     const closeBtn = document.querySelector("#close_btn");
     const sideMenue = document.querySelector("aside");
-
+    document.getElementById("seller_name").textContent = info.username;
+    document.getElementById("clearUser").addEventListener("click", function () {
+        sessionStorage.clear();
+        })
     let currentPage = 1;
     const rowsPerPage = 5;
     let seller_product = products.filter(product => product.sellerId == info.id);
@@ -35,8 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log(product.sellerId);
             const row = document.createElement("tr");
             row.innerHTML = `
-                <td>${product.id}</td>
-                <td>${product.name}</td>
+                <td style="width: 20%;">${product.name}</td>
                 <td>${product.category}</td>
                 <td>${product.sold}</td>
                 <td class="available-cell">${product.availible}</td>

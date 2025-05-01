@@ -12,8 +12,20 @@ main{
   margin-left: 3%;
 }
 aside{
-  width: 250px;
-  margin-top: 70px;
+  display:inline;
+  min-width: 200px;
+  margin-left: 30px;
+
+}
+
+
+  aside .sidebar{
+    background-color: var(--clr-white);
+    display: flex;
+    flex-direction: column;
+    height: 35rem;
+    position: relative;
+    top: 1rem;
 }
 .form-container {
     background: #fff;
@@ -25,7 +37,6 @@ aside{
 
   h2 {
     text-align: center;
-    margin-bottom: 1.5rem;
     color: var(--clr-dark)
   }
 
@@ -116,17 +127,15 @@ aside{
   }
 
   .rtop{
-    width: 15%;
-    position: fixed;
+    width: 20%;
     top: 0;
     display: flex;
     justify-content:right;
     align-items: center;
     padding: 0 0.8rem;
     background: var(--clr-white);
-    width: 100%;
     height: 4.6rem;
-    z-index: 2;
+    right:10px;
     box-shadow: 0 1rem 1rem var(--box-shadow);
     margin-right: 0;
   }
@@ -141,4 +150,29 @@ aside{
   
   .rtop button{
     display: none;
+}
+
+
+ .theme-toggler {
+  background-color: var(--clr-white);
+  height: 1.6rem;
+  width: 4.2rem;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  border-radius: var(--bord-radius-1);
+}
+ .theme-toggler span{
+  font-size: 1.2rem;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ .theme-toggler span.active{
+  background-color: var(--clr-primary);
+  color: #ffffff;
+  border-radius: var(--bord-radius-1);
 }
