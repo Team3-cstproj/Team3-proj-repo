@@ -420,7 +420,7 @@ function setupUserProfile() {
     profileDropdown
       .querySelector("#editbtn")
       .addEventListener("click", () => {
-        window.location.href = "updateAccount.htm";
+        window.location.href = "updateAccount.html";
       });
     // Add click  for logout
     profileDropdown
