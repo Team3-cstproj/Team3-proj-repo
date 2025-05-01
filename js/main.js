@@ -522,12 +522,19 @@ function setupUserProfile() {
         <p class="small text-muted mb-2">${userData.email || ""}</p>
         <p class="small">Role: ${userData.role || "user"}</p>
       </div>
+      <button id="editbtn" class="btn btn-sm btn-secondary w-100 mb-1">Edit Info</button>
       <button id="logoutBtn" class="btn btn-sm btn-danger w-100">Logout</button>
     `;
 
     // Change icon to logged in state
     userIcon.innerHTML = '<i class="fa-solid fa-user-check"></i>';
     userIcon.href = "#"; // Prevent navigation to login page
+    // Add click  for Edit Info
+    profileDropdown
+      .querySelector("#editbtn")
+      .addEventListener("click", () => {
+        window.location.href = "updateAccount.htm";
+      });
   } else {
     // User is not logged in, show login option
     profileDropdown.innerHTML = `
@@ -557,16 +564,12 @@ function setupUserProfile() {
   const logoutBtn = document.getElementById("logoutBtn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
-      sessionStorage.removeItem("currentUser");
+      sessionStorage.clear();
       window.location.href = "login.html";
     });
   }
 }
 ///////========================================================================================================///
-function myfun4() {
-  window.location.href = "contacts.html";
-}
- 
 function myfun3() {
   window.location.href = "catalog-Everything.html";
 }

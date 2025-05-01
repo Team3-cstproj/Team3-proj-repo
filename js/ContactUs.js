@@ -71,25 +71,34 @@ function setupUserProfile() {
   profileDropdown.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
   
   if (userData) {
-    // if User login show profile info and logout option
+    // if  User login show profile info and logout option
     profileDropdown.innerHTML = `
       <div class="user-info mb-2">
-        <p class="mb-1"><strong>${userData.name || 'User'}</strong></p>
-        <p class="small text-muted mb-2">${userData.email || ''}</p>
-        <p class="small">Role: ${userData.role || 'user'}</p>
+        <p class="mb-1"><strong>${userData.name || "User"}</strong></p>
+        <p class="small text-muted mb-2">${userData.email || ""}</p>
+        <p class="small">Role: ${userData.role || "user"}</p>
       </div>
+      <button id="editbtn" class="btn btn-sm btn-secondary w-100 mb-1">Edit Info</button>
       <button id="logoutBtn" class="btn btn-sm btn-danger w-100">Logout</button>
     `;
-    
-    // Change icon to logged in state
+
+    // Change icon to  logged in state
     userIcon.innerHTML = '<i class="fa-solid fa-user-check"></i>';
-    userIcon.href = '#'; // Prevent navigation to login page
-    
-    // Add click for logout - fixed sessionStorage key
-    profileDropdown.querySelector('#logoutBtn').addEventListener('click', () => {
-      sessionStorage.clear('currentUser');
-      window.location.href = 'login.html';
-    });
+    userIcon.href = "#"; // Prevent navigation to login page
+
+    // Add click  for Edit Info
+    profileDropdown
+      .querySelector("#editbtn")
+      .addEventListener("click", () => {
+        window.location.href = "updateAccount.htm";
+      });
+    // Add click  for logout
+    profileDropdown
+      .querySelector("#logoutBtn")
+      .addEventListener("click", () => {
+        sessionStorage.clear();
+        window.location.href = "login.html";
+      });
   } else {
     // User is not login show login 
     profileDropdown.innerHTML = `
@@ -459,14 +468,6 @@ function formatDate(date) {
 }
 /////===================================================================================///
 // // Function to display replies
-document.addEventListener('DOMContentLoaded', () => {
-  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  const userId = currentUser.id;
-  if (userId) {
-    displayReplyById(userId);
-  }
-});
-
 function displayReplyById(userId) {
   const repliesContainer = document.getElementById('replies');
   repliesContainer.innerHTML = '';
@@ -474,28 +475,73 @@ function displayReplyById(userId) {
   const contactData = JSON.parse(localStorage.getItem('contactData')) || {};
 
   if (contactData.replies && contactData.replies.length > 0) {
-    // Find reply by user ID
-    const reply = contactData.replies.find(r => r.id === userId);
+    // Filter replies for this user
+    const userReplies = [];
+    for (let i = 0; i < contactData.replies.length; i++) {
+      if (contactData.replies[i].id == userId) {
+        userReplies.push(contactData.replies[i]);
+      }
+    }
 
-    if (reply) {
-      const replyDiv = document.createElement('div');
-      replyDiv.className = 'reply-item p-3 border rounded';
+    if (userReplies.length > 0) {
+      for (let i = 0; i < userReplies.length; i++) {
+        const reply = userReplies[i];
 
-      const formattedContent = `
-        <h5><b class="text-primary">Subject</b>: ${reply.subject}</h5>
-        <p><b class="text-primary">Dear</b> ${reply.name} </br> <b class="text-primary">with email</b> ${reply.email}</p>
-        <p>${reply.message || 'No message content'}</p>
-      `;
+        const replyDiv = document.createElement('div');
+        replyDiv.className = 'reply-item p-3 border rounded mb-3';
 
-      replyDiv.innerHTML = formattedContent;
-      repliesContainer.appendChild(replyDiv);
+        const formattedContent = `
+          <h5><b class="text-primary">Subject</b>: ${reply.subject}</h5>
+          <p>${reply.message || 'No message content'}</p>
+        `;
+
+        replyDiv.innerHTML = formattedContent;
+        repliesContainer.appendChild(replyDiv);
+      }
     } else {
-      repliesContainer.innerHTML = `<p>No reply found with ID: ${userId}</p>`;
+      repliesContainer.innerHTML = `<p>No replies found for user ID: ${userId}</p>`;
     }
   } else {
     repliesContainer.innerHTML = '<p>No replies found.</p>';
   }
 }
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+//   const userId = currentUser.id;
+//   if (userId) {
+//     displayReplyById(userId);
+//   }
+// });
+
+// function displayReplyById(userId) {
+//   const repliesContainer = document.getElementById('replies');
+//   repliesContainer.innerHTML = '';
+
+//   const contactData = JSON.parse(localStorage.getItem('contactData')) || {};
+
+//   if (contactData.replies && contactData.replies.length > 0) {
+//     // Find reply by user ID
+//     const reply = contactData.replies.find(r => r.id === userId);
+
+//     if (reply) {
+//       const replyDiv = document.createElement('div');
+//       replyDiv.className = 'reply-item p-3 border rounded';
+
+//       const formattedContent = `
+//         <h5><b class="text-primary">Subject</b>: ${reply.subject}</h5>
+//         <p>${reply.message || 'No message content'}</p>
+//       `;
+
+//       replyDiv.innerHTML = formattedContent;
+//       repliesContainer.appendChild(replyDiv);
+//     } else {
+//       repliesContainer.innerHTML = `<p>No reply found with ID: ${userId}</p>`;
+//     }
+//   } else {
+//     repliesContainer.innerHTML = '<p>No replies found.</p>';
+//   }
+// }
 ////////==================================================================================
 // // Form validation verssion 1
 // document.addEventListener('DOMContentLoaded', function() {
