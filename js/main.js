@@ -570,10 +570,6 @@ function setupUserProfile() {
   }
 }
 ///////========================================================================================================///
-function myfun4() {
-  window.location.href = "contacts.html";
-}
- 
 function myfun3() {
   window.location.href = "catalog-Everything.html";
 }
