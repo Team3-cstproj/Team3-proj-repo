@@ -21,6 +21,12 @@ mobileMenuBtn?.addEventListener('click', function () {
     sidebar.classList.toggle('show');
   }
 });
+//clear session storage after log out
+document.querySelector('.nav-link.text-danger').addEventListener('click', function(e) {
+  e.preventDefault();
+  sessionStorage.clear(); 
+  window.location.href = 'login.html'; 
+});
 
 // Notification function
 function showNotification(title, message, type = 'success') {
