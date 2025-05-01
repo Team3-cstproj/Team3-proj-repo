@@ -149,6 +149,7 @@ let currentPage = 1;
 // }
 
 window.addEventListener('load', updateCartDisplay);
+document.getElementById("clearFilterBtn").addEventListener("click", clearFilters);
 
 
 function displayProducts() {
@@ -356,105 +357,225 @@ displayProducts();
 window.addEventListener("load", displayProducts);
 
 // search bar
+// let searchTerm = "";
+// document.getElementById("searchBtn").addEventListener("click", searchByWord);
+// function searchByWord() {
+//   searchTerm = document
+//     .getElementById("searchInput")
+//     .value.trim()
+//     .toLowerCase();
+
+//   if (searchTerm === "") {
+//     products = filterProductsByCategory("women"); // Reset to all products if search is empty
+//     products = applySorting(products); // Reapply sorting
+//     displayProducts(); // Update the display
+//     return; // Don't change anything if search is empty
+//   }
+
+//   products = getAllProducts(); // Fetch all products again to reset the filter
+//   let minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
+//   let maxPrice =
+//     parseFloat(document.getElementById("maxPrice").value) || Infinity;
+
+//   if (minPrice > maxPrice) {
+//     alert("Minimum price cannot be greater than maximum price.");
+//     return; // Don't apply filter if invalid range
+//   }
+
+//   if (searchTerm !== "") {
+//     products = getAllProducts().filter(
+//       (product) =>
+//         product.name.toLowerCase().includes(searchTerm) &&
+//         product.price >= minPrice &&
+//         product.price <= maxPrice
+//     );
+//   } else {
+//     products = getAllProducts().filter(
+//       (p) => p.price >= minPrice && p.price <= maxPrice
+//     );
+//   }
+//   // 1. Filter products by name
+//   products = products.filter((product) =>
+//     product.name.toLowerCase().includes(searchTerm)
+//   );
+//   if (products.length === 0) {
+//     alert("No products found matching your search term.");
+//     products = filterProductsByCategory("women"); // Reset to all products if no match found
+//     products = applySorting(products); // Reapply sorting
+//     displayProducts(); // Update the display
+//   }
+
+//   // 2. Apply sorting to the filtered products
+//   products = applySorting(products);
+
+//   displayProducts();
+// }
+
+// // Filter by price range
+// document
+//   .getElementById("filterPriceBtn")
+//   .addEventListener("click", function () {
+//     let minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
+//     let maxPrice =
+//       parseFloat(document.getElementById("maxPrice").value) || Infinity;
+
+//     if (minPrice > maxPrice) {
+//       alert("Minimum price cannot be greater than maximum price.");
+//       return; // Don't apply filter if invalid range
+//     }
+//     console.log(searchTerm);
+//     if (searchTerm !== "") {
+//       products = filterProductsByCategory("women").filter(
+//         (product) =>
+//           product.name.toLowerCase().includes(searchTerm) &&
+//           product.price >= minPrice &&
+//           product.price <= maxPrice
+//       );
+//     } else {
+//       products = filterProductsByCategory("women").filter(
+//         (p) => p.price >= minPrice && p.price <= maxPrice
+//       );
+//     }
+//     console.log(products);
+
+//     products = applySorting(products); // Reapply sorting after filtering
+
+//     currentPage = 1;
+//     displayProducts();
+//   });
+
+// document
+//   .getElementById("clearFilterBtn")
+//   .addEventListener("click", function () {
+//     document.getElementById("minPrice").value = "";
+//     document.getElementById("maxPrice").value = "";
+//     products = filterProductsByCategory("women");
+//     searchByWord(); // Reset search term
+//     // products = filterProductsByCategory("women");  // Reset to all products
+//     // products = applySorting(products); // Reapply sorting
+//     // currentPage = 1;
+//     // displayProducts();
+//   });
 let searchTerm = "";
 document.getElementById("searchBtn").addEventListener("click", searchByWord);
+document.getElementById("filterPriceBtn").addEventListener("click", filterByPrice);
+
+// Handle search by word
 function searchByWord() {
-  searchTerm = document
-    .getElementById("searchInput")
-    .value.trim()
-    .toLowerCase();
-
-  if (searchTerm === "") {
-    products = filterProductsByCategory("women"); // Reset to all products if search is empty
-    products = applySorting(products); // Reapply sorting
-    displayProducts(); // Update the display
-    return; // Don't change anything if search is empty
-  }
-
-  products = getAllProducts(); // Fetch all products again to reset the filter
+  searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
   let minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
-  let maxPrice =
-    parseFloat(document.getElementById("maxPrice").value) || Infinity;
+  let maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
 
   if (minPrice > maxPrice) {
     alert("Minimum price cannot be greater than maximum price.");
-    return; // Don't apply filter if invalid range
+    return;
   }
+
+  products = filterProductsByCategory("women");
 
   if (searchTerm !== "") {
-    products = getAllProducts().filter(
-      (product) =>
-        product.name.toLowerCase().includes(searchTerm) &&
-        product.price >= minPrice &&
-        product.price <= maxPrice
+    products = products.filter(product =>
+      product.name.toLowerCase().includes(searchTerm) &&
+      product.price >= minPrice &&
+      product.price <= maxPrice
     );
   } else {
-    products = getAllProducts().filter(
-      (p) => p.price >= minPrice && p.price <= maxPrice
+    products = products.filter(product =>
+      product.price >= minPrice &&
+      product.price <= maxPrice
     );
   }
-  // 1. Filter products by name
-  products = products.filter((product) =>
-    product.name.toLowerCase().includes(searchTerm)
-  );
+
   if (products.length === 0) {
-    alert("No products found matching your search term.");
-    products = filterProductsByCategory("women"); // Reset to all products if no match found
-    products = applySorting(products); // Reapply sorting
-    displayProducts(); // Update the display
+    showNoProductsFound();
+    return;
   }
 
-  // 2. Apply sorting to the filtered products
-  products = applySorting(products);
+  currentPage = 1; // Reset to first page after filtering
 
+  products = applySorting(products);
   displayProducts();
 }
 
-// Filter by price range
-document
-  .getElementById("filterPriceBtn")
-  .addEventListener("click", function () {
-    let minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
-    let maxPrice =
-      parseFloat(document.getElementById("maxPrice").value) || Infinity;
+// Handle price filtering
+function filterByPrice() {
+  let minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
+  let maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
 
-    if (minPrice > maxPrice) {
-      alert("Minimum price cannot be greater than maximum price.");
-      return; // Don't apply filter if invalid range
-    }
-    console.log(searchTerm);
-    if (searchTerm !== "") {
-      products = filterProductsByCategory("women").filter(
-        (product) =>
-          product.name.toLowerCase().includes(searchTerm) &&
-          product.price >= minPrice &&
-          product.price <= maxPrice
-      );
-    } else {
-      products = filterProductsByCategory("women").filter(
-        (p) => p.price >= minPrice && p.price <= maxPrice
-      );
-    }
-    console.log(products);
+  if (minPrice > maxPrice) {
+    alert("Minimum price cannot be greater than maximum price.");
+    return;
+  }
 
-    products = applySorting(products); // Reapply sorting after filtering
+  products = filterProductsByCategory("women");
 
-    currentPage = 1;
-    displayProducts();
-  });
+  if (searchTerm !== "") {
+    products = products.filter(product =>
+      product.name.toLowerCase().includes(searchTerm) &&
+      product.price >= minPrice &&
+      product.price <= maxPrice
+    );
+  } else {
+    products = products.filter(product =>
+      product.price >= minPrice &&
+      product.price <= maxPrice
+    );
+  }
 
-document
-  .getElementById("clearFilterBtn")
-  .addEventListener("click", function () {
-    document.getElementById("minPrice").value = "";
-    document.getElementById("maxPrice").value = "";
-    products = filterProductsByCategory("women");
-    searchByWord(); // Reset search term
-    // products = filterProductsByCategory("women");  // Reset to all products
-    // products = applySorting(products); // Reapply sorting
-    // currentPage = 1;
-    // displayProducts();
-  });
+  if (products.length === 0) {
+    showNoProductsFound();
+    return;
+  }
+
+  products = applySorting(products);
+  currentPage = 1;
+  displayProducts();
+}
+
+// Reusable UI if no products found
+function showNoProductsFound() {
+  const productContainer = document.getElementById("product-list");
+  productContainer.innerHTML = `
+    <div class="container my-5 d-block w-75">
+      <div class="border rounded-3 bg-light text-center p-4 p-md-5">
+        <div class="bg-secondary bg-opacity-25 rounded-circle d-inline-flex p-4 mb-4">
+          <i class="fas fa-search-minus fa-3x text-secondary"></i>
+        </div>
+        <h3 class="fw-semibold text-dark">No Products Found</h3>
+        <p class="text-muted mx-auto" style="max-width: 500px;">
+          We couldn't find any products matching your current filters.
+          Try adjusting your search criteria or browse our other categories.
+        </p>
+        <div class="d-flex flex-column flex-sm-row justify-content-center gap-3 pt-3">
+          <button class="btn btn-primary d-flex align-items-center justify-content-center gap-2" onclick="clearFilters()" id="clearFilterBtn">
+            <i class="fas fa-sync-alt"></i>
+            Clear Filters
+          </button>
+          <button class="btn btn-outline-secondary" onclick="browseAllProducts()">Browse All Products</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  
+}
+
+// Clear all filters
+function clearFilters() {
+  document.getElementById("minPrice").value = '';
+  document.getElementById("maxPrice").value = '';
+  document.getElementById("searchInput").value = '';
+  searchTerm = "";
+  products = filterProductsByCategory("women");
+  displayProducts();
+}
+
+// Reset all filters via Browse All Products
+function browseAllProducts() {
+  clearFilters();
+}
+
+
 
 //nav bar -----start
 //  cart list baby

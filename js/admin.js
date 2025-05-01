@@ -26,64 +26,7 @@ mobileMenuBtn?.addEventListener('click', function () {
 
 //----------------------
 
-// let Total_sales = 0;
-// let Total_orders=0;
-// function loadOrders() {
-//   const orders = JSON.parse(localStorage.getItem('orders')) || [];
-//   const tableBody = document.getElementById('orders-table-body');
-  
-//   tableBody.innerHTML = '';
-//   Total_sales = 0;
-// Total_orders=0;
-
-//   orders.forEach(order => {
-
-//     Total_sales += Number(order.totalPrice) || 0;
-//     Total_orders += Number(order.quantity) || 0;
-
-//     const row = document.createElement('tr');
-//     row.innerHTML = `
-//       <td>${order.id || 'N/A'}</td>
-//       <td>${order.userName || 'N/A'}</td>
-//       <td><a href=receipt.html?ids=${+order.id}>${order.productName || 'N/A'}</a></td>
-//       <td>${order.quantity || '0'}</td>
-//       <td>${order.orderDate || 'N/A'}</td>
-//       <td>${order.sellerName || 'N/A'}</td>
-//       <td>$${(Number(order.totalPrice) || 0).toFixed(2)}</td>
-//     `;
-//     tableBody.appendChild(row);
-//   });
-
-//   document.getElementById('Totalsaless').textContent = `$${Total_sales.toFixed(2)}`;
-//   document.getElementById('numorders').textContent = `${Total_orders}`;
-// }
-
-// function updateCustomersCount() {
-//   const orders = JSON.parse(localStorage.getItem('orders')) || [];
-//   //  calculate numberCustomer an unique
-//   const uniqueCustomerIds = new Set();
-
-//   orders.forEach(order => {
-//     if (order.userId) {
-//       uniqueCustomerIds.add(order.userId);
-//     }
-//   });
-//    document.getElementById('customers-number').textContent = uniqueCustomerIds.size;
-// }
-// function logout() {
-//   // sessionStorage.removeItem('currentUser');
-//   // window.location.href = 'login.html';
-//   sessionStorage.clear();
-// }
-// document.addEventListener('DOMContentLoaded', function() {
-//   loadOrders();
-//   updateCustomersCount();
-//   logout();
-// });
-
-//------------------------
-
-// متغيرات الترقيم الصفحي
+//  varible ترقيم الصفح
 let currentOrdersPage = 1;
 const ordersPerPage = 4;
 let Total_sales = 0;
@@ -166,15 +109,15 @@ function setupOrdersPagination(totalOrders, currentPage) {
     pagination.innerHTML = '';
     const pageCount = Math.ceil(totalOrders / ordersPerPage);
 
-    if (pageCount <= 1) return; // لا داعي للترقيم إذا كانت صفحة واحدة
+    if (pageCount <= 1) return; 
 
-    // زر السابق
+    // prev
     const prevLi = createPageItem('‹ Prev', currentPage === 1, () => {
       if (currentPage > 1) loadOrders(currentPage - 1);
     });
     pagination.appendChild(prevLi);
 
-    // أرقام الصفحات
+    // Page number
 for (let i = 1; i <= Math.min(2, pageCount); i++) {
   const pageLi = createPageItem(i, false, () => {
     if (i !== currentPage) loadOrders(i);
@@ -182,7 +125,7 @@ for (let i = 1; i <= Math.min(2, pageCount); i++) {
   pagination.appendChild(pageLi);
 }
 
-    // زر التالي
+    // next 
     const nextLi = createPageItem('Next ›', currentPage === pageCount, () => {
       if (currentPage < pageCount) loadOrders(currentPage + 1);
     });
@@ -213,4 +156,5 @@ function createPageItem(text, isDisabled, onClick, isActive = false) {
 
 document.addEventListener('DOMContentLoaded', function() {
   loadOrders();
-});
+  updateCustomersCount();
+}); 

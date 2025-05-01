@@ -23,45 +23,10 @@ const toggleBtn = document.getElementById('toggle-btn');
     });
 
 // ----------------
- 
-// load localstorage in table
-// function loadProducts() {
-//   const products = JSON.parse(localStorage.getItem('products')) || [];
-//   const tableBody = document.querySelector("tbody");
-//   tableBody.innerHTML = ''; 
-
-//   products.forEach((product) => {
-//     const row = `
-//       <tr>
-//         <td>${product.id}</td> 
-//         <td>${product.name}</td>
-       
-//         <td>${product.price}$</td>
-//         <td>
-//           <div class="remove-icon" onclick="removeProduct('${product.id}')">
-//             <i class="fa-solid fa-xmark"></i>
-//           </div>
-//         </td>
-//       </tr>
-//     `;
-//     tableBody.innerHTML += row;
-//   });
-// }
-// function removeProduct(productId) {
-//   const products = JSON.parse(localStorage.getItem('products')) || [];
-//   const updatedProducts = products.filter(product => String(product.id) !== productId);
-//   localStorage.setItem('products', JSON.stringify(updatedProducts)); 
-//   loadProducts(); 
-// }
-// loadProducts();
 
 
-
-//-------------------------
- 
-// متغيرات الترقيم الصفحي
 let currentPage = 1;
-const productsPerPage = 8; // عدد المنتجات في كل صفحة
+const productsPerPage = 8; 
 
 document.addEventListener('DOMContentLoaded', function() {
   loadProducts();
@@ -72,12 +37,12 @@ function loadProducts(page = 1) {
   const tableBody = document.querySelector("tbody");
   tableBody.innerHTML = ''; 
 
-  // حساب العناصر للصفحة الحالية
+
   const startIndex = (page - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
   const paginatedProducts = products.slice(startIndex, endIndex);
 
-  // عرض المنتجات للصفحة الحالية
+
   if (paginatedProducts.length === 0) {
     tableBody.innerHTML = `
       <tr>
@@ -102,7 +67,7 @@ function loadProducts(page = 1) {
     });
   }
 
-  // إنشاء أزرار الترقيم الصفحي
+
   setupPaginationButtons(products.length, page);
 }
 
@@ -113,7 +78,7 @@ function setupPaginationButtons(totalProducts, currentPage) {
   paginationContainer.innerHTML = '';
   const pageCount = Math.ceil(totalProducts / productsPerPage);
 
-  // زر الصفحة السابقة
+
   const prevLi = document.createElement('li');
   prevLi.className = 'page-item' + (currentPage === 1 ? ' disabled' : '');
   prevLi.innerHTML = `
@@ -129,7 +94,7 @@ function setupPaginationButtons(totalProducts, currentPage) {
   });
   paginationContainer.appendChild(prevLi);
 
-      // أرقام الصفحات
+    
       for (let i = 1; i <= Math.min(2, pageCount); i++) {
         const pageLi = document.createElement('li');
         pageLi.className = `page-item ${i === currentPage ? 'active' : ''}`;
@@ -143,7 +108,6 @@ function setupPaginationButtons(totalProducts, currentPage) {
         pagination.appendChild(pageLi);
     }
 
-  // زر الصفحة التالية
   const nextLi = document.createElement('li');
   nextLi.className = 'page-item' + (currentPage === pageCount ? ' disabled' : '');
   nextLi.innerHTML = `
@@ -165,7 +129,7 @@ function removeProduct(productId) {
   const updatedProducts = products.filter(product => String(product.id) !== productId);
   localStorage.setItem('products', JSON.stringify(updatedProducts));
   
-  // إعادة حساب الصفحة الحالية بعد الحذف
+
   const remainingProducts = updatedProducts.length;
   const pageCount = Math.ceil(remainingProducts / productsPerPage);
   if (currentPage > pageCount) {
