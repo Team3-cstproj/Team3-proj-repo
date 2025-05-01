@@ -343,7 +343,7 @@ function searchByWord() {
     showNoProductsFound();
     return;
   }
-
+  currentPage = 1; // Reset to first page after filtering
   products = applySorting(products);
   displayProducts();
 }
@@ -361,6 +361,8 @@ function filterByPrice() {
   products = getAllProducts();
 
   if (searchTerm !== "") {
+    console.log(searchTerm);
+    console.log(products);
     products = products.filter(product =>
       product.name.toLowerCase().includes(searchTerm) &&
       product.price >= minPrice &&
@@ -379,7 +381,7 @@ function filterByPrice() {
   }
 
   products = applySorting(products);
-  currentPage = 1;
+  currentPage = 1; // Reset to first page after filtering
   displayProducts();
 }
 

@@ -78,5 +78,5 @@ function logout() {
 document.addEventListener('DOMContentLoaded', function() {
   loadOrders();
   updateCustomersCount();
-  logout();
+  
 });

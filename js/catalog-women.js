@@ -491,6 +491,8 @@ function searchByWord() {
     return;
   }
 
+  currentPage = 1; // Reset to first page after filtering
+
   products = applySorting(products);
   displayProducts();
 }
