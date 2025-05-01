@@ -138,3 +138,9 @@ function removeProduct(productId) {
   
   loadProducts(currentPage);
 }
+//clear session storage after log out
+document.querySelector('.nav-link.text-danger').addEventListener('click', function(e) {
+  e.preventDefault();
+  sessionStorage.clear(); 
+  window.location.href = 'login.html'; 
+});
