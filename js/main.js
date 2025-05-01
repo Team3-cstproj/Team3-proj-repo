@@ -533,7 +533,7 @@ function setupUserProfile() {
     profileDropdown
       .querySelector("#editbtn")
       .addEventListener("click", () => {
-        window.location.href = "updateAccount.htm";
+        window.location.href = "updateAccount.html";
       });
   } else {
     // User is not logged in, show login option
