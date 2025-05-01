@@ -1,11 +1,13 @@
-const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-const users = JSON.parse(localStorage.getItem("users")) || [];
-
+let users = JSON.parse(localStorage.getItem("users")) || [];
+let authData = JSON.parse(localStorage.getItem("authData")) || [];
 // Fill form with current data
 document.getElementById("username").value = currentUser.username;
 document.getElementById("email").value = currentUser.email;
 document.getElementById("password").value = currentUser.password;
-
+document.getElementById("seller_name").textContent = currentUser.username;
+document.getElementById("clearUser").addEventListener("click", function () {
+  sessionStorage.clear();
+  })
 // On form submit
 document.getElementById("editForm").addEventListener("submit", function (e) {
   e.preventDefault();
@@ -22,7 +24,16 @@ users.forEach(user => {
         user.password = updatedPassword;
     } 
 });
-currentUser.name = updatedUsername;
+authData.sellers.forEach(authdata => {
+
+  if (authdata.id === currentUser.id) {
+    console.log(authdata.username, authdata.email, authdata.password);
+    authdata.username = updatedUsername;
+    authdata.email = updatedEmail;
+    authdata.password = updatedPassword;
+  } 
+});
+currentUser.username = updatedUsername;
 currentUser.email = updatedEmail;
 currentUser.password = updatedPassword;
 

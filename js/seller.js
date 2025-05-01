@@ -1,5 +1,3 @@
-var x;
-
 
 document.addEventListener("DOMContentLoaded", function () {
     const sideMenue = document.querySelector("aside");
@@ -17,7 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const rowsPerPage = 5;
     let seller_product = products.filter(product => product.sellerId == info.id);
     let seller_order = orders.filter(order => order.sellerId == info.id);
-    
+    console.log(seller_order);
+    console.log(seller_product);
     let currentPage=1;
     const themToggler = document.querySelector(".theme-toggler");
     
@@ -130,36 +129,38 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
     
+
     function displayOrders(orders, wrapper, rowsPerPage, page) {
         wrapper.innerHTML = "";
         page--;
+        console.log(orders);
         let start = page * rowsPerPage;
         let end = start + rowsPerPage;
         let paginatedItems = orders.slice(start, end);
-        paginatedItems.forEach((order) => {
-    
+        paginatedItems.forEach((orders) => {
+
             const row = document.createElement("tr");
             row.innerHTML = `
-                <td>${order.id}</td>
-                <td>${order.userName}</td>
-                <td>${order.totalPrice}</td>
-                <td ><a class:"primary" href="receipt.html?ids=${[+order.id]}"><span class="primary dtails-link">Details</span></a></td>
-            `;
+            <td>${orders.id}</td>
+            <td>${orders.userName}</td>
+            <td>${orders.totalPrice}</td>
+            <td ><a class:"primary" href="receipt.html?ids=${[+orders.id]}"><span class="primary dtails-link">Details</span></a></td>
+        `;
             wrapper.appendChild(row);
         });
-    
-    
+
+
     }
-    
+
     function setupPagination(items, wrapper, rowsPerPage) {
         wrapper.innerHTML = "";
-    
+
         let pageCount = Math.ceil(items.length / rowsPerPage);
-    
+
         const prevItem = document.createElement("li");
         prevItem.classList.add("page-item");
         if (currentPage === 1) prevItem.classList.add("disabled");
-    
+
         const prevLink = document.createElement("a");
         prevLink.classList.add("page-link", "modern-btn");
         prevLink.href = "#";
@@ -173,12 +174,12 @@ document.addEventListener("DOMContentLoaded", function () {
         };
         prevItem.appendChild(prevLink);
         wrapper.appendChild(prevItem);
-    
+
         for (let i = 1; i <= pageCount; i++) {
             const pageItem = document.createElement("li");
             pageItem.classList.add("page-item");
             if (currentPage === i) pageItem.classList.add("active");
-    
+
             const pageLink = document.createElement("a");
             pageLink.classList.add("page-link", "modern-btn");
             pageLink.href = "#";
@@ -188,15 +189,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 currentPage = i;
                 update();
             };
-    
+
             pageItem.appendChild(pageLink);
             wrapper.appendChild(pageItem);
         }
-    
+
         const nextItem = document.createElement("li");
         nextItem.classList.add("page-item");
         if (currentPage === pageCount) nextItem.classList.add("disabled");
-    
+
         const nextLink = document.createElement("a");
         nextLink.classList.add("page-link", "modern-btn");
         nextLink.href = "#";
@@ -211,25 +212,37 @@ document.addEventListener("DOMContentLoaded", function () {
         nextItem.appendChild(nextLink);
         wrapper.appendChild(nextItem);
     }
-    
+
+
     
     function update() {
         calculateTotalSales();
         displayOrders(seller_order, tbody, rowsPerPage, currentPage);
-        setupPagination(seller_product, pagination, rowsPerPage);
+        setupPagination(seller_order, pagination, rowsPerPage);
     }
-    update();
-    // document.querySelectorAll(".details-btn").forEach(button => {
-    //     button.addEventListener("click", function () {
-    //       // Find the closest row
-    //       const row = this.closest("tr");
-    //       // Get the first cell's text content (assumed to be ID)
-    //       const orderid = row.cells[0].textContent.trim();
-    //       // Redirect to the details page with the product ID
-    //       window.location.href = `receipt.html?ids=${[+orderid]}`;
-    //     });
-    // });
 
+
+
+
+
+
+
+    update();
+    document.querySelectorAll(".details-btn").forEach(button => {
+        button.addEventListener("click", function () {
+          // Find the closest row
+          const row = this.closest("tr");
+          // Get the first cell's text content (assumed to be ID)
+          const orderid = row.cells[0].textContent.trim();
+          window.location.href = `receipt.html?ids=${[+orderid]}`;
+        });
+    });
+
+    themToggler.addEventListener("click", () => {
+        document.body.classList.toggle("dark-theme-variables");
+        themToggler.querySelector("span:nth-child(1)").classList.toggle("active");
+        themToggler.querySelector("span:nth-child(2)").classList.toggle("active");
+    });
 
 });
     

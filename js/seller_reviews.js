@@ -1,9 +1,13 @@
 
   const productSelect = document.getElementById("productSelect");
   const reviewsContainer = document.getElementById("reviewsContainer");
+  const themToggler = document.querySelector(".theme-toggler");
 
   const products = JSON.parse(localStorage.getItem("products")) || [];
-
+  document.getElementById("seller_name").textContent = currentUser.username;
+  document.getElementById("clearUser").addEventListener("click", function () {
+    sessionStorage.clear();
+    })
   // Populate dropdown
   products.forEach(product => {
     const option = document.createElement("option");
@@ -41,3 +45,9 @@
       reviewsContainer.appendChild(div);
     });
   }
+
+  themToggler.addEventListener("click", () => {
+    document.body.classList.toggle("dark-theme-variables");
+    themToggler.querySelector("span:nth-child(1)").classList.toggle("active");
+    themToggler.querySelector("span:nth-child(2)").classList.toggle("active");
+});
