@@ -1,7 +1,14 @@
-
+const sideMenue = document.querySelector("aside");
+const menuBtn = document.querySelector("#menu_bar");
+const closeBtn = document.querySelector("#close_btn");
+menuBtn.addEventListener("click", () => {
+  sideMenue.style.display = "block";
+})
+closeBtn.addEventListener("click", () => {
+  sideMenue.style.display = "none";
+})
   const productSelect = document.getElementById("productSelect");
   const reviewsContainer = document.getElementById("reviewsContainer");
-  const themToggler = document.querySelector(".theme-toggler");
   info = JSON.parse(sessionStorage.getItem("currentUser"));
   const products = JSON.parse(localStorage.getItem("products")) || [];
   document.getElementById("seller_name").textContent = currentUser.username;
@@ -20,6 +27,19 @@
       productList.appendChild(option);
   }
   });
+  let flag = JSON.parse(sessionStorage.getItem("flag"));
+    if(flag % 2 == 0){
+        document.body.classList.toggle("dark-theme-variables");
+        themToggler.querySelector("span:nth-child(1)").classList.toggle("active");
+        themToggler.querySelector("span:nth-child(2)").classList.toggle("active");
+    }
+  const themToggler = document.querySelector(".theme-toggler");
+  themToggler.addEventListener("click", () => {
+      document.body.classList.toggle("dark-theme-variables");
+      themToggler.querySelector("span:nth-child(1)").classList.toggle("active");
+      themToggler.querySelector("span:nth-child(2)").classList.toggle("active");
+  });
+
   
   function showReviewsFromSearch() {
     const searchValue = productSearch.value.trim().toLowerCase();

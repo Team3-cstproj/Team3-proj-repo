@@ -1,26 +1,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('seller.css');
-main{
-  margin-top: 100px;
-  width:50%;
-  margin: auto;
-}
-
-
-
-  h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: var(--clr-dark)
-  }
-
- 
 
   input {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--clr-white);
     border-radius: 10px;
     margin-bottom: 1.2rem;
     font-size: 1rem;
@@ -30,68 +15,16 @@ main{
   input:focus {
     border-color: #0077ff;
     outline: none;
-    background-color: white;
+    background-color: --clr-color-background;
   }
-
-  .rtop{
-    width: 20%;
-    top: 0;
-    display: flex;
-    justify-content:right;
-    align-items: center;
-    padding: 0 0.8rem;
-    background: var(--clr-white);
-    height: 4.6rem;
-    right:10px;
-    box-shadow: 0 1rem 1rem var(--box-shadow);
-    margin-right: 0;
-  }
-
-
-  .theme-toggler {
-    background-color: var(--clr-white);
-    height: 1.6rem;
-    width: 4.2rem;
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
-    border-radius: var(--bord-radius-1);
-  }
-
-
-  .theme-toggler span{
-    font-size: 1.2rem;
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-   .theme-toggler span.active{
-    background-color: var(--clr-primary);
-    color: #ffffff;
-    border-radius: var(--bord-radius-1);
-  }
-  .profile{
-    display: flex;
-    margin: 30px;
-
-  }
-  .info{
-    margin-right: 20%;
-  }
-  
-  .rtop button{
-    display: none;
-}
 
 
 .product-review-section {
   
-  width: 50%;
-  margin:  50px auto;
-  background-color: #fff;
+  width: 100%;
+  margin: auto;
+  margin-top: 20px;
+  background-color: var(--clr-white);
   padding: 30px;
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -107,7 +40,7 @@ main{
   padding: 12px 16px;
   font-size: 16px;
   border-radius: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--clr-white);
   margin-bottom: 24px;
   box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
   transition: border 0.2s ease;
@@ -130,7 +63,7 @@ main{
   gap: 8px;
   padding: 20px;
   border-radius: 16px;
-  background-color: #ffffff;
+  background-color: var(--clr-white);
   border: 1px solid #e0e0e0;
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -161,7 +94,7 @@ main{
 
 .review .date {
   font-size: 13px;
-  color: #aaa;
+  color: var(--clr-info-dark);
   text-align: right;
   margin-top: 8px;
   font-style: italic;
@@ -170,36 +103,3 @@ main{
 
 
 
-@media (max-width: 665px) {
-
-
-
-  aside{
-      position: fixed;
-      width: 18rem;
-      z-index: 3;
-      background: var(--clr-white);
-      display: none;
-  }
-  aside .top div.close span{
-      display: inline;
-      position: absolute;
-      right: 0;
-      margin-left: 30px;
-      font-size: 35px;
-  }
-  main{
-      width: 80%;
-  }
-
-
-
-  .rtop button{
-      display: flex;
-      position: fixed;        
-      left: 20px;
-      background-color: var(--clr-white);
-  }
-
-  
-}
