@@ -293,7 +293,6 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(event) {
       event.preventDefault();
       
-      // First, check if user is logged in
       const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
       
       if (!currentUser) {
@@ -316,7 +315,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // Get the email from the form
       const emailValue = document.getElementById('email').value;
       
-      // Get existing email-to-id mappings or create if doesn't exist
       const emailToIdMapping = JSON.parse(localStorage.getItem('emailToIdMapping')) || {};
       
       // Check if this email already has an ID
@@ -326,7 +324,6 @@ document.addEventListener('DOMContentLoaded', function() {
       } else {
         // Generate a new ID for this email
         contactId = generateUniqueId();
-        // Store the new email-to-id mapping
         emailToIdMapping[emailValue] = contactId;
         localStorage.setItem('emailToIdMapping', JSON.stringify(emailToIdMapping));
       }
@@ -338,20 +335,18 @@ document.addEventListener('DOMContentLoaded', function() {
         subject: document.getElementById('subject').value,
         email: emailValue,
         message: document.getElementById('message').value,
-        userId: currentUser.id, // Add user ID from the logged in user
-        date: new Date().toISOString().split('T')[0] // YYYY-MM-DD format
+        userId: currentUser.id,
+        date: new Date().toISOString().split('T')[0]
       };
       
       // Save to localStorage
       saveContactRequest(formData);
       
-      // Show success message
       formResponse.style.display = 'block';
       formResponse.classList.add('alert-success');
       formResponse.classList.remove('alert-danger');
       formResponse.innerHTML = 'Message sent successfully!';
-      
-      // Reset form
+    
       form.reset();
       form.classList.remove('was-validated');
       
@@ -361,7 +356,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 3000);
     });
     
-    // Additional validation for email format
+    // Additional validation for email
     const emailInput = document.getElementById('email');
     if (emailInput) {
       emailInput.addEventListener('input', function() {
@@ -378,10 +373,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Generate a unique ID for new contacts
 function generateUniqueId() {
-  // Get existing contact IDs or start with an empty array
   const contactData = JSON.parse(localStorage.getItem('contactData')) || { requests: [] };
   
-  // Find the highest existing ID
   let maxId = 0;
   contactData.requests.forEach(request => {
     if (request.id && parseInt(request.id) > maxId) {
@@ -397,11 +390,7 @@ function generateUniqueId() {
 function saveContactRequest(formData) {
   // Get existing data
   const contactData = JSON.parse(localStorage.getItem('contactData')) || { requests: [] };
-  
-  // Add new request
   contactData.requests.push(formData);
-  
-  // Save back to localStorage
   localStorage.setItem('contactData', JSON.stringify(contactData));
 }
 /////////////===============================================================================///////////
@@ -416,7 +405,6 @@ function displayLoggedInUserInfo() {
   const userInfoSection = document.getElementById('loggedInUserInfo');
   if (!userInfoSection) return;
   
-  // Check if user is logged in
   const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
   
   if (currentUser) {
@@ -505,6 +493,7 @@ function displayReplyById(userId) {
     repliesContainer.innerHTML = '<p>No replies found.</p>';
   }
 }
+//////==============================================================================================================///
 
 // document.addEventListener('DOMContentLoaded', () => {
 //   const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));

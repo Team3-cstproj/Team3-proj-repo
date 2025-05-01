@@ -34,12 +34,10 @@ const sampleProducts = [
 
 // Initialize when the page loads
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize cart first thing
   initializeCart();
   
   // Check if products exist in localStorage
   if (!localStorage.getItem('products')) {
-    // If not, initialize with sample data
     localStorage.setItem('products', JSON.stringify(sampleProducts));
   }
   
@@ -82,7 +80,6 @@ function getAllProducts() {
 
 // Initialize product display
 function initializeProductDisplay() {
-  // Get products
   const products = getAllProducts();
   
   // Display products
@@ -124,7 +121,6 @@ function displayProducts(products) {
       available -= existingItem.quantity;
     }
 
-    // Check available and build buttons/stock info
     let stockInfoHtml = '';
     let hoverCartButtonHtml = '';
 
@@ -140,7 +136,6 @@ function displayProducts(products) {
       `;
     } else {
       stockInfoHtml = `<p class="text-danger small fw-bold">Out of Stock</p>`;
-      // No cart buttons if out of stock
       hoverCartButtonHtml = '';
     }
 
@@ -169,22 +164,19 @@ function displayProducts(products) {
     productContainer.innerHTML += productCard;
   });
 
-  // Add event listeners to cart buttons after products are displayed
   setupCartButtons();
 }
 
 // Set up cart button event listeners
 function setupCartButtons() {
-  // Set up cart buttons in product cards
   document.querySelectorAll('.cart-button').forEach(button => {
-    // Remove any existing event listeners
     button.replaceWith(button.cloneNode(true));
   });
   
   // Add fresh event listeners
   document.querySelectorAll('.cart-button').forEach(button => {
     button.addEventListener('click', function(e) {
-      e.preventDefault(); // prevent link jump
+      e.preventDefault();
       const productId = parseInt(this.getAttribute('data-id'));
       const product = getAllProducts().find(p => p.id === productId);
       
@@ -192,21 +184,17 @@ function setupCartButtons() {
         addToCart(product, 1);
         updateCartDisplay();
 
-        // Disable the button while animation is running
         this.classList.add('disabled');
 
-        // Apply success animation
         const tooltip = this.querySelector('.tooltip-text');
         const buttonEl = this;
 
         if (tooltip) {
           const originalText = tooltip.textContent;
 
-          // Add success class for animation
           buttonEl.classList.add('success-feedback');
           tooltip.textContent = 'Successfully added to cart';
 
-          // After 1.5 seconds, trigger fade-out and revert the tooltip text
           setTimeout(() => {
             buttonEl.classList.add('fade-out');
             tooltip.textContent = originalText;
@@ -214,20 +202,17 @@ function setupCartButtons() {
             // Remove success class and fade-out class, and update the page
             setTimeout(() => {
               buttonEl.classList.remove('success-feedback', 'fade-out');
-              // Re-enable the button after animation ends
               buttonEl.classList.remove('disabled');
-              // Re-render products if we're on a product listing page
               if (document.getElementById('product-list')) {
                 displayProducts(getAllProducts());
               }
-            }, 500); // Duration of fade-out
+            }, 500); 
           }, 1500);
         }
       }
     });
   });
   
-  // Set up cart sidebar toggle buttons
   setupCartSidebar();
 }
 
@@ -236,7 +221,6 @@ function addToCart(product, quantity) {
   const cartData = sessionStorage.getItem('cart');
   
   if (!cartData) {
-    // Reset cart if not found
     sessionStorage.setItem('cart', JSON.stringify({ 
       items: [{
         id: product.id,
@@ -296,14 +280,12 @@ function updateCartDisplay() {
   const cartData = sessionStorage.getItem('cart');
   
   if (!cartData) {
-    // Reset cart if not found
     sessionStorage.setItem('cart', JSON.stringify({ items: [], total: 0, count: 0 }));
     return;
   }
   
   const cart = JSON.parse(cartData);
   if (!cart || typeof cart !== 'object') {
-    // Reset cart if corrupted
     sessionStorage.setItem('cart', JSON.stringify({ items: [], total: 0, count: 0 }));
     return;
   }
@@ -361,7 +343,6 @@ function setupCartSidebar() {
     });
   }
   
-  // Overlay click to close
   cartOverlay.addEventListener("click", function() {
     cartSidebar.classList.remove("active");
     cartOverlay.classList.remove("active");
@@ -379,7 +360,6 @@ function updateCartSidebar(cart, cartContent, cartFooter) {
       <a href="#" class="continue-shopping bg-primary" id="continueShopping">Continue Shopping</a>
     `;
     
-    // Add event listener to continue shopping button
     const continueShoppingBtn = document.getElementById("continueShopping");
     if (continueShoppingBtn && cartSidebar && cartOverlay) {
       continueShoppingBtn.addEventListener("click", function(e) {
@@ -418,14 +398,12 @@ function updateCartSidebar(cart, cartContent, cartFooter) {
     
     cartContent.innerHTML = html;
     
-    // Update footer with View Cart button
     cartFooter.innerHTML = `
       <div class="d-flex flex-column gap-2">
         <a href="cart.html" class="btn btn-primary">View Cart</a>
       </div>
     `;
     
-    // Add event listeners to remove buttons
     document.querySelectorAll(".remove-item").forEach(button => {
       button.addEventListener("click", function() {
         const itemId = parseInt(this.getAttribute("data-id"));
@@ -447,7 +425,6 @@ function removeCartItem(itemId) {
   
   const cart = JSON.parse(cartData);
   if (!cart || !Array.isArray(cart.items)) {
-    // Reset cart if corrupted
     sessionStorage.setItem('cart', JSON.stringify({ items: [], total: 0, count: 0 }));
     return;
   }
@@ -469,7 +446,7 @@ function removeCartItem(itemId) {
     // Update display
     updateCartDisplay();
     
-    // Re-render products if we're on a product page
+
     if (document.getElementById('product-list')) {
       displayProducts(getAllProducts());
     }
@@ -526,17 +503,16 @@ function setupUserProfile() {
       <button id="logoutBtn" class="btn btn-sm btn-danger w-100">Logout</button>
     `;
 
-    // Change icon to logged in state
+
     userIcon.innerHTML = '<i class="fa-solid fa-user-check"></i>';
     userIcon.href = "#"; // Prevent navigation to login page
-    // Add click  for Edit Info
+  
     profileDropdown
       .querySelector("#editbtn")
       .addEventListener("click", () => {
         window.location.href = "updateAccount.html";
       });
   } else {
-    // User is not logged in, show login option
     profileDropdown.innerHTML = `
       <p class="mb-2">You are not logged in</p>
       <a href="login.html" class="btn btn-sm btn-primary w-100">Login</a>
