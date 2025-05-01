@@ -483,7 +483,6 @@ function displayReplyById(userId) {
 
         const formattedContent = `
           <h5><b class="text-primary">Subject</b>: ${reply.subject}</h5>
-          <p><b class="text-primary">Dear</b> ${reply.name}</br> <b class="text-primary">with email</b> ${reply.email}</p>
           <p>${reply.message || 'No message content'}</p>
         `;
 
