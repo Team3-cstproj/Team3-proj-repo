@@ -69,27 +69,35 @@ function setupUserProfile() {
   profileDropdown.style.zIndex = '1000';
   profileDropdown.style.minWidth = '200px';
   profileDropdown.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
-  
   if (userData) {
-    // if User login show profile info and logout option
+    // if  User login show profile info and logout option
     profileDropdown.innerHTML = `
       <div class="user-info mb-2">
-        <p class="mb-1"><strong>${userData.name || 'User'}</strong></p>
-        <p class="small text-muted mb-2">${userData.email || ''}</p>
-        <p class="small">Role: ${userData.role || 'user'}</p>
+        <p class="mb-1"><strong>${userData.name || "User"}</strong></p>
+        <p class="small text-muted mb-2">${userData.email || ""}</p>
+        <p class="small">Role: ${userData.role || "user"}</p>
       </div>
+      <button id="editbtn" class="btn btn-sm btn-secondary w-100 mb-1">Edit Info</button>
       <button id="logoutBtn" class="btn btn-sm btn-danger w-100">Logout</button>
     `;
-    
-    // Change icon to logged in state
+
+    // Change icon to  logged in state
     userIcon.innerHTML = '<i class="fa-solid fa-user-check"></i>';
-    userIcon.href = '#'; // Prevent navigation to login page
-    
-    // Add click for logout - fixed sessionStorage key
-    profileDropdown.querySelector('#logoutBtn').addEventListener('click', () => {
-      sessionStorage.clear('currentUser');
-      window.location.href = 'login.html';
-    });
+    userIcon.href = "#"; // Prevent navigation to login page
+
+    // Add click  for Edit Info
+    profileDropdown
+      .querySelector("#editbtn")
+      .addEventListener("click", () => {
+        window.location.href = "updateAccount.html";
+      });
+    // Add click  for logout
+    profileDropdown
+      .querySelector("#logoutBtn")
+      .addEventListener("click", () => {
+        sessionStorage.clear();
+        window.location.href = "login.html";
+      });
   } else {
     // User is not login show login 
     profileDropdown.innerHTML = `
@@ -263,7 +271,3 @@ function calculateCartCount(items) {
   return items.reduce((count, item) => count + item.quantity, 0);
 }
 ///////======================================end of cart =======================================================
-////foter function
-function myfun() {
-  window.location.href = "contacts.html";
-}

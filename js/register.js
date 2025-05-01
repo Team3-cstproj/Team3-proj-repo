@@ -45,6 +45,12 @@ document.querySelector("form").addEventListener("submit", function (e) {
         return;
     }
 
+    if (password.length < 4) {
+        showMessage("🔐 Password must be at least 4 characters long.");
+        return;
+    }
+    
+
     // Check if username or email already exists in users or sellers
     const emailExists =
         authData.users.some(u => u.email === email) ||

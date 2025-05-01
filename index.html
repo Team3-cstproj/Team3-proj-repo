@@ -12,9 +12,16 @@
     <script src="data/data.js"></script>
     <script src="data/requests.js"></script>
     <title>Home-E-comerce</title>
-    <style>
-
-    </style>
+    <script>
+        // Define the roles that are allowed to access this page
+        const allowedRoles = ['user']; // Customize this for each page
+      
+        const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      
+        if (currentUser && !allowedRoles.includes(currentUser.role)) {
+          window.location.href = 'error.html';
+        }
+    </script>
 </head>
 
 <body>
@@ -499,7 +506,7 @@
           <div class="subscribe-form">
             <h3 class="subscribe-title">Contact Us</h3>
             <form class="mt-3 g-3">
-              <button type="submit" class="btn btn-primary btn-block mt-2" onclick="myfun4()">Contact Us</button>
+                <button type="submit" class="btn btn-primary btn-block mt-2"><a href="contacts.html" class="text-light text-decoration-none"">contact us</a></button>
             </form>
           </div>
         </div>
