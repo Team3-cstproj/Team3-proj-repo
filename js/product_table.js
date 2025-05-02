@@ -15,6 +15,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const rowsPerPage = 5;
     let seller_product = products.filter(product => product.sellerId == info.id);
 
+    let flag = JSON.parse(sessionStorage.getItem("flag"));
+    if(flag % 2 == 0){
+        document.body.classList.toggle("dark-theme-variables");
+        themToggler.querySelector("span:nth-child(1)").classList.toggle("active");
+        themToggler.querySelector("span:nth-child(2)").classList.toggle("active");
+    }
+    const themToggler = document.querySelector(".theme-toggler");
+    themToggler.addEventListener("click", () => {
+        document.body.classList.toggle("dark-theme-variables");
+        themToggler.querySelector("span:nth-child(1)").classList.toggle("active");
+        themToggler.querySelector("span:nth-child(2)").classList.toggle("active");
+    });
+  
     menuBtn.addEventListener("click", () => {
         sideMenue.style.display = "block";
         menuBtn.style.display = "none"
@@ -43,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${product.sold}</td>
                 <td class="available-cell">${product.availible}</td>
                 <td class="price-cell">${product.price}</td>
-                <td style{text-align: center;} class="${product.availible != 0 ? 'primary' : 'warning'}">
+                <td class = "stock" style{text-align: center;} class="${product.availible != 0 ? 'primary' : 'warning'}">
                     ${product.availible != 0 ? 'inStock' : 'Out of Stock'}
                 </td>                <td class="action-buttons">
                     <a href="#" class="edit-btn" data-index="${start + index}"><i class="fas fa-pen success"></i></a>

@@ -1,45 +1,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('seller.css');
-main{
-  margin-top: 100px;
-  width:50%;
-  margin: auto;
-}
-.ptable{
-  margin-top: 100px;
-  width:70%;
-  margin-left: 3%;
-}
-aside{
-  display:inline;
-  min-width: 200px;
-  margin-left: 30px;
 
-}
-
-
-  aside .sidebar{
-    background-color: var(--clr-white);
-    display: flex;
-    flex-direction: column;
-    height: 35rem;
-    position: relative;
-    top: 1rem;
-}
 .form-container {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    width: 100%;
+  margin: auto;
+  margin-top: 20px;
+  background: var(--clr-white);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
   }
-
-  h2 {
-    text-align: center;
-    color: var(--clr-dark)
-  }
-
   label {
     display: block;
     margin-bottom: 0.5rem;
@@ -50,17 +21,21 @@ aside{
   input, textarea, select {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--clr-color-background);
     border-radius: 10px;
     margin-bottom: 1.2rem;
     font-size: 1rem;
     transition: border 0.3s;
+    background-color: var(--clr-color-background);
   }
 
   input:focus, textarea:focus, select:focus {
     border-color: #0077ff;
     outline: none;
-    background-color: white;
+    background-color: var(--clr-color-background);
+  }
+  .input-group-text{
+    background-color: var(--clr-color-background);
   }
 
   textarea {
@@ -70,7 +45,7 @@ aside{
 
   .btn {
     background-color: var(--clr-primary);
-    color: white;
+    color: var(--clr-white);
     padding: 0.75rem;
     border: none;
     border-radius: 10px;
@@ -90,7 +65,7 @@ aside{
     padding: 1.5rem;
     border-radius: 12px;
     text-align: center;
-    background-color: #f0f8ff;
+    background-color: var(--clr-color-background);
     color: #0077ff;
     margin-bottom: 1rem;
     cursor: pointer;
@@ -98,7 +73,7 @@ aside{
   }
 
   .upload-area:hover {
-    background-color: #e0f0ff;
+    background-color: var(--clr-color-background);
   }
 
   .upload-area input {
@@ -106,7 +81,7 @@ aside{
   }
 
   .upload-area.active {
-    background-color: #d0eaff;
+    background-color: var(--clr-color-background);
   }
 
   .upload-area span {
@@ -125,54 +100,3 @@ aside{
     object-fit: contain;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   }
-
-  .rtop{
-    width: 20%;
-    top: 0;
-    display: flex;
-    justify-content:right;
-    align-items: center;
-    padding: 0 0.8rem;
-    background: var(--clr-white);
-    height: 4.6rem;
-    right:10px;
-    box-shadow: 0 1rem 1rem var(--box-shadow);
-    margin-right: 0;
-  }
-  .profile{
-    display: flex;
-    margin: 30px;
-
-  }
-  .info{
-    margin-right: 20%;
-  }
-  
-  .rtop button{
-    display: none;
-}
-
-
- .theme-toggler {
-  background-color: var(--clr-white);
-  height: 1.6rem;
-  width: 4.2rem;
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
-  border-radius: var(--bord-radius-1);
-}
- .theme-toggler span{
-  font-size: 1.2rem;
-  width: 50%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
- .theme-toggler span.active{
-  background-color: var(--clr-primary);
-  color: #ffffff;
-  border-radius: var(--bord-radius-1);
-}

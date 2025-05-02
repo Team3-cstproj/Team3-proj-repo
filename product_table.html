@@ -20,9 +20,7 @@
     </script>
 </head>
 <body>
-
     <div class="container">
-
 
         <aside class="Saside">
             <div class = "top">
@@ -49,10 +47,6 @@
                     <h3>Products</h3>
                 </a>
 
-                <a href="settings.html">
-                    <span class="material-symbols-outlined">settings</span>
-                    <h3>Settings</h3>
-                </a>
                 <a href="add_product.html">
                     <span class="material-symbols-outlined">add</span>
                     <h3>Add Product</h3>
@@ -64,11 +58,11 @@
             </div>
          </aside>
 
+        <main>  
+            
+            <h1>products info</h1>
 
-
-        <main class="ptable" style="margin-top: 50px;">      
             <div class="recent_order">
-                <h1>products info</h1>
 
                 <table>
                     <thead>
@@ -78,7 +72,7 @@
                             <th>Sold</th>
                             <th>Availible</th>
                             <th>Price</th>
-                            <th>Status</th>
+                            <th class = "stock">Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -104,33 +98,35 @@
                 </ul>
 
             </div>
-         </main>
+        </main>
+
+        <div class="right">
+            <div class="top" >
 
 
-         <div class="rtop" style="background-color: #f6f6f9;">
+                <button id = "menu_bar" >
+                    <span class = "material-symbols-outlined">menu</span>
+                </button>
 
-
-            <button id = "menu_bar" style="background-color: #f6f6f9;">
-                <span class = "material-symbols-outlined">menu</span>
-            </button>
-
-            <div class="theme-toggler">
-                <span class="material-symbols-outlined active">light_mode</span>
-                <span class="material-symbols-outlined">dark_mode</span>
-            </div>
-            
-            <div class="profile">
-                <div class="info">
-                    <p><b id="seller_name">esmael</b></p>
-                    <p>Seller</p>
-                    <small class="text-muted"></small>
+                <div class="theme-toggler">
+                    <span class="material-symbols-outlined active">light_mode</span>
+                    <span class="material-symbols-outlined">dark_mode</span>
                 </div>
-                <div>
-                    <img src="images/logos/account_circle_32dp.png" alt="">
+                
+                <div class="profile">
+                    <div class="info">
+                        <p><b id="seller_name">esmael</b></p>
+                        <p>Seller</p>
+                        <small class="text-muted"></small>
+                    </div>
+                    <div>
+                        <img src="images/logos/account_circle_32dp.png" alt="">
+                    </div>
                 </div>
             </div>
         </div>
-    
+
     </div>
+
     <script src="js/product_table.js"></script>
 </body>

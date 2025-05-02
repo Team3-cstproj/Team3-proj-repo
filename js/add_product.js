@@ -1,3 +1,12 @@
+const allowedRoles = ['seller']; // Customize this for each page
+      
+const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+
+if (!currentUser || !allowedRoles.includes(currentUser.role)) {
+  window.location.href = 'error.html';
+}
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const productForm = document.getElementById("productForm");
@@ -5,25 +14,46 @@ document.addEventListener("DOMContentLoaded", function () {
     const uploadArea = document.getElementById("uploadArea");
     const imagePreview = document.getElementById("imagePreview");
     const info = JSON.parse(sessionStorage.getItem("currentUser")) || [];
+    const themToggler = document.querySelector(".theme-toggler");
+    const sideMenue = document.querySelector("aside");
+    const menuBtn = document.querySelector("#menu_bar");
+    const closeBtn = document.querySelector("#close_btn");
+    let flag = JSON.parse(sessionStorage.getItem("flag"));
+    if(flag % 2 == 0){
+        document.body.classList.toggle("dark-theme-variables");
+        themToggler.querySelector("span:nth-child(1)").classList.toggle("active");
+        themToggler.querySelector("span:nth-child(2)").classList.toggle("active");
+    }
+    themToggler.addEventListener("click", () => {
+        document.body.classList.toggle("dark-theme-variables");
+        themToggler.querySelector("span:nth-child(1)").classList.toggle("active");
+        themToggler.querySelector("span:nth-child(2)").classList.toggle("active");
+    });
     let imagePath; // Initialize imagePath variable
     document.getElementById("clearUser").addEventListener("click", function () {
         sessionStorage.clear();
         })
     let products = JSON.parse(localStorage.getItem("products")) || [];
     document.getElementById("seller_name").textContent = info.username;
-
+    menuBtn.addEventListener("click", () => {
+        sideMenue.style.display = "block";
+    })
+    closeBtn.addEventListener("click", () => {
+        sideMenue.style.display = "none";
+    })
 
     uploadArea.addEventListener("click", function () {
         productImageInput.click();
     });
 
-    productImageInput.addEventListener("change", function () {
+    productImageInput.addEventListener("change", function (e) {
         const file = this.files[0];
 
         if (file) {
             const reader = new FileReader();
-            imagePath = e.target.result; // Store the image path in the variable
             reader.onload = function (e) {
+                imagePath = e.target.result; // Store the image path in the variable
+
             imagePreview.innerHTML = `<img src="${imagePath}" alt="Product Image" style="max-width: 100%; height: auto; margin-top: 10px; border-radius: 8px;">`;
             };
             reader.readAsDataURL(file);
@@ -117,9 +147,4 @@ document.addEventListener("DOMContentLoaded", function () {
         return maxId + 1;    }
 
 
-        themToggler.addEventListener("click", () => {
-            document.body.classList.toggle("dark-theme-variables");
-            themToggler.querySelector("span:nth-child(1)").classList.toggle("active");
-            themToggler.querySelector("span:nth-child(2)").classList.toggle("active");
-        });
 });

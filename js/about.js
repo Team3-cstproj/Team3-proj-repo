@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  // Initialize user profile dropdown
+
   setupUserProfile();
 });
 
@@ -44,7 +44,7 @@ function initializeCart() {
       count: 0
     }));
   }
-  // Update cart counter in navbar
+
   updateCartDisplay();
 }
 
@@ -55,7 +55,6 @@ function setupUserProfile() {
   
   if (!userIcon) return;
 
-  // Create user profile dropdown container
   const profileDropdown = document.createElement('div');
   profileDropdown.className = 'profile-dropdown';
   profileDropdown.style.display = 'none';
@@ -70,7 +69,6 @@ function setupUserProfile() {
   profileDropdown.style.minWidth = '200px';
   profileDropdown.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
   if (userData) {
-    // if  User login show profile info and logout option
     profileDropdown.innerHTML = `
       <div class="user-info mb-2">
         <p class="mb-1"><strong>${userData.name || "User"}</strong></p>
@@ -83,7 +81,7 @@ function setupUserProfile() {
 
     // Change icon to  logged in state
     userIcon.innerHTML = '<i class="fa-solid fa-user-check"></i>';
-    userIcon.href = "#"; // Prevent navigation to login page
+    userIcon.href = "#";
 
     // Add click  for Edit Info
     profileDropdown
@@ -106,7 +104,7 @@ function setupUserProfile() {
     `;
   }
   
-  // Add dropdown to DOM
+
   userIcon.parentNode.appendChild(profileDropdown);
   
   // Toggle dropdown on click
@@ -209,7 +207,6 @@ function updateCartSidebar(cart, cartContent, cartFooter) {
     
     cartContent.innerHTML = html;
     
-    // Update footer with View Cart button
     cartFooter.innerHTML = `
       <div class="d-flex flex-column gap-2">
         <a href="cart.html" class="btn btn-primary">View Cart</a>
@@ -231,14 +228,12 @@ function removeCartItem(itemId) {
   const cartData = sessionStorage.getItem('cart');
   
   if (!cartData) {
-    // Reset cart if not found
     sessionStorage.setItem('cart', JSON.stringify({ items: [], total: 0, count: 0 }));
     return;
   }
   
   const cart = JSON.parse(cartData);
   if (!cart || !Array.isArray(cart.items)) {
-    // Reset cart if corrupted
     sessionStorage.setItem('cart', JSON.stringify({ items: [], total: 0, count: 0 }));
     return;
   }

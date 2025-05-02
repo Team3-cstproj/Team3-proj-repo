@@ -1,4 +1,6 @@
 
+sessionStorage.setItem("flag", 1);
+
 document.addEventListener("DOMContentLoaded", function () {
     const sideMenue = document.querySelector("aside");
     const menuBtn = document.querySelector("#menu_bar");
@@ -19,7 +21,19 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(seller_product);
     let currentPage=1;
     const themToggler = document.querySelector(".theme-toggler");
-    
+    let flag = JSON.parse(sessionStorage.getItem("flag"));
+    if(flag % 2 == 0){
+        document.body.classList.toggle("dark-theme-variables");
+        themToggler.querySelector("span:nth-child(1)").classList.toggle("active");
+        themToggler.querySelector("span:nth-child(2)").classList.toggle("active");
+    }
+    themToggler.addEventListener("click", () => {
+        document.body.classList.toggle("dark-theme-variables");
+        themToggler.querySelector("span:nth-child(1)").classList.toggle("active");
+        themToggler.querySelector("span:nth-child(2)").classList.toggle("active");
+        sessionStorage.setItem("flag", ++flag);
+
+    });
     menuBtn.addEventListener("click", () => {
         sideMenue.style.display = "block";
     })
@@ -238,11 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    themToggler.addEventListener("click", () => {
-        document.body.classList.toggle("dark-theme-variables");
-        themToggler.querySelector("span:nth-child(1)").classList.toggle("active");
-        themToggler.querySelector("span:nth-child(2)").classList.toggle("active");
-    });
+  
 
 });
     
