@@ -212,6 +212,24 @@ function displayProductDetails(product) {
     img.alt = product.name;
   });
 
+  const storeName = document.getElementById("storeName");
+  const storeName1 = document.getElementById("storeName1");
+  const descriptionDetails = document.getElementById("description-full-product-detailes");
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  let seller = users.find((u) => u.id === product.sellerId);
+  if (seller.name){
+    storeName.textContent = ` ${seller.name}'s Store`;
+    storeName1.textContent = `${seller.name}'s Store`;
+  }
+  if (product.description) {
+    
+    descriptionDetails.innerHTML = product.description
+      .split("\n")
+      .map((line) => `<p>${line}</p>`)
+      .join("");
+  }
+
+
   // Update quantity input max value and available 
   const quantityInput = document.getElementById("quantity");
   if (quantityInput) {
