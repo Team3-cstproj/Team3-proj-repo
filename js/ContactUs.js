@@ -282,81 +282,102 @@ function myfun() {
 // // // // Form validation verssion 4
 // Form validation with login check
 document.addEventListener('DOMContentLoaded', function() {
-  // Display user info section if logged in
   displayLoggedInUserInfo();
-  
-  // Get form elements
+
   const form = document.getElementById('contactForm');
   const formResponse = document.getElementById('formResponse');
-  
+
   if (form) {
     form.addEventListener('submit', function(event) {
       event.preventDefault();
-      
+
       const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-      
+
       if (!currentUser) {
-        // User is not logged in - show error message
         formResponse.style.display = 'block';
         formResponse.classList.add('alert-danger');
         formResponse.classList.remove('alert-success');
         formResponse.innerHTML = 'You must be logged in to send a message. Please <a href="login.html">login</a> first.';
-        
-        // Don't proceed with form submission
         return false;
       }
-      
-      // Check form validity
+
+      const nameInput = document.getElementById('name');
+      const subjectInput = document.getElementById('subject');
+      const messageInput = document.getElementById('message');
+
+      const name = nameInput.value.trim();
+      const subject = subjectInput.value.trim();
+      const message = messageInput.value.trim();
+
+      let isValid = true;
+      let errorMessages = [];
+
+      if (name.length < 3 || name.length > 20) {
+        isValid = false;
+        errorMessages.push('Name must be between 3 and 20 characters and not just spaces.');
+      }
+
+      if (subject.length === 0) {
+        isValid = false;
+        errorMessages.push('Subject cannot be empty or just spaces.');
+      }
+
+      if (message.length === 0) {
+        isValid = false;
+        errorMessages.push('Message cannot be empty or just spaces.');
+      }
+
+      if (!isValid) {
+        formResponse.style.display = 'block';
+        formResponse.classList.add('alert-danger');
+        formResponse.classList.remove('alert-success');
+        formResponse.innerHTML = errorMessages.join('<br>');
+        return;
+      }
+
+      // Native form validity (HTML5 required, pattern, etc.)
       if (form.checkValidity() === false) {
         form.classList.add('was-validated');
-        return false;
+        return;
       }
-      
-      // Get the email from the form
+
       const emailValue = document.getElementById('email').value;
-      
       const emailToIdMapping = JSON.parse(localStorage.getItem('emailToIdMapping')) || {};
-      
-      // Check if this email already has an ID
+
       let contactId;
       if (emailToIdMapping[emailValue]) {
         contactId = emailToIdMapping[emailValue];
       } else {
-        // Generate a new ID for this email
         contactId = generateUniqueId();
         emailToIdMapping[emailValue] = contactId;
         localStorage.setItem('emailToIdMapping', JSON.stringify(emailToIdMapping));
       }
-      
-      // Form is valid and user is logged in - save the data
+
       const formData = {
         id: contactId,
-        name: document.getElementById('name').value,
-        subject: document.getElementById('subject').value,
+        name: name,
+        subject: subject,
         email: emailValue,
-        message: document.getElementById('message').value,
+        message: message,
         userId: currentUser.id,
         date: new Date().toISOString().split('T')[0]
       };
-      
-      // Save to localStorage
+
       saveContactRequest(formData);
-      
+
       formResponse.style.display = 'block';
       formResponse.classList.add('alert-success');
       formResponse.classList.remove('alert-danger');
       formResponse.innerHTML = 'Message sent successfully!';
-    
+
       form.reset();
       form.classList.remove('was-validated');
-      
-      // Hide message after 3 seconds
+
       setTimeout(() => {
         formResponse.style.display = 'none';
       }, 3000);
     });
-    
-    // Additional validation for email
+
     const emailInput = document.getElementById('email');
     if (emailInput) {
       emailInput.addEventListener('input', function() {
@@ -371,7 +392,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// Generate a unique ID for new contacts
+// unique ID for new contacts
 function generateUniqueId() {
   const contactData = JSON.parse(localStorage.getItem('contactData')) || { requests: [] };
   
@@ -388,7 +409,6 @@ function generateUniqueId() {
 
 // Save contact request to localStorage
 function saveContactRequest(formData) {
-  // Get existing data
   const contactData = JSON.parse(localStorage.getItem('contactData')) || { requests: [] };
   contactData.requests.push(formData);
   localStorage.setItem('contactData', JSON.stringify(contactData));
@@ -396,7 +416,6 @@ function saveContactRequest(formData) {
 /////////////===============================================================================///////////
 //////apearing section for replay to user 
 document.addEventListener('DOMContentLoaded', function() {
-  // Display user info section if logged in
   displayLoggedInUserInfo();
   
 });
@@ -415,7 +434,7 @@ function displayLoggedInUserInfo() {
     document.getElementById('userDisplayEmail').value = currentUser.email || '';
     document.getElementById('userDisplayRole').value = capitalizeFirstLetter(currentUser.role || 'User');
     
-    // Format join date if available
+    // join date if available
     if (currentUser.joinDate) {
       const joinDate = new Date(currentUser.joinDate);
       if (!isNaN(joinDate.getTime())) {
@@ -444,12 +463,12 @@ function displayLoggedInUserInfo() {
 
 }
 
-//capitalize first letter
+
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-//function to format date
+
 function formatDate(date) {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   return date.toLocaleDateString(undefined, options);
