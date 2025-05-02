@@ -487,7 +487,7 @@ function displayReplyById(userId) {
         repliesContainer.appendChild(replyDiv);
       }
     } else {
-      repliesContainer.innerHTML = `<p>No replies found for user ID: ${userId}</p>`;
+      repliesContainer.innerHTML = `<p>No replies found.</p>`;
     }
   } else {
     repliesContainer.innerHTML = '<p>No replies found.</p>';
