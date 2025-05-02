@@ -1,3 +1,11 @@
+const allowedRoles = ['seller']; // Customize this for each page
+      
+        const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      
+        if (!currentUser || !allowedRoles.includes(currentUser.role)) {
+          window.location.href = 'error.html';
+        }
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const info = JSON.parse(sessionStorage.getItem("currentUser")) || [];

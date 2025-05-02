@@ -1,3 +1,12 @@
+
+const allowedRoles = ['seller']; // Customize this for each page
+      
+const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+
+if (!currentUser || !allowedRoles.includes(currentUser.role)) {
+  window.location.href = 'error.html';
+}
+
 const sideMenue = document.querySelector("aside");
 const menuBtn = document.querySelector("#menu_bar");
 const closeBtn = document.querySelector("#close_btn");
