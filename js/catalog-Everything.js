@@ -324,8 +324,7 @@ function filterByPrice() {
   products = getAllProducts();
 
   if (searchTerm !== "") {
-    console.log(searchTerm);
-    console.log(products);
+
     products = products.filter(product =>
       product.name.toLowerCase().includes(searchTerm) &&
       product.price >= minPrice &&
