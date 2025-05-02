@@ -1,5 +1,4 @@
 
-
 // Sidebar Toggle Script
 const toggleBtn = document.getElementById('toggle-btn');
 const sidebar = document.getElementById('sidebar');
@@ -26,7 +25,7 @@ mobileMenuBtn?.addEventListener('click', function () {
 
 //----------------------
 
-//  varible ترقيم الصفح
+//  Variable for Pagination
 let currentOrdersPage = 1;
 const ordersPerPage = 4;
 let Total_sales = 0;
@@ -46,6 +45,9 @@ function loadOrders(page = 1) {
     Total_sales = 0;
     Total_orders = 0;
     const uniqueCustomerIds = new Set();
+
+    // Sort orders by order ID (most recent first)
+    allOrders.sort((a, b) => b.id - a.id); // Sorting by order ID in descending order
 
     const startIndex = (page - 1) * ordersPerPage;
     const endIndex = startIndex + ordersPerPage;
@@ -67,8 +69,7 @@ function loadOrders(page = 1) {
         row.innerHTML = `
           <td>${order.id || 'N/A'}</td>
           <td>${order.userName || 'N/A'}</td>
-          
-  <td><a href="receipt.html?ids=${+order.id}" style="color:rgb(25, 48, 124);  text-decoration: none;" >${order.productName || 'N/A'}</a></td>
+          <td><a href="receipt.html?ids=${+order.id}" style="color:rgb(25, 48, 124); text-decoration: none;">${order.productName || 'N/A'}</a></td>
           <td>${order.quantity || '0'}</td>
           <td>${order.orderDate || 'N/A'}</td>
           <td>${order.sellerName || 'N/A'}</td>
@@ -78,10 +79,9 @@ function loadOrders(page = 1) {
       });
     }
 
-    // تحديث الإحصائيات
-    updateStatistics(Total_sales, Total_orders, uniqueCustomerIds.size);
+
     
-    // إعداد الترقيم الصفحي
+    // Setup pagination
     setupOrdersPagination(allOrders.length, page);
   } catch (error) {
     console.error('Error in loadOrders:', error);
@@ -97,6 +97,15 @@ function updateStatistics(sales, orders, customers) {
   if (ordersEl) ordersEl.textContent = orders;
   if (customersEl) customersEl.textContent = customers;
 }
+const orderss = JSON.parse(localStorage.getItem('orders')) || [];
+let totalmoney = 0;
+for (let i = 0; i < orderss.length; i++) {
+  totalmoney += Number(orderss[i].totalPrice) || 0;
+}
+const authData = JSON.parse(localStorage.getItem('authData')) || {};
+const users = authData.users || [];
+
+window.onload = updateStatistics(totalmoney, orderss.length, users.length);
 
 function setupOrdersPagination(totalOrders, currentPage) {
   try {
@@ -105,11 +114,11 @@ function setupOrdersPagination(totalOrders, currentPage) {
       console.error('Pagination element not found');
       return;
     }
-    
+
     pagination.innerHTML = '';
     const pageCount = Math.ceil(totalOrders / ordersPerPage);
 
-    if (pageCount <= 1) return; 
+    if (pageCount <= 1) return; // No need for pagination if only one page
 
     // prev
     const prevLi = createPageItem('‹ Prev', currentPage === 1, () => {
@@ -117,15 +126,19 @@ function setupOrdersPagination(totalOrders, currentPage) {
     });
     pagination.appendChild(prevLi);
 
-    // Page number
-for (let i = 1; i <= Math.min(2, pageCount); i++) {
-  const pageLi = createPageItem(i, false, () => {
-    if (i !== currentPage) loadOrders(i);
-  }, i === currentPage);
-  pagination.appendChild(pageLi);
-}
+    // Page numbers
+    const visiblePages = Math.min(pageCount, 5); // Show up to 5 pages
+    const pageRangeStart = Math.max(1, currentPage - 2);
+    const pageRangeEnd = Math.min(pageCount, currentPage + 2);
 
-    // next 
+    for (let i = pageRangeStart; i <= pageRangeEnd; i++) {
+      const pageLi = createPageItem(i, false, () => {
+        if (i !== currentPage) loadOrders(i);
+      }, i === currentPage);
+      pagination.appendChild(pageLi);
+    }
+
+    // next
     const nextLi = createPageItem('Next ›', currentPage === pageCount, () => {
       if (currentPage < pageCount) loadOrders(currentPage + 1);
     });
@@ -158,7 +171,8 @@ document.addEventListener('DOMContentLoaded', function() {
   loadOrders();
   updateCustomersCount();
 }); 
-//clear session storage after log out
+
+// Clear session storage after log out
 document.querySelector('.nav-link.text-danger').addEventListener('click', function(e) {
   e.preventDefault();
   sessionStorage.clear(); 
