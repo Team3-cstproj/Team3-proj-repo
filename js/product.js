@@ -1,5 +1,4 @@
 //nav bar -----start
-//  cart list baby
 const cartBtnList = document.querySelectorAll(".cart-trigger");
 const cartSidebar = document.getElementById("cartSidebar");
 const cartOverlay = document.getElementById("cartOverlay");
@@ -24,7 +23,7 @@ cartOverlay.addEventListener("click", () => {
   cartOverlay.classList.remove("active");
 });
 
-////btns color baby
+////btns color 
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".offer-banner .btn").forEach((button) => {
     function activate() {
@@ -48,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
   setupUserProfile();
 });
 
-// Enhanced login/logout functionality
+// Enhanced loginlogout 
 function setupUserProfile() {
   const userIcon = document.querySelector(".nav-link[href='login.html']");
   const userData = JSON.parse(sessionStorage.getItem("currentUser"));
@@ -71,7 +70,7 @@ function setupUserProfile() {
   profileDropdown.style.boxShadow = "0 2px 5px rgba(0,0,0,0.1)";
 
   if (userData) {
-    // if  User login show profile info and logout option
+    //  User login show profile info and logout option
     profileDropdown.innerHTML = `
       <div class="user-info mb-2">
         <p class="mb-1"><strong>${userData.name || "User"}</strong></p>
@@ -82,7 +81,7 @@ function setupUserProfile() {
       <button id="logoutBtn" class="btn btn-sm btn-danger w-100">Logout</button>
     `;
 
-    // Change icon to  logged in state
+    // Change icon to  logged in 
     userIcon.innerHTML = '<i class="fa-solid fa-user-check"></i>';
     userIcon.href = "#"; // Prevent navigation to login page
 
@@ -107,7 +106,7 @@ function setupUserProfile() {
     `;
   }
 
-  // Add dropdown to DOM
+  // Add dropdown 
   userIcon.parentNode.appendChild(profileDropdown);
 
   // Toggle dropdown on click
@@ -125,7 +124,7 @@ function setupUserProfile() {
   });
 }
 
-// Call setup function when DOM is loaded
+// Call setup function 
 document.addEventListener("DOMContentLoaded", setupUserProfile);
 // nav bar -------end
 
@@ -147,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
     product = products[0]; // Access first product
   }
 
-  // If product found, display its details
+  // If product found display its details
   if (product) {
     displayProductDetails(product);
     setupAddToCart(product);
@@ -213,10 +212,28 @@ function displayProductDetails(product) {
     img.alt = product.name;
   });
 
-  // Update quantity input max value and available display
+  const storeName = document.getElementById("storeName");
+  const storeName1 = document.getElementById("storeName1");
+  const descriptionDetails = document.getElementById("description-full-product-detailes");
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  let seller = users.find((u) => u.id === product.sellerId);
+  if (seller.name){
+    storeName.textContent = ` ${seller.name}'s Store`;
+    storeName1.textContent = `${seller.name}'s Store`;
+  }
+  if (product.description) {
+    
+    descriptionDetails.innerHTML = product.description
+      .split("\n")
+      .map((line) => `<p>${line}</p>`)
+      .join("");
+  }
+
+
+  // Update quantity input max value and available 
   const quantityInput = document.getElementById("quantity");
   if (quantityInput) {
-    // Calculate real available quantity
+    // Calculate  available quantity
     const cart = JSON.parse(sessionStorage.getItem("cart")) || { items: [] };
     const cartItem = cart.items.find(item => item.id === product.id);
     const available = product.availible - (cartItem ? cartItem.quantity : 0);
@@ -258,7 +275,7 @@ function displayProductDetails(product) {
     }
   }
 
-  // Add event listener for quantity input validation
+  //  quantity input validation
   if (quantityInput) {
     quantityInput.addEventListener("change", function() {
       if (parseInt(this.value) > parseInt(this.max)) {
@@ -317,7 +334,7 @@ function setupAddToCart(product) {
         count: 0,
       };
       
-      // Calculate real available quantity
+      //get available quantity
       const products = JSON.parse(localStorage.getItem("products")) || [];
       const originalProduct = products.find(p => p.id === product.id);
       const cartItem = cart.items.find(item => item.id === product.id);
@@ -332,8 +349,6 @@ function setupAddToCart(product) {
       if (quantity > 0) {
         addToCart(product, quantity);
         updateCartDisplay();
-        
-        // Update UI
         const availableDisplay = document.querySelector(".available-display");
         if (availableDisplay) {
           const newAvailable = available - quantity;
@@ -406,7 +421,7 @@ function updateCartDisplay() {
     `;
   }
 
-  // Update cart sidebar content
+  // Update cart sidebar 
   updateCartSidebar(cart);
 }
 
@@ -420,7 +435,7 @@ function updateCartSidebar(cart) {
       <a href="#" class="continue-shopping bg-primary" id="continueShopping">Continue Shopping</a>
     `;
 
-    // Add event listener to continue shopping button
+    //  continue shopping button
     document
       .getElementById("continueShopping")
       .addEventListener("click", function (e) {
@@ -468,7 +483,7 @@ function updateCartSidebar(cart) {
 
     cartContent.innerHTML = html;
 
-    // Add event listeners to remove buttons
+    // remove buttons
     document.querySelectorAll(".remove-item").forEach((button) => {
       button.addEventListener("click", function() {
         const cartItem = this.closest(".cart-item");
@@ -477,7 +492,7 @@ function updateCartSidebar(cart) {
       });
     });
 
-    // Update footer with View Cart and Checkout buttons
+    // Update footer with View Cart 
     cartFooter.innerHTML = `
       <div class="d-flex flex-column gap-2">
         <a href="cart.html" class="btn btn-primary">View Cart</a>
@@ -599,7 +614,7 @@ function displayRelatedProducts(currentProduct) {
           ? ratings.reduce((a, b) => a + b) / ratings.length
           : 0;
 
-        // Generate star HTML
+        // Generate star 
         let starHtml = '';
         for (let i = 1; i <= 5; i++) {
           starHtml += `<i class="${i <= Math.round(avgRating) ? 'fas' : 'far'} fa-star"></i>`;
@@ -660,10 +675,10 @@ function displayRelatedProducts(currentProduct) {
       })
       .join("");
 
-    // Reattach event listeners to updated buttons
+    //updated buttons
     document.querySelectorAll(".cart-button").forEach((button) => {
       button.addEventListener("click", function (e) {
-        e.preventDefault(); // prevent link jump
+        e.preventDefault();
 
         const productId = parseInt(this.getAttribute("data-id"));
         const product = products.find((p) => p.id === productId);
@@ -671,37 +686,27 @@ function displayRelatedProducts(currentProduct) {
           addToCart(product, 1);
           updateCartDisplay();
 
-          // Disable the button while animation is running
-          this.classList.add('disabled'); // Add disabled class
-          this.querySelector('.tooltip-text').textContent = 'Adding to cart...'; // Change tooltip text
-
-          // Apply success animation
+          this.classList.add('disabled'); 
+          this.querySelector('.tooltip-text').textContent = 'Adding to cart...'; 
           const tooltip = this.querySelector('.tooltip-text');
           const buttonEl = this;
 
           if (tooltip) {
             const originalText = tooltip.textContent;
-
-            // Add success class for animation
             buttonEl.classList.add('success-feedback');
             tooltip.textContent = 'Successfully added to cart';
-
-            // After 1.5s, trigger fade-out and revert the tooltip text
             setTimeout(() => {
               buttonEl.classList.add('fade-out');
               tooltip.textContent = originalText;
-
-              // Remove success class and fade-out class, and update the page
               setTimeout(() => {
                 buttonEl.classList.remove('success-feedback', 'fade-out');
-                // Re-enable the button after animation ends
                 buttonEl.classList.remove('disabled');
-                buttonEl.querySelector('.tooltip-text').textContent = 'Add to cart'; // Reset tooltip text
-                displayRelatedProducts(currentProduct); // Re-render related products
-              }, 500); // Duration of fade-out
+                buttonEl.querySelector('.tooltip-text').textContent = 'Add to cart'; 
+                displayRelatedProducts(currentProduct); 
+              }, 500); 
             }, 1500);
           } else {
-            displayRelatedProducts(currentProduct); // fallback if tooltip missing
+            displayRelatedProducts(currentProduct);
           }
         }
       });
@@ -729,20 +734,58 @@ document.addEventListener("DOMContentLoaded", function () {
     // Review form submission
     const reviewForm = document.querySelector("#reviews-tab-pane form");
     if (reviewForm) {
+      // Check if user is logged in
+      const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+      
+      if (currentUser) {
+        // User is logged in
+        document.getElementById("reviewerName").value = currentUser.name || "";
+        document.getElementById("reviewerEmail").value = currentUser.email || "";
+        
+        // Make fields disabled
+        document.getElementById("reviewerName").disabled = true;
+        document.getElementById("reviewerEmail").disabled = true;
+        
+        // Show message that review will be posted as logged in user
+        const userMessage = document.createElement("p");
+        userMessage.className = "text-muted small mb-3";
+        userMessage.textContent = `You're posting as ${currentUser.name}`;
+        reviewForm.insertBefore(userMessage, reviewForm.firstChild);
+      } else {
+        // User is not logged in disable the entire form
+        reviewForm.innerHTML = `
+          <div class="alert alert-info">
+            You must be <a href="login.html">logged in</a> to submit a review.
+          </div>
+        `;
+        return; 
+      }
+
       reviewForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        // Get form values
+        // Get form values from session
         const name = document.getElementById("reviewerName").value;
         const email = document.getElementById("reviewerEmail").value;
         const reviewText = document.getElementById("reviewText").value;
         const rating =
           document.querySelector('input[name="rating"]:checked')?.value || 0;
 
+        // Validate review text
+        if (!reviewText.trim()) {
+          return;
+        }
+
+        // Validate rating
+        if (rating === 0) {
+          return;
+        }
+
         // Create new review object
         const newReview = {
-          userId: Date.now(), //  unique ID I will change it according the use log in later
+          userId: currentUser.id,
           username: name,
+          userEmail: email,
           rating: parseInt(rating),
           comment: reviewText,
           date: new Date().toISOString().split("T")[0],
@@ -752,7 +795,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!product.reviews) {
           product.reviews = [];
         }
-        product.reviews.unshift(newReview); // Add to beginning the first reviw
+        product.reviews.unshift(newReview); // Add  the the review first reviw
 
         // Update product in localStorage
         const productIndex = products.findIndex((p) => p.id === product.id);
@@ -764,18 +807,27 @@ document.addEventListener("DOMContentLoaded", function () {
         // Update display
         displayProductReviews(product);
 
-        // Reset the form
-        reviewForm.reset();
-
-        // Uncheck all stars
+        // Reset the form 
+        document.getElementById("reviewText").value = "";
         document.querySelectorAll('input[name="rating"]').forEach((star) => {
           star.checked = false;
         });
+
+        // Show success message
+        const successMsg = document.createElement("div");
+        successMsg.className = "alert alert-success mt-3";
+        successMsg.textContent = "Thank you for your review!";
+        reviewForm.appendChild(successMsg);
+        
+        // Remove success message 
+        setTimeout(() => {
+          successMsg.remove();
+        }, 3000);
       });
     }
   }
 
-  // Function to display product reviews
+  // display product reviews
   function displayProductReviews(product) {
     const reviewsContainer = document.querySelector(
       "#reviews-tab-pane .divider"
@@ -784,7 +836,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!reviewsContainer) return;
 
-    // Clear existing content
     reviewsContainer.innerHTML = "";
 
     if (!product.reviews || product.reviews.length === 0) {
@@ -796,7 +847,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const allReviewsContainer = document.createElement("div");
     allReviewsContainer.className = "all-reviews";
 
-    // Add each review
+    // Add all review
     product.reviews.forEach((review) => {
       allReviewsContainer.appendChild(createReviewElement(review));
     });
@@ -804,7 +855,7 @@ document.addEventListener("DOMContentLoaded", function () {
     reviewsContainer.appendChild(allReviewsContainer);
   }
 
-  // Function to create a review element
+  // create a review element
   function createReviewElement(review) {
     const reviewDiv = document.createElement("div");
     reviewDiv.className = "review mb-4 p-3 bg-light rounded";
@@ -843,7 +894,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return reviewDiv;
   }
 
-  // Star rating interaction
+  // Star rating 
   const stars = document.querySelectorAll(".rating-stars .star");
   stars.forEach((star) => {
     star.addEventListener("click", function () {
@@ -865,7 +916,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    // Hover effect for stars
+    // Hover  for stars
     star.addEventListener("mouseover", function () {
       const input = this.previousElementSibling;
       const rating = parseInt(input.value);

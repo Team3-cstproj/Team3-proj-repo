@@ -3,6 +3,7 @@ const initialProducts = [
   {
     id: 101,
     name: "Classic Denim Hoodie",
+    description: "A timeless denim hoodie with a comfortable fit, perfect for casual outings. Features a durable cotton blend fabric and a practical front pocket.",
     img: "img_index/product-hoodie1-600x600.jpg",
     price: 200,
     category: "men",
@@ -29,6 +30,7 @@ const initialProducts = [
   {
     id: 102,
     name: "Casual Denim Hoodie",
+    description: "Lightweight denim hoodie with a relaxed fit, ideal for layering. Features adjustable drawstrings and ribbed cuffs for a snug fit.",
     img: "img_index/product-hoodie2-600x600.jpg",
     price: 150,
     category: "men",
@@ -48,6 +50,7 @@ const initialProducts = [
   {
     id: 103,
     name: "Leather Denim Hoodie",
+    description: "Premium leather-trimmed denim hoodie with a rugged look. Features genuine leather accents and a warm inner lining for cooler weather.",
     img: "img_index/product-hoodie3-600x600.jpg",
     price: 200,
     category: "men",
@@ -73,7 +76,8 @@ const initialProducts = [
   },
   {
     id: 104,
-    name: "Slim Fit jeans",
+    name: "Slim Fit Jeans",
+    description: "Modern slim-fit jeans with stretch technology for maximum comfort. Features a mid-rise waist and tapered leg opening.",
     img: "img_index/product-m-jeans1-600x600.jpg",
     price: 200,
     category: "men",
@@ -92,7 +96,8 @@ const initialProducts = [
   },
   {
     id: 105,
-    name: "Slim Fit jeans",
+    name: "Slim Fit Jeans",
+    description: "Versatile slim-fit jeans in a classic blue wash. Made with durable denim that maintains its shape wash after wash.",
     img: "img_index/product-m-jeans2-600x600.jpg",
     price: 150,
     category: "men",
@@ -125,7 +130,8 @@ const initialProducts = [
   },
   {
     id: 106,
-    name: "Cashmere Slim jeans",
+    name: "Cashmere Slim Jeans",
+    description: "Luxury slim-fit jeans with a cashmere blend for exceptional softness. Features a premium finish and elegant drape.",
     img: "img_index/product-m-jeans3-600x600.jpg",
     price: 200,
     category: "men",
@@ -144,7 +150,8 @@ const initialProducts = [
   },
   {
     id: 107,
-    name: "Slim Fit jeans",
+    name: "Slim Fit Jeans",
+    description: "Contemporary slim-fit jeans with a dark indigo wash. Features reinforced stitching and five-pocket styling.",
     img: "img_index/product-m-jeans4-600x600.jpg",
     price: 200,
     category: "men",
@@ -170,7 +177,8 @@ const initialProducts = [
   },
   {
     id: 108,
-    name: "Sports shoes",
+    name: "Sports Shoes",
+    description: "High-performance running shoes with responsive cushioning. Features breathable mesh upper and durable rubber outsole.",
     img: "img_index/sports-shoe1-600x600.jpg",
     price: 200,
     category: "men",
@@ -189,7 +197,8 @@ const initialProducts = [
   },
   {
     id: 109,
-    name: "Sports shoes",
+    name: "Sports Shoes",
+    description: "Lightweight training shoes with flexible sole design. Features anti-slip tread pattern and cushioned insole for all-day comfort.",
     img: "img_index/sports-shoe2-600x600.jpg",
     price: 150,
     category: "men",
@@ -215,7 +224,8 @@ const initialProducts = [
   },
   {
     id: 110,
-    name: "Sports shoes",
+    name: "Sports Shoes",
+    description: "Versatile athletic shoes with responsive foam midsole. Features engineered knit upper for breathability and support.",
     img: "img_index/sports-shoe3-600x600.jpg",
     price: 150,
     category: "men",
@@ -248,7 +258,8 @@ const initialProducts = [
   },
   {
     id: 111,
-    name: "Sports shoes",
+    name: "Sports Shoes",
+    description: "High-top basketball shoes with ankle support. Features a durable leather upper and herringbone traction pattern.",
     img: "img_index/sports-shoe4-600x600.jpg",
     price: 200,
     category: "men",
@@ -267,7 +278,8 @@ const initialProducts = [
   },
   {
     id: 112,
-    name: "Sports shoes",
+    name: "Sports Shoes",
+    description: "Casual athletic shoes with retro styling. Features a cushioned footbed and durable rubber outsole for everyday wear.",
     img: "img_index/sports-shoe5-600x600.jpg",
     price: 150,
     category: "men",
@@ -293,7 +305,8 @@ const initialProducts = [
   },
   {
     id: 113,
-    name: "Cargo t-shirt",
+    name: "Cargo T-shirt",
+    description: "Utility-inspired t-shirt with multiple pockets. Features a relaxed fit and durable cotton fabric for everyday wear.",
     img: "img_index/tshirt1-600x600.jpg",
     price: 150,
     category: "men",
@@ -312,7 +325,8 @@ const initialProducts = [
   },
   {
     id: 114,
-    name: "Silk t-shirt",
+    name: "Silk T-shirt",
+    description: "Premium silk-blend t-shirt with a luxurious drape. Features a subtle sheen and breathable fabric for superior comfort.",
     img: "img_index/tshirt2-300x300.jpg",
     price: 150,
     category: "men",
@@ -338,7 +352,8 @@ const initialProducts = [
   },
   {
     id: 115,
-    name: "Leather t-shirt",
+    name: "Leather T-shirt",
+    description: "Unique leather-paneled t-shirt for a bold look. Features a combination of cotton and genuine leather for a distinctive style.",
     img: "img_index/tshirt3-600x600.jpg",
     price: 200,
     category: "men",
@@ -364,7 +379,8 @@ const initialProducts = [
   },
   {
     id: 116,
-    name: "Winter t-shirt",
+    name: "Winter T-shirt",
+    description: "Thermal-lined t-shirt for cold weather comfort. Features a brushed interior for warmth and a classic crew neck design.",
     img: "img_index/tshirt4-300x300.jpg",
     price: 150,
     category: "men",
@@ -383,7 +399,8 @@ const initialProducts = [
   },
   {
     id: 117,
-    name: "Aviator t-shirt",
+    name: "Aviator T-shirt",
+    description: "Vintage-inspired aviator print t-shirt. Features a soft cotton fabric and fade-resistant printing for long-lasting wear.",
     img: "img_index/tshirt7-600x600.jpg",
     price: 200,
     category: "men",
@@ -409,7 +426,8 @@ const initialProducts = [
   },
   {
     id: 118,
-    name: "Gym t-shirt",
+    name: "Gym T-shirt",
+    description: "Performance t-shirt with moisture-wicking technology. Features a breathable mesh back and ergonomic seams for active wear.",
     img: "img_index/tshirt4-600x600.jpg",
     price: 150,
     category: "men",
@@ -435,7 +453,8 @@ const initialProducts = [
   },
   {
     id: 119,
-    name: "Wool t-shirt",
+    name: "Wool T-shirt",
+    description: "Merino wool-blend t-shirt for temperature regulation. Features natural odor resistance and a comfortable slim fit.",
     img: "img_index/tshirt4-600x600.jpg",
     price: 200,
     category: "men",
@@ -454,7 +473,8 @@ const initialProducts = [
   },
   {
     id: 120,
-    name: "Men's t-shirt",
+    name: "Men's T-shirt",
+    description: "Essential crew neck t-shirt in classic colors. Features a premium cotton blend and reinforced stitching for durability.",
     img: "img_index/tshirt4-600x600.jpg",
     price: 200,
     category: "men",
@@ -482,7 +502,8 @@ const initialProducts = [
   // Women's Clothing (20 products)
   {
     id: 201,
-    name: "Women's accessory",
+    name: "Women's Accessory",
+    description: "Elegant statement necklace with intricate metalwork. Features a delicate chain and eye-catching pendant for special occasions.",
     img: "img_index/product-accessory1-600x600.jpg",
     price: 200,
     category: "women",
@@ -508,7 +529,8 @@ const initialProducts = [
   },
   {
     id: 202,
-    name: "Women's accessory",
+    name: "Women's Accessory",
+    description: "Dainty layered bracelet set with adjustable closures. Features a mix of textures and delicate charms for everyday elegance.",
     img: "img_index/product-accessory1-b-300x300.jpg",
     price: 200,
     category: "women",
@@ -527,7 +549,8 @@ const initialProducts = [
   },
   {
     id: 203,
-    name: "Women's accessory",
+    name: "Women's Accessory",
+    description: "Geometric drop earrings with sparkling accents. Features lightweight design and hypoallergenic materials for comfortable wear.",
     img: "img_index/product-accessory1-c-300x300.jpg",
     price: 200,
     category: "women",
@@ -553,7 +576,8 @@ const initialProducts = [
   },
   {
     id: 204,
-    name: "Women's accessory",
+    name: "Women's Accessory",
+    description: "Artisan-crafted bangle with hand-engraved details. Features a substantial weight and smooth interior for comfortable wear.",
     img: "img_index/product-accessory2-600x600.jpg",
     price: 200,
     category: "women",
@@ -572,7 +596,8 @@ const initialProducts = [
   },
   {
     id: 205,
-    name: "Women's accessory",
+    name: "Women's Accessory",
+    description: "Handwoven silk scarf with vibrant patterns. Features hand-rolled edges and a lightweight drape for year-round wear.",
     img: "img_index/product-accessory2-b-300x300.jpg",
     price: 200,
     category: "women",
@@ -598,7 +623,8 @@ const initialProducts = [
   },
   {
     id: 206,
-    name: "Women's accessory",
+    name: "Women's Accessory",
+    description: "Delicate pendant necklace with a minimalist design. Features a fine chain and subtle sparkle for everyday sophistication.",
     img: "img_index/product-accessory2-c-300x300.jpg",
     price: 200,
     category: "women",
@@ -624,7 +650,8 @@ const initialProducts = [
   },
   {
     id: 207,
-    name: "Women's accessory",
+    name: "Women's Accessory",
+    description: "Statement cocktail ring with crystal accents. Features a bold design and comfortable band for special occasion wear.",
     img: "img_index/product-accessory3-600x600.jpg",
     price: 200,
     category: "women",
@@ -644,6 +671,7 @@ const initialProducts = [
   {
     id: 208,
     name: "Crossbody Bag",
+    description: "Compact crossbody bag with adjustable strap. Features multiple compartments and a secure zip closure for essentials.",
     img: "img_index/product-bag1-600x600.jpg",
     price: 200,
     category: "women",
@@ -670,6 +698,7 @@ const initialProducts = [
   {
     id: 209,
     name: "Crossbody Bag",
+    description: "Structured leather crossbody with gold-tone hardware. Features a roomy interior and protective feet on the base.",
     img: "img_index/product-bag2-600x600.jpg",
     price: 200,
     category: "women",
@@ -689,6 +718,7 @@ const initialProducts = [
   {
     id: 210,
     name: "Crossbody Bag Leggings",
+    description: "High-waisted leggings with a crossbody bag design. Features a flattering fit, opaque fabric, and comfortable wide waistband.",
     img: "img_index/product-bag3-300x300.jpg",
     price: 150,
     category: "women",
@@ -715,6 +745,7 @@ const initialProducts = [
   {
     id: 211,
     name: "Crossbody Bag",
+    description: "Convertible crossbody bag with removable strap. Features a spacious main compartment and multiple organizational pockets.",
     img: "img_index/product-bag3-600x600.jpg",
     price: 150,
     category: "women",
@@ -734,6 +765,7 @@ const initialProducts = [
   {
     id: 212,
     name: "Wool Crossbody Bag",
+    description: "Felted wool crossbody with embroidered details. Features a soft texture, inner lining, and magnetic snap closure.",
     img: "img_index/product-bag3-b-300x300.jpg",
     price: 200,
     category: "women",
@@ -760,6 +792,7 @@ const initialProducts = [
   {
     id: 213,
     name: "Crossbody Bag",
+    description: "Mini crossbody bag with chain strap. Features a compact silhouette perfect for evenings out and a secure inner zip pocket.",
     img: "img_index/product-bag3-c-300x300.jpg",
     price: 200,
     category: "women",
@@ -778,7 +811,8 @@ const initialProducts = [
   },
   {
     id: 214,
-    name: "Silk jeans",
+    name: "Silk Jeans",
+    description: "Luxury silk-blend jeans with a satin finish. Features a tailored fit and delicate drape for elegant occasions.",
     img: "img_index/product-w-jeans1.jpg",
     price: 200,
     category: "women",
@@ -804,7 +838,8 @@ const initialProducts = [
   },
   {
     id: 215,
-    name: "Lace jeans",
+    name: "Lace Jeans",
+    description: "Feminine jeans with delicate lace panel details. Features a mid-rise waist and stretch denim for comfort and style.",
     img: "img_index/product-w-jeans2-600x600.jpg",
     price: 150,
     category: "women",
@@ -823,7 +858,8 @@ const initialProducts = [
   },
   {
     id: 216,
-    name: "jeans Pants",
+    name: "Jeans Pants",
+    description: "Classic straight-leg jeans with a comfortable fit. Features a medium wash and five-pocket styling for everyday wear.",
     img: "img_index/product-w-jeans3-600x600.jpg",
     price: 150,
     category: "women",
@@ -849,7 +885,8 @@ const initialProducts = [
   },
   {
     id: 217,
-    name: "Women's jeans",
+    name: "Women's Jeans",
+    description: "High-rise skinny jeans with tummy control panel. Features ultra-stretch denim and ankle-length cut for a flattering fit.",
     img: "img_index/product-w-jeans4-600x600.jpg",
     price: 150,
     category: "women",
@@ -868,7 +905,8 @@ const initialProducts = [
   },
   {
     id: 218,
-    name: "Oversized bag",
+    name: "Oversized Bag",
+    description: "Room tote bag with structured silhouette. Features sturdy handles, interior pockets, and a zip-top closure for security.",
     img: "img_index/product-bag3-d-300x300.jpg",
     price: 150,
     category: "women",
@@ -894,7 +932,8 @@ const initialProducts = [
   },
   {
     id: 219,
-    name: "Cashmere bag",
+    name: "Cashmere Bag",
+    description: "Luxury cashmere-blend shoulder bag. Features a soft texture, gold-tone hardware, and a detachable strap for versatility.",
     img: "img_index/product-bag4-600x600.jpg",
     price: 200,
     category: "women",
@@ -913,7 +952,8 @@ const initialProducts = [
   },
   {
     id: 220,
-    name: "Crossbody jeans",
+    name: "Crossbody Jeans",
+    description: "Innovative jeans with built-in crossbody bag design. Features a comfortable stretch denim and practical storage solution.",
     img: "img_index/product-w-jeans1.jpg",
     price: 200,
     category: "women",

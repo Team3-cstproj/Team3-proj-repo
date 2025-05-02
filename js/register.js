@@ -17,17 +17,17 @@ let users = JSON.parse(localStorage.getItem("users"))
 
 // Function to get the next available ID (largest ID + 1)
 function getNextId() {
-    // Get all current IDs
+    
     const allIds = [
         authData.admin.id,
         ...authData.sellers.map(s => s.id),
         ...authData.users.map(u => u.id)
     ];
 
-    // Find the maximum ID
+   
     const maxId = Math.max(...allIds);
 
-    // Return the next ID (max ID + 1)
+    
     return maxId + 1;
 }
 
@@ -73,8 +73,7 @@ document.querySelector("form").addEventListener("submit", function (e) {
 
     const joinDate = new Date().toISOString().split("T")[0];
 
-    const newId = getNextId(); // Get the next available ID
-
+    const newId = getNextId();
     if (isSeller) {
         const newSeller = {
             id: newId,
@@ -89,7 +88,7 @@ document.querySelector("form").addEventListener("submit", function (e) {
             productsSold: 0
         };
         authData.sellers.push(newSeller);
-        users.push(newSeller); // Add to users as well
+        users.push(newSeller); 
     } else {
         const newUser = {
             id: newId,
@@ -102,12 +101,12 @@ document.querySelector("form").addEventListener("submit", function (e) {
             orders: 0
         };
         authData.users.push(newUser);
-        users.push(newUser); // Add to users as well
+        users.push(newUser); 
     }
 
     // Save updated data to localStorage
     localStorage.setItem("authData", JSON.stringify(authData));
-    localStorage.setItem("users", JSON.stringify(users)); // Save updated users
+    localStorage.setItem("users", JSON.stringify(users)); 
 
     showMessage("✅ Account created! Redirecting to login...", "success");
 

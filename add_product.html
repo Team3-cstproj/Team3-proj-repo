@@ -10,24 +10,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="css/responsive_addproduct.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-        // Define the roles that are allowed to access this page
-        const allowedRoles = ['seller']; // Customize this for each page
-      
-        const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-      
-        if (!currentUser || !allowedRoles.includes(currentUser.role)) {
-          window.location.href = 'error.html';
-        }
-    </script>
-
 </head>
 <body>
+
     <div class = "container">
+
         <aside class="Saside">
             <div class = "top">
                 <div class = logo>
-                    <h2  class= "logoh">Hasep<span class="danger">keda</span></h2>
+                    <h2  class= "logoh">DNK</h2>
                 </div>
                 <div class = "close" id = "close_btn">
                     <span class="material-symbols-outlined">close</span>
@@ -48,11 +39,6 @@
                     <span class="material-symbols-outlined">receipt_long</span>
                     <h3>Products</h3>
                 </a>
-
-                <a href="settings.html">
-                    <span class="material-symbols-outlined">settings</span>
-                    <h3>Settings</h3>
-                </a>
                 <a href="add_product.html">
                     <span class="material-symbols-outlined">add</span>
                     <h3>Add Product</h3>
@@ -62,11 +48,12 @@
                     <h3>Logout</h3>
                 </a>
             </div>
-         </aside>
+        </aside>
 
         <main>
-            <div class="form-container" style="margin-top: 80px;">
-                <h2>Add New Product</h2>
+            <h1>Add New Product</h1>
+
+            <div class="form-container">
                 <form id="productForm">
                   <label for="productName">Product Name</label>
                   <input type="text" id="productName" name="productName" class="input-group-text" required>
@@ -105,37 +92,32 @@
               </div>
         </main>
 
+        <div class="right">
+            <div class="top">
 
-        <div class="rtop" style="background-color: #f6f6f9;">
+                <button id = "menu_bar">
+                    <span class = "material-symbols-outlined">menu</span>
+                </button>
 
-
-            <button id = "menu_bar" style="background-color: #f6f6f9;">
-                <span class = "material-symbols-outlined">menu</span>
-            </button>
-
-            <div class="theme-toggler">
-                <span class="material-symbols-outlined active">light_mode</span>
-                <span class="material-symbols-outlined">dark_mode</span>
-            </div>
-
-            <div class="profile">
-                <div class="info">
-                    <p><b id="seller_name">esmael</b></p>
-                    <p>Seller</p>
-                    <small class="text-muted"></small>
+                <div class="theme-toggler">
+                    <span class="material-symbols-outlined active">light_mode</span>
+                    <span class="material-symbols-outlined">dark_mode</span>
                 </div>
-                <div>
-                    <img src="images/logos/account_circle_32dp.png" alt="">
+
+                <div class="profile">
+                    <div class="info">
+                        <p><b id="seller_name">esmael</b></p>
+                        <p>Seller</p>
+                        <small class="text-muted"></small>
+                    </div>
+                    <div>
+                        <img src="images/logos/account_circle_32dp.png" alt="">
+                    </div>
                 </div>
             </div>
         </div>
     
     </div>
-
-
-
-
-
 
     <script src="js/add_product.js"></script>
 

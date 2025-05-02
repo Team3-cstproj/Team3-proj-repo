@@ -1,21 +1,12 @@
 
- 
- @media(min-width){
-    .Saside{
-        display: block;
-    }
- }
-  @media (max-width: 908px) {
-
-
-    .Saside{
+  @media (max-width: 1050px) {
+    aside{
         position: fixed;
         width: 18rem;
         z-index: 3;
         background: var(--clr-white);
         display: none;
         margin: 0;
-
     }
     aside .logo h2{
         display: inline;
@@ -48,13 +39,12 @@
         margin: 0;
     }
     main{
-        min-width: 80%;
-        margin-left: 10%;
+        margin-top: 100px;
+    }
+    .right{
+        width:0;
     }
 
-    .add_product{
-        padding: 30px;
-    }
     .right .top button{
         display: inline-block;
         background: transparent;
@@ -77,6 +67,12 @@
 
 }
 @media (max-width: 719px) {
+        main {
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        gap: 1.6rem;
+        margin-left: 0;        
+    }
     main .insights{
         display: grid;
         grid-template-columns: repeat(1,1fr);
@@ -85,12 +81,7 @@
         min-width: 120%;
     }
 
-    main {
-        display: grid;
-        grid-template-columns: repeat(1,1fr);
-        gap: 1.6rem;
-        margin-left: 0;        
-    }
+
     main .recent_order{
         display: grid;
         grid-template-columns: repeat(1,1fr);

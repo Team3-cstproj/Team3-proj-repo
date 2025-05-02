@@ -12,26 +12,18 @@
     <title>Seller-E-comerce</title>
 
     <script src="data/orders.js"></script>
-    <script>
-        // Define the roles that are allowed to access this page
-        const allowedRoles = ['seller']; // Customize this for each page
-      
-        const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-      
-        if (!currentUser || !allowedRoles.includes(currentUser.role)) {
-          window.location.href = 'error.html';
-        }
-    </script>
+
   
 </head>
 <body>
    
     <div class = "container">
+
         <!-- start menu -->
-         <aside class="Saside">
+        <aside class="Saside">
             <div class = "top">
                 <div class = logo>
-                    <h2  class= "logoh">Hasep<span class="danger">keda</span></h2>
+                    <h2  class= "logoh">DNK</h2>
                 </div>
                 <div class = "close" id = "close_btn">
                     <span class="material-symbols-outlined">close</span>
@@ -53,10 +45,6 @@
                     <h3>Products</h3>
                 </a>
 
-                <a href="updateAccount.html">
-                    <span class="material-symbols-outlined">settings</span>
-                    <h3>Settings</h3>
-                </a>
                 <a href="add_product.html">
                     <span class="material-symbols-outlined">add</span>
                     <h3>Add Product</h3>
@@ -66,21 +54,16 @@
                     <h3>Logout</h3>
                 </a>
             </div>
-         </aside>
+        </aside>
         <!-- start menu -->
 
-
         <!-- main section start -->
-         <main class="col-xxl-8">
-
-
+        <main>
 
             <h1>Dashbord</h1>
-            
 
             <!-- insight start -->
             <div class="insights">
-                
                 <!-- sales start -->
                 <div class="sales">
                     <span class="material-symbols-outlined">trending_up</span> 
@@ -169,15 +152,11 @@
 
             </div>
             <!-- recent order end -->
-         </main>
+        </main>
         <!-- main section end -->
         
-         
-
-
-
         <!-- right section start -->
-         <div class="right">
+        <div class="right">
             <div class="top">
                 <button id = "menu_bar">
                     <span class = "material-symbols-outlined">menu</span>
@@ -202,10 +181,7 @@
 
            
 
-         </div><!-- right section end -->
-
-
-
+        </div><!-- right section end -->
 
 
     </div>
