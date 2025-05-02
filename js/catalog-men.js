@@ -77,70 +77,6 @@ document.getElementById("sortSelect").addEventListener("change", function () {
 let productsPerPage = 12;
 let currentPage = 1;
 
-// function displayProducts() {
-//     const startIndex = (currentPage - 1) * productsPerPage;
-//     const endIndex = currentPage * productsPerPage;
-//     const productsToDisplay = products.slice(startIndex, endIndex);
-
-//     const productContainer = document.getElementById("product-list")
-//     console.log(productContainer);
-//     productContainer.innerHTML = '';  // Clear the current products
-
-//     productsToDisplay.forEach(product => {
-//         if (!product.reviews || product.reviews.length == 0) { 
-//             product.reviews = [{ rating: 0 }];
-//         }
-//         const ratings = product.reviews.map(r => r.rating);
-//         const avgRating = ratings.length ? ratings.reduce((a, b) => a + b) / ratings.length : 0;
-
-//         // Generate star HTML
-//         let starHtml = '';
-//         for (let i = 1; i <= 5; i++) {
-//             starHtml += `<i class="${i <= Math.round(avgRating) ? 'fas' : 'far'} fa-star"></i>`;
-//         }
-
-//         const productCard = `
-//         <div class="col">
-//         <a href="product.html?id=${product.id}" class="text-decoration-none text-dark">
-//             <div class="card product-card">
-//                 <img src="${product.img}" class="card-img-top" alt="${product.name}">
-//                 <div class="hover-icons">
-//                     <a href="#" class="icon-btn cart-button" data-id="${product.id}">
-//                         <i class="fas fa-shopping-cart"></i>
-//                         <span class="tooltip-text">Add to cart</span>
-//                     </a>
-//                 </div>
-//                 <div class="card-body">
-//                     <a href="product.html?id=${product.id}" class="text-decoration-none text-dark"><h5 class="card-title">${product.name}</h5></a>
-//                     <p class="text-muted small">${product.category}</p>
-//                     <div class="star-rating">
-//                         ${starHtml}
-//                     </div>
-//                     <p class="card-text">$${product.price}</p>
-                    
-//                 </div>
-//             </div>
-//         </a>
-//         </div>
-//         `;
-//         productContainer.innerHTML += productCard;
-//     });
-
-//     document.querySelectorAll('.cart-button').forEach(button => {
-//         button.addEventListener('click', function (e) {
-//             e.preventDefault(); // prevent link jump
-//             const productId = this.getAttribute('data-id');
-//             const product = products.find(p => p.id == productId);
-//             if (product) {
-//                 addToCart(product, 1);
-//                 updateCartDisplay();
-//             }
-//         });
-//     });
-
-//     updatePagination();
-// }
-
 window.addEventListener('load', updateCartDisplay);
 document.getElementById("clearFilterBtn").addEventListener("click", clearFilters);
 
@@ -343,90 +279,6 @@ function changePage(page) {
 displayProducts();
 window.addEventListener('load', displayProducts);
 
-// search bar
-// let searchTerm = "";
-// document.getElementById("searchBtn").addEventListener("click", searchByWord);
-// function searchByWord() {
-//     searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
-
-
-
-//     if (searchTerm === "") {
-//         products = filterProductsByCategory("men");  // Reset to all products if search is empty
-//         products = applySorting(products); // Reapply sorting
-//         displayProducts(); // Update the display
-//         return; // Don't change anything if search is empty
-//     }
-
-    
-//   products = getAllProducts(); // Fetch all products again to reset the filter
-//   let minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
-//   let maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
-
-//   if (minPrice > maxPrice) {
-//     alert("Minimum price cannot be greater than maximum price.");
-//     return; // Don't apply filter if invalid range
-//   }
-
-//   if (searchTerm !== "") {
-//     products = getAllProducts().filter(product => product.name.toLowerCase().includes(searchTerm) && product.price >= minPrice && product.price <= maxPrice);
-//   } else {
-//     products = getAllProducts().filter(p => p.price >= minPrice && p.price <= maxPrice);
-//   }
-//     // 1. Filter products by name
-//     products = products.filter(product =>
-//         product.name.toLowerCase().includes(searchTerm)
-//     );
-//     if (products.length === 0) {
-//         alert("No products found matching your search term.");
-//         products = filterProductsByCategory("men");  // Reset to all products if no match found
-//         products = applySorting(products); // Reapply sorting
-//         displayProducts(); // Update the display
-
-//     }
-
-
-//     // 2. Apply sorting to the filtered products
-//     products = applySorting(products);
-
-
-//     displayProducts();
-// }
-
-// // Filter by price range
-// document.getElementById("filterPriceBtn").addEventListener("click", function () {
-//     let minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
-//     let maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
-
-//     if (minPrice > maxPrice) {
-//         alert("Minimum price cannot be greater than maximum price.");
-//         return; // Don't apply filter if invalid range
-//     }
-//     console.log(searchTerm);
-//     if (searchTerm !== "") {
-
-//         products = filterProductsByCategory("men").filter(product => product.name.toLowerCase().includes(searchTerm) && product.price >= minPrice && product.price <= maxPrice)
-//     } else {
-//         products = filterProductsByCategory("men").filter(p => p.price >= minPrice && p.price <= maxPrice);
-//     }
-//     console.log(products);
-
-//     products = applySorting(products); // Reapply sorting after filtering
-
-//     currentPage = 1;
-//     displayProducts();
-// });
-
-// document.getElementById("clearFilterBtn").addEventListener("click", function () {
-//     document.getElementById("minPrice").value = '';
-//     document.getElementById("maxPrice").value = '';
-//     products = filterProductsByCategory("men");
-//     searchByWord(); // Reset search term
-//     // products = filterProductsByCategory("men");  // Reset to all products
-//     // products = applySorting(products); // Reapply sorting
-//     // currentPage = 1;
-//     // displayProducts();
-// });
 let searchTerm = "";
 document.getElementById("searchBtn").addEventListener("click", searchByWord);
 document.getElementById("filterPriceBtn").addEventListener("click", filterByPrice);
@@ -547,10 +399,6 @@ function clearFilters() {
 function browseAllProducts() {
   clearFilters();
 }
-
-
-
-
 
 
 //nav bar -----start

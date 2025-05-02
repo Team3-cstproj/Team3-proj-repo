@@ -1,36 +1,5 @@
-
-// document.addEventListener('DOMContentLoaded', function () {
-//     const productCards = document.querySelectorAll('.product-card');
-
-//     productCards.forEach(card => {
-//         const colorOptions = card.querySelectorAll('.color-option');
-//         const images = card.querySelectorAll('.product-image img');
-
-//         colorOptions.forEach(option => {
-//             option.addEventListener('click', function () {
-//                 // Remove active class from all color options in this card
-//                 colorOptions.forEach(opt => opt.classList.remove('active'));
-//                 this.classList.add('active');
-
-//                 const selectedColor = this.getAttribute('data-color');
-
-//                 // Update images in this card
-//                 images.forEach(img => {
-//                     img.classList.remove('active');
-//                     if (img.getAttribute('data-color') === selectedColor) {
-//                         img.classList.add('active');
-//                     }
-//                 });
-//             });
-//         });
-//     });
-// });
-//finctoion to always update the cart count and total in the navbar
 window.addEventListener('load', updateCartDisplay);
 
-
-
-// Sample products array to simulate your data
 function getAllProducts() {
   const products = localStorage.getItem('products');
   return products ? JSON.parse(products) : [];
@@ -77,7 +46,7 @@ top5Products.forEach(product => {
 });
 
 //display all products and pagination 
-let products = getAllProducts(); // Fetch products from localStorage or use a sample array
+let products = getAllProducts(); 
 function applySorting(products) {
   const sortValue = document.getElementById("sortSelect").value;
 
@@ -201,7 +170,6 @@ function displayProducts() {
         addToCart(product, 1);
         updateCartDisplay();
 
-        // Disable the button while animation is running
         this.classList.add('disabled');
 
         // Apply success animation
@@ -211,25 +179,22 @@ function displayProducts() {
         if (tooltip) {
           const originalText = tooltip.textContent;
 
-          // Add success class for animation
           buttonEl.classList.add('success-feedback');
           tooltip.textContent = 'Successfully added to cart';
 
-          // After 1.5 seconds, trigger fade-out and revert the tooltip text
           setTimeout(() => {
             buttonEl.classList.add('fade-out');
             tooltip.textContent = originalText;
 
-            // Remove success class and fade-out class, and update the page
             setTimeout(() => {
               buttonEl.classList.remove('success-feedback', 'fade-out');
               // Re-enable the button after animation ends
               buttonEl.classList.remove('disabled');
               displayProducts(); // Re-render products after animation
-            }, 500); // Duration of fade-out
+            }, 500); 
           }, 1500);
         } else {
-          displayProducts(); // fallback if tooltip not found
+          displayProducts(); 
         }
       }
     });
@@ -262,8 +227,6 @@ function addToCart(product, quantity) {
   // Update cart totals
   cart.total += product.price * quantity;
   cart.count += quantity;
-  
-  // Save to sessionStorage
   sessionStorage.setItem('cart', JSON.stringify(cart));
 }
 
@@ -427,8 +390,11 @@ function clearFilters() {
 function browseAllProducts() {
   clearFilters();
 }
-
 document.getElementById("clearFilterBtn").addEventListener("click", clearFilters);
+
+
+
+
 //nav bar -----start
 //  cart list baby
 const cartBtnList = document.querySelectorAll(".cart-trigger");

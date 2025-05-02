@@ -15,7 +15,11 @@
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
-
+.product-card img {
+  height: 45vh;
+  object-fit: cover;      
+  width: 100%;           
+}
 .product-card img:hover {
   cursor: pointer;
 }

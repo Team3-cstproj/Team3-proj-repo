@@ -1,8 +1,4 @@
-
-// Get cart data from sessionStorage
 let cartData = JSON.parse(sessionStorage.getItem('cart')) || { count: 0, items: [], total: 0 };
-
-// Elements
 const cartTableBody = document.querySelector('.cart_table tbody');
 const cartTotals = document.querySelector('.cart-totals');
 
@@ -102,18 +98,13 @@ cartTableBody.addEventListener('change', function (e) {
 // Initial render
 renderCart();
 
-// Get the checkout button
 const checkoutButton = document.querySelector('.checkout-btn');
-
-// Add click event
 checkoutButton.addEventListener('click', function () {
   const currentUser = sessionStorage.getItem('currentUser');
 
   if (currentUser) {
-    // User is logged in → go to checkout page
     window.location.href = 'checkout.html';
   } else {
-    // No user → go to login page
     window.location.href = 'login.html';
   }
 });
@@ -122,12 +113,6 @@ checkoutButton.addEventListener('click', function () {
 
 
 //nav bar -----start
-//  cart list baby
-
-
-
-
-
 const cartBtnList = document.querySelectorAll(".cart-trigger");
 const cartSidebar = document.getElementById("cartSidebar");
 const cartOverlay = document.getElementById("cartOverlay");
@@ -138,7 +123,7 @@ cartBtnList.forEach((btn) => {
     e.preventDefault();
     cartSidebar.classList.add("active");
     cartOverlay.classList.add("active");
-    updateCartDisplay(); // Update cart display when opening
+    updateCartDisplay(); 
   });
 });
 

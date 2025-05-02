@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const allUsers = JSON.parse(localStorage.getItem('users')) || [];
 
     if (currentUser) {
-        document.getElementById('username').value = currentUser.username || '';
+        document.getElementById('username').value = currentUser.name || '';
         document.getElementById('email').value = currentUser.email || '';
         const lastUpdatedSpan = document.getElementById('lastUpdated');
         if (lastUpdatedSpan && currentUser.lastUpdated) {
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     // Fill form
-    document.getElementById('username').value = currentUser.username;
+    document.getElementById('username').value = currentUser.name;
     document.getElementById('email').value = currentUser.email;
     if (currentUser.lastUpdated) {
         lastUpdatedSpan.textContent = new Date(currentUser.lastUpdated).toLocaleString();
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         successAlert.classList.add('d-none');
         errorAlert.classList.add('d-none');
 
-        const username = document.getElementById('username').value.trim();
+        const name = document.getElementById('username').value.trim();
         const email = document.getElementById('email').value.trim();
         const newPassword = document.getElementById('newPassword').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Check if username/email is already taken by someone else
         const isTaken = allUsers.some(u =>
             u.id !== currentUser.id &&
-            (u.username === username || u.email === email)
+            (u.name === name || u.email === email)
         );
 
         if (isTaken) {
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Prepare updated user object
         const updatedUser = {
             ...currentUser,
-            username,
+            name,
             email,
             password: newPassword || currentUser.password,
             lastUpdated: new Date().toISOString()
@@ -92,10 +92,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         orders = orders.map(order => {
             if (currentUser.role === 'user' && order.userId === currentUser.id) {
-                return { ...order, userName: updatedUser.username };
+                return { ...order, userName: updatedUser.name };
             }
             if (currentUser.role === 'seller' && order.sellerId === currentUser.id) {
-                return { ...order, sellerName: updatedUser.username };
+                return { ...order, sellerName: updatedUser.name };
             }
             return order;
         });

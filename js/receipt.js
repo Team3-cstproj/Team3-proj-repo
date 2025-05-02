@@ -41,6 +41,8 @@ window.addEventListener('DOMContentLoaded', () => {
                 <td>
                     <div>${order.productName} × ${order.quantity}</div>
                     <div class="text-muted small">Order ID: ${order.id}</div>
+                    <div class="text-muted small">Seller: ${order.sellerName}</div>
+                    <div class="text-muted small">Order Date: ${new Date(order.orderDate).toLocaleDateString()}</div>
                 </td>
                 <td class="text-end">$${itemTotal.toFixed(2)}</td>
             `;
