@@ -1,6 +1,12 @@
 
 sessionStorage.setItem("flag", 1);
+const allowedRoles = ['seller']; // Customize this for each page
+      
+const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
 
+if (!currentUser || !allowedRoles.includes(currentUser.role)) {
+    window.location.href = 'error.html';
+}
 document.addEventListener("DOMContentLoaded", function () {
     const sideMenue = document.querySelector("aside");
     const menuBtn = document.querySelector("#menu_bar");
@@ -147,24 +153,25 @@ document.addEventListener("DOMContentLoaded", function () {
     function displayOrders(orders, wrapper, rowsPerPage, page) {
         wrapper.innerHTML = "";
         page--;
-        console.log(orders);
+    
+        orders.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
+    
         let start = page * rowsPerPage;
         let end = start + rowsPerPage;
         let paginatedItems = orders.slice(start, end);
-        paginatedItems.forEach((orders) => {
-
+    
+        paginatedItems.forEach((order) => {
             const row = document.createElement("tr");
             row.innerHTML = `
-            <td>${orders.id}</td>
-            <td>${orders.userName}</td>
-            <td>${orders.totalPrice}</td>
-            <td ><a class:"primary" href="receipt.html?ids=${[+orders.id]}"><span class="primary dtails-link">Details</span></a></td>
-        `;
+                <td>${order.id}</td>
+                <td>${order.userName}</td>
+                <td>${order.totalPrice}</td>
+                <td><a class="primary" href="receipt.html?ids=${[+order.id]}"><span class="primary dtails-link">Details</span></a></td>
+            `;
             wrapper.appendChild(row);
         });
-
-
     }
+    ملاحظات:
 
     function setupPagination(items, wrapper, rowsPerPage) {
         wrapper.innerHTML = "";
