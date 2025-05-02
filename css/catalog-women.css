@@ -1,0 +1,390 @@
+/* import main css file */
+@import url("main.css");
+
+/* Product Card Styles */
+.product-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  max-width: 350px;
+  margin: 0 auto;
+  height: 100%;
+}
+.product-card img {
+  height: 45vh;          /* Set your desired fixed height */
+  object-fit: cover;      /* Ensures image fills the area without distortion */
+  width: 100%;            /* Makes it responsive */
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img:hover {
+  cursor: pointer;
+}
+
+.card-body h5:hover {
+  cursor: pointer;
+}
+/* Hover Icons */
+.hover-icons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  gap: 8px;
+}
+
+.product-card:hover .hover-icons {
+  opacity: 1;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.icon-btn:hover {
+  background-color: #000;
+  color: white;
+}
+
+/* Cart Button Styles */
+.cart-button {
+  position: relative;
+}
+
+.tooltip-text {
+  position: absolute;
+  visibility: hidden;
+  background-color: #000;
+  color: white;
+  text-align: center;
+  padding: 8px 15px;
+  border-radius: 6px;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  right: 120%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -8px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent transparent transparent #000;
+}
+
+.cart-button:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.cart-circle {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  width: 60px;
+  height: 60px;
+  background-color: white;
+  border-radius: 50%;
+  right: -70px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-button:hover .cart-circle {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Product Info Styles */
+.price {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Rating Styles */
+.rating {
+  color: #ffc107;
+  margin-top: 5px;
+}
+
+.star-rating {
+  color: #ffc107;
+}
+
+.star-rating .far {
+  color: #e0e0e0;
+}
+
+/* Price Range Slider */
+.price-range {
+  height: 2px;
+  background-color: #e9ecef;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.price-range-slider {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: none;
+  pointer-events: none;
+}
+
+.price-range-slider .ui-slider-handle {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: pink;
+  border: 2px solid #fff;
+  position: absolute;
+  margin-left: -8px;
+  top: -7px;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* Color Classes */
+.color-black {
+  background-color: black;
+}
+.color-brown {
+  background-color: #8b4513;
+}
+.color-orange {
+  background-color: #e25822;
+}
+
+/* Body Styles */
+body {
+  background-color: #f8f9fa;
+  
+}
+
+/* foter //////////////*/
+/*==========  foter list =======*/
+
+#just-txt {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  font-size: x-large;
+  font-weight: 700;
+  text-align: left;
+}
+.footer {
+  border-bottom: 1px solid gray;
+}
+.category-list {
+  list-style-type: none; /* Removes bullet points */
+  padding-left: 0;
+  margin: 15px 0;
+}
+
+.category-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee; /* Optional divider */
+}
+
+.category-list li:last-child {
+  border-bottom: none; /* Remove border from last item */
+}
+
+.category-list a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  display: block;
+}
+
+.category-list a:hover {
+  color: pink;
+  font-weight: bold;
+}
+.copyright-text a:hover {
+  color: pink(0, 0, 74);
+}
+
+/*====navbar baby*/
+
+.nav-item a {
+  color: white;
+  font-weight: bold;
+}
+.offcanvas button span .navbar-toggler-icon {
+  color: azure;
+}
+
+
+
+
+/* PINKING */ 
+/* Update the existing CSS with these pink theme modifications */
+
+/* Navbar background */
+.navbar.bg-primary.p-2.text-dark.bg-opacity-75 {
+  background-color: rgba(255, 182, 193, 0.75) !important; /* Light pink with transparency */
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: #ff69b4; /* Hot pink */
+  border-color: #ff69b4;
+}
+
+.btn-primary:hover {
+  background-color: #ff1493; /* Deeper pink */
+  border-color: #ff1493;
+}
+
+/* Price range slider */
+.price-range-slider .ui-slider-handle {
+  background: #ff69b4; /* Hot pink */
+}
+
+/* Hover effects */
+.category-list a:hover {
+  color: #ff69b4 !important; /* Hot pink */
+}
+
+/* Star rating */
+.star-rating {
+  color: #ff69b4; /* Hot pink */
+}
+
+/* Pagination active state */
+.page-item.active .page-link {
+  background-color: #ff69b4; /* Hot pink */
+  border-color: #ff69b4;
+}
+
+.page-link {
+  color: #ff69b4; /* Hot pink */
+}
+
+/* Cart sidebar */
+.cart-sidebar {
+  border-left: 3px solid #ff69b4; /* Hot pink accent */
+}
+
+.continue-shopping.bg-primary {
+  background-color: #ff69b4 !important; /* Hot pink */
+}
+
+/* Product card hover */
+.product-card:hover {
+  box-shadow: 0 10px 20px rgba(255, 105, 180, 0.2); /* Pink tinted shadow */
+}
+
+/* Footer subscribe button */
+.subscribe-form button[type="submit"] {
+  background-color: #ff69b4; /* Hot pink */
+  border-color: #ff69b4;
+}
+
+/* Social media icons hover */
+.fab:hover {
+  color: #ff69b4 !important; /* Hot pink */
+}
+
+/* Breadcrumb link hover */
+.breadcrumb a:hover {
+  color: #ff69b4; /* Hot pink */
+}
+
+/* Form control focus */
+.form-control:focus {
+  border-color: #ff69b4; /* Hot pink */
+  box-shadow: 0 0 0 0.25rem rgba(255, 105, 180, 0.25); /* Pink glow */
+}
+
+/* Offcanvas menu */
+.offcanvas {
+  background-color: #fff0f5; /* Lavender blush background */
+}
+
+/* Mobile navbar */
+.navbar.bg-primary.p-2.text-dark.bg-opacity-75.d-lg-none {
+  background-color: rgba(255, 182, 193, 0.9) !important; /* Slightly more opaque for mobile */
+}
+
+/* Disable button while animation is running */
+.cart-button.disabled {
+  pointer-events: none; /* Prevent clicks */
+  opacity: 0.5; /* Dim the button */
+}
+
+/* Animate background and text color change */
+@keyframes successFadeIn {
+  0% {
+    background-color: transparent;
+    color: inherit;
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  100% {
+    background-color: green;
+    color: white;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes successFadeOut {
+  0% {
+    background-color: green;
+    color: white;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    background-color: transparent;
+    color: inherit;
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+}
+
+.cart-button.success-feedback {
+  animation: successFadeIn 0.3s forwards;
+  border-radius: 5px;
+  padding: 5px 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.cart-button.success-feedback.fade-out {
+  animation: successFadeOut 0.5s forwards;
+}
+
+.cart-button.success-feedback .tooltip-text {
+  background-color: green !important;
+  color: white !important;
+  transition: background-color 0.3s, color 0.3s;
+}

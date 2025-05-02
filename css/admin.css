@@ -1,0 +1,138 @@
+/* import main css file */
+@import url("main.css");
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: rgba(199, 193, 193, 0.336);
+  transition: 0.3s;
+  height: 100vh;
+  position: fixed;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.sidebar.collapsed .nav-link span,
+.sidebar.collapsed .admin-text {
+  display: none;
+}
+
+.sidebar .toggle-btn {
+  background: none;
+  border: none;
+  color: black;
+  font-size: 1.5rem;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+/* Main Content */
+.main-content {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  transition: 0.3s;
+  overflow-y: auto;
+  height: 100vh;
+  
+}
+
+.main-content.collapsed {
+  margin-left: 80px;
+  width: calc(100% - 80px);
+}
+
+/* Sidebar Links Hover */
+.ulist li a:hover {
+  transform: scale(1.1);
+  background-color: rgb(83, 223, 223);
+  transition: 0.4s ease;
+}
+
+/* Table Adjustments */
+table {
+  table-layout: fixed;
+  width: 100%;
+  
+}
+
+table td, table th {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+tbody tr:nth-child(odd)
+{
+  background-color: rgba(221, 231, 235, 0.466);
+}
+tbody tr:nth-child(even)
+{
+  background-color: rgba(1, 0, 14, 0.329);
+}
+
+
+
+
+/* Responsive Behavior */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 90px;
+  }
+
+  .sidebar.collapsed {
+    width: 0;
+  }
+
+  .main-content {
+    margin-left: 10px;
+    width: calc(100% - 10px);
+  }
+
+  .main-content.collapsed {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+/* Mobile Sidebar Styles */
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: inline-flex;
+    align-items: center;
+    /* z-index: 1100; */
+    background: rgb(209, 196, 196);
+    border-radius: 8px;
+    margin: 25px 25px;
+    border: none;
+    font-size: 1.5rem;
+  color: #333;
+  }
+
+  .sidebar {
+    width: 250px;
+    left: -250px;
+    transition: 0.3s;
+    z-index: 1000;
+    background: rgba(199, 193, 193, 0.95);
+    
+  }
+
+  .sidebar.show {
+    left: 0;
+    width: 150px;
+  
+  
+  }
+
+  .main-content {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+}

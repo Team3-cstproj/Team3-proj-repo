@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="bootstrab/css/bootstrap.css">
+    <link rel="stylesheet" href="css/product.css">
+    <title>Product Details</title>
+    <script>
+      // Define the roles that are allowed to access this page
+      const allowedRoles = ['user']; // Customize this for each page
+    
+      const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    
+      if ( currentUser && !allowedRoles.includes(currentUser.role)) {
+        window.location.href = 'error.html';
+       }
+    </script>
+    <link rel="icon" href="images/logos/loginlogo.webp" type="image/png">
+</head>
+<body>
+
+
+
+    <!-- nav -->
+    <!-- ////////////////////////////////// -->
+
+      <!--  navbar that works on all screen  -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary p-3 bg-primary p-2 text-dark bg-opacity-75">
+  <div class="container-fluid">
+    <a href="index.html"> <img src="img_index/logo1@2x-free-img.png" width="150px" height="50px"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="d-flex order-lg-3 ms-auto ms-lg-0">
+          <ul class="navbar-nav flex-row">
+              <li class="nav-item px-2">
+                  <a class="nav-link cart-trigger" href="#">$0.00</a>
+              </li>
+              <li class="nav-item px-2">
+                  <!-- <a class="nav-link cart-trigger" href="#"><i class="fa-sharp fa-solid fa-bag-shopping"></i><sup class="bg-light rounded-circle"><span class="text-dark">0</span></sup></a> -->
+              </li>
+              <li class="nav-item px-2">
+                  <a class="nav-link" href="login.html"><i class="fa-solid fa-user"></i></a>
+              </li>
+          </ul>
+      </div>
+      <!-- Collapsible menu content -->
+      <div class="collapse navbar-collapse order-lg-2" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="catalog-Everything.html">EVERYTHING</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="catalog-women.html">WOMEN</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="catalog-men.html">MEN</a>
+              </li>
+          </ul>
+          <span class="navbar-text">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                      <a class="nav-link" href="about.html">ABOUT</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="contacts.html">CONTACT US</a>
+                  </li>
+              </ul>
+          </span>
+      </div>
+  </div>
+</nav>
+
+
+
+    <!-- Cart Sidebar -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="close-cart" id="closeCart">&times;</button>
+  </div>
+  <div class="cart-content">
+    <p>Your cart is empty.</p>
+  </div>
+  <div class="cart-footer">
+    <a href="#" class="continue-shopping bg-primary" id="continueShopping">Continue Shopping</a>
+  </div>
+</div>
+  
+
+<!-- end of nav  -->
+ <!-- /////////////////////////////////////// -->
+
+
+ 
+      <!-- main container -->
+      <div class="main-container">
+        <div class="container py-5">
+          <div class="row my-5">
+            <!-- Product Image Column -->
+            <div class="col-md-6">
+              <div class="product-image mb-2">
+                <!-- Placeholder for product image -->
+                <img src="images/products/T-shirt.png" alt="" />
+              </div>
+            </div>
+  
+            <!-- Product Info Column -->
+            <div class="col-md-6">
+              <!-- Breadcrumb -->
+              <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Black Hoodie
+                  </li>
+                </ul>
+              </nav>
+              <h2 class="h5 text-muted mb-4"><a id="h2-link" href="catalog-men.html">Men</a></h2>
+              <h1 class="product-title">Black Hoodie</h1>
+  
+              <div class="product-price">$150.00</div>
+  
+              <p class="product-description" id="storeName">
+                Store Name :
+              </p>
+              <hr />
+              <div class="d-flex align-items-center mb-4">
+                <div class="me-3">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="quantity"
+                    value="1"
+                    min="1"
+                    style="width: 60px"
+                  >
+                </div>
+                <button class="btn btn-primary add-to-cart-btn">
+                  <i class="bi bi-cart-plus me-2"></i> ADD TO CART
+                </button>
+              </div>
+              <hr />
+              <div class="category-badge">
+                <span class="text-muted">Category:</span>
+                <a id="h2-link" href="catalog-men.html">Men</a>
+              </div>
+            </div>
+          </div>
+  
+          <!-- description part -->
+          <ul class="nav nav-tabs mb-4 col" id="productTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active text-secondary"
+                id="description-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#description-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="description-tab-pane"
+                aria-selected="true"
+              >
+                Description
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link text-secondary"
+                id="additional-info-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#additional-info-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="additional-info-tab-pane"
+                aria-selected="false"
+              >
+                Additional Information
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link text-secondary"
+                id="reviews-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#reviews-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="reviews-tab-pane"
+                aria-selected="false"
+              >
+                Reviews
+              </button>
+            </li>
+          </ul>
+  
+          <div
+            class="tab-content p-3 border border-top-0 rounded-bottom"
+            id="productTabsContent"
+          >
+            <!-- Description Tab -->
+            <div
+              class="tab-pane fade show active"
+              id="description-tab-pane"
+              role="tabpanel"
+              aria-labelledby="description-tab"
+              tabindex="0"
+            >
+              <h2 class="mt-4 mb-5">Product description</h2>
+              <div class="row g-0">
+                <div class="col-md-6 descriptionsection">
+                  <img
+                    id="description-product-img"
+                    src="images/products/description3.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="col-md-6 bg-white descriptionsection">
+                  <div id="description-product-detailes">
+                    <h3>This Product Prisented By:</h3>
+                    <p id="storeName1">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                      sed do eiusmod tempor incididunt.
+                    </p>
+                    <h3>Delivery:</h3>
+                    <p>All our parteners deliver orders in less than 24 hours.</p>
+                    <h3>Return Policiy</h3>
+                    <p>
+                      contact us within 30 days of receiving your order to initiate a return.
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6 bg-white descriptionsection">
+                  <div id="description-product-detailes">
+                    <h3>More about the product</h3>
+                    <p id="description-full-product-detailes">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      Duis aute irure dolor in.
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6 descriptionsection">
+                  <img
+                    id="description-product-img"
+                    src="images/products/description4.jpg"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+  
+            <!-- Additional Information Tab -->
+            <div
+              class="tab-pane fade"
+              id="additional-info-tab-pane"
+              role="tabpanel"
+              aria-labelledby="additional-info-tab"
+              tabindex="0"
+            >
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <th scope="row" style="width: 30%">Color</th>
+                    <td>Blue, Green, Orange, Yellow</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Size</th>
+                    <td>M, L, XL</td>
+                  </tr>
+                </tbody>
+              </table>
+  
+              <div class="alert alert-info mt-3">
+                <i class="bi bi-info-circle-fill me-2"></i>
+                All measurements are approximate and may vary slightly.
+              </div>
+            </div>
+  
+            <!-- Reviews Tab -->
+            <div
+              class="tab-pane fade"
+              id="reviews-tab-pane"
+              role="tabpanel"
+              aria-labelledby="reviews-tab"
+              tabindex="0"
+            >
+              <div class="pt-4">
+                <div class="">There are no reviews yet.</div>
+                <div class="divider my-4"><hr></div>
+                <p class="h2">Add Your Review</p>
+  
+                <!-- <p class="text-muted mb-4">
+                  Your email address will not be published. Required fields are
+                  marked *
+                </p> -->
+  
+                <form>
+                  <!-- Rating Input with Font Awesome -->
+                  <div class="mb-4">
+                    <label class="form-label d-block">Your rating *</label>
+                    <div class="rating-stars">
+                      <input
+                        type="radio"
+                        id="star5"
+                        name="rating"
+                        value="5"
+                        class="d-none"
+                      />
+                      <label for="star5" class="star"
+                        ><i class="fa-regular fa-star"></i
+                      ></label>
+  
+                      <input
+                        type="radio"
+                        id="star4"
+                        name="rating"
+                        value="4"
+                        class="d-none"
+                      />
+                      <label for="star4" class="star"
+                        ><i class="fa-regular fa-star"></i
+                      ></label>
+  
+                      <input
+                        type="radio"
+                        id="star3"
+                        name="rating"
+                        value="3"
+                        class="d-none"
+                      />
+                      <label for="star3" class="star"
+                        ><i class="fa-regular fa-star"></i
+                      ></label>
+  
+                      <input
+                        type="radio"
+                        id="star2"
+                        name="rating"
+                        value="2"
+                        class="d-none"
+                      />
+                      <label for="star2" class="star"
+                        ><i class="fa-regular fa-star"></i
+                      ></label>
+  
+                      <input
+                        type="radio"
+                        id="star1"
+                        name="rating"
+                        value="1"
+                        class="d-none"
+                      />
+                      <label for="star1" class="star"
+                        ><i class="fa-regular fa-star"></i
+                      ></label>
+                    </div>
+                  </div>
+  
+                  <!-- Review Textarea -->
+                  <div class="mb-4">
+                    <label for="reviewText" class="form-label"
+                      >Your review *</label
+                    >
+                    <textarea
+                      class="form-control"
+                      id="reviewText"
+                      rows="5"
+                      required
+                    ></textarea>
+                  </div>
+  
+                  <!-- Name and Email Fields -->
+                  <div class="row mb-4">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                      <label for="reviewerName" class="form-label">Name *</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="reviewerName"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="reviewerEmail" class="form-label"
+                        >Email *</label
+                      >
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="reviewerEmail"
+                        required
+                      />
+                    </div>
+                  </div>
+  
+                  <!-- Submit Button -->
+                  <div class="d-grid">
+                    <button type="submit" class="btn btn-primary py-2">
+                      SUBMIT
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+  
+          <!-- end description part -->
+  
+          <!-- related product part -->
+          <div class="mt-5">
+            <h1 class="my-5 py-5">Related products</h1>
+          </div>
+
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 ">
+                        
+            <div class="col">
+                <!--card start-->
+                <div class="card product-card">
+                    <img src="https://media.filgoal.com/news/verylarge/353967_0.jpg" class="card-img-top"
+                        alt="Basic Gray Jeans">
+                        <div class="hover-icons">
+                           
+                            <a href="#" class="icon-btn cart-button">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="tooltip-text">Add to cart</span>
+                                <span class="cart-circle">
+                                    <i class="fas fa-shopping-bag"></i>
+                                </span>
+                            </a>
+                            
+                        </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Basic Gray Jeans</h5>
+                        <p class="text-muted small">Women</p>
+                        <p class="card-text">$150.00</p>
+                        <div class="star-rating">
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <!--card end-->
+            </div>
+            <div class="col">
+                <!--card start-->
+                <div class="card product-card">
+                    <img src="https://media.filgoal.com/news/verylarge/353967_0.jpg" class="card-img-top"
+                        alt="Basic Gray Jeans">
+                        <div class="hover-icons">
+                           
+                            <a href="#" class="icon-btn cart-button">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="tooltip-text">Add to cart</span>
+                                <span class="cart-circle">
+                                    <i class="fas fa-shopping-bag"></i>
+                                </span>
+                            </a>
+                            
+                        </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Basic Gray Jeans</h5>
+                        <p class="text-muted small">Women</p>
+                        <p class="card-text">$150.00</p>
+                        <div class="star-rating">
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <!--card end-->
+            </div>
+            <div class="col">
+                <!--card start-->
+                <div class="card product-card">
+                    <img src="https://media.filgoal.com/news/verylarge/353967_0.jpg" class="card-img-top"
+                        alt="Basic Gray Jeans">
+                        <div class="hover-icons">
+                           
+                            <a href="#" class="icon-btn cart-button">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="tooltip-text">Add to cart</span>
+                                <span class="cart-circle">
+                                    <i class="fas fa-shopping-bag"></i>
+                                </span>
+                            </a>
+                            
+                        </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Basic Gray Jeans</h5>
+                        <p class="text-muted small">Women</p>
+                        <p class="card-text">$150.00</p>
+                        <div class="star-rating">
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <!--card end-->
+            </div>
+            
+        </div>
+      </div>
+      <!-- end of main container -->
+
+
+
+      <!-- footer ///// start -->
+       <!------foter -------->
+
+<div class="bg-white">
+    <div div id="just-txt" class="row m-4 p-5 bg-white text-center" >
+        <p>SALE UP TO 70% OFF FOR ALL CLOTHES & FASHION ITEMS, ON ALL BRANDS.</p>
+    </div>
+
+
+  <div class="footer row bg-white ">
+    <div class="col-12 col-md-6 col-lg-3 d-flex flex-column justify-content-center gap-3">
+      <div class="d-flex justify-content-center">
+        <img src="img_index/logo@2x-free-img.png " alt="#" width="140" height="50">
+      </div>
+      <div class="d-flex  justify-content-center">
+        <h6>The best look anytime, anywhere.</h6>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center align-items-center">
+      <div class="category-section p-5">
+        <h2>For Her</h2>
+        <ul class="category-list list-unstyled ">
+            <li>Women Jeans</li>
+            <li>Tops and Shirts</li>
+            <li>Women Jackets</li>
+            <li>Heels and Flats</li>
+            <li>Women Accessories</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center align-items-center">
+      <div class="category-section p-5">
+        <h2>For Him</h2>
+        <ul class="category-list list-unstyled ">
+          <li>Man Jeans</li>
+          <li>Man Shirts</li>
+          <li>Man Jackets</li>
+          <li>Man shose</li>
+          <li>Man Accessories</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center align-items-center gap-3 pb-4">
+      <div class="subscribe-form">
+        <h3 class="subscribe-title">Contact Us</h3>
+          <a href="contacts.html"><button type="submit" class="btn btn-primary btn-block mt-2">Contact Us</button></a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="d-flex p-0 justify-content-around mb-5">
+    <div class="col-8 col-md-4 ">
+      <p class="copyright-text">Copyright © 2025 Brandstore.</p>
+    </div>
+    <div>
+      <div class="d-flex justify-content-center gap-2 col-8 col-md-4">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-google"></i></a>
+        <a href="#"><i class="fab fa-telegram"></i></a>
+      </div>
+    </div>
+
+  </div>
+</div>     
+      <!-- footer ///// end -->
+
+
+<script src="bootstrab/js/bootstrap.bundle.js"></script>
+<script src="js/product.js"></script>
+</body>
+</html>

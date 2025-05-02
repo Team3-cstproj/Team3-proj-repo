@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="bootstrab/css/bootstrap.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <title>Cart</title>
+    <link rel="icon" href="images/logos/loginlogo.webp" type="image/png">
+    <script>
+        // Define the roles that are allowed to access this page
+        const allowedRoles = ['user']; // Customize this for each page
+      
+        const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      
+        if ( !allowedRoles.includes(currentUser.role)) {
+          window.location.href = 'error.html';
+        }
+      </script>
+      
+</head>
+<body>
+    
+  <div class="row">
+    <!-- nav -->
+    <!-- ////////////////////////////////// -->
+
+      <!--  navbar that works on all screen  -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary p-3 bg-primary p-2 text-dark bg-opacity-75">
+    <div class="container-fluid">
+      <a href="index.html"> <img src="img_index/logo1@2x-free-img.png" width="150px" height="50px"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="d-flex order-lg-3 ms-auto ms-lg-0">
+            <ul class="navbar-nav flex-row">
+                <li class="nav-item px-2">
+                    <a class="nav-link cart-trigger" href="#">$0.00</a>
+                </li>
+                <li class="nav-item px-2">
+                    <!-- <a class="nav-link cart-trigger" href="#"><i class="fa-sharp fa-solid fa-bag-shopping"></i><sup class="bg-light rounded-circle"><span class="text-dark">0</span></sup></a> -->
+                </li>
+                <li class="nav-item px-2">
+                    <a class="nav-link" href="login.html"><i class="fa-solid fa-user"></i></a>
+                </li>
+            </ul>
+        </div>
+        <!-- Collapsible menu content -->
+        <div class="collapse navbar-collapse order-lg-2" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="catalog-Everything.html">EVERYTHING</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="catalog-women.html">WOMEN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="catalog-men.html">MEN</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacts.html">CONTACT US</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+    </div>
+  </nav>
+  
+  
+  
+      <!-- Cart Sidebar -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="close-cart" id="closeCart">&times;</button>
+    </div>
+    <div class="cart-content">
+      <p>Your cart is empty.</p>
+    </div>
+    <div class="cart-footer">
+      <a href="#" class="continue-shopping bg-primary" id="continueShopping">Continue Shopping</a>
+    </div>
+  </div>
+      
+    
+    <!-- end of nav  -->
+ <!-- CART PAGE -->
+<div class="container my-3 table-bordered">
+    <h1 class="text-center mb-4">CART</h1>
+    </br>
+    <br>
+    <table class="table text-center cart_table">
+      <thead>
+        <tr>
+          <th>Remove</th>
+          <th>Image</th>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody class="table-light">
+        <!-- Cart items will be inserted here dynamically -->
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- CART TOTALS -->
+  <div class="container table-bordered cart-totals my-4 w-50">
+    <table class="table text-center">
+      <thead>
+        <tr>
+          <th>Cart Totals</th>
+        </tr>
+      </thead>
+      <tbody class="table-light">
+        <tr>
+          <td>Subtotal: $0</td>
+        </tr>
+        <tr>
+          <td>Total: $0</td>
+        </tr>
+      </tbody>
+      <tfoot class="table-light">
+        <tr>
+          <td>
+            <button class="btn btn-primary checkout-btn">CHECKOUT</button>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  
+  <!-- Optional Empty Cart Message -->
+  <div id="empty-cart-message" class="container text-center my-5" style="display: none;">
+    <h3>Your cart is empty.</h3>
+  </div>
+  
+
+<!-- footer ///// start -->
+ <!-- footer ///// start -->
+       <!------foter -------->
+
+<div class="bg-white">
+  <div div id="just-txt" class="row m-4 p-5 bg-white text-center" >
+      <p>SALE UP TO 70% OFF FOR ALL CLOTHES & FASHION ITEMS, ON ALL BRANDS.</p>
+  </div>
+
+
+<div class="footer row bg-white ">
+  <div class="col-12 col-md-6 col-lg-3 d-flex flex-column justify-content-center gap-3">
+    <div class="d-flex justify-content-center">
+      <img src="img_index/logo@2x-free-img.png " alt="#" width="140" height="50">
+    </div>
+    <div class="d-flex  justify-content-center">
+      <h6>The best look anytime, anywhere.</h6>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center align-items-center">
+    <div class="category-section p-5">
+      <h2>For Her</h2>
+      <ul class="category-list list-unstyled ">
+          <li>Women Jeans</li>
+          <li>Tops and Shirts</li>
+          <li>Women Jackets</li>
+          <li>Heels and Flats</li>
+          <li>Women Accessories</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center align-items-center">
+    <div class="category-section p-5">
+      <h2>For Him</h2>
+      <ul class="category-list list-unstyled ">
+        <li>Man Jeans</li>
+        <li>Man Shirts</li>
+        <li>Man Jackets</li>
+        <li>Man shose</li>
+        <li>Man Accessories</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center align-items-center gap-3 pb-4">
+    <div class="subscribe-form">
+      <h3 class="subscribe-title">Contact Us</h3>
+        <a href="contacts.html"><button type="submit" class="btn btn-primary btn-block mt-2">Contact Us</button></a>
+    </div>
+  </div>
+
+</div>
+
+<div class="d-flex p-0 justify-content-around mb-5">
+  <div class="col-8 col-md-4 ">
+    <p class="copyright-text">Copyright © 2025 Brandstore.</p>
+  </div>
+  <div>
+    <div class="d-flex justify-content-center gap-2 col-8 col-md-4">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-google"></i></a>
+      <a href="#"><i class="fab fa-telegram"></i></a>
+    </div>
+  </div>
+
+</div>
+</div>     
+    <!-- footer ///// end -->
+</div>
+
+<script src="bootstrab/js/bootstrap.bundle.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>

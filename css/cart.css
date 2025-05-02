@@ -1,0 +1,106 @@
+/* import main css file */
+@import url("main.css");
+
+
+img {
+  width: 60px;
+  height: auto;
+}
+input[type="number"] {
+  width: 60px;
+  text-align: center;
+}
+
+
+.remove-icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #a79f9f8e;
+  cursor: pointer;
+  margin:auto;
+}
+.remove-icon i {
+  color: rgba(199, 39, 39, 0.747);
+}
+.cart_table{
+width: 90vw;
+margin:20px auto;
+}
+  .cart-totals {
+    width: 40vw;
+    float: right;
+    margin-right: 100px;
+   
+  }
+
+  .cart-totals td {
+    padding: 20px;
+  }
+
+
+.checkout-btn {
+  width: 100%;
+}
+/* /////////////////////// */
+
+
+/* foter //////////////*/
+/*==========  foter list =======*/
+
+#just-txt {
+border-top: 1px solid gray;
+border-bottom: 1px solid gray;
+font-size: x-large;
+font-weight: 700;
+text-align: left;
+}
+.footer {
+border-bottom: 1px solid gray;
+}
+.category-list {
+list-style-type: none; /* Removes bullet points */
+padding-left: 0;
+margin: 15px 0;
+}
+
+.category-list li {
+padding: 8px 0;
+border-bottom: 1px solid #eee; /* Optional divider */
+}
+
+.category-list li:last-child {
+border-bottom: none; /* Remove border from last item */
+}
+
+.category-list a {
+text-decoration: none;
+color: #333;
+font-size: 16px;
+display: block;
+}
+
+.category-list a:hover {
+color: blue;
+font-weight: bold;
+}
+.copyright-text a:hover {
+color: rgb(0, 0, 74);
+}
+
+/*====navbar baby*/
+
+.nav-item a {
+color: white;
+font-weight: bold;
+}
+.offcanvas button span .navbar-toggler-icon {
+color: azure;
+}
+
+
+
+

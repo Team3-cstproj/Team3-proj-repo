@@ -1,0 +1,78 @@
+/* import main css file */
+@import url("main.css");
+
+/*====navbar baby*/
+
+.nav-item a {
+  color: white;
+  font-weight: bold;
+}
+.offcanvas button span .navbar-toggler-icon {
+  color: azure;
+}
+/*====navbar baby*/
+.required-field::after {
+  content: "*";
+  color: red;
+  margin-left: 2px;
+}
+
+.payment-details {
+  background-color: #f8f9fa;
+  padding: 15px;
+  margin-top: 10px;
+}
+
+.checkout-title {
+  text-align: center;
+  color: #5a5a5a;
+  margin: 30px 0;
+}
+
+.payment-icons img {
+  height: 25px;
+  margin-right: 5px;
+}
+
+/* foter //////////////*/
+/*==========  foter list =======*/
+
+#just-txt {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  font-size: x-large;
+  font-weight: 700;
+  text-align: left;
+}
+.footer {
+  border-bottom: 1px solid gray;
+}
+.category-list {
+  list-style-type: none; /* Removes bullet points */
+  padding-left: 0;
+  margin: 15px 0;
+}
+
+.category-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee; /* Optional divider */
+}
+
+.category-list li:last-child {
+  border-bottom: none; /* Remove border from last item */
+}
+
+.category-list a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  display: block;
+}
+
+.category-list a:hover {
+  color: blue;
+  font-weight: bold;
+}
+.copyright-text a:hover {
+  color: rgb(0, 0, 74);
+}

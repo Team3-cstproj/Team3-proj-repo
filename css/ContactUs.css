@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+  overflow-x: hidden;
+  }
+  
+    .Mainwrapeer{
+     
+  background-image: url("../img_index/pexels-thirdman-7652179.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; 
+  margin: 0;
+  min-height: 85vh;
+  position: relative; 
+  
+  }
+
+  
+  /*==========  foter list =======*/
+  
+   #just-txt{
+      border-top:1px solid gray ;
+      border-bottom:1px solid gray  ;
+      font-size:x-large;
+      font-weight: 700;
+      text-align: left;
+    }
+     .footer{
+      border-bottom: 1px solid gray;
+     } 
+     .category-list {
+       list-style-type: none; /* Removes bullet points */
+       padding-left: 0;
+       margin: 15px 0;
+      }
+    
+      .category-list li {
+        padding: 8px 0;
+        border-bottom: 1px solid #eee; /* Optional divider */
+      }
+    
+      .category-list li:last-child {
+        border-bottom: none; /* Remove border from last item */
+      }
+    
+      .category-list a {
+         text-decoration: none;
+         color: #333;
+         font-size: 16px;
+         display: block;
+      }
+    
+      .category-list a:hover {
+        color:blue;
+        font-weight: bold;
+      }
+      .copyright-text a:hover{
+        color: rgb(0, 0, 74);
+      }
+    /*=====================================================================================================*/
+    /* aboutus bannar */
+  
+  .aboutus-banner {
+    color: rgb(0, 0, 0);
+  }
+  .aboutus-banner h1{
+  
+    font-weight: bolder;
+    font-family: sans-serif;
+  }
+  /*===================================================================================*/
+  
+  * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+      }
+            
+   /* card styling baby */
+   .card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px);
+}
+
+.card-body {
+    padding: 2rem 1.5rem;
+}
+
+      /*===============================================================================*/
+      .contact-form {
+        padding: 20px;
+        background-color: #f8f9fa;
+    }
+    
+    .info-section {
+        padding: 20px;
+    }
+    
+    .form-control {
+        margin-bottom: 15px;
+    }
+    
+    .btn-primary {
+        background-color: #0d6efd;
+        border: none;
+        padding: 10px 25px;
+    }
+    .invalid-feedback {
+        display: none;
+        color: #dc3545;
+        font-size: 14px;
+        margin-top: -10px;
+        margin-bottom: 10px;
+    }
+    
+    .was-validated .form-control:invalid {
+        border-color: #dc3545;
+    }
+    
+    .was-validated .form-control:invalid + .invalid-feedback {
+        display: block;
+    }
