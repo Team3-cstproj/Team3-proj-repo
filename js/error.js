@@ -5,15 +5,15 @@ backHome.addEventListener("click", function() {
     if (user) {
         const userRole = user.role;
         if (userRole === "admin") {
-            window.location.href = "admin.html"; // Redirect to admin page
+            window.location.href = "admin.html"; 
         }
         else if (userRole === "seller") {
-            window.location.href = "seller.html"; // Redirect to seller page
+            window.location.href = "seller.html"; 
         } else if (userRole === "user") {
-            window.location.href = "index.html"; // Redirect to user page
+            window.location.href = "index.html"; 
         } 
     } else {
         window.location.href = "index.html";
     }
-     // Redirect to the home page
+     
 });

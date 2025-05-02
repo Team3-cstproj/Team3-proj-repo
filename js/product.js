@@ -683,7 +683,7 @@ function displayRelatedProducts(currentProduct) {
               setTimeout(() => {
                 buttonEl.classList.remove('success-feedback', 'fade-out');
                 buttonEl.classList.remove('disabled');
-                buttonEl.querySelector('.tooltip-text').textContent = 'Add to cart'; t
+                buttonEl.querySelector('.tooltip-text').textContent = 'Add to cart'; 
                 displayRelatedProducts(currentProduct); 
               }, 500); 
             }, 1500);

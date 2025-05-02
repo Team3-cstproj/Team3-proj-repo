@@ -10,6 +10,11 @@
   margin: 0 auto;
   height: 100%;
 }
+.product-card img {
+  height: 45vh;          /* Set your desired fixed height */
+  object-fit: cover;      /* Ensures image fills the area without distortion */
+  width: 100%;            /* Makes it responsive */
+}
 
 .product-card:hover {
   transform: translateY(-5px);
