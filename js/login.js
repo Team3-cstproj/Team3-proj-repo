@@ -86,10 +86,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const formGroup = inputElement.closest('.mb-3');
         if (!formGroup) return;
         
-        // Add error class to input
         inputElement.classList.add('is-invalid');
         
-        // Create or update error message element
+        // Create error message 
         let errorElement = formGroup.querySelector('.invalid-feedback');
         if (!errorElement) {
             errorElement = document.createElement('div');
@@ -100,9 +99,9 @@ document.addEventListener('DOMContentLoaded', function() {
         errorElement.textContent = message;
     }
     
-    // Function to clear all validation states
+    //  clear all validation 
     function clearValidation() {
-        // Remove all error states
+        // Remove all error 
         document.querySelectorAll('.is-invalid').forEach(el => {
             el.classList.remove('is-invalid');
         });
