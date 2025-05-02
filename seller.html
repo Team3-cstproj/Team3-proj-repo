@@ -12,16 +12,7 @@
     <title>Seller-E-comerce</title>
 
     <script src="data/orders.js"></script>
-    <script>
-        // Define the roles that are allowed to access this page
-        const allowedRoles = ['seller']; // Customize this for each page
-      
-        const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-      
-        if (!currentUser || !allowedRoles.includes(currentUser.role)) {
-          window.location.href = 'error.html';
-        }
-    </script>
+
   
 </head>
 <body>
@@ -32,7 +23,7 @@
         <aside class="Saside">
             <div class = "top">
                 <div class = logo>
-                    <h2  class= "logoh">Hasep<span class="danger">keda</span></h2>
+                    <h2  class= "logoh">DNK</h2>
                 </div>
                 <div class = "close" id = "close_btn">
                     <span class="material-symbols-outlined">close</span>
