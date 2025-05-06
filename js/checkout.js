@@ -31,15 +31,68 @@ window.addEventListener('DOMContentLoaded', function () {
 
 function validateOrder(event) {
   const form = event.target;
+  const phone = document.getElementById('phone');
+  const postcode = document.getElementById('postcode');
+  const city = document.getElementById('city');
+  const formMessage = document.getElementById('form-message');
+
+  let isValid = true;
+
+  // Clear message state
+  formMessage.classList.add('d-none');
+  formMessage.classList.remove('alert-success', 'alert-danger');
+  formMessage.textContent = '';
+
+  // Built-in Bootstrap validation
   if (!form.checkValidity()) {
+    isValid = false;
+  }
+
+  // Validate phone (10 digits only)
+  const phonePattern = /^\d{11}$/;
+  if (!phonePattern.test(phone.value.trim())) {
+    phone.classList.add('is-invalid');
+    phone.nextElementSibling.textContent = 'Phone number must be exactly 11 digits.';
+    isValid = false;
+  } else {
+    phone.classList.remove('is-invalid');
+  }
+
+  // Validate postcode (4 to 10 digits)
+  const postcodePattern = /^\d{4,10}$/;
+  if (!postcodePattern.test(postcode.value.trim())) {
+    postcode.classList.add('is-invalid');
+    postcode.nextElementSibling.textContent = 'Postcode must be 4 to 10 digits.';
+    isValid = false;
+  } else {
+    postcode.classList.remove('is-invalid');
+  }
+
+  // Validate city (letters, spaces, hyphens only)
+  const cityPattern = /^[a-zA-Z\s\-]+$/;
+  if (!cityPattern.test(city.value.trim())) {
+    city.classList.add('is-invalid');
+    city.nextElementSibling.textContent = 'City must contain only letters.';
+    isValid = false;
+  } else {
+    city.classList.remove('is-invalid');
+  }
+
+  if (!isValid) {
     event.preventDefault();
     event.stopPropagation();
     form.classList.add('was-validated');
+    formMessage.classList.remove('d-none');
+    formMessage.classList.add('alert', 'alert-danger');
+    formMessage.textContent = 'Please correct the errors in the form.';
     return false;
   }
-  event.preventDefault();
+
+  form.classList.remove('was-validated');
+  event.preventDefault(); // prevent actual submission
   placeOrder();
 }
+
 
 function placeOrder() {
   createdOrderIds = [];
