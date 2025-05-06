@@ -54,6 +54,12 @@ function removeProduct(productId) {
   const sellerr = JSON.parse(localStorage.getItem('users')) || [];
   const updatedselleruserdata = sellerr.filter(seller => String(seller.id) !== productId);
   localStorage.setItem('users', JSON.stringify(updatedselleruserdata)); 
+
+  let products = JSON.parse(localStorage.getItem('products')) || [];
+  const updatedproducts = products.filter(product => String(product.sellerId) !== productId);
+  localStorage.setItem('products', JSON.stringify(updatedproducts));
+
+  
   loadProducts(); 
 }
 //clear session storage after log out
