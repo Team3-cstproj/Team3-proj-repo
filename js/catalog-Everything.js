@@ -282,8 +282,12 @@ function searchByWord() {
   let minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
   let maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
 
+  if (minPrice < 0 || maxPrice < 0) {
+    showFilterModal("Price cannot be negative. Please enter values greater than or equal to 0.");
+    return;
+  }
   if (minPrice > maxPrice) {
-    alert("Minimum price cannot be greater than maximum price.");
+    showFilterModal("Minimum price cannot be greater than maximum price.");
     return;
   }
 
@@ -316,8 +320,12 @@ function filterByPrice() {
   let minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
   let maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
 
+  if (minPrice < 0 || maxPrice < 0) {
+    showFilterModal("Price cannot be negative. Please enter values greater than or equal to 0.");
+    return;
+  }
   if (minPrice > maxPrice) {
-    alert("Minimum price cannot be greater than maximum price.");
+    showFilterModal("Minimum price cannot be greater than maximum price.");
     return;
   }
 
@@ -389,7 +397,28 @@ function clearFilters() {
 function browseAllProducts() {
   clearFilters();
 }
+
+
 document.getElementById("clearFilterBtn").addEventListener("click", clearFilters);
+function showFilterModal(message) {
+  const modalBody = document.getElementById("filterModalMessage");
+  modalBody.textContent = message;
+  const filterModal = new bootstrap.Modal(document.getElementById("filterModal"));
+  filterModal.show();
+}
+// Prevent typing negative sign
+function blockNegativeInput(e) {
+  if (e.key === '-' || e.keyCode === 189) {
+    e.preventDefault();
+  }
+}
+
+// Reset value to 0 if user pastes or types a negative number
+function sanitizeNegative(input) {
+  if (parseFloat(input.value) < 0) {
+    input.value = 0;
+  }
+}
 
 
 

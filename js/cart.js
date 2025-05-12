@@ -31,7 +31,13 @@ function renderCart() {
       <td class="subtotal">$${item.price * item.quantity}</td>
     `;
 
+
         cartTableBody.appendChild(row);
+        const alertRow = document.createElement('tr');
+        alertRow.classList.add('cart-alert-row');
+        alertRow.innerHTML = `<td colspan="6"><div class="alert alert-danger d-none" role="alert"></div></td>`;
+        cartTableBody.appendChild(alertRow);
+
     });
 
     updateCartTotal();
@@ -52,6 +58,7 @@ function updateCartTotal() {
     cartTotalsBody.innerHTML = `
     <tr><td>Subtotal: $${subtotal}</td></tr>
     <tr><td>Total: $${subtotal}</td></tr>
+
   `;
 
     saveCart();
@@ -78,22 +85,40 @@ cartTableBody.addEventListener('click', function (e) {
         removeItem(index);
     }
 });
+function showCartAlert(index, message) {
+    const allAlertRows = document.querySelectorAll('.cart-alert-row');
+    const alertBox = allAlertRows[index].querySelector('.alert');
+    
+    alertBox.textContent = message;
+    alertBox.classList.remove('d-none');
+
+    // Auto-hide after 3 seconds
+    setTimeout(() => {
+        alertBox.classList.add('d-none');
+    }, 3000);
+}
+
 
 cartTableBody.addEventListener('change', function (e) {
-    if (e.target.classList.contains('quantity-input')) {
-        const quantity = +e.target.value;
-        const index = +e.target.closest('tr').getAttribute('data-index');
+  if (e.target.classList.contains('quantity-input')) {
+      const quantity = +e.target.value;
+      const index = +e.target.closest('tr').getAttribute('data-index');
+      const max = +e.target.getAttribute('max');
 
-        if (quantity < 1) return; // Optional: prevent quantity < 1
+      if (quantity < 1 || quantity > max) {
+          showCartAlert(index, `Please enter a quantity between 1 and ${max}.`);
+          e.target.value = cartData.items[index].quantity;
+          return;
+      }
 
-        cartData.items[index].quantity = quantity;
-
-        updateCartTotal();
-        renderCart();
-        updateCartDisplay(); // Update cart display in navbar
-        
-    }
+      cartData.items[index].quantity = quantity;
+      updateCartTotal();
+      renderCart();
+      updateCartDisplay();
+  }
 });
+
+
 
 // Initial render
 renderCart();
